@@ -62,11 +62,11 @@
                   </li>
                   <li><a><i class="fa fa-edit"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_grupos.html">Grupos</a>
+                      <li><a href="form.html">Grupos</a>
                       </li>
                       <li><a href="sides_faltas.html">Faltas</a>
                       </li>
-                      <li><a href="sides_sanciones.html">Boleta de Sanción</a>
+                      <li><a href="form.html">Boleta de Sancion</a>
                       </li>
                       <li><a href="sides_reportes.html">Reportes</a>
                       </li>
@@ -84,7 +84,7 @@
                     <ul class="nav child_menu">
                       <li><a href="form.html">Instructor</a>
                       </li>
-                      <li><a href="sides_sanciones.html">Boleta de Sancion</a>
+                      <li><a href="form.html">Boleta de Sancion</a>
                       </li>
                       <!-- <li><a href="form_validation.html">Form Validation</a>
                       </li>
@@ -100,7 +100,7 @@
                     <ul class="nav child_menu">
                       <li><a href="form.html">Alumnos</a>
                       </li>
-                      <li><a href="sides_sanciones.html">Boleta de Sancion</a>
+                      <li><a href="form.html">Boleta de Sancion</a>
                       </li>
                       <!-- <li><a href="form_validation.html">Form Validation</a>
                       </li>
@@ -114,7 +114,7 @@
                   </li>
                   <li><a><i class="fa fa-edit"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_sanciones.html">Boleta de sancion</a>
+                      <li><a href="form.html">Boleta de sancion</a>
                       </li>
                     </ul>
                   </li>
@@ -369,7 +369,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Administrar Usuario</h3>
+                <h3>Administrar Faltas</h3>
               </div>
 
               <!-- <div class="title_right">
@@ -411,7 +411,7 @@
                           <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Grupo<span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="first-name" name="ci-user" required="required" class="form-control col-md-7 col-xs-12">
@@ -419,92 +419,16 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Grado <span class="required">*</span></label>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Puntos <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control">
-                                  <option>Seleccione su grado</option>
-                                  <option>Option one</option>
-                                  <option>Option two</option>
-                                  <option>Option three</option>
-                                  <option>Option four</option>
+                                  <option>Seleccione un Punto</option>
+                                  <option>1 Pto.</option>
+                                  <option>2 Pto.</option>
+                                  <option>3 Pto.</option>
+                                  <option>4 Pto.</option>
+                                  <option>5 Pto.</option>
                                 </select>
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Genero <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="radio">
-                                  <label>
-                                    <input type="radio" class="flat" checked name="iCheck"> Masculino
-                                  </label>
-                                </div>
-                                <div class="radio">
-                                  <label>
-                                    <input type="radio" class="flat" name="iCheck"> Femenina
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="name-user" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="app-user" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Teléfono </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Correo electrónico </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
