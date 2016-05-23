@@ -66,7 +66,7 @@
                       </li>
                       <li><a href="sides_faltas.html">Faltas</a>
                       </li>
-                      <li><a href="form.html">Boleta de Sancion</a>
+                      <li><a href="sides_sanciones.html">Boleta de Sancion</a>
                       </li>
                       <li><a href="sides_reportes.html">Reportes</a>
                       </li>
@@ -82,9 +82,9 @@
                   </li>
                   <li><a><i class="fa fa-edit"></i> Administrar Instructor <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">Instructor</a>
+                      <li><a href="sides_instructor.html">Instructor</a>
                       </li>
-                      <li><a href="form.html">Boleta de Sancion</a>
+                      <li><a href="sides_sanciones.html">Boleta de Sancion</a>
                       </li>
                       <!-- <li><a href="form_validation.html">Form Validation</a>
                       </li>
@@ -98,9 +98,9 @@
                   </li>
                   <li><a><i class="fa fa-edit"></i> Administrar Alumnos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">Alumnos</a>
+                      <li><a href="########">Alumnos</a>
                       </li>
-                      <li><a href="form.html">Boleta de Sancion</a>
+                      <li><a href="sides_sanciones.html">Boleta de Sancion</a>
                       </li>
                       <!-- <li><a href="form_validation.html">Form Validation</a>
                       </li>
@@ -395,9 +395,9 @@
                   <br>
                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Crear</a>
+                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Sancionar</a>
                       </li>
-                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Modificar</a>
+                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Lista de sancionados</a>
                       </li>
                       <!-- <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
                       </li> -->
@@ -405,25 +405,33 @@
                     <div id="myTabContent" class="tab-content">
                       <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
-                        <!-- Form New Users -->
+                        <!-- Formulario de sanciones nuevas -->
                         <div class="x_content">
                           <br />
                           <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sancionador">C.I. Instructor sanciona <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" name="ci-user" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="sancionador" name="ci-user" required="required" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Grado <span class="required">*</span></label>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Alumno-sancionado">C.I. Alumno sancionado <span class="required">*</span>
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="Alumno-sancionado" name="ci-user" required="required" class="form-control col-md-7 col-xs-12">
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Grupo <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control">
-                                  <option>Seleccione su grado</option>
-                                  <option>Option one</option>
+                                  <option>Seleccione el grupo</option>
+                                  <option>Grupo I</option>
                                   <option>Option two</option>
                                   <option>Option three</option>
                                   <option>Option four</option>
@@ -432,24 +440,20 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Genero <span class="required">*</span>
-                              </label>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">faltas <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="radio">
-                                  <label>
-                                    <input type="radio" class="flat" checked name="iCheck"> Masculino
-                                  </label>
-                                </div>
-                                <div class="radio">
-                                  <label>
-                                    <input type="radio" class="flat" name="iCheck"> Femenina
-                                  </label>
-                                </div>
+                                <select class="form-control">
+                                  <option>Seleccione la falta</option>
+                                  <option>Faltas1 del grupo I de la BD</option>
+                                  <option>Faltas2 del grupo I de la BD</option>
+                                  <option>Faltas3 del grupo I de la BD</option>
+                                  <option>Faltas4 del grupo I de la BD</option>
+                                </select>
                               </div>
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Puntos <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="last-name" name="name-user" required="required" class="form-control col-md-7 col-xs-12">
@@ -457,37 +461,7 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="app-user" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Teléfono </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento <span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Sancion <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
@@ -495,14 +469,14 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Correo electrónico </label>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Codigo secreto alumno</label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
+                                <input type="password" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Subir Resolucion </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
                               </div>
@@ -527,7 +501,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                           <div class="x_panel">
                             <div class="x_title">
-                              <h2>Lista de Usuarios <small>puedes modifica o eliminar</small></h2>
+                              <h2>Lista de Alumnos sancionados<small></small></h2>
                               <!-- <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -551,10 +525,10 @@
                                   <tr>
                                     <th>Cédula Identidad</th>
                                     <th>Grado</th>
-                                    <th>Rol</th>
                                     <th>Nombre</th>
                                     <th>Apellido Paterno</th>
-                                    <th>Apellido Materno</th>
+                                    <th>Sancion</th>
+                                    <th>Puntos</th>
                                     <th></th>
                                   </tr>
                                 </thead>
