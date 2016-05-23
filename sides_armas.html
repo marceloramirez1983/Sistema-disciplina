@@ -26,7 +26,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>SIDES</span></a>
+              <a href="index.html" class="site_title"><img src="images/logo.png" alt="Mountain View" style="width:44px;height:44px;"> <span>SIDES</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -48,36 +48,32 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3> Instructor </h3>
+                <h3> Administrador </h3>
                 <ul class="nav side-menu">
 
                   <li><a><i class="fa fa-user"></i> Administrar Usuario <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="add_user.html">Usuarios</a></li>
+                      <li><a href="sides_user.html">Registrar Usuario</a></li>
                       <li><a href="sides_asign_user.html">Asignar Usuario</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-edit"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_grupos.html">Grupos</a></li>
-                      <li><a href="sides_faltas.html">Faltas</a></li>
-                      <li><a href="sides_sanciones.html">Boleta de Sanción</a></li>
-                      <li><a href="sides_reportes.html">Reportes</a></li>
+                      <li><a href="sides_grupos.html">Registrar Grupos</a></li>
+                      <li><a href="sides_faltas.html">Registrar Faltas</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-edit"></i> Administrar Instructor <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">Instructor</a></li>
-                      <li><a href="sides_sanciones.html">Boleta de Sancion</a></li>
+                      <li><a href="sides_instructor.html">Registrar Instructor</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-edit"></i> Administrar Alumnos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">Alumnos</a></li>
-                      <li><a href="sides_sanciones.html">Boleta de Sancion</a></li>
+                      <li><a href="sides_alumnos.html">Registrar Alumnos</a></li>
                     </ul>
                   </li>
 
@@ -89,16 +85,22 @@
 
                   <li><a><i class="fa fa-edit"></i> Hoja de Vida Pesonal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href=".html">Reporte Disciplinario</a></li>
+                      <li><a href="sides_reports.html">Reporte Disciplinario</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-edit"></i> Logs <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_log_logins.html">Logs de Sesiones</a></li>
+                      <li><a href="sides_log_actions.html">Logs de Acciones</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-edit"></i> Extras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href=".html">Arma</a></li>
-                      <li><a href=".html">Grado</a></li>
-                      <li><a href=".html">Rol</a></li>
-                      <li><a href=".html">Logs</a></li>
+                      <li><a href="sides_armas.html">Registrar Arma</a></li>
+                      <li><a href="sides_grados.html">Registrar Grado</a></li>
+                      <li><a href="sides_roles.html">Registrar Roles</a></li>
                     </ul>
                   </li>
 
@@ -244,7 +246,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Administrar Usuario</h3>
+                <h3>Administrar Arma</h3>
               </div>
 
               <!-- <div class="title_right">
@@ -286,7 +288,7 @@
                           <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Arma<span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="first-name" name="ci-user" required="required" class="form-control col-md-7 col-xs-12">
@@ -294,92 +296,10 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Grado <span class="required">*</span></label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control">
-                                  <option>Seleccione su grado</option>
-                                  <option>Option one</option>
-                                  <option>Option two</option>
-                                  <option>Option three</option>
-                                  <option>Option four</option>
-                                </select>
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Genero <span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripción<span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="radio">
-                                  <label>
-                                    <input type="radio" class="flat" checked name="iCheck"> Masculino
-                                  </label>
-                                </div>
-                                <div class="radio">
-                                  <label>
-                                    <input type="radio" class="flat" name="iCheck"> Femenina
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="name-user" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="app-user" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Teléfono </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Correo electrónico </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="first-name" name="ci-user" required="required" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
@@ -402,7 +322,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                           <div class="x_panel">
                             <div class="x_title">
-                              <h2>Lista de Usuarios <small>puedes modifica o eliminar</small></h2>
+                              <h2>Lista de Armas <small>puedes modificar o eliminar</small></h2>
                               <!-- <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -424,23 +344,17 @@
                               <table class="table table-hover">
                                 <thead>
                                   <tr>
-                                    <th>Cédula Identidad</th>
-                                    <th>Grado</th>
-                                    <th>Rol</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido Paterno</th>
-                                    <th>Apellido Materno</th>
+                                    <th>Arma</th>
+                                    <th>Descripción</th>
                                     <th></th>
+
                                   </tr>
                                 </thead>
                                 <tbody>
                                   <tr>
-                                    <th scope="row">2314324</th>
-                                    <td>Markasadasasd</td>
-                                    <td>Markasadasasd</td>
-                                    <td>@Markasadasasd</td>
-                                    <td>Markasadasasd</td>
-                                    <td>Markasadasasd</td>
+                                    <th scope="row">Infanteria</th>
+                                    <td>Maecenas sed diam eget risus varius blandit sit amet non magna.</td>
+
                                     <td>
                                       <div class="btn-group">
                                         <button type="button" class="btn btn-danger">Opción</button>
@@ -462,12 +376,9 @@
 
                                   </tr>
                                   <tr>
-                                    <th scope="row">2314324</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
+                                    <th scope="row">Ingenieria</th>
+                                    <td>Maecenas sed diam eget risus varius blandit sit amet non magna.</td>
+
                                     <td>
                                       <div class="btn-group">
                                         <button type="button" class="btn btn-danger">Opción</button>
@@ -485,36 +396,10 @@
                                           </li>
                                         </ul>
                                       </div>
-                                      </div>
                                     </td>
+
                                   </tr>
-                                  <tr>
-                                    <th scope="row">2314324</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                      </div>
-                                    </td>
-                                  </tr>
+
                                 </tbody>
                               </table>
 

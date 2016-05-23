@@ -246,20 +246,8 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Administrar Faltas</h3>
+                <h3>Administrar Usuario</h3>
               </div>
-
-              <!-- <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div> -->
-
             </div>
 
             <div class="clearfix"></div>
@@ -272,9 +260,9 @@
                   <br>
                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Crear falta</a>
+                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Crear</a>
                       </li>
-                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Modificar falta</a>
+                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Modificar</a>
                       </li>
                       <!-- <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
                       </li> -->
@@ -288,7 +276,7 @@
                           <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Falta<span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="first-name" name="ci-user" required="required" class="form-control col-md-7 col-xs-12">
@@ -296,15 +284,92 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Grupo <span class="required">*</span></label>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Grado <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control">
-                                  <option>Seleccione un Grupo</option>
-                                  <option>1.- asdasda</option>
-                                  <option>2.- asdasda</option>
-                                  <option>3.- asdasda</option>
-                                  <option>4.- asdasda</option>
+                                  <option>Seleccione su grado</option>
+                                  <option>Option one</option>
+                                  <option>Option two</option>
+                                  <option>Option three</option>
+                                  <option>Option four</option>
                                 </select>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Genero <span class="required">*</span>
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="radio">
+                                  <label>
+                                    <input type="radio" class="flat" checked name="iCheck"> Masculino
+                                  </label>
+                                </div>
+                                <div class="radio">
+                                  <label>
+                                    <input type="radio" class="flat" name="iCheck"> Femenina
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required">*</span>
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="last-name" name="name-user" required="required" class="form-control col-md-7 col-xs-12">
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="last-name" name="app-user" required="required" class="form-control col-md-7 col-xs-12">
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="last-name" name="apm-user" required="required" class="form-control col-md-7 col-xs-12">
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Teléfono </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento <span class="required">*</span>
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Correo electrónico </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
@@ -327,7 +392,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                           <div class="x_panel">
                             <div class="x_title">
-                              <h2>Lista de faltas registradas <small>puedes modificar o eliminar</small></h2>
+                              <h2>Lista de Usuarios <small>puedes modifica o eliminar</small></h2>
                               <!-- <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -349,23 +414,23 @@
                               <table class="table table-hover">
                                 <thead>
                                   <tr>
-                                    <th>Falta</th>
-                                    <th>Grupo</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
+                                    <th>Cédula Identidad</th>
+                                    <th>Grado</th>
+                                    <th>Rol</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido Paterno</th>
+                                    <th>Apellido Materno</th>
                                     <th></th>
                                   </tr>
                                 </thead>
                                 <tbody>
                                   <tr>
-                                    <th scope="row">desaseado</th>
-                                    <td>Grupo I</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <th scope="row">2314324</th>
+                                    <td>Markasadasasd</td>
+                                    <td>Markasadasasd</td>
+                                    <td>@Markasadasasd</td>
+                                    <td>Markasadasasd</td>
+                                    <td>Markasadasasd</td>
                                     <td>
                                       <div class="btn-group">
                                         <button type="button" class="btn btn-danger">Opción</button>
@@ -386,7 +451,60 @@
                                     </td>
 
                                   </tr>
-
+                                  <tr>
+                                    <th scope="row">2314324</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>
+                                      <div class="btn-group">
+                                        <button type="button" class="btn btn-danger">Opción</button>
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                          <span class="caret"></span>
+                                          <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                          <li><a href="#">Ver mas detalles</a>
+                                          </li>
+                                          <li><a href="#">Modificar</a>
+                                          </li>
+                                          <li class="divider"></li>
+                                          <li><a href="#">Eliminar</a>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">2314324</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>
+                                      <div class="btn-group">
+                                        <button type="button" class="btn btn-danger">Opción</button>
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                          <span class="caret"></span>
+                                          <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                          <li><a href="#">Ver mas detalles</a>
+                                          </li>
+                                          <li><a href="#">Modificar</a>
+                                          </li>
+                                          <li class="divider"></li>
+                                          <li><a href="#">Eliminar</a>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                      </div>
+                                    </td>
+                                  </tr>
                                 </tbody>
                               </table>
 
