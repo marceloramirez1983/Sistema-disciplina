@@ -1,10 +1,10 @@
 <?php
-include "../controladores/conexion.php";
+include "../controladores/conexionBD.php";
 
 function crearBD(){
 	$cnn= new conexion();//crea instancia de la clase conexion
 	$con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion conectar.
-	$sql="CREATE DATABASE proyectoemse";//comando sql crea BD
+	$sql="CREATE DATABASE sides";//comando sql crea BD
 	mysqli_query($con,$sql);//mysql_query(conexion,consulta);
 	mysqli_close($con);
 }
@@ -12,18 +12,30 @@ function crearBD(){
 function crearTablas(){
 	$cnn= new conexion();//crea instancia de la clase conexion
 	$con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion conectar.
-	mysqli_select_db($con,"proyectoemse");//mysqli_select_db(variableconexion,nombreBD)
+	mysqli_select_db($con,"sides");//mysqli_select_db(variableconexion,nombreBD)
 	
-	$sql="CREATE TABLE usuarios(
-	id INT(11) NOT NULL AUTO_INCREMENT,
-	usuario VARCHAR(10),
-	password VARCHAR(10),
-	PRIMARY KEY(id)
+	$sqlfalta="CREATE TABLE falta(
+	id_falta INT NOT NULL AUTO_INCREMENT,
+	nombre VARCHAR(150),
+	id_grupo INT,
+	PRIMARY KEY(id_falta)
+	)";//creamos la tabla
+
+	$sqlgrupo="CREATE TABLE grupo(
+	id_grupo INT NOT NULL AUTO_INCREMENT,
+	grupo VARCHAR(60),
+	puntos INT,
+	PRIMARY KEY(id_grupo)
 	)";//creamos la tabla
 	
-	if(mysqli_query($con,$sql)){
-		echo "tabla creada";
+	if(mysqli_query($con,$sqlfalta)){
+		echo "tabla falta creada";
 	}
+	if(mysqli_query($con,$sqlgrupo)){
+		echo "tabla grupo creada";
+	}
+	
+
 	mysqli_close($con);
 }
 
