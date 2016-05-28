@@ -8,7 +8,7 @@
   $query = "SELECT * FROM tb_user";
   $result = mysqli_query($con, $query);
 
-  echo "valores : ";
+
 
   if (isset($_REQUEST['success'])) {
     # code...
@@ -328,7 +328,27 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
+                                  <?php
+
+                                    if (mysqli_num_rows($result) > 0) {
+
+                                      while ($row = mysqli_fetch_row($result)) {
+                                        # code...
+                                        echo "<td>";
+                                        echo "<th>".$row['id_ci']."</th>";
+                                        echo "<td>".$row['nombre']."</td>";
+                                        echo "</td>";
+                                        // echo "<th scope="row">".$row['id_ci']."</th>";
+                                      }
+
+                                    } else {
+                                      # code...
+                                      echo "0 Elementos";
+                                    }
+
+                                    mysqli_close($con);
+                                  ?>
+                                  <!-- <tr>
                                     <th scope="row">2314324</th>
                                     <td>Markasadasasd</td>
                                     <td>Markasadasasd</td>
@@ -354,61 +374,8 @@
                                       </div>
                                     </td>
 
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">2314324</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">2314324</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                      </div>
-                                    </td>
-                                  </tr>
+                                  </tr> -->
+
                                 </tbody>
                               </table>
 
