@@ -6,9 +6,8 @@ $cnn= new conexion();//crea instancia de la clase conexion
 $con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion conectar.
 
 $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");//mysqli_select_db(variableconexion,nombreBD)
-$link = mysqli_connect("localhost", "root", "", "sides");
-$getallgroup= mysqli_query($link, "SELECT * FROM grupo");
-
+//$link = mysqli_connect("localhost", "root", "", "sides");
+$getallgroup= mysqli_query($con, "SELECT * FROM grupo");
 ?>
 
 <!DOCTYPE html>
@@ -307,14 +306,18 @@ $getallgroup= mysqli_query($link, "SELECT * FROM grupo");
                               <table class="table table-hover">
                                 <thead>
                                   <tr>
+                                    <th>N#</th>
                                     <th>Nombre grupo </th>
                                     <th>Puntos</th>
                                   </tr>
                                 </thead>
                                 <tbody>
 
-                                  <?php while($row = mysqli_fetch_array($getallgroup, MYSQLI_ASSOC)):?>
+                                  <?php
+                                  $num=0;
+                                  while($row = mysqli_fetch_array($getallgroup, MYSQLI_ASSOC)):?>
                                     <tr>
+                                      <td><?php $num=$num+1;echo $num ?></td>
                                       <td><?php echo $row ['grupo'];?></td>
                                       <td><?php echo $row['puntos'];?></td>
                                       <td>
@@ -435,13 +438,13 @@ $getallgroup= mysqli_query($link, "SELECT * FROM grupo");
                         <div class="x_content">
                           <br />
 
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertBDgrupo.php">
+                          <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertBDgrupo.php">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Grupo<span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" name="txtnombre_grupo" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="txtnombre_grupo" name="txtnombre_grupo" required="required" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
@@ -449,8 +452,8 @@ $getallgroup= mysqli_query($link, "SELECT * FROM grupo");
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Puntos <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control" name="CBoxselect_puntos">
-                                  <option value="">Seleccione los Puntos</option>
-                                  <option value="0">Sin Puntaje</option>
+                                  <option value="">Seleccione los puntos para perdidos</option>
+                                  <option value="6">Sin Puntaje</option>
                                   <option value="1">1 Pto.</option>
                                   <option value="2">2 Pto.</option>
                                   <option value="3">3 Pto.</option>
@@ -463,12 +466,29 @@ $getallgroup= mysqli_query($link, "SELECT * FROM grupo");
                             <div class="ln_solid"></div>
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button type="submit" class="btn btn-primary">Cancelar</button>
-                                <button type="submit" class="btn btn-success">Guardar</button>
+                                <button type="button" class="btn btn-primary" onClick="location.href='index.html'">Cancelar</button>
+                                <button type="button" value="Guardar" onclick="valida_envia()" class="btn btn-success" >Guardar</button>
                               </div>
                             </div>
-
                           </form>
+
+                          <script type="text/javascript">
+                          function valida_envia(){
+                            selec= demoform2.CBoxselect_puntos.selectedIndex
+                            if (demoform2.CBoxselect_puntos.options[selec].value==""){
+                            alert ("Seleccione los puntos")
+                            return false
+                            }
+
+                            valor = document.getElementById("txtnombre_grupo").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese un nombre para el grupo")
+                            return false;
+                            }
+
+                            demoform2.submit();
+                          }
+                          </script>
                         </div>
 
                       </div>

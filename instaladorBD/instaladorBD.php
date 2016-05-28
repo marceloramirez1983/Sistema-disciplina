@@ -19,7 +19,7 @@ function crearTablas(){
 	nombre VARCHAR(150),
 	id_grupo INT,
 	PRIMARY KEY(id_falta)
-	)";//creamos la tabla
+	)";//creamos la tabla FALTA
 
 	$sqlgrupo="CREATE TABLE grupo(
 	id_grupo INT NOT NULL AUTO_INCREMENT,
