@@ -328,12 +328,10 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
                                             <span class="sr-only">Toggle Dropdown</span>
                                           </button>
                                           <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Ver mas detalles</a>
-                                            </li>
-                                            <li><a href="#">Modificar</a>
+                                            <li><a href="sides_Editargrupo.php?id=<?php echo $row ['id_grupo'];?> ">Modificar</a>
                                             </li>
                                             <li class="divider"></li>
-                                            <li><a href="#">Eliminar</a>
+                                            <li><a href="controladores/Eliminargrupo.php?id=<?php echo $row ['id_grupo'];?> ">Eliminar</a>
                                             </li>
                                           </ul>
                                         </div>
