@@ -292,13 +292,13 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                         <!-- Form New Users -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="controladores/insertarfalta.php" method="post">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Falta<span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" name="ci-user" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="txtfalta" name="txtfalta" required="required" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
@@ -306,7 +306,7 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Grupo <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <select class="form-control">
+                                <select class="form-control" name="idgrupo">
                                   <option>Seleccione un Grupo</option>
 
                                 <?php

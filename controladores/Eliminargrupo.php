@@ -13,6 +13,5 @@ $query="DELETE FROM grupo WHERE id_grupo = $idEliminar ";
 if(mysqli_query($con,$query)) {
 header('Location: ../sides_grupos.php');
 }
-
 mysqli_close($con);
 ?>
