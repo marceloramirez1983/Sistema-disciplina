@@ -14,4 +14,5 @@ if(mysqli_query($con,$query)) {
 header('Location: ../sides_grupos.php');
 }
 
+mysqli_close($con);
 ?>
