@@ -1,6 +1,13 @@
 <?php
+include "controladores/conexionBD.php";
 $idEditar=$_GET['id'];
-echo $idEditar;
+
+$cnn= new conexion();//crea instancia de la clase conexion
+$con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion conectar.
+
+$database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");//mysqli_select_db(variableconexion,nombreBD)
+
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -351,13 +358,24 @@ echo $idEditar;
 
                     </ul>
                     <div class="clearfix"></div>
-                    <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertBDgrupo.php">
+
+                    <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/ActualizarGrupo.php">
+                      <?php
+                      $query=mysqli_query($con,"SELECT * FROM grupo WHERE id_grupo= $idEditar");
+                      while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)):?>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Id Grupo
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="txtid_grupo" name="txtid_grupo" readonly required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['id_grupo'] ?>">
+                        </div>
+                      </div>
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Grupo<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="txtnombre_grupo" name="txtnombre_grupo" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="txtnombre_grupo" name="txtnombre_grupo" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['grupo'] ?>">
                         </div>
                       </div>
 
@@ -366,21 +384,23 @@ echo $idEditar;
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select class="form-control" name="CBoxselect_puntos">
                             <option value="">Seleccione los puntos para perdidos</option>
-                            <option value="6">Sin Puntaje</option>
-                            <option value="1">1 Pto.</option>
-                            <option value="2">2 Pto.</option>
-                            <option value="3">3 Pto.</option>
-                            <option value="4">4 Pto.</option>
-                            <option value="5">5 Pto.</option>
+                            <option <?php if($row['puntos']==0):?> selected="selected" <?php endif;?>value="0">Sin Puntaje</option>
+                            <option <?php if($row['puntos']==1):?> selected="selected" <?php endif;?>value="1">1 Pto.</option>
+                            <option <?php if($row['puntos']==2):?> selected="selected" <?php endif;?>value="2">2 Pto.</option>
+                            <option <?php if($row['puntos']==3):?> selected="selected" <?php endif;?>value="3">3 Pto.</option>
+                            <option <?php if($row['puntos']==4):?> selected="selected" <?php endif;?>value="4">4 Pto.</option>
+                            <option <?php if($row['puntos']==5):?> selected="selected" <?php endif;?>value="5">5 Pto.</option>
                           </select>
                         </div>
                       </div>
+                      <?php Endwhile; ?>
+
 
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button type="button" class="btn btn-primary" onClick="location.href='index.html'">Cancelar</button>
-                          <button type="button" value="Guardar" onclick="valida_envia()" class="btn btn-success" >Guardar</button>
+                          <button type="button" class="btn btn-primary" onClick="history.go(-1)">Cancelar</button>
+                          <button type="button" value="Guardar" onclick="valida_envia()" class="btn btn-success" >Actualizar</button>
                         </div>
                       </div>
                     </form>
@@ -414,5 +434,22 @@ echo $idEditar;
 
     <!-- Custom Theme Scripts -->
     <script src="js/custom.js"></script>
+    <script type="text/javascript">
+    function valida_envia(){
+      selec= demoform2.CBoxselect_puntos.selectedIndex
+      if (demoform2.CBoxselect_puntos.options[selec].value==""){
+      alert ("Seleccione los puntos")
+      return false
+      }
+
+      valor = document.getElementById("txtnombre_grupo").value;
+      if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+      alert ("Ingrese un nombre para el grupo")
+      return false;
+      }
+
+      demoform2.submit();
+    }
+    </script>
   </body>
 </html>
