@@ -26,16 +26,16 @@
       <div id="wrapper">
         <div id="login" class=" form">
           <section class="login_content">
-            <form>
+            <form id="formLogIn" method="post" action="controladores/autentificacion.php">
               <h1>Ingresar al Sistema</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" class="form-control" placeholder="Username" required="" name="username" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input type="password" class="form-control" placeholder="Password" required="" name="password" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="index.html">Ingresar</a>
+                <button class="btn btn-success"  onClick="validar()">Ingresar</button>
                 <!-- <a class="reset_pass" href="#">Lost your password?</a> -->
               </div>
               <div class="clearfix"></div>
@@ -54,5 +54,12 @@
         </div>
       </div>
     </div>
+
+    <script type="text/javascript">
+      funcion validar() {
+        formLogIn.submit();
+      }
+    </script>
+
   </body>
 </html>
