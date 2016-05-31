@@ -1,5 +1,4 @@
 <?php
-
 require_once "conexionBD.php";
 $idEliminar=$_GET['id'];
 //echo $idEliminar;
@@ -8,10 +7,10 @@ $con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion 
 
 $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");
 
-$query="DELETE FROM grupo WHERE id_grupo = $idEliminar ";
+$query="DELETE FROM falta WHERE id_falta = $idEliminar";
 
 if(mysqli_query($con,$query)) {
-header('Location: ../sides_grupos.php');
+header('Location: ../sides_faltas.php');
 }
 mysqli_close($con);
 ?>

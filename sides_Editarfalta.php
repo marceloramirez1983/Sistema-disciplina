@@ -176,7 +176,7 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>EDITAR GRUPOS DE FALTAS</h3>
+                <h3>EDITAR FALTAS</h3>
               </div>
 
               <div class="title_right">
@@ -197,7 +197,7 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel" style="height:600px;">
                   <div class="x_title">
-                    <h2>Editar datos de los Grupos</h2>
+                    <h2>Editar nombre de las faltas</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <!--li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li-->
@@ -206,40 +206,43 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                     </ul>
                     <div class="clearfix"></div>
 
-                    <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/ActualizarGrupo.php">
+                    <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/Actualizarfalta.php">
+
                       <?php
-                      $query=mysqli_query($con,"SELECT * FROM grupo WHERE id_grupo= $idEditar");
+                      $query=mysqli_query($con,"SELECT * FROM falta WHERE id_falta= $idEditar");
                       while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)):?>
+
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Id Grupo
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Id falta
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="txtid_grupo" name="txtid_grupo" readonly required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['id_grupo'] ?>">
+                          <input type="text" id="txtid_falta" name="txtid_falta" readonly required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['id_falta'] ?>">
                         </div>
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Grupo<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Falta<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="txtnombre_grupo" name="txtnombre_grupo" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['grupo'] ?>">
+                          <input type="text" id="txtnombre_falta" name="txtnombre_falta" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['nombre'] ?>">
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <!--div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Puntos <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select class="form-control" name="CBoxselect_puntos">
                             <option value="">Seleccione los puntos para perdidos</option>
-                            <option <?php if($row['puntos']==0):?> selected="selected" <?php endif;?>value="0">Sin Puntaje</option>
-                            <option <?php if($row['puntos']==1):?> selected="selected" <?php endif;?>value="1">1 Pto.</option>
-                            <option <?php if($row['puntos']==2):?> selected="selected" <?php endif;?>value="2">2 Pto.</option>
-                            <option <?php if($row['puntos']==3):?> selected="selected" <?php endif;?>value="3">3 Pto.</option>
-                            <option <?php if($row['puntos']==4):?> selected="selected" <?php endif;?>value="4">4 Pto.</option>
-                            <option <?php if($row['puntos']==5):?> selected="selected" <?php endif;?>value="5">5 Pto.</option>
+                            <option <?//php if($row['puntos']==0):?> selected="selected" <?php //endif;?>value="0">Sin Puntaje</option>
+                            <option <?//php if($row['puntos']==1):?> selected="selected" <?php //endif;?>value="1">1 Pto.</option>
+                            <option <?//php if($row['puntos']==2):?> selected="selected" <?php //endif;?>value="2">2 Pto.</option>
+                            <option <?//php if($row['puntos']==3):?> selected="selected" <?php //endif;?>value="3">3 Pto.</option>
+                            <option <?//php if($row['puntos']==4):?> selected="selected" <?php //endif;?>value="4">4 Pto.</option>
+                            <option <?//php if($row['puntos']==5):?> selected="selected" <?php //endif;?>value="5">5 Pto.</option>
                           </select>
                         </div>
-                      </div>
+                      </div-->
+
                       <?php Endwhile; ?>
 
 
@@ -281,17 +284,18 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
 
     <!-- Custom Theme Scripts -->
     <script src="js/custom.js"></script>
+
     <script type="text/javascript">
     function valida_envia(){
-      selec= demoform2.CBoxselect_puntos.selectedIndex
+    /*  selec= demoform2.CBoxselect_puntos.selectedIndex
       if (demoform2.CBoxselect_puntos.options[selec].value==""){
       alert ("Seleccione los puntos")
       return false
-      }
+    }*/
 
-      valor = document.getElementById("txtnombre_grupo").value;
+      valor = document.getElementById("txtnombre_falta").value;
       if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
-      alert ("Ingrese un nombre para el grupo")
+      alert ("Ingrese el nuevo nombre de la falta")
       return false;
       }
 
