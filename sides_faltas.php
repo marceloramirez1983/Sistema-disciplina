@@ -8,8 +8,8 @@ $con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion 
 $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");//mysqli_select_db(variableconexion,nombreBD)
 
 $getallgroup= mysqli_query($con, "SELECT * FROM falta JOIN grupo ON falta.id_grupo = grupo.id_grupo");
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>

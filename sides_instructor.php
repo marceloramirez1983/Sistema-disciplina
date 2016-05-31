@@ -1,3 +1,15 @@
+<?php
+include "controladores/conexionBD.php";
+//echo $nomb_grupo. $puntos_grupo;
+
+$cnn= new conexion();//crea instancia de la clase conexion
+$con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion conectar.
+
+$database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");//mysqli_select_db(variableconexion,nombreBD)
+
+//$getallgroup= mysqli_query($con, "SELECT * FROM falta JOIN grupo ON falta.id_grupo = grupo.id_grupo");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -61,7 +73,7 @@
                   <li><a><i class="fa fa-edit"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_grupos.php">Registrar Grupos</a></li>
-                      <li><a href="sides_faltas.html">Registrar Faltas</a></li>
+                      <li><a href="sides_faltas.php">Registrar Faltas</a></li>
                     </ul>
                   </li>
 
@@ -298,13 +310,19 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Grado <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control">
-                                  <option>Seleccione su grado</option>
-                                  <option>Option one</option>
-                                  <option>Option two</option>
-                                  <option>Option three</option>
-                                  <option>Option four</option>
+
+                                <select class="form-control" name="idgrado" id="idgrado" >
+                                  <option value="">Seleccione su grado</option>
+                                  <?php
+                                  $query="SELECT * FROM grado";
+                                  $result= mysqli_query($con,$query);
+                                  while ($row=mysqli_fetch_array($result)):?>
+                                    <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
+                                  <?php endwhile;
+
+                                  ?>
                                 </select>
+
                               </div>
                             </div>
 
@@ -312,11 +330,15 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Arma <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control">
-                                  <option>Seleccione su arma</option>
-                                  <option>Option one</option>
-                                  <option>Option two</option>
-                                  <option>Option three</option>
-                                  <option>Option four</option>
+                                  <option value="">Seleccione su arma</option>
+                                  <?php
+                                  $query2="SELECT * FROM arma";
+                                  $result= mysqli_query($con,$query2);
+                                  while ($row=mysqli_fetch_array($result)):?>
+                                    <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
+                                  <?php endwhile;
+                                  mysqli_close($con);
+                                  ?>
                                 </select>
                               </div>
                             </div>

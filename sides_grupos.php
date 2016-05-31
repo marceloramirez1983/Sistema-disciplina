@@ -247,6 +247,8 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
                                       </td>
                                     </tr>
                                   <?php Endwhile; ?>
+
+
                                 </tbody>
                               </table>
 
@@ -289,7 +291,7 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
                             <div class="ln_solid"></div>
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button type="button" class="btn btn-primary" onClick="history.go(-1)" >Cancelar</button>
+                                <button type="button" class="btn btn-primary" onClick="location.href='index.html'">Cancelar</button>
                                 <button type="button" value="Guardar" onclick="valida_envia()" class="btn btn-success" >Guardar</button>
                               </div>
                             </div>
