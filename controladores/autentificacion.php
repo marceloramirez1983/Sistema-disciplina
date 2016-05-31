@@ -9,7 +9,7 @@
   $USER_NAME = $_POST['username'];
   $PASSWORD = $_POST['password'];
 
-  $sql = "SELECT * FROM tb_asignar_usuario WHERE usuario_nombre = '$USER_NAME' AND usuario_password = '$PASSWORD'";
+  $sql = "SELECT * FROM asignar_usuario WHERE usuario_nombre = '$USER_NAME' AND usuario_password = '$PASSWORD'";
 
   $result = mysqli_query($con, $sql);
 
@@ -27,7 +27,43 @@
     $_SESSION['usuario'] = $row['id_ci'];
     $_SESSION['nickname'] = $row['usuario_nombre'];
     $_SESSION['loggedin'] = true;
-    header("location: ../index.php");
+
+    switch ($row['id_rol']) {
+      case '1':
+        # code...
+        header("location: ../sides_user.php");
+        break;
+
+      case '2':
+        # code...
+        header("location: ../index.php");
+        break;
+
+      case '3':
+        # code...
+        header("location: ../sides_instructor.php");
+        break;
+
+      case '4':
+        # code...
+        header("location: ../sides_sanciones.html");
+        break;
+
+      case '5':
+        # code...
+        header("location: ../sides_alumnos.php");
+        break;
+
+      case '6':
+        # code...
+        header("location: ../sides_reports.php");
+        break;
+
+      // default:
+      //   # code...
+      //   break;
+    }
+    //header("location: ../index.php");
   } else {
     # code...
     header("location: ../login.php");

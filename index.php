@@ -14,11 +14,11 @@
     $ID_CI = $_SESSION['usuario'];
     $NICKNAME = $_SESSION['nickname'];
 
-    $sql_user = "SELECT * FROM tb_usuario WHERE id_ci = '$ID_CI'";
+    $sql_user = "SELECT * FROM usuario WHERE id_ci = '$ID_CI'";
     $result_user = mysqli_query($con, $sql_user) or die ("error");
     $row_user = mysqli_fetch_assoc($result_user);
 
-    $sql_rol = "SELECT * FROM tb_rol WHERE id_rol = '$ID_ROL'";
+    $sql_rol = "SELECT * FROM rol WHERE id_rol = '$ID_ROL'";
     $result_rol = mysqli_query($con, $sql_rol);
     $row_rol = mysqli_fetch_assoc($result_rol);
 
@@ -100,7 +100,7 @@
                   <li><a><i class="fa fa-pencil-square-o"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_grupos.php">Registrar Grupos</a></li>
-                      <li><a href="sides_faltas.html">Registrar Faltas</a></li>
+                      <li><a href="sides_faltas.php">Registrar Faltas</a></li>
                     </ul>
                   </li>
 
@@ -116,13 +116,13 @@
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
+                  <li class="hide"><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_sanciones.html">Boleta de sancion</a></li>
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-file"></i> Hoja de Vida Pesonal <span class="fa fa-chevron-down"></span></a>
+                  <li class="hide"><a><i class="fa fa-file"></i> Hoja de Vida Pesonal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_reports.html">Reporte Disciplinario</a></li>
                     </ul>
@@ -135,7 +135,7 @@
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-edit"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                  <li class="hide"><a><i class="fa fa-edit"></i> Extras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_armas.html">Registrar Arma</a></li>
                       <li><a href="sides_grados.html">Registrar Grado</a></li>
@@ -192,7 +192,7 @@
                 <?php if ($row_rol['rol'] == 'Alumno'): ?>
                   <li><a><i class="fa fa-file"></i> Hoja de Vida Pesonal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_reports.html">Reporte Disciplinario</a></li>
+                      <li><a href="sides_reports.php">Reporte Disciplinario</a></li>
                     </ul>
                   </li>
                 <?php endif; ?>

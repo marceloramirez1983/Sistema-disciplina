@@ -1,7 +1,12 @@
 <?php
-include_once "conexionBD.php";
-$nomb_grupo= strtoupper($_POST['txtnombre_grupo']);
-$puntos_grupo=$_POST['CBoxselect_puntos'];
+include "conexionBD.php";
+$idfalta=$_POST['txtid_falta'];
+$nomb_falta= strtoupper($_POST['txtnombre_falta']);
+
+
+//echo $idgrupo;
+//echo $nomb_grupo;
+//echo $puntos_grupo;
 
 //echo $nomb_grupo. $puntos_grupo;
 $cnn= new conexion();//crea instancia de la clase conexion
@@ -9,13 +14,13 @@ $con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion 
 
 $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");//mysqli_select_db(variableconexion,nombreBD)
 
-$insertar="INSERT INTO grupo (id_grupo,grupo,puntos) VALUES ('','$nomb_grupo','$puntos_grupo')";
+$insertar="UPDATE falta SET nombre = '$nomb_falta' WHERE id_falta = '$idfalta'";
 
-if (!mysqli_query($con,$insertar)) {
-  die("Error al insertar".mysql_error);
+if (!mysqli_query($con,$insertar)) { die ("Error al insertar". mysqli_error);
 }
-header('Location: ../sides_grupos.php');
+header('Location: ../sides_faltas.php');
 exit;
 //echo " dato Insertado ";
 mysqli_close($con);
-?>
+
+ ?>

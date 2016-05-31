@@ -1,3 +1,34 @@
+<?php
+  session_start();
+
+  if ($_SESSION['loggedin']) {
+    # code...
+    include_once("controladores/conexionBD.php");
+
+    $cnn= new conexion();
+    $con =$cnn->conectar();
+
+    $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");
+
+    $ID_ROL = $_SESSION['rol'];
+    $ID_CI = $_SESSION['usuario'];
+    $NICKNAME = $_SESSION['nickname'];
+
+    $sql_user = "SELECT * FROM usuario WHERE id_ci = '$ID_CI'";
+    $result_user = mysqli_query($con, $sql_user) or die ("error");
+    $row_user = mysqli_fetch_assoc($result_user);
+
+    $sql_rol = "SELECT * FROM rol WHERE id_rol = '$ID_ROL'";
+    $result_rol = mysqli_query($con, $sql_rol);
+    $row_rol = mysqli_fetch_assoc($result_rol);
+
+    mysqli_close($con);
+  } else {
+    # code...
+    header("location: login.php");
+
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,8 +44,6 @@
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- iCheck -->
-    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="css/custom.css" rel="stylesheet">
@@ -147,93 +176,10 @@
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="javascript:;">  Profile</a>
                     </li>
-                    <!-- <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li> -->
-                    <!-- <li>
-                      <a href="javascript:;">Help</a>
-                    </li> -->
                     <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </li>
                   </ul>
                 </li>
-
-                <!-- <li role="presentation" class="dropdown">
-                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
-                  </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
-                </li> -->
-
               </ul>
             </nav>
           </div>
@@ -246,20 +192,8 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Administrar Instructor</h3>
+                <h3>Administrar Alumnos</h3>
               </div>
-
-              <!-- <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div> -->
-
             </div>
 
             <div class="clearfix"></div>
@@ -282,13 +216,13 @@
                     <div id="myTabContent" class="tab-content">
                       <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
-                        <!-- Formulario para nuevos instructores -->
+                        <!-- Form New Users -->
                         <div class="x_content">
                           <br />
                           <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Grupo<span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="first-name" name="ci-user" required="required" class="form-control col-md-7 col-xs-12">
@@ -296,106 +230,16 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Grado <span class="required">*</span></label>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Puntos <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control">
-                                  <option>Seleccione su grado</option>
-                                  <option>Option one</option>
-                                  <option>Option two</option>
-                                  <option>Option three</option>
-                                  <option>Option four</option>
+                                  <option>Seleccione un Punto</option>
+                                  <option>1 Pto.</option>
+                                  <option>2 Pto.</option>
+                                  <option>3 Pto.</option>
+                                  <option>4 Pto.</option>
+                                  <option>5 Pto.</option>
                                 </select>
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Arma <span class="required">*</span></label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control">
-                                  <option>Seleccione su arma</option>
-                                  <option>Option one</option>
-                                  <option>Option two</option>
-                                  <option>Option three</option>
-                                  <option>Option four</option>
-                                </select>
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="name-user" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="app-user" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Genero <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="radio">
-                                  <label>
-                                    <input type="radio" class="flat" checked name="iCheck"> Masculino
-                                  </label>
-                                </div>
-                                <div class="radio">
-                                  <label>
-                                    <input type="radio" class="flat" name="iCheck"> Femenino
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento<span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="lugar" name="apm-user" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Correo electrónico </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="email" name="apm-user" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
@@ -418,7 +262,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                           <div class="x_panel">
                             <div class="x_title">
-                              <h2>Lista de Instructores <small>puedes modifica o eliminar</small></h2>
+                              <h2>Lista de Alumnos <small>puedes modificar o eliminar</small></h2>
                               <!-- <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -440,23 +284,23 @@
                               <table class="table table-hover">
                                 <thead>
                                   <tr>
-                                    <th>Cédula Identidad</th>
-                                    <th>Grado</th>
-                                    <th>Arma</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido Paterno</th>
-                                    <th>Apellido Materno</th>
+                                    <th>Nombre grupo </th>
+                                    <th>Puntos</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
                                     <th></th>
                                   </tr>
                                 </thead>
                                 <tbody>
                                   <tr>
-                                    <th scope="row">2314324</th>
-                                    <td>Markasadasasd1</td>
-                                    <td>Markasadasasd2</td>
-                                    <td>@Markasadasasd3</td>
-                                    <td>Markasadasasd4</td>
-                                    <td>Markasadasasd5</td>
+                                    <th scope="row">Grupo I</th>
+                                    <td>sancionada con 1 punto</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
                                       <div class="btn-group">
                                         <button type="button" class="btn btn-danger">Opción</button>
@@ -478,12 +322,12 @@
 
                                   </tr>
                                   <tr>
-                                    <th scope="row">2314324</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
+                                    <th scope="row">Grupo II</th>
+                                    <td>sancionada con 2 punto</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
                                       <div class="btn-group">
                                         <button type="button" class="btn btn-danger">Opción</button>
@@ -500,17 +344,16 @@
                                           <li><a href="#">Eliminar</a>
                                           </li>
                                         </ul>
-                                      </div>
                                       </div>
                                     </td>
                                   </tr>
                                   <tr>
-                                    <th scope="row">2314324</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
+                                    <th scope="row">Grupo III</th>
+                                    <td>sancionada con 3 punto</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
                                       <div class="btn-group">
                                         <button type="button" class="btn btn-danger">Opción</button>
@@ -528,9 +371,10 @@
                                           </li>
                                         </ul>
                                       </div>
-                                      </div>
                                     </td>
+
                                   </tr>
+
                                 </tbody>
                               </table>
 
@@ -577,6 +421,9 @@
                 </div>
               </div>
             </div>
+
+
+
           </div>
         </div>
         <!-- /page content -->
@@ -584,7 +431,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-          Escuela Militar de Sargentos del Ejercito "Sgto. Maximiliano Paredes Tejerina"
+            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -600,28 +447,27 @@
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="js/moment/moment.min.js"></script>
-    <script src="js/datepicker/daterangepicker.js"></script>
+    <!-- jQuery Smart Wizard -->
+    <script src="../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="js/custom.js"></script>
 
-    <!-- bootstrap-daterangepicker -->
+    <!-- jQuery Smart Wizard -->
     <script>
       $(document).ready(function() {
-        $('#birthday').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_4"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
+        $('#wizard').smartWizard();
+
+        $('#wizard_verticle').smartWizard({
+          transitionEffect: 'slide'
         });
+
+        $('.buttonNext').addClass('btn btn-success');
+        $('.buttonPrevious').addClass('btn btn-primary');
+        $('.buttonFinish').addClass('btn btn-default');
       });
     </script>
-    <!-- /bootstrap-daterangepicker -->
-
-    <!-- iCheck -->
-    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <!-- /jQuery Smart Wizard -->
 
   </body>
 </html>

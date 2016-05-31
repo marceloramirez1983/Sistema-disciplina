@@ -73,7 +73,7 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
                   <li><a><i class="fa fa-edit"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_grupos.php">Registrar Grupos</a></li>
-                      <li><a href="sides_faltas.html">Registrar Faltas</a></li>
+                      <li><a href="sides_faltas.php">Registrar Faltas</a></li>
                     </ul>
                   </li>
 
@@ -159,92 +159,13 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="javascript:;">  Profile</a>
                     </li>
-                    <!-- <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li> -->
-                    <!-- <li>
-                      <a href="javascript:;">Help</a>
-                    </li> -->
+
                     <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </li>
                   </ul>
                 </li>
 
-                <!-- <li role="presentation" class="dropdown">
-                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
-                  </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
-                </li> -->
+
 
               </ul>
             </nav>
@@ -260,18 +181,6 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
               <div class="title_left">
                 <h3>Administrar Grupos</h3>
               </div>
-
-              <!-- <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div> -->
-
             </div>
 
             <div class="clearfix"></div>
@@ -339,86 +248,6 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
                                     </tr>
                                   <?php Endwhile; ?>
 
-                                  <!-- <tr>
-                                    <th scope="row">Grupo I</th>
-                                    <td>sancionada con 1 punto</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </td>
-
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Grupo II</th>
-                                    <td>sancionada con 2 punto</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Grupo III</th>
-                                    <td>sancionada con 3 punto</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </td>
-
-                                  </tr> -->
 
                                 </tbody>
                               </table>
@@ -426,8 +255,6 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
                             </div>
                           </div>
                         </div>
-
-
 
                       </div>
                       <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
@@ -451,7 +278,7 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control" name="CBoxselect_puntos">
                                   <option value="">Seleccione los puntos para perdidos</option>
-                                  <option value="6">Sin Puntaje</option>
+                                  <option value="0">Sin Puntaje</option>
                                   <option value="1">1 Pto.</option>
                                   <option value="2">2 Pto.</option>
                                   <option value="3">3 Pto.</option>
@@ -469,7 +296,7 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
                               </div>
                             </div>
                           </form>
-
+                          <!--validacion de envio del formulario-->
                           <script type="text/javascript">
                           function valida_envia(){
                             selec= demoform2.CBoxselect_puntos.selectedIndex
@@ -483,48 +310,18 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
                             alert ("Ingrese un nombre para el grupo")
                             return false;
                             }
-
                             demoform2.submit();
                           }
                           </script>
+                          <!--hasta aca validacion de envio del formulario-->
                         </div>
 
                       </div>
-                      <!-- <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                        <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                          booth letterpress, commodo enim craft beer mlkshk </p>
-                      </div> -->
+
                     </div>
                   </div>
 
-                  <!-- <div class="x_title">
-                    <h2>Crear Nuevo Usuario</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
 
-                    <br>
-                    <div class="x_content">
-
-
-
-
-                    </div>
-
-                  </div> -->
                 </div>
               </div>
             </div>
