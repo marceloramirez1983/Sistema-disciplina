@@ -21,10 +21,10 @@
     $result_rol = mysqli_query($con, $sql_rol);
     $row_rol = mysqli_fetch_assoc($result_rol);
 
-    $query = "SELECT * FROM tb_user";
-    $result = mysqli_query($con, $query);
+    $query = "SELECT * FROM usuario";///-------------------------------------------------modifique tb_user por usuario
+    $result = mysqli_query($con,$query);
 
-    mysqli_close($con);
+    //mysqli_close($con);
   } else {
     # code...
     header("location: login.php");
@@ -93,7 +93,7 @@
                   <li><a><i class="fa fa-user"></i> Administrar Usuario <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_user.php">Registrar Usuario</a></li>
-                      <li><a href="sides_asign_user.html">Asignar Usuario</a></li>
+                      <li><a href="sides_asign_user.php">Asignar Usuario</a></li>
                     </ul>
                   </li>
 
@@ -116,13 +116,13 @@
                     </ul>
                   </li>
 
-                  <li class="hide"><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_sanciones.html">Boleta de sancion</a></li>
                     </ul>
                   </li>
 
-                  <li class="hide"><a><i class="fa fa-file"></i> Hoja de Vida Pesonal <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-file"></i> Hoja de Vida Pesonal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_reports.html">Reporte Disciplinario</a></li>
                     </ul>
@@ -135,7 +135,7 @@
                     </ul>
                   </li>
 
-                  <li class="hide"><a><i class="fa fa-edit"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> Extras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_armas.html">Registrar Arma</a></li>
                       <li><a href="sides_grados.html">Registrar Grado</a></li>
@@ -197,6 +197,7 @@
                   </li>
                 <?php endif; ?>
 
+
                 </ul>
               </div>
 
@@ -249,7 +250,7 @@
                     <!-- <li>
                       <a href="javascript:;">Help</a>
                     </li> -->
-                    <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
                     </li>
                   </ul>
                 </li>
@@ -395,28 +396,24 @@
                                     <th>Nombre</th>
                                     <th>Apellido Paterno</th>
                                     <th>Apellido Materno</th>
-                                    <th></th>
                                   </tr>
                                 </thead>
                                 <tbody>
                                   <?php
-
                                     if (mysqli_num_rows($result) > 0) {
-
-                                      while ($row = mysqli_fetch_row($result)) {
-                                        # code...
-                                        echo "<td>";
-                                        echo "<th>".$row['id_ci']."</th>";
-                                        echo "<td>".$row['nombre']."</td>";
-                                        echo "</td>";
+                                      while ($row = mysqli_fetch_row($result)){
+                                        echo "<th>".$row['0']."</th>";
+                                        echo "<th>".$row['1']."</th>";
+                                        echo "<th>".$row['2']."</th>";
+                                        echo "<td>".$row['3']."</td>";
+                                        echo "<td>".$row['4']."</td>";
+                                        echo "<td>".$row['5']."</td>";
                                         // echo "<th scope="row">".$row['id_ci']."</th>";
                                       }
-
-                                    } else {
-                                      # code...
-                                      echo "0 Elementos";
                                     }
-
+                                    /*else {
+                                      echo "0 Elementos";
+                                    }*/
                                     mysqli_close($con);
                                   ?>
                                   <!-- <tr>
@@ -622,7 +619,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          Escuela Militar de Sargentos del Ejercito <a href="#"></a>
           </div>
           <div class="clearfix"></div>
         </footer>

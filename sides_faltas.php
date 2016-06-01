@@ -94,8 +94,8 @@ if ($_SESSION['loggedin']) {
                   <?php if ($row_rol['rol'] == 'Administrador'): ?>
                   <li><a><i class="fa fa-user"></i> Administrar Usuario <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_user.html">Registrar Usuario</a></li>
-                      <li><a href="sides_asign_user.html">Asignar Usuario</a></li>
+                      <li><a href="sides_user.php">Registrar Usuario</a></li>
+                      <li><a href="sides_asign_user.php">Asignar Usuario</a></li>
                     </ul>
                   </li>
 
@@ -108,13 +108,13 @@ if ($_SESSION['loggedin']) {
 
                   <li><a><i class="fa fa-user-plus"></i> Administrar Instructor <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_instructor.html">Registrar Instructor</a></li>
+                      <li><a href="sides_instructor.php">Registrar Instructor</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-users"></i> Administrar Alumnos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_alumnos.html">Registrar Alumnos</a></li>
+                      <li><a href="sides_alumnos.php">Registrar Alumnos</a></li>
                     </ul>
                   </li>
 
@@ -126,7 +126,7 @@ if ($_SESSION['loggedin']) {
 
                   <li><a><i class="fa fa-file"></i> Hoja de Vida Pesonal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_reports.html">Reporte Disciplinario</a></li>
+                      <li><a href="sides_reports.php">Reporte Disciplinario</a></li>
                     </ul>
                   </li>
 
@@ -167,7 +167,7 @@ if ($_SESSION['loggedin']) {
                 <?php if ($row_rol['rol'] == 'Jefe de Personal'): ?>
                   <li><a><i class="fa fa-user-plus"></i> Administrar Instructor <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_instructor.html">Registrar Instructor</a></li>
+                      <li><a href="sides_instructor.php">Registrar Instructor</a></li>
                     </ul>
                   </li>
                 <?php endif; ?>
@@ -185,7 +185,7 @@ if ($_SESSION['loggedin']) {
                 <?php if ($row_rol['rol'] == 'Primero de Compañia'): ?>
                   <li><a><i class="fa fa-users"></i> Administrar Alumnos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_alumnos.html">Registrar Alumnos</a></li>
+                      <li><a href="sides_alumnos.php">Registrar Alumnos</a></li>
                     </ul>
                   </li>
                 <?php endif; ?>
@@ -251,7 +251,7 @@ if ($_SESSION['loggedin']) {
                     <!-- <li>
                       <a href="javascript:;">Help</a>
                     </li> -->
-                    <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
                     </li>
                   </ul>
                 </li>
