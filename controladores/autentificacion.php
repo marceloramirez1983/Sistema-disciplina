@@ -30,32 +30,32 @@
 
     switch ($row['id_rol']) {
       case '1':
-        # code...
+        # administrador
         header("location: ../sides_user.php");
         break;
 
       case '2':
-        # code...
+        # disciplina
         header("location: ../index.php");
         break;
 
       case '3':
-        # code...
+        # cjefe de personal
         header("location: ../sides_instructor.php");
         break;
 
       case '4':
-        # code...
-        header("location: ../sides_sanciones.html");
+        # instructor
+        header("location: ../sides_sanciones.php");
         break;
 
       case '5':
-        # code...
+        # primero de compania
         header("location: ../sides_alumnos.php");
         break;
 
       case '6':
-        # code...
+        # alumnos
         header("location: ../sides_reports.php");
         break;
 

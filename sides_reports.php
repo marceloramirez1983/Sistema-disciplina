@@ -55,7 +55,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><img src="images/logo.png" alt="Mountain View" style="width:44px;height:44px;"> <span>SIDES</span></a>
+              <a href="#" class="site_title"><img src="images/logo.png" alt="Mountain View" style="width:44px;height:44px;"> <span>SIDES</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -348,14 +348,14 @@
                         <!-- end of image cropping -->
 
                       </div>
-                      <h3>Samuel Doe</h3>
+                      <h3><?php echo $row_user['nombre']." ".$row_user['paterno']; ?></h3>
 
                       <ul class="list-unstyled user_data">
-                        <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
+                        <li><i class="fa fa-map-marker user-profile-icon"></i> Cochabamba,Tarata,BOLIVIA
                         </li>
 
                         <li>
-                          <i class="fa fa-briefcase user-profile-icon"></i> Software Engineer
+                          <i class="fa fa-briefcase user-profile-icon"></i> Alumno 
                         </li>
 
                         <!-- <li class="m-top-xs">
@@ -472,7 +472,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            Escuela Militar de Sargentos del Ejercito<a href="#"></a>
           </div>
           <div class="clearfix"></div>
         </footer>
