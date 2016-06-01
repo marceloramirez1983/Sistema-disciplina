@@ -282,21 +282,7 @@
                           <div class="x_panel">
                             <div class="x_title">
                               <h2>Lista de Alumnos <small>puedes modificar o eliminar</small></h2>
-                              <!-- <ul class="nav navbar-right panel_toolbox">
-                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                  <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                  </ul>
-                                </li>
-                                <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                </li>
-                              </ul> -->
+
                               <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
@@ -313,19 +299,31 @@
                                 </thead>
                                 <tbody>
                                   <?php
-                                    $query = "SELECT usuario.id_ci, usuario.id_grado, usuario.nombre, usuario.paterno, usuario.ci_tutor
+                                    $query = "SELECT usuario.id_ci, usuario.id_grado, usuario.nombre, usuario.paterno, usuario.celular, usuario.ci_tutor
                                               FROM usuario,asignar_usuario WHERE usuario.id_ci = asignar_usuario.id_ci
                                               AND asignar_usuario.id_rol = '6'";
                                     $getAll = mysqli_query($con, $query);
-                                    //while ($row = mysqli_fetch_array($getAll, MYSQLI_ASSOC)):
+                                    while ($row = mysqli_fetch_array($getAll, MYSQLI_ASSOC)):
                                   ?>
-                                  <!-- <tr>
-                                    <th scope="row">Grupo I</th>
-                                    <td>sancionada con 1 punto</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                  <tr>
+                                    <th scope="row"><?php
+                                        $getGrado = $row ['id_grado'];
+                                        $queryGrado = "SELECT grado FROM grado WHERE id_grado = '$getGrado'";
+                                        $grado = mysqli_query($con, $queryGrado) or die ("error get grado");
+                                        $result_grado = mysqli_fetch_assoc($grado);
+                                        echo $result_grado['grado'];
+                                      ?></th>
+                                    <td><?php echo $row ['nombre']; ?></td>
+                                    <td><?php echo $row ['paterno']; ?></td>
+                                    <td><?php echo $row ['celular']; ?></td>
+                                    <td><?php
+                                      $getTutor = $row ['ci_tutor'];
+                                      $queryTutor = "SELECT nombre FROM tutor WHERE ci_tutor = '$getTutor'";
+                                      $tutor = mysqli_query($con, $queryTutor) or die ("error get arma");
+                                      $result_tutor = mysqli_fetch_assoc($tutor);
+                                      echo $result_tutor['nombre'];
+                                      //echo $row ['id_arma'];
+                                    ?></td>
                                     <td>
                                       <div class="btn-group">
                                         <button type="button" class="btn btn-danger">Opción</button>
@@ -346,60 +344,8 @@
                                     </td>
 
                                   </tr>
-                                  <tr>
-                                    <th scope="row">Grupo II</th>
-                                    <td>sancionada con 2 punto</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Grupo III</th>
-                                    <td>sancionada con 3 punto</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </td>
 
-                                  </tr> -->
-
+                                <?php endwhile; ?>
                                 </tbody>
                               </table>
 
@@ -414,13 +360,13 @@
                         <!-- Form New Users -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarAlumno.php">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" name="ci_instructor" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="first-name" name="ci_alumno" required="required" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
@@ -435,9 +381,7 @@
                                   $result= mysqli_query($con,$query);
                                   while ($row=mysqli_fetch_array($result)):?>
                                     <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
-                                  <?php endwhile;
-
-                                  ?>
+                                  <?php endwhile; mysqli_close($con); ?>
                                 </select>
 
                               </div>
@@ -526,28 +470,28 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Cédula Identidad del Tutor <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="domicilio" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="ci_tutor" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre del Tutor <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="domicilio" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="nombre_tutor" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Telefono del Tutor <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="domicilio" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="telefono_tutor" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Direccion del Tutor <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="domicilio" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="direccion_tutor" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
@@ -631,6 +575,9 @@
     <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- jQuery Smart Wizard -->
     <script src="../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="js/moment/moment.min.js"></script>
+    <script src="js/datepicker/daterangepicker.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="js/custom.js"></script>
@@ -650,6 +597,19 @@
       });
     </script>
     <!-- /jQuery Smart Wizard -->
+
+    <!-- bootstrap-daterangepicker -->
+    <script>
+      $(document).ready(function() {
+        $('#birthday').daterangepicker({
+          singleDatePicker: true,
+          calender_style: "picker_4"
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+        });
+      });
+    </script>
+    <!-- /bootstrap-daterangepicker -->
 
   </body>
 </html>
