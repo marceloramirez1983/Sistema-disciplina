@@ -86,13 +86,14 @@ function crearTablas(){
 		echo "<br> - TABLA USUARIO CREADA - ";
 
 		$INSERT_USUARIOS_TESTS = "INSERT INTO
-			usuario(id_ci, id_grado, id_arma, nombre, paterno, materno, sexo, fecha_nac, lugar_nac, correo, celular, direccion, id_tutor)
-				VALUES ('12','1','1','Juan','Nunez','Soto','Masculino','04/25/2016','Tiraque','juan@gmail.com','90909090','Av. Norte','1'),
-							 ('13','1','1','Pepe','Aguilar','Marneli','Masculino','04/25/2016','Tiraque','pepe@gmail.com','90909090','Av. Norte','1'),
-							 ('14','1','1','Lucas','Melo','Lopez','Masculino','04/25/2016','Tiraque','lucas@gmail.com','90909090','Av. Norte','1'),
-							 ('15','1','1','Martin','Judas','Toro','Masculino','04/25/2016','Tiraque','martin@gmail.com','90909090','Av. Norte','1'),
-							 ('16','1','1','Rodrigo','Murillo','Puerta','Masculino','04/25/2016','Tiraque','rodrigo@gmail.com','90909090','Av. Norte','1'),
-							 ('17','1','','Antonio','Solis','Mesa','Masculino','04/25/2016','Tiraque','antonio@gmail.com','90909090','Av. Norte','1')";
+			usuario(id_ci, id_grado, id_arma, nombre, paterno, materno, sexo, fecha_nac, lugar_nac, correo, celular, direccion, ci_tutor)
+				VALUES ('12','1','1','Juan','Nunez','Soto','Masculino','04/25/2016','Tiraque','juan@gmail.com','90909090','Av. Norte','0'),
+							 ('13','1','1','Pepe','Aguilar','Marneli','Masculino','04/25/2016','Tiraque','pepe@gmail.com','90909090','Av. Norte','0'),
+							 ('14','1','1','Lucas','Melo','Lopez','Masculino','04/25/2016','Tiraque','lucas@gmail.com','90909090','Av. Norte','0'),
+							 ('15','1','1','Martin','Judas','Toro','Masculino','04/25/2016','Tiraque','martin@gmail.com','90909090','Av. Norte','0'),
+							 ('16','1','1','Rodrigo','Murillo','Puerta','Masculino','04/25/2016','Tiraque','rodrigo@gmail.com','90909090','Av. Norte','0'),
+							 ('17','1','0','Antonio','Solis','Mesa','Masculino','04/25/2016','Tiraque','antonio@gmail.com','90909090','Av. Norte','123'),
+							 ('18','1','0','Jose','Marañon','Molina','Masculino','04/25/2016','Sucre','jose@gmail.com','90909090','Av. Norte','456')";
 
 		if (mysqli_query($con, $INSERT_USUARIOS_TESTS)) {
 			# code...
@@ -121,7 +122,8 @@ function crearTablas(){
 						 	 ('','3','14','jefe','jefe'),
 							 ('','4','15','inst','inst'),
 							 ('','5','16','primer','primer'),
-							 ('','6','17','alum','alum')";
+							 ('','6','17','alum','alum'),
+							 ('','6','18','18','aoesas')";
 
 		if (mysqli_query($con, $INSERT_ASIG_USUARIOS_TESTS)) {
 			# code...
@@ -172,7 +174,7 @@ function crearTablas(){
 		echo "<br> - TABLA GRADO CREADA -";
 
 		$INSERT_GRADOS_TEST = "INSERT INTO
-			grado (id_grado,grado,descripcion)
+			grado(id_grado,grado,descripcion)
 				VALUES ('','GRAL.','OFICIAL GENERAL'),
 							 ('','CNL.','CORONEL'),
 							 ('','TCNL.','TENIENTECORONEL'),
@@ -195,36 +197,44 @@ function crearTablas(){
 	}
 
 //-----------------------------TABLA TUTOR------------------------------------
- /* preguntar id_ciusuario  debe star tabla tutor*/
-	$sqltutor = "CREATE TABLE tutor (
-	id_tutor INT NOT NULL AUTO_INCREMENT,
-	id_ciusuario INT,
+	$TB_TUTOR = "CREATE TABLE tutor (
+	ci_tutor INT,
 	nombre VARCHAR(80),
 	telefono INT,
 	direccion VARCHAR(80),
-	PRIMARY KEY(id_tutor)
-	)";//creamos la tabla
+	PRIMARY KEY(ci_tutor)
+	)";
 
-	if(mysqli_query($con,$sqltutor)){
-		echo "<br>tabla tutor creada";
+	if(mysqli_query($con, $TB_TUTOR)){
+		echo "<br> - TABLA TUTOR CREADA -";
+
+		$INSERT_TUTOR = "INSERT INTO
+			tutor(ci_tutor,nombre,telefono,direccion)
+				VALUES ('123','Juan Meneses','77887766','Av. Bolivar'),
+							 ('345','Yuri Vose','99443322','Av. La paz'),
+							 ('567','Maribel Lopez','33221111','Av. Sucre'),
+							 ('891','Melani Guitierres','33344455','Av. Junin')";
+
+		if (mysqli_query($con, $INSERT_TUTOR)) {
+			echo "<br> - TUTORES TESTS INSERTADOS - ";
+		}
 	}
 
 //----------------------------TABLA SANCION-----------------------------------
-	$sqlsancion="CREATE TABLE sancion(
+	$TB_SANCION = "CREATE TABLE sancion (
 	id_sancion INT NOT NULL AUTO_INCREMENT,
-	id_asig_usuario INT,
 	ci_instructor INT,
-	id_cialumno INT,
+	ci_alumno INT,
 	id_falta INT,
 	id_grupo INT,
 	puntos INT,
 	fecha DATE,
 	resolucion MEDIUMBLOB,
 	PRIMARY KEY(id_sancion)
-	)";//creamos la tabla
+	)";
 
-	if(mysqli_query($con,$sqlsancion)){
-		echo "<br>tabla sancion creada";
+	if(mysqli_query($con, $TB_SANCION)){
+		echo "<br> - TABLA SANCION CREADA -";
 	}
 
 	mysqli_close($con);

@@ -1,16 +1,4 @@
 <?php
-include "controladores/conexionBD.php";
-//echo $nomb_grupo. $puntos_grupo;
-
-$cnn= new conexion();//crea instancia de la clase conexion
-$con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion conectar.
-
-$database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");//mysqli_select_db(variableconexion,nombreBD)
-
-//$getallgroup= mysqli_query($con, "SELECT * FROM falta JOIN grupo ON falta.id_grupo = grupo.id_grupo");
-?>
-
-<?php
   session_start();
 
   if ($_SESSION['loggedin']) {
@@ -34,7 +22,7 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
     $result_rol = mysqli_query($con, $sql_rol);
     $row_rol = mysqli_fetch_assoc($result_rol);
 
-    //mysqli_close($con);//lo comente para que los texbox de grados y armas usen la misma conexion y se carguen de la BD. 
+    //mysqli_close($con);//lo comente para que los texbox de grados y armas usen la misma conexion y se carguen de la BD.
   } else {
     # code...
     header("location: login.php");
@@ -79,7 +67,7 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
             <!-- menu profile quick info -->
             <div class="profile">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="images/placeholder_profile.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Bienvenido,</span>
@@ -247,98 +235,19 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt=""><?php echo $row_user['nombre']." ".$row_user['paterno']; ?>
+                    <img src="images/placeholder_profile.jpg" alt=""><?php echo $row_user['nombre']." ".$row_user['paterno']; ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="javascript:;">  Profile</a>
                     </li>
-                    <!-- <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li> -->
-                    <!-- <li>
-                      <a href="javascript:;">Help</a>
-                    </li> -->
-                    <li><a href="login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+
+                    <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </li>
                   </ul>
                 </li>
 
-                <!-- <li role="presentation" class="dropdown">
-                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
-                  </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
-                </li> -->
+
 
               </ul>
             </nav>
@@ -378,25 +287,105 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                   <br>
                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Crear</a>
+                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Modificar</a>
                       </li>
-                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Modificar</a>
+                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Crear</a>
                       </li>
                       <!-- <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
                       </li> -->
                     </ul>
                     <div id="myTabContent" class="tab-content">
                       <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+
+                        <!-- List New Users -->
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                          <div class="x_panel">
+                            <div class="x_title">
+                              <h2>Lista de Instructores <small>puedes modifica o eliminar</small></h2>
+
+                              <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                              <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                    <th>Cédula Identidad</th>
+                                    <th>Grado</th>
+                                    <th>Arma</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido Paterno</th>
+                                    <th>Apellido Materno</th>
+                                    <th></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <?php
+                                    $query = "SELECT usuario.id_ci, usuario.id_grado, usuario.id_arma, usuario.nombre, usuario.paterno, usuario.materno
+                                              FROM usuario,asignar_usuario WHERE usuario.id_ci = asignar_usuario.id_ci
+                                              AND asignar_usuario.id_rol = '4'";
+                                    $getAll = mysqli_query($con, $query);
+                                    while ($row = mysqli_fetch_array($getAll, MYSQLI_ASSOC)):
+                                  ?>
+                                  <tr>
+                                    <th scope="row"><?php echo $row ['id_ci']; ?></th>
+                                    <td><?php
+                                        $getGrado = $row ['id_grado'];
+                                        $queryGrado = "SELECT grado FROM grado WHERE id_grado = '$getGrado'";
+                                        $grado = mysqli_query($con, $queryGrado) or die ("error get grado");
+                                        $result_grado = mysqli_fetch_assoc($grado);
+                                        echo $result_grado['grado'];
+                                      ?></td>
+                                    <td><?php
+                                      $getArma = $row ['id_arma'];
+                                      $queryArma = "SELECT arma FROM arma WHERE id_arma = '$getArma'";
+                                      $arma = mysqli_query($con, $queryArma) or die ("error get arma");
+                                      $result_arma = mysqli_fetch_assoc($arma);
+                                      echo $result_arma['arma'];
+                                      //echo $row ['id_arma'];
+                                    ?></td>
+                                    <td><?php echo $row ['nombre']; ?></td>
+                                    <td><?php echo $row ['paterno']; ?></td>
+                                    <td><?php echo $row ['materno']; ?></td>
+                                    <td>
+                                      <div class="btn-group">
+                                        <button type="button" class="btn btn-danger">Opción</button>
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                          <span class="caret"></span>
+                                          <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                          <li><a href="#">Ver mas detalles</a>
+                                          </li>
+                                          <li><a href="#">Modificar</a>
+                                          </li>
+                                          <li class="divider"></li>
+                                          <li><a href="#">Eliminar</a>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </td>
+
+                                  </tr>
+                                <?php endwhile; ?>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+
                         <!-- Formulario para nuevos instructores -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarInstructor.php">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" name="ci-user" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="first-name" name="ci_instructor" required="required" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
@@ -404,7 +393,7 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Grado <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <select class="form-control" name="idgrado" id="idgrado" >
+                                <select class="form-control" name="id_grado" >
                                   <option value="">Seleccione su grado</option>
                                   <?php
                                   $query="SELECT * FROM grado";
@@ -422,7 +411,7 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Arma <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control">
+                                <select class="form-control" name="id_arma">
                                   <option value="">Seleccione su arma</option>
                                   <?php
                                   $query2="SELECT * FROM arma";
@@ -440,7 +429,7 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="name-user" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="nombre" required="required" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
@@ -448,7 +437,7 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="app-user" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="paterno" required="required" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
@@ -456,7 +445,7 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="materno" required="required" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
@@ -466,12 +455,12 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="radio">
                                   <label>
-                                    <input type="radio" class="flat" checked name="iCheck"> Masculino
+                                    <input type="radio" class="flat" checked name="sexo" value="Masculino"> Masculino
                                   </label>
                                 </div>
                                 <div class="radio">
                                   <label>
-                                    <input type="radio" class="flat" name="iCheck"> Femenino
+                                    <input type="radio" class="flat" name="sexo" value="Femenina"> Femenino
                                   </label>
                                 </div>
                               </div>
@@ -481,36 +470,36 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha_nac">
                               </div>
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento<span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="lugar" name="apm-user" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="lugar" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Correo electrónico </label>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Correo electrónico <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="email" name="apm-user" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="email" name="email" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="celular" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="domicilio" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
@@ -525,133 +514,6 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                           </form>
                         </div>
 
-
-                      </div>
-                      <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-
-                        <!-- List New Users -->
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                          <div class="x_panel">
-                            <div class="x_title">
-                              <h2>Lista de Instructores <small>puedes modifica o eliminar</small></h2>
-                              <!-- <ul class="nav navbar-right panel_toolbox">
-                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                  <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                  </ul>
-                                </li>
-                                <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                </li>
-                              </ul> -->
-                              <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
-                              <table class="table table-hover">
-                                <thead>
-                                  <tr>
-                                    <th>Cédula Identidad</th>
-                                    <th>Grado</th>
-                                    <th>Arma</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido Paterno</th>
-                                    <th>Apellido Materno</th>
-                                    <th></th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <th scope="row">2314324</th>
-                                    <td>Markasadasasd1</td>
-                                    <td>Markasadasasd2</td>
-                                    <td>@Markasadasasd3</td>
-                                    <td>Markasadasasd4</td>
-                                    <td>Markasadasasd5</td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </td>
-
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">2314324</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">2314324</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-
-                            </div>
-                          </div>
-                        </div>
 
                       </div>
                       <!-- <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">

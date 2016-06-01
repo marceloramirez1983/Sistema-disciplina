@@ -21,10 +21,7 @@
     $result_rol = mysqli_query($con, $sql_rol);
     $row_rol = mysqli_fetch_assoc($result_rol);
 
-    $query = "SELECT * FROM tb_user";
-    $result = mysqli_query($con, $query);
-
-    mysqli_close($con);
+    //mysqli_close($con);
   } else {
     # code...
     header("location: login.php");
@@ -64,7 +61,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><img src="images/logo.png" alt="Mountain View" style="width:44px;height:44px;"> <span>SIDES</span></a>
+              <a href="" class="site_title"><img src="images/logo.png" alt="Mountain View" style="width:44px;height:44px;"> <span>SIDES</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -93,7 +90,7 @@
                   <li><a><i class="fa fa-user"></i> Administrar Usuario <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_user.php">Registrar Usuario</a></li>
-                      <li><a href="sides_asign_user.html">Asignar Usuario</a></li>
+                      <li><a href="sides_asign_user.php">Asignar Usuario</a></li>
                     </ul>
                   </li>
 
@@ -106,25 +103,19 @@
 
                   <li><a><i class="fa fa-user-plus"></i> Administrar Instructor <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_instructor.html">Registrar Instructor</a></li>
+                      <li><a href="sides_instructor.php">Registrar Instructor</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-users"></i> Administrar Alumnos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_alumnos.html">Registrar Alumnos</a></li>
+                      <li><a href="sides_alumnos.php">Registrar Alumnos</a></li>
                     </ul>
                   </li>
 
                   <li class="hide"><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_sanciones.html">Boleta de sancion</a></li>
-                    </ul>
-                  </li>
-
-                  <li class="hide"><a><i class="fa fa-file"></i> Hoja de Vida Pesonal <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="sides_reports.html">Reporte Disciplinario</a></li>
+                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                     </ul>
                   </li>
 
@@ -135,13 +126,13 @@
                     </ul>
                   </li>
 
-                  <li class="hide"><a><i class="fa fa-edit"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                  <!-- <li class="hide"><a><i class="fa fa-edit"></i> Extras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_armas.html">Registrar Arma</a></li>
                       <li><a href="sides_grados.html">Registrar Grado</a></li>
                       <li><a href="sides_roles.html">Registrar Roles</a></li>
                     </ul>
-                  </li>
+                  </li> -->
 
                 <?php endif; ?>
 
@@ -183,7 +174,7 @@
                 <?php if ($row_rol['rol'] == 'Primero de Compañia'): ?>
                   <li><a><i class="fa fa-users"></i> Administrar Alumnos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_alumnos.html">Registrar Alumnos</a></li>
+                      <li><a href="sides_alumnos.php">Registrar Alumnos</a></li>
                     </ul>
                   </li>
                 <?php endif; ?>
@@ -240,92 +231,13 @@
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="javascript:;">  Profile</a>
                     </li>
-                    <!-- <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li> -->
-                    <!-- <li>
-                      <a href="javascript:;">Help</a>
-                    </li> -->
+
                     <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </li>
                   </ul>
                 </li>
 
-                <!-- <li role="presentation" class="dropdown">
-                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
-                  </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
-                </li> -->
+
 
               </ul>
             </nav>
@@ -390,63 +302,43 @@
                                 <thead>
                                   <tr>
                                     <th>Cédula Identidad</th>
-                                    <th>Grado</th>
-                                    <th>Rol</th>
                                     <th>Nombre</th>
                                     <th>Apellido Paterno</th>
-                                    <th>Apellido Materno</th>
+                                    <th>Correo Electrónico</th>
                                     <th></th>
                                   </tr>
                                 </thead>
                                 <tbody>
                                   <?php
-
-                                    if (mysqli_num_rows($result) > 0) {
-
-                                      while ($row = mysqli_fetch_row($result)) {
-                                        # code...
-                                        echo "<td>";
-                                        echo "<th>".$row['id_ci']."</th>";
-                                        echo "<td>".$row['nombre']."</td>";
-                                        echo "</td>";
-                                        // echo "<th scope="row">".$row['id_ci']."</th>";
-                                      }
-
-                                    } else {
-                                      # code...
-                                      echo "0 Elementos";
-                                    }
-
-                                    mysqli_close($con);
+                                    $queryUsuarios = "SELECT id_ci, nombre, paterno, correo FROM usuario";
+                                    $getAll = mysqli_query($con, $queryUsuarios);
+                                    while ($row = mysqli_fetch_array($getAll, MYSQLI_ASSOC)):
                                   ?>
-                                  <!-- <tr>
-                                    <th scope="row">2314324</th>
-                                    <td>Markasadasasd</td>
-                                    <td>Markasadasasd</td>
-                                    <td>@Markasadasasd</td>
-                                    <td>Markasadasasd</td>
-                                    <td>Markasadasasd</td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </td>
-
-                                  </tr> -->
-
+                                <tr>
+                                  <th scope="row"><?php echo $row ['id_ci']; ?></th>
+                                  <td><?php echo $row ['nombre']; ?></td>
+                                  <td><?php echo $row ['paterno']; ?></td>
+                                  <td><?php echo $row ['correo']; ?></td>
+                                  <td>
+                                    <div class="btn-group">
+                                      <button type="button" class="btn btn-danger">Opción</button>
+                                      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                      </button>
+                                      <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Ver mas detalles</a>
+                                        </li>
+                                        <li><a href="#">Modificar</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Eliminar</a>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <?php endwhile; ?>
                                 </tbody>
                               </table>
 
@@ -473,12 +365,33 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Grado <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control" name="cbox_grado_usuario">
-                                  <option>Seleccione su grado</option>
-                                  <option>Option one</option>
-                                  <option>Option two</option>
-                                  <option>Option three</option>
-                                  <option>Option four</option>
+                                <select class="form-control" name="id_grado" >
+                                  <option value="">Seleccione su grado</option>
+                                  <?php
+                                  $query="SELECT * FROM grado";
+                                  $result= mysqli_query($con,$query);
+                                  while ($row=mysqli_fetch_array($result)):?>
+                                    <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
+                                  <?php endwhile;
+
+                                  ?>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Arma <span class="required">*</span></label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select class="form-control" name="id_arma">
+                                  <option value="">Seleccione su arma</option>
+                                  <?php
+                                  $query2="SELECT * FROM arma";
+                                  $result= mysqli_query($con,$query2);
+                                  while ($row=mysqli_fetch_array($result)):?>
+                                    <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
+                                  <?php endwhile;
+                                  mysqli_close($con);
+                                  ?>
                                 </select>
                               </div>
                             </div>
@@ -547,7 +460,15 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Correo electrónico </label>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento <span class="required">*</span>
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="lugar" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12">
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Correo electrónico <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="last-name" name="txt_email_usuario" class="form-control col-md-7 col-xs-12">
                               </div>
