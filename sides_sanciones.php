@@ -22,7 +22,7 @@
     $result_rol = mysqli_query($con, $sql_rol);
     $row_rol = mysqli_fetch_assoc($result_rol);
 
-    mysqli_close($con);
+    //mysqli_close($con);
   } else {
     # code...
     header("location: login.php");
@@ -322,13 +322,18 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Grupo <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
+
                                 <select class="form-control">
-                                  <option>Seleccione el grupo</option>
-                                  <option>Grupo I</option>
-                                  <option>Option two</option>
-                                  <option>Option three</option>
-                                  <option>Option four</option>
+                                  <option>Seleccione un grupo</option>
+                                  <?php
+                                    $query="SELECT * FROM grupo";
+                                    $result= mysqli_query($con,$query);
+                                    //$getPoint = mysqli_fetch_assoc($result);
+                                    while ($row=mysqli_fetch_array($result)):?>
+                                    <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
+                                  <?php endwhile;?>
                                 </select>
+
                               </div>
                             </div>
 
@@ -349,7 +354,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Puntos <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input readonly type="text" id="last-name" name="name-user" required="required" class="form-control col-md-7 col-xs-12">
+                                <input readonly type="text" id="last-name" name="name-user" required="required" class="form-control col-md-7 col-xs-12" value="" >
                               </div>
                             </div>
 
