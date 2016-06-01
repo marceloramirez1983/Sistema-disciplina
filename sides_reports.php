@@ -355,7 +355,7 @@
                         </li>
 
                         <li>
-                          <i class="fa fa-briefcase user-profile-icon"></i> Alumno 
+                          <i class="fa fa-briefcase user-profile-icon"></i> Alumno
                         </li>
 
                         <!-- <li class="m-top-xs">

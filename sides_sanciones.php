@@ -144,7 +144,7 @@
                                       <li><a><i class="fa fa-pencil-square-o"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                           <li><a href="sides_grupos.php">Registrar Grupos</a></li>
-                                          <li><a href="sides_faltas.html">Registrar Faltas</a></li>
+                                          <li><a href="sides_faltas.php">Registrar Faltas</a></li>
                                         </ul>
                                       </li>
 

@@ -1,5 +1,5 @@
 <?php
-include "controladores/conexionBD.php";
+/*include "controladores/conexionBD.php";
 //echo $nomb_grupo. $puntos_grupo;
 
 $cnn= new conexion();//crea instancia de la clase conexion
@@ -7,7 +7,35 @@ $con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion 
 
 $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");//mysqli_select_db(variableconexion,nombreBD)
 //$link = mysqli_connect("localhost", "root", "", "sides");
-$getallgroup= mysqli_query($con, "SELECT * FROM grupo");
+$getallgroup= mysqli_query($con, "SELECT * FROM grupo");*/
+session_start();
+
+if ($_SESSION['loggedin']) {
+  # code...
+  include_once("controladores/conexionBD.php");
+
+  $cnn= new conexion();
+  $con =$cnn->conectar();
+
+  $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");
+
+  $ID_ROL = $_SESSION['rol'];
+  $ID_CI = $_SESSION['usuario'];
+  $NICKNAME = $_SESSION['nickname'];
+
+  $sql_user = "SELECT * FROM usuario WHERE id_ci = '$ID_CI'";
+  $result_user = mysqli_query($con, $sql_user) or die ("error");
+  $row_user = mysqli_fetch_assoc($result_user);
+
+  $sql_rol = "SELECT * FROM rol WHERE id_rol = '$ID_ROL'";
+  $result_rol = mysqli_query($con, $sql_rol);
+  $row_rol = mysqli_fetch_assoc($result_rol);
+
+  //mysqli_close($con);// lo comente para caragar los text
+} else {
+  # code...
+  header("location: login.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +78,7 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
               </div>
               <div class="profile_info">
                 <span>Bienvenido,</span>
-                <h2>Marcelo Ramirez</h2>
+                <h2><?php echo $row_user['nombre']." ".$row_user['paterno']; ?></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -60,9 +88,10 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3> Administrador </h3>
+                <h3><?php echo $row_rol['rol']; ?></h3>
                 <ul class="nav side-menu">
 
+                  <?php if ($row_rol['rol'] == 'Administrador'): ?>
                   <li><a><i class="fa fa-user"></i> Administrar Usuario <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_user.html">Registrar Usuario</a></li>
@@ -70,38 +99,38 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-edit"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-pencil-square-o"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_grupos.php">Registrar Grupos</a></li>
                       <li><a href="sides_faltas.php">Registrar Faltas</a></li>
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-edit"></i> Administrar Instructor <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-user-plus"></i> Administrar Instructor <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_instructor.html">Registrar Instructor</a></li>
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-edit"></i> Administrar Alumnos <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-users"></i> Administrar Alumnos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_alumnos.html">Registrar Alumnos</a></li>
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-edit"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_sanciones.html">Boleta de sancion</a></li>
+                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-edit"></i> Hoja de Vida Pesonal <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-file"></i> Hoja de Vida Pesonal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_reports.html">Reporte Disciplinario</a></li>
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-edit"></i> Logs <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-newspaper-o"></i> Logs <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_log_logins.html">Logs de Sesiones</a></li>
                       <li><a href="sides_log_actions.html">Logs de Acciones</a></li>
@@ -115,6 +144,60 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
                       <li><a href="sides_roles.html">Registrar Roles</a></li>
                     </ul>
                   </li>
+
+                <?php endif; ?>
+
+                <!-- Encargado de Disciplina -->
+                <?php if ($row_rol['rol'] == 'Encargado de Disciplina'): ?>
+                  <li><a><i class="fa fa-pencil-square-o"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_grupos.php">Registrar Grupos</a></li>
+                      <li><a href="sides_faltas.php">Registrar Faltas</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
+                    </ul>
+                  </li>
+                <?php endif; ?>
+
+                <!-- Jefe De Personal -->
+                <?php if ($row_rol['rol'] == 'Jefe de Personal'): ?>
+                  <li><a><i class="fa fa-user-plus"></i> Administrar Instructor <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_instructor.html">Registrar Instructor</a></li>
+                    </ul>
+                  </li>
+                <?php endif; ?>
+
+                <!-- Instructor -->
+                <?php if ($row_rol['rol'] == 'Instructor'): ?>
+                  <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
+                    </ul>
+                  </li>
+                <?php endif; ?>
+
+                <!-- Primera Compañia -->
+                <?php if ($row_rol['rol'] == 'Primero de Compañia'): ?>
+                  <li><a><i class="fa fa-users"></i> Administrar Alumnos <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_alumnos.html">Registrar Alumnos</a></li>
+                    </ul>
+                  </li>
+                <?php endif; ?>
+
+                <!-- Alumno -->
+                <?php if ($row_rol['rol'] == 'Alumno'): ?>
+                  <li><a><i class="fa fa-file"></i> Hoja de Vida Pesonal <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_reports.php">Reporte Disciplinario</a></li>
+                    </ul>
+                  </li>
+                <?php endif; ?>
 
                 </ul>
               </div>
@@ -153,14 +236,14 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">Marcelo Ramirez
+                    <img src="images/img.jpg" alt=""><?php echo $row_user['nombre']." ".$row_user['paterno']; ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="javascript:;">  Profile</a>
                     </li>
 
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </li>
                   </ul>
                 </li>
@@ -223,6 +306,7 @@ $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
                                 <tbody>
 
                                   <?php
+                                  $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
                                   $num=0;
                                   while($row = mysqli_fetch_array($getallgroup, MYSQLI_ASSOC)):?>
                                     <tr>

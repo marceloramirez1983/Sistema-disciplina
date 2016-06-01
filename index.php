@@ -63,7 +63,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><img src="images/logo.png" alt="Mountain View" style="width:44px;height:44px;"> <span>SIDES</span></a>
+              <a href="#" class="site_title"><img src="images/logo.png" alt="Mountain View" style="width:44px;height:44px;"> <span>SIDES</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -118,7 +118,7 @@
 
                   <li class="hide"><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_sanciones.html">Boleta de sancion</a></li>
+                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                     </ul>
                   </li>
 
@@ -150,13 +150,13 @@
                   <li><a><i class="fa fa-pencil-square-o"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_grupos.php">Registrar Grupos</a></li>
-                      <li><a href="sides_faltas.html">Registrar Faltas</a></li>
+                      <li><a href="sides_faltas.php">Registrar Faltas</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_sanciones.html">Boleta de sancion</a></li>
+                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                     </ul>
                   </li>
                 <?php endif; ?>
@@ -174,7 +174,7 @@
                 <?php if ($row_rol['rol'] == 'Instructor'): ?>
                   <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_sanciones.html">Boleta de sancion</a></li>
+                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                     </ul>
                   </li>
                 <?php endif; ?>
