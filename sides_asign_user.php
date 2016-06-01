@@ -21,7 +21,7 @@
     $result_rol = mysqli_query($con, $sql_rol);
     $row_rol = mysqli_fetch_assoc($result_rol);
 
-    //mysqli_close($con);
+    mysqli_close($con);
   } else {
     # code...
     header("location: login.php");
@@ -100,18 +100,6 @@
                   <li><a><i class="fa fa-user-plus"></i> Administrar Instructor <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_instructor.php">Registrar Instructor</a></li>
-                    </ul>
-                  </li>
-
-                  <li><a><i class="fa fa-users"></i> Administrar Alumnos <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="sides_alumnos.php">Registrar Alumnos</a></li>
-                    </ul>
-                  </li>
-
-                  <li class="hide"><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                     </ul>
                   </li>
 
@@ -227,16 +215,7 @@
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="javascript:;">  Profile</a>
                     </li>
-                    <!-- <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li> -->
-                    <!-- <li>
-                      <a href="javascript:;">Help</a>
-                    </li> -->
-                    <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
                     </li>
                   </ul>
                 </li>
@@ -480,7 +459,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            Escuela Militar de Sargentos del Ejercito<a href="#"></a>
           </div>
           <div class="clearfix"></div>
         </footer>

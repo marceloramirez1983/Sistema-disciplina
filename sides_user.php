@@ -112,27 +112,12 @@
                       <li><a href="sides_alumnos.php">Registrar Alumnos</a></li>
                     </ul>
                   </li>
-
-                  <li class="hide"><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
-                    </ul>
-                  </li>
-
                   <li><a><i class="fa fa-newspaper-o"></i> Logs <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_log_logins.html">Logs de Sesiones</a></li>
                       <li><a href="sides_log_actions.html">Logs de Acciones</a></li>
                     </ul>
                   </li>
-
-                  <!-- <li class="hide"><a><i class="fa fa-edit"></i> Extras <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="sides_armas.html">Registrar Arma</a></li>
-                      <li><a href="sides_grados.html">Registrar Grado</a></li>
-                      <li><a href="sides_roles.html">Registrar Roles</a></li>
-                    </ul>
-                  </li> -->
 
                 <?php endif; ?>
 
@@ -141,13 +126,13 @@
                   <li><a><i class="fa fa-pencil-square-o"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_grupos.php">Registrar Grupos</a></li>
-                      <li><a href="sides_faltas.html">Registrar Faltas</a></li>
+                      <li><a href="sides_faltas.php">Registrar Faltas</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_sanciones.html">Boleta de sancion</a></li>
+                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                     </ul>
                   </li>
                 <?php endif; ?>
@@ -156,7 +141,7 @@
                 <?php if ($row_rol['rol'] == 'Jefe de Personal'): ?>
                   <li><a><i class="fa fa-user-plus"></i> Administrar Instructor <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_instructor.html">Registrar Instructor</a></li>
+                      <li><a href="sides_instructor.php">Registrar Instructor</a></li>
                     </ul>
                   </li>
                 <?php endif; ?>
@@ -165,7 +150,7 @@
                 <?php if ($row_rol['rol'] == 'Instructor'): ?>
                   <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_sanciones.html">Boleta de sancion</a></li>
+                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                     </ul>
                   </li>
                 <?php endif; ?>
@@ -187,6 +172,7 @@
                     </ul>
                   </li>
                 <?php endif; ?>
+
 
                 </ul>
               </div>
@@ -231,8 +217,16 @@
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="javascript:;">  Profile</a>
                     </li>
-
-                    <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    <!-- <li>
+                      <a href="javascript:;">
+                        <span class="badge bg-red pull-right">50%</span>
+                        <span>Settings</span>
+                      </a>
+                    </li> -->
+                    <!-- <li>
+                      <a href="javascript:;">Help</a>
+                    </li> -->
+                    <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
                     </li>
                   </ul>
                 </li>
@@ -372,9 +366,7 @@
                                   $result= mysqli_query($con,$query);
                                   while ($row=mysqli_fetch_array($result)):?>
                                     <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
-                                  <?php endwhile;
-
-                                  ?>
+                                  <?php endwhile; ?>
                                 </select>
                               </div>
                             </div>
@@ -498,41 +490,11 @@
                         </div>
 
                       </div>
-                      <!-- <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                        <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                          booth letterpress, commodo enim craft beer mlkshk </p>
-                      </div> -->
+                      
                     </div>
                   </div>
 
-                  <!-- <div class="x_title">
-                    <h2>Crear Nuevo Usuario</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
 
-                    <br>
-                    <div class="x_content">
-
-
-
-
-                    </div>
-
-                  </div> -->
                 </div>
               </div>
             </div>
@@ -543,7 +505,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          Escuela Militar de Sargentos del Ejercito <a href="#"></a>
           </div>
           <div class="clearfix"></div>
         </footer>

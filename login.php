@@ -46,7 +46,7 @@
                 <div>
                   <h1><img src="images/logo.png" alt="Mountain View" style="width:44px;height:44px;"> </i>SIDES</h1>
 
-                  <p>©2016 All Rights Reserved. Capitán. Marcelo Ramirez. Privacy and Terms</p>
+                  <p>©2016 All Rights Reserved. Cap.Ing. Marcelo Ramirez. Privacy and Terms</p>
                 </div>
               </div>
             </form>
