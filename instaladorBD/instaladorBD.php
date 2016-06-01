@@ -23,13 +23,13 @@ function crearTablas(){
 		)";
 
 		if(mysqli_query($con, $TB_GRUPO)){
-			echo "<br> tabla grupo creada";
+			echo "<br> - TABLA GRUPO CREADA -";
 
 			$INSERT_GRUPO_TEST = "";
 
 			if (mysqli_query($con, $INSERT_GRUPO_TEST)) {
 				# code...
-				echo "<br> - GRUPOS TESTS INSERTADOS - ";
+				echo "<br> - GRUPOS TESTS INSERTADOS - <br>";
 			}
 		}
 
@@ -41,14 +41,14 @@ function crearTablas(){
 	PRIMARY KEY(id_falta)
 	)";
 
-	if(mysqli_query($con,$sqlfalta)){
-		echo "<br> tabla falta creada";
+	if(mysqli_query($con,$TB_FALTA)){
+		echo "<br> - TABLA FALTA CREADA -";
 
 		$INSERT_FALTA_TEST = "";
 
 		if (mysqli_query($con, $INSERT_FALTA_TEST)) {
 			# code...
-			echo "<br> - FALTAS TESTS INSERTADOS - ";
+			echo "<br> - FALTAS TESTS INSERTADOS - <br>";
 		}
 	}
 
@@ -74,7 +74,7 @@ function crearTablas(){
 
 		if (mysqli_query($con, $INSERT_ROLES_TESTS)) {
 			# code...
-			echo "<br> - ROLES TESTS INSERTADOS - ";
+			echo "<br> - ROLES TESTS INSERTADOS - <br>";
 		}
 
 	}
@@ -94,7 +94,7 @@ function crearTablas(){
 		celular INT,
 		direccion VARCHAR(50),
 		codigo_secreto VARCHAR(8),
-		id_tutor INT,
+		ci_tutor INT,
 		PRIMARY KEY(id_ci)
 	)";
 
@@ -108,14 +108,12 @@ function crearTablas(){
 							 ('14','1','1','Lucas','Melo','Lopez','Masculino','04/25/2016','Tiraque','lucas@gmail.com','90909090','Av. Norte','0'),
 							 ('15','1','1','Martin','Judas','Toro','Masculino','04/25/2016','Tiraque','martin@gmail.com','90909090','Av. Norte','0'),
 							 ('16','1','1','Rodrigo','Murillo','Puerta','Masculino','04/25/2016','Tiraque','rodrigo@gmail.com','90909090','Av. Norte','0'),
-							 ('17','1','0','Antonio','Solis','Mesa','Masculino','04/25/2016','Tiraque','antonio@gmail.com','90909090','Av. Norte','123'),
-							 ('18','1','0','Jose','Marañon','Molina','Masculino','04/25/2016','Sucre','jose@gmail.com','90909090','Av. Norte','456')";
+							 ('17','1','0','Antonio','Solis','Mesa','Masculino','04/25/2016','Tiraque','antonio@gmail.com','90909090','Av. Norte','123')";
 
 		if (mysqli_query($con, $INSERT_USUARIOS_TESTS)) {
 			# code...
-			echo "<br> - USUARIOS TESTS INSERTADOS - ";
+			echo "<br> - USUARIOS TESTS INSERTADOS - <br>";
 		}
-
 	}
 
 //-----------------------TABLE ASIGNAR USUARIO--------------------------------
@@ -138,12 +136,11 @@ function crearTablas(){
 						 	 ('','3','14','jefe','jefe'),
 							 ('','4','15','inst','inst'),
 							 ('','5','16','primer','primer'),
-							 ('','6','17','alum','alum'),
-							 ('','6','18','18','aoesas')";
+							 ('','6','17','alum','alum')";
 
 		if (mysqli_query($con, $INSERT_ASIG_USUARIOS_TESTS)) {
 			# code...
-			echo "<br> - ASIGNAR USUARIOS TESTS INSERTADOS - ";
+			echo "<br> - ASIGNAR USUARIOS TESTS INSERTADOS - <br>";
 		}
 
 	}
@@ -173,7 +170,7 @@ function crearTablas(){
 							 ('','AV. EJTO.','AVIACION DE EJERCITO')";
 
 		if (mysqli_query($con, $INSERT_ARMAS_TEST)) {
-			echo "<br> - ARMAS TESTS INSERTADOS - ";
+			echo "<br> - ARMAS TESTS INSERTADOS - <br>";
 		}
 
 	}
@@ -210,7 +207,7 @@ function crearTablas(){
 							 ('','AL. 3AM.','ALUMNO TERCER AÑO MILITAR')";
 
 		if (mysqli_query($con, $INSERT_GRADOS_TEST)) {
-			echo "<br> - GRADOS TESTS INSERTADOS - ";
+			echo "<br> - GRADOS TESTS INSERTADOS - <br>";
 		}
 
 	}
@@ -235,7 +232,7 @@ function crearTablas(){
 							 ('891','Melani Guitierres','33344455','Av. Junin')";
 
 		if (mysqli_query($con, $INSERT_TUTOR)) {
-			echo "<br> - TUTORES TESTS INSERTADOS - ";
+			echo "<br> - TUTORES TESTS INSERTADOS - <br>";
 		}
 	}
 
@@ -253,7 +250,7 @@ function crearTablas(){
 	)";
 
 	if(mysqli_query($con, $TB_SANCION)){
-		echo "<br> - TABLA SANCION CREADA -";
+		echo "<br> - TABLA SANCION CREADA - ";
 	}
 
 	mysqli_close($con);
