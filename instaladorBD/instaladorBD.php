@@ -14,26 +14,42 @@ function crearTablas(){
 	$con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion conectar.
 	mysqli_select_db($con,"sides");//mysqli_select_db(variableconexion,nombreBD)
 
-	$sqlfalta="CREATE TABLE falta (
+//-------------------------------TABLE GRUPO----------------------------------
+		$TB_GRUPO = "CREATE TABLE grupo (
+		id_grupo INT NOT NULL AUTO_INCREMENT,
+		grupo VARCHAR(60),
+		puntos INT,
+		PRIMARY KEY(id_grupo)
+		)";
+
+		if(mysqli_query($con, $TB_GRUPO)){
+			echo "<br> tabla grupo creada";
+
+			$INSERT_GRUPO_TEST = "";
+
+			if (mysqli_query($con, $INSERT_GRUPO_TEST)) {
+				# code...
+				echo "<br> - GRUPOS TESTS INSERTADOS - ";
+			}
+		}
+
+//-------------------------------TABLE FALTA----------------------------------
+	$TB_FALTA = "CREATE TABLE falta (
 	id_falta INT NOT NULL AUTO_INCREMENT,
 	nombre VARCHAR(150),
 	id_grupo INT,
 	PRIMARY KEY(id_falta)
-	)";//creamos la tabla FALTA
-
-	$sqlgrupo="CREATE TABLE grupo(
-	id_grupo INT NOT NULL AUTO_INCREMENT,
-	grupo VARCHAR(60),
-	puntos INT,
-	PRIMARY KEY(id_grupo)
-	)";//creamos la tabla
+	)";
 
 	if(mysqli_query($con,$sqlfalta)){
-		echo "tabla falta creada";
-	}
+		echo "<br> tabla falta creada";
 
-	if(mysqli_query($con,$sqlgrupo)){
-		echo "tabla grupo creada";
+		$INSERT_FALTA_TEST = "";
+
+		if (mysqli_query($con, $INSERT_FALTA_TEST)) {
+			# code...
+			echo "<br> - FALTAS TESTS INSERTADOS - ";
+		}
 	}
 
 //-------------------------------TABLE ROL------------------------------------
@@ -188,7 +204,10 @@ function crearTablas(){
 							 ('','SOF. INCL.','SUBOFICIAL INICIAL'),
 							 ('','SGTO. 1RO','SARGENTO PRIMERO'),
 							 ('','SGTO. 2DO','SARGENTO SEGUNDO'),
-							 ('','SGTO. INCL.','SARGENTO INICIAL')";
+							 ('','SGTO. INCL.','SARGENTO INICIAL'),
+							 ('','AL. 1AM.','ALUMNO PRIMER AÑO MILITAR'),
+							 ('','AL. 2AM.','ALUMNO SEGUNDO AÑO MILITAR'),
+							 ('','AL. 3AM.','ALUMNO TERCER AÑO MILITAR')";
 
 		if (mysqli_query($con, $INSERT_GRADOS_TEST)) {
 			echo "<br> - GRADOS TESTS INSERTADOS - ";
