@@ -4,6 +4,9 @@ include "../controladores/conexionBD.php";
 function crearBD(){
 	$cnn= new conexion();//crea instancia de la clase conexion
 	$con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion conectar.
+
+
+
 	$sql="CREATE DATABASE sides";//comando sql crea BD
 	mysqli_query($con,$sql);//mysql_query(conexion,consulta);
 	mysqli_close($con);
@@ -27,12 +30,12 @@ function crearTablas(){
 
 			$INSERT_GRUPO_TEST = "INSERT INTO
 			grupo(id_grupo,grupo,puntos)
-			VALUES ('','GRUPO I: Faltas sancionadas con presentación de un Ensayo escrito.','0'),
-						 ('','GRUPO II: Faltas sancionadas con una hora de reflexión presencial.','0'),
-						 ('','GRUPO III: Faltas sancionadas con la pérdida de 2 puntos en disciplina.','2'),
-						 ('','GRUPO IV: Faltas sancionadas con la pérdida de 3 puntos en disciplina.','3'),
-						 ('','GRUPO V: Faltas sancionadas con la pérdida de 4 puntos en disciplina.','4'),
-						 ('','GRUPO VI: Faltas sancionadas con la pérdida de 5 puntos en disciplina.','5')";
+			VALUES ('','GRUPO I: Faltas sancionadas con presentacion de un Ensayo escrito.','0'),
+						 ('','GRUPO II: Faltas sancionadas con una hora de reflexion presencial.','0'),
+						 ('','GRUPO III: Faltas sancionadas con la perdida de 2 puntos en disciplina.','2'),
+						 ('','GRUPO IV: Faltas sancionadas con la perdida de 3 puntos en disciplina.','3'),
+						 ('','GRUPO V: Faltas sancionadas con la perdida de 4 puntos en disciplina.','4'),
+						 ('','GRUPO VI: Faltas sancionadas con la perdida de 5 puntos en disciplina.','5')";
 
 			if (mysqli_query($con, $INSERT_GRUPO_TEST)) {
 				# code...
@@ -53,12 +56,12 @@ function crearTablas(){
 
 		$INSERT_FALTA_TEST = "INSERT INTO
 		falta(id_falta,nombre,id_grupo)
-		VALUES ('','Atrasarse a formación hasta 15 minutos.','1'),
+		VALUES ('','Atrasarse a formacion hasta 15 minutos.','1'),
 					 ('','Atrasarse en el ingreso al aula.','1'),
 					 ('','Bostezar en filas.','1'),
 					 ('','Botar basura en lugares indebidos.','1'),
-					 ('','Carecer de útiles de aseo personal.','1'),
-					 ('','Desconocimiento de la jerarquía.','2'),
+					 ('','Carecer de utiles de aseo personal.','1'),
+					 ('','Desconocimiento de la jerarquia.','2'),
 					 ('','No cumplir con el horario de encendido y apagado de luces.','2'),
 					 ('','No cumplir con sus obligaciones como encargado de dormitorio.','2'),
 					 ('','No cumplir con sus obligaciones como encargado de limpieza.','2'),
@@ -69,8 +72,8 @@ function crearTablas(){
 					 ('','Intimar con subalternos en actos del servicio o fuera de él.','3'),
 					 ('','Manifestar desprecio por los alimentos suministrados en el comedor.','3'),
 					 ('','Expresarse en lenguaje obsceno.','4'),
-					 ('','Poner apodos ofensivos a los subalternos. y/o camaradas.','4'),
-					 ('','Prestar prendas militares de dotación sin autorización.','4'),
+					 ('','Poner apodos ofensivos a los subalternos y/o camaradas.','4'),
+					 ('','Prestar prendas militares de dotacion sin autorizacion.','4'),
 					 ('','Realizar movimientos y gestos obscenos.','4'),
 					 ('','Vestir uniforme en lugares no recomendables.','4'),
 					 ('','Discutir airadamente en presencia de superiores o subalternos.','5'),
@@ -78,8 +81,8 @@ function crearTablas(){
 					 ('','No cumplir correctamente sus obligaciones en la guardia.','5'),
 					 ('','No observar medidas de seguridad cuando se maneja explosivos, armamento y/o munición, (siempre que no constituya un delito).','5'),
 					 ('','No pagar sus deudas con oportunidad dentro y fuera del Instituto.','5'),
-					 ('','No dar parte de algún incidente en el puesto de centinela.','6'),
-					 ('','No presentarse a la autoridad militar durante el periodo de vacaciones o cuando las (os) estudiantes, salen de la guarnición por cualquier motivo.','6'),
+					 ('','No dar parte de algun incidente en el puesto de centinela.','6'),
+					 ('','No presentarse a la autoridad militar durante vacaciones o cuando se sale de la guarnicion.','6'),
 					 ('','Faltar a la palabra empeñada.','6'),
 					 ('','Faltar al relevo de guardia (de 30 minutos hasta 2 horas).','6'),
 					 ('','Faltar a la verdad.','6')";
