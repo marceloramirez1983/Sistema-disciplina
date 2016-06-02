@@ -1,6 +1,5 @@
 <?php
   session_start();
-
   if ($_SESSION['loggedin']) {
     # code...
     include_once("controladores/conexionBD.php");
