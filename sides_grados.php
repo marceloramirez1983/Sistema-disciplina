@@ -1,3 +1,33 @@
+<?php
+  session_start();
+  if ($_SESSION['loggedin']) {
+    # code...
+    include_once("controladores/conexionBD.php");
+
+    $cnn= new conexion();
+    $con =$cnn->conectar();
+
+    $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");
+
+    $ID_ROL = $_SESSION['rol'];
+    $ID_CI = $_SESSION['usuario'];
+    $NICKNAME = $_SESSION['nickname'];
+
+    $sql_user = "SELECT * FROM usuario WHERE id_ci = '$ID_CI'";
+    $result_user = mysqli_query($con, $sql_user) or die ("error");
+    $row_user = mysqli_fetch_assoc($result_user);
+
+    $sql_rol = "SELECT * FROM rol WHERE id_rol = '$ID_ROL'";
+    $result_rol = mysqli_query($con, $sql_rol);
+    $row_rol = mysqli_fetch_assoc($result_rol);
+
+    mysqli_close($con);
+  } else {
+    # code...
+    header("location: login.php");
+
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,7 +56,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><img src="images/logo.png" alt="Mountain View" style="width:44px;height:44px;"> <span>SIDES</span></a>
+              <a href="#" class="site_title"><img src="images/logo.png" alt="Mountain View" style="width:44px;height:44px;"> <span>SIDES</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -38,7 +68,7 @@
               </div>
               <div class="profile_info">
                 <span>Bienvenido,</span>
-                <h2>Marcelo Ramirez</h2>
+                <h2><?php echo $row_user['nombre']." ".$row_user['paterno']; ?></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -48,61 +78,102 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3> Administrador </h3>
+                <h3><?php echo $row_rol['rol']; ?></h3>
                 <ul class="nav side-menu">
 
+                  <?php if ($row_rol['rol'] == 'Administrador'): ?>
                   <li><a><i class="fa fa-user"></i> Administrar Usuario <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_user.html">Registrar Usuario</a></li>
-                      <li><a href="sides_asign_user.html">Asignar Usuario</a></li>
+                      <li><a href="sides_user.php">Registrar Usuario</a></li>
+                      <li><a href="sides_asign_user.php">Asignar Usuario</a></li>
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-edit"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-pencil-square-o"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_grupos.html">Registrar Grupos</a></li>
-                      <li><a href="sides_faltas.html">Registrar Faltas</a></li>
+                      <li><a href="sides_grupos.php">Registrar Grupos</a></li>
+                      <li><a href="sides_faltas.php">Registrar Faltas</a></li>
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-edit"></i> Administrar Instructor <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-user-plus"></i> Administrar Instructor <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_instructor.html">Registrar Instructor</a></li>
+                      <li><a href="sides_instructor.php">Registrar Instructor</a></li>
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-edit"></i> Administrar Alumnos <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-users"></i> Administrar Alumnos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_alumnos.php">Registrar Alumnos</a></li>
                     </ul>
                   </li>
-
-                  <li><a><i class="fa fa-edit"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-newspaper-o"></i> Logs <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_sanciones.html">Boleta de sancion</a></li>
+                      <li><a href="sides_log_logins.php">Logs de Sesiones</a></li>
+                      <li><a href="sides_log_actions.php">Logs de Acciones</a></li>
                     </ul>
                   </li>
-
-                  <li><a><i class="fa fa-edit"></i> Hoja de Vida Pesonal <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="sides_reports.html">Reporte Disciplinario</a></li>
-                    </ul>
-                  </li>
-
-                  <li><a><i class="fa fa-edit"></i> Logs <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="sides_log_logins.html">Logs de Sesiones</a></li>
-                      <li><a href="sides_log_actions.html">Logs de Acciones</a></li>
-                    </ul>
-                  </li>
-
                   <li><a><i class="fa fa-edit"></i> Extras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_armas.html">Registrar Arma</a></li>
-                      <li><a href="sides_grados.html">Registrar Grado</a></li>
-                      <li><a href="sides_roles.html">Registrar Roles</a></li>
+                      <li><a href="sides_armas.php">Registrar Arma</a></li>
+                      <li><a href="sides_grados.php">Registrar Grado</a></li>
+                      <li><a href="sides_roles.php">Registrar Roles</a></li>
                     </ul>
                   </li>
+
+                <?php endif; ?>
+
+                <!-- Encargado de Disciplina -->
+                <?php if ($row_rol['rol'] == 'Encargado de Disciplina'): ?>
+                  <li><a><i class="fa fa-pencil-square-o"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_grupos.php">Registrar Grupos</a></li>
+                      <li><a href="sides_faltas.php">Registrar Faltas</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
+                    </ul>
+                  </li>
+                <?php endif; ?>
+
+                <!-- Jefe De Personal -->
+                <?php if ($row_rol['rol'] == 'Jefe de Personal'): ?>
+                  <li><a><i class="fa fa-user-plus"></i> Administrar Instructor <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_instructor.php">Registrar Instructor</a></li>
+                    </ul>
+                  </li>
+                <?php endif; ?>
+
+                <!-- Instructor -->
+                <?php if ($row_rol['rol'] == 'Instructor'): ?>
+                  <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
+                    </ul>
+                  </li>
+                <?php endif; ?>
+
+                <!-- Primera Compañia -->
+                <?php if ($row_rol['rol'] == 'Primero de Compañia'): ?>
+                  <li><a><i class="fa fa-users"></i> Administrar Alumnos <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_alumnos.php">Registrar Alumnos</a></li>
+                    </ul>
+                  </li>
+                <?php endif; ?>
+
+                <!-- Alumno -->
+                <?php if ($row_rol['rol'] == 'Alumno'): ?>
+                  <li><a><i class="fa fa-file"></i> Hoja de Vida Pesonal <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_reports.php">Reporte Disciplinario</a></li>
+                    </ul>
+                  </li>
+                <?php endif; ?>
 
                 </ul>
               </div>
@@ -141,11 +212,11 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">Marcelo Ramirez
+                    <img src="images/img.jpg" alt=""><?php echo $row_user['nombre']." ".$row_user['paterno']; ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">  Profile</a>
+                    <li><a href="javascript:;">Profile</a>
                     </li>
                     <!-- <li>
                       <a href="javascript:;">
@@ -156,7 +227,7 @@
                     <!-- <li>
                       <a href="javascript:;">Help</a>
                     </li> -->
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
+                    <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
                     </li>
                   </ul>
                 </li>
@@ -288,7 +359,7 @@
                           <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Rol<span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Grado<span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="first-name" name="ci-user" required="required" class="form-control col-md-7 col-xs-12">
@@ -322,7 +393,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                           <div class="x_panel">
                             <div class="x_title">
-                              <h2>Lista de Roles <small>puedes modificar o eliminar</small></h2>
+                              <h2>Lista de Grados <small>puedes modificar o eliminar</small></h2>
                               <!-- <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -344,37 +415,14 @@
                               <table class="table table-hover">
                                 <thead>
                                   <tr>
-                                    <th>Rol</th>
+                                    <th>Grado</th>
                                     <th>Descripción</th>
                                     <th></th>
                                   </tr>
                                 </thead>
                                 <tbody>
                                   <tr>
-                                    <th scope="row">Administrador</th>
-                                    <td>Cras mattis consectetur purus sit amet fermentum.</td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </td>
-
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Instructor</th>
+                                    <th scope="row">1er Año</th>
                                     <td>Cras mattis consectetur purus sit amet fermentum.</td>
                                     <td>
                                       <div class="btn-group">

@@ -103,18 +103,33 @@
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-newspaper-o"></i> Logs <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-users"></i> Administrar Alumnos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_log_logins.html">Logs de Sesiones</a></li>
-                      <li><a href="sides_log_actions.html">Logs de Acciones</a></li>
+                      <li><a href="sides_alumnos.php">Registrar Alumnos</a></li>
                     </ul>
                   </li>
 
+                  <li><a><i class="fa fa-newspaper-o"></i> Logs <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_log_logins.php">Logs de Sesiones</a></li>
+                      <li><a href="sides_log_actions.php">Logs de Acciones</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-edit"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_armas.php">Registrar Arma</a></li>
+                      <li><a href="sides_grados.php">Registrar Grado</a></li>
+                      <li><a href="sides_roles.php">Registrar Roles</a></li>
+                    </ul>
+                  </li>
+
+
                   <!-- <li class="hide"><a><i class="fa fa-edit"></i> Extras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_armas.html">Registrar Arma</a></li>
-                      <li><a href="sides_grados.html">Registrar Grado</a></li>
-                      <li><a href="sides_roles.html">Registrar Roles</a></li>
+                      <li><a href="sides_armas.php">Registrar Arma</a></li>
+                      <li><a href="sides_grados.php">Registrar Grado</a></li>
+                      <li><a href="sides_roles.php">Registrar Roles</a></li>
                     </ul>
                   </li> -->
 
@@ -125,13 +140,13 @@
                   <li><a><i class="fa fa-pencil-square-o"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_grupos.php">Registrar Grupos</a></li>
-                      <li><a href="sides_faltas.html">Registrar Faltas</a></li>
+                      <li><a href="sides_faltas.php">Registrar Faltas</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_sanciones.html">Boleta de sancion</a></li>
+                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                     </ul>
                   </li>
                 <?php endif; ?>
@@ -140,7 +155,7 @@
                 <?php if ($row_rol['rol'] == 'Jefe de Personal'): ?>
                   <li><a><i class="fa fa-user-plus"></i> Administrar Instructor <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_instructor.html">Registrar Instructor</a></li>
+                      <li><a href="sides_instructor.php">Registrar Instructor</a></li>
                     </ul>
                   </li>
                 <?php endif; ?>
@@ -149,7 +164,7 @@
                 <?php if ($row_rol['rol'] == 'Instructor'): ?>
                   <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sides_sanciones.html">Boleta de sancion</a></li>
+                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                     </ul>
                   </li>
                 <?php endif; ?>

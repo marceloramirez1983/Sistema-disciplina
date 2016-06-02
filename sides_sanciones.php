@@ -124,16 +124,16 @@
 
                                       <li><a><i class="fa fa-newspaper-o"></i> Logs <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                          <li><a href="sides_log_logins.html">Logs de Sesiones</a></li>
-                                          <li><a href="sides_log_actions.html">Logs de Acciones</a></li>
+                                          <li><a href="sides_log_logins.php">Logs de Sesiones</a></li>
+                                          <li><a href="sides_log_actions.php">Logs de Acciones</a></li>
                                         </ul>
                                       </li>
 
                                       <li><a><i class="fa fa-edit"></i> Extras <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                          <li><a href="sides_armas.html">Registrar Arma</a></li>
-                                          <li><a href="sides_grados.html">Registrar Grado</a></li>
-                                          <li><a href="sides_roles.html">Registrar Roles</a></li>
+                                          <li><a href="sides_armas.php">Registrar Arma</a></li>
+                                          <li><a href="sides_grados.php">Registrar Grado</a></li>
+                                          <li><a href="sides_roles.php">Registrar Roles</a></li>
                                         </ul>
                                       </li>
 
