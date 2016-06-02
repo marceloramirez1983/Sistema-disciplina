@@ -23,6 +23,10 @@
     $row_rol = mysqli_fetch_assoc($result_rol);
 
     //mysqli_close($con);
+
+
+
+
   } else {
     # code...
     header("location: login.php");
@@ -301,13 +305,13 @@
                         <!-- Formulario de sanciones nuevas -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarSanciones.php">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sancionador">C.I. Instructor sanciona <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input readonly type="text" id="sancionador" name="id_ci" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $ID_CI; ?>">
+                                <input readonly type="text" id="sancionador" name="id_user" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $ID_CI; ?>">
                               </div>
                             </div>
 
@@ -315,7 +319,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Alumno-sancionado">C.I. Alumno sancionado <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="Alumno-sancionado" name="ci-user" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="Alumno-sancionado" name="id_ci" required="required" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
@@ -323,7 +327,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Grupo <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <select class="form-control">
+                                <select class="form-control grupo" name="grupo">
                                   <option>Seleccione un grupo</option>
                                   <?php
                                     $query="SELECT * FROM grupo";
@@ -340,12 +344,8 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Faltas <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control">
+                                <select class="form-control falta" name="falta">
                                   <option>Seleccione la falta</option>
-                                  <option>Faltas1 del grupo I de la BD</option>
-                                  <option>Faltas2 del grupo I de la BD</option>
-                                  <option>Faltas3 del grupo I de la BD</option>
-                                  <option>Faltas4 del grupo I de la BD</option>
                                 </select>
                               </div>
                             </div>
@@ -353,8 +353,8 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Puntos <span class="required">*</span>
                               </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input readonly type="text" id="last-name" name="name-user" required="required" class="form-control col-md-7 col-xs-12" value="" >
+                              <div class="col-md-6 col-sm-6 col-xs-12 puntos" name="puntos">
+                                <input readonly type="text" class="form-control col-md-7 col-xs-12" name="puntos">
                               </div>
                             </div>
 
@@ -362,24 +362,32 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Sancion <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha">
                               </div>
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Codigo secreto alumno</label>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Codigo secreto alumno <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="password" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
+                                <input type="password" id="last-name" name="cod_ci" class="form-control col-md-7 col-xs-12" >
                               </div>
                             </div>
-
-                            <div class="form-group">
+                            <?php
+                            if (isset($_GET['success'])) {
+                              # code...
+                              echo $printSucess = "Sancion Guardado Exitosamente!";
+                            } else {
+                              # code...
+                              echo $printError = "La Cedula de Identida y el Codigo Secreto son Invalidos!";
+                            }
+                            ?>
+                            <!-- <div class="form-group hide">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Subir Resolucion </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
                               </div>
 
-                            </div>
+                            </div> -->
 
                             <div class="ln_solid"></div>
                             <div class="form-group">
@@ -601,6 +609,67 @@
       });
     </script>
     <!-- /bootstrap-daterangepicker -->
+
+    <!--  Choose One Group -->
+    <!-- <script type="text/javascript">
+      function select_falta(val) {
+        $.ajax({
+          type: 'post',
+          url: 'controladores/select_falta.php',
+          data: {
+            get_optional: val
+          },
+          success: function(response) {
+            document.getElementById("falta_select").innerHTML = response;
+          }
+        });
+      }
+    </script> -->
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> -->
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $(".grupo").change(function(){
+          var id=$(this).val();
+          var dataString = 'id='+ id;
+
+          $.ajax({
+            type: "POST",
+            url: "controladores/seleccionarFalta.php",
+            data: dataString,
+            cache: false,
+            success: function(html){
+              $(".falta").html(html);
+            }
+          });
+
+        });
+
+      });
+    </script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+        $(".grupo").change(function(){
+          var id=$(this).val();
+          var dataString = 'id='+ id;
+
+          $.ajax({
+            type: "POST",
+            url: "controladores/seleccionarPuntos.php",
+            data: dataString,
+            cache: false,
+            success: function(html){
+              $(".puntos").html(html);
+            }
+          });
+
+        });
+
+      });
+    </script>
+    <!--  /Choose One Group -->
 
     <!-- iCheck -->
     <script src="../vendors/iCheck/icheck.min.js"></script>

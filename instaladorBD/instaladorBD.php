@@ -140,13 +140,14 @@ function crearTablas(){
 		echo "<br> - TABLA USUARIO CREADA - ";
 
 		$INSERT_USUARIOS_TESTS = "INSERT INTO
-			usuario(id_ci, id_grado, id_arma, nombre, paterno, materno, sexo, fecha_nac, lugar_nac, correo, celular, direccion, ci_tutor)
-				VALUES ('12','1','1','Juan','Nunez','Soto','Masculino','04/25/2016','Tiraque','juan@gmail.com','90909090','Av. Norte','0'),
-							 ('13','1','1','Pepe','Aguilar','Marneli','Masculino','04/25/2016','Tiraque','pepe@gmail.com','90909090','Av. Norte','0'),
-							 ('14','1','1','Lucas','Melo','Lopez','Masculino','04/25/2016','Tiraque','lucas@gmail.com','90909090','Av. Norte','0'),
-							 ('15','1','1','Martin','Judas','Toro','Masculino','04/25/2016','Tiraque','martin@gmail.com','90909090','Av. Norte','0'),
-							 ('16','1','1','Rodrigo','Murillo','Puerta','Masculino','04/25/2016','Tiraque','rodrigo@gmail.com','90909090','Av. Norte','0'),
-							 ('17','1','0','Antonio','Solis','Mesa','Masculino','04/25/2016','Tiraque','antonio@gmail.com','90909090','Av. Norte','123')";
+			usuario(id_ci, id_grado, id_arma, nombre, paterno, materno, sexo, fecha_nac, lugar_nac, correo, celular, direccion, codigo_secreto, ci_tutor)
+				VALUES ('12','1','1','Juan','Nunez','Soto','Masculino','04/25/2016','Tiraque','juan@gmail.com','90909090','Av. Norte','0','0'),
+							 ('13','1','1','Pepe','Aguilar','Marneli','Masculino','04/25/2016','Tiraque','pepe@gmail.com','90909090','Av. Norte','0','0'),
+							 ('14','1','1','Lucas','Melo','Lopez','Masculino','04/25/2016','Tiraque','lucas@gmail.com','90909090','Av. Norte','0','0'),
+							 ('15','1','1','Martin','Judas','Toro','Masculino','04/25/2016','Tiraque','martin@gmail.com','90909090','Av. Norte','0','0'),
+							 ('16','1','1','Rodrigo','Murillo','Puerta','Masculino','04/25/2016','Tiraque','rodrigo@gmail.com','90909090','Av. Norte','0','0'),
+							 ('17','15','0','Antonio','Solis','Mesa','Masculino','04/25/2016','Tiraque','antonio@gmail.com','90909090','Av. Norte','4444','123'),
+							 ('18','16','0','Miguel','Morales','Zapata','Masculino','04/25/2016','Tiraque','miguel@gmail.com','90909090','Av. Norte','4224','456')";
 
 		if (mysqli_query($con, $INSERT_USUARIOS_TESTS)) {
 			# code...
@@ -174,7 +175,8 @@ function crearTablas(){
 						 	 ('','3','14','jefe','jefe'),
 							 ('','4','15','inst','inst'),
 							 ('','5','16','primer','primer'),
-							 ('','6','17','alum','alum')";
+							 ('','6','17','alum','alum'),
+							 ('','6','18','18','abcdef')";
 
 		if (mysqli_query($con, $INSERT_ASIG_USUARIOS_TESTS)) {
 			# code...
@@ -282,7 +284,7 @@ function crearTablas(){
 	id_falta INT,
 	id_grupo INT,
 	puntos INT,
-	fecha DATE,
+	fecha VARCHAR(50),
 	resolucion MEDIUMBLOB,
 	PRIMARY KEY(id_sancion)
 	)";

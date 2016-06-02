@@ -21,7 +21,7 @@
     $result_rol = mysqli_query($con, $sql_rol);
     $row_rol = mysqli_fetch_assoc($result_rol);
 
-    mysqli_close($con);
+    //mysqli_close($con);
   } else {
     # code...
     header("location: login.php");
@@ -422,12 +422,33 @@
                               <th>#</th>
                               <th>Fecha</th>
                               <th>Falta</th>
-                              <th>Instructor</th>
+                              <!-- <th>Instructor</th> -->
                               <th>Puntos</th>
                             </tr>
                           </thead>
                           <tbody>
+                            <?php
+                            $query = "SELECT * FROM sancion WHERE ci_alumno = '$ID_CI'";
+                            $getAll = mysqli_query($con, $query);
+                            $num=0;
+                            while ($row = mysqli_fetch_array($getAll, MYSQLI_ASSOC)):
+                            ?>
                             <tr>
+                              <td><?php $num=$num+1;echo $num ?></td>
+                              <td><?php echo $row ['fecha'];?></td>
+                              <td>
+                                <?php
+                                  $id_falta = $row['id_falta'];
+                                  $queryFalta = "SELECT * FROM falta WHERE id_falta = '$id_falta'";
+                                  $falta = mysqli_query($con, $queryFalta);
+                                  $result_falta = mysqli_fetch_assoc($falta);
+                                  echo $result_falta['nombre'];
+                                ?>
+                              </td>
+                              <!-- <td><?php echo $row ['ci_instructor'];?></td> -->
+                              <td><?php echo $row ['puntos'];?></td>
+                            </tr>
+                            <!-- <tr>
                               <td>1</td>
                               <td>02/03/16</td>
                               <td>Curabitur blandit tempus porttitor.</td>
@@ -454,7 +475,10 @@
                               <td>Curabitur blandit tempus porttitor.</td>
                               <td>Cap. Inf. Ramirez</td>
                               <td>1</td>
-                            </tr>
+                            </tr> -->
+                            <?php
+                              endwhile;
+                            ?>
                           </tbody>
                         </table>
                         <!-- end user projects -->
