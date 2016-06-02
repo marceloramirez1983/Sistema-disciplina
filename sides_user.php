@@ -353,7 +353,7 @@
                         <!-- Form New Users -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertNewUser.php">
+                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarUsuario.php">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
@@ -389,7 +389,7 @@
                                   while ($row=mysqli_fetch_array($result)):?>
                                     <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
                                   <?php endwhile;
-                                  mysqli_close($con);
+                                  //mysqli_close($con);
                                   ?>
                                 </select>
                               </div>
@@ -443,12 +443,12 @@
                               </div>
                             </div>
 
-                            <div class="form-group">
+                            <!--div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Teléfono </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="last-name" name="txt_telefono_usuario" class="form-control col-md-7 col-xs-12">
                               </div>
-                            </div>
+                            </div-->
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento <span class="required">*</span>
@@ -462,34 +462,54 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="lugar" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="nacimiento" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Correo electrónico <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="txt_email_usuario" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="txt_email_usuario" name="txt_email_usuario" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="txt_domicilio_usuario" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="txt_domicilio_usuario" name="txt_domicilio_usuario" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
+
+                            <!-- DESDE ACA LOS CAMBIOS PARA SUPRIMIR REGISTRAR USUARIO-->
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Rol <span class="required">*</span></label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select class="form-control" name="id_rol" id="id_rol">
+                                  <option value="">Seleccione un Rol</option>
+                                  <?php
+                                  $queryrol="SELECT * FROM rol";
+                                  $result= mysqli_query($con,$queryrol);
+                                  while ($row=mysqli_fetch_array($result)):?>
+                                    <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
+                                  <?php endwhile;
+                                  //mysqli_close($con);
+                                  ?>
+                                </select>
+                              </div>
+                            </div>
+
+
+                            <!-- HASTA ACA LOS CAMBIOS PARA SUPRIMIR REGISTRAR USUARIO-->
+
+
+
 
                             <div class="ln_solid"></div>
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button type="submit" class="btn btn-primary">Cancelar</button>
-                                <button type="submit" class="btn btn-success" onclick="new TabbedNotification({
-                                                title: 'Tabbed Notificat',
-                                                text: 'Sticky success... Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. ',
-                                                type: 'success',
-                                                sound: false
-                                            })">Guardar</button>
+                                <button type="button" class="btn btn-primary" onClick="history.go(-1)">Cancelar</button>
+                                <button type="submit" class="btn btn-success" onclick="">Guardar</button>
                               </div>
                             </div>
 
