@@ -67,7 +67,7 @@ $NOMBREUSUARIO=$USER_CI;
     header('Location: ../sides_user.php');
     exit;
 
-    mysqli_close($con);
+
 }else {
   //echo "es numero mayor = 1";
   echo '<script language="javascript">
@@ -75,4 +75,5 @@ $NOMBREUSUARIO=$USER_CI;
   window.location="http://localhost/sides/sides_user.php";
   </script>';
 }
+mysqli_close($con);
 ?>

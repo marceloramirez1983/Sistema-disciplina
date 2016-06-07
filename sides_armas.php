@@ -355,13 +355,13 @@
                         <!-- Form New Users -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                          <form id="formArma" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores\insertArma.php">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Arma<span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" name="ci-user" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="nombre_arma" name="nombre_arma" required="required" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
@@ -369,19 +369,36 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripción<span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" name="ci-user" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="arma_descripcion" name="arma_descripcion" required="required" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
                             <div class="ln_solid"></div>
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button type="submit" class="btn btn-primary">Cancelar</button>
-                                <button type="submit" class="btn btn-success">Guardar</button>
+                                <button type="button" class="btn btn-primary" onclick="history.go(-1)">Cancelar</button>
+                                <button type="button" class="btn btn-success" onclick="validar_enviar()">Guardar</button>
                               </div>
                             </div>
 
                           </form>
+                          <script type="text/javascript">
+                            function validar_enviar(){
+                            valor = document.getElementById("nombre_arma").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el nombre del arma")
+                            return false;
+                            }
+
+                            valor= document.getElementById("arma_descripcion").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese la descripcion del arma")
+                            return false;
+                            }
+                            formArma.submit();
+                          }
+                          </script>
+
                         </div>
 
 
