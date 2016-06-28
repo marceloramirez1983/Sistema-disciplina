@@ -318,7 +318,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Administrar Grado</h3>
+                <h3>Administrar Roles</h3>
               </div>
 
               <!-- <div class="title_right">
@@ -344,9 +344,9 @@
                   <br>
                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Crear</a>
+                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Registrar</a>
                       </li>
-                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Modificar</a>
+                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Buscar</a>
                       </li>
                       <!-- <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
                       </li> -->
@@ -424,7 +424,7 @@
                                 <tbody>
                                   <tr>
                                     <th scope="row">Administrador</th>
-                                    <td>Cras mattis consectetur purus sit amet fermentum.</td>
+                                    <td>Administra el sistema</td>
                                     <td>
                                       <div class="btn-group">
                                         <button type="button" class="btn btn-danger">Opción</button>
@@ -447,7 +447,7 @@
                                   </tr>
                                   <tr>
                                     <th scope="row">Instructor</th>
-                                    <td>Cras mattis consectetur purus sit amet fermentum.</td>
+                                    <td>Oficial o suboficia destinado en el instituto</td>
                                     <td>
                                       <div class="btn-group">
                                         <button type="button" class="btn btn-danger">Opción</button>
