@@ -21,7 +21,7 @@
     $result_rol = mysqli_query($con, $sql_rol);
     $row_rol = mysqli_fetch_assoc($result_rol);
 
-    mysqli_close($con);
+    //mysqli_close($con);
   } else {
     # code...
     header("location: login.php");
@@ -342,9 +342,9 @@
                   <br>
                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Crear</a>
+                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Registrar</a>
                       </li>
-                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Modificar</a>
+                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Buscar</a>
                       </li>
                       <!-- <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
                       </li> -->
@@ -358,18 +358,18 @@
                           <form id="formArma" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores\insertArma.php">
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Arma<span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Abreviacion nombre Arma<span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="nombre_arma" name="nombre_arma" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="nombre_arma" name="nombre_arma" required="required" class="form-control col-md-7 col-xs-12" onkeypress="txNombres()">
                               </div>
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripción<span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Arma<span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="arma_descripcion" name="arma_descripcion" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="arma_descripcion" name="arma_descripcion" required="required" class="form-control col-md-7 col-xs-12" onkeypress="txNombres()">
                               </div>
                             </div>
 
@@ -383,6 +383,10 @@
 
                           </form>
                           <script type="text/javascript">
+
+                          function txNombres() {
+                            if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))event.returnValue = false;
+                          }
                             function validar_enviar(){
                             valor = document.getElementById("nombre_arma").value;
                             if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
@@ -431,61 +435,43 @@
                               <table class="table table-hover">
                                 <thead>
                                   <tr>
-                                    <th>Arma</th>
-                                    <th>Descripción</th>
+                                    <th>N#</th>
+                                    <th>Abreviacion Arma</th>
+                                    <th>Nombre arma</th>
                                     <th></th>
-
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    <th scope="row">Infanteria</th>
-                                    <td>Maecenas sed diam eget risus varius blandit sit amet non magna.</td>
 
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </td>
+                                  <?php
+                                  $getallgroup= mysqli_query($con, "SELECT * FROM arma");
+                                  $num=0;
+                                  while($row = mysqli_fetch_array($getallgroup, MYSQLI_ASSOC)):?>
+                                    <tr>
+                                      <td><?php $num=$num+1;echo $num ?></td>
+                                      <td><?php echo $row ['arma'];?></td>
+                                      <td><?php echo $row['descripcion'];?></td>
+                                      <td>
+                                        <div class="btn-group">
+                                          <button type="button" class="btn btn-primary">Opción</button>
+                                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                          </button>
+                                          <ul class="dropdown-menu" role="menu">
+                                            <li><a href="sides_Editararma.php?id=<?php echo $row ['id_arma'];?> ">Modificar</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li><a href="controladores/EliminarArma.php?id=<?php echo $row ['id_arma'];?> ">Eliminar</a>
+                                            </li>
+                                          </ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  <?php Endwhile; ?>
 
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Ingenieria</th>
-                                    <td>Maecenas sed diam eget risus varius blandit sit amet non magna.</td>
 
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </td>
 
-                                  </tr>
 
                                 </tbody>
                               </table>

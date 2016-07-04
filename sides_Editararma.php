@@ -1,19 +1,12 @@
 <?php
-/*include "controladores/conexionBD.php";
-
-
-$cnn= new conexion();//crea instancia de la clase conexion
-$con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion conectar.
-
-$database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");//mysqli_select_db(variableconexion,nombreBD)*/
-
 session_start();
 
 if ($_SESSION['loggedin']) {
   # code...
   include_once("controladores/conexionBD.php");
-  $idEditar=$_GET['id'];// variable para realizar la modificacion
 
+  $idEditar=$_GET['id'];//VARIABLE DEL ID DEL GRUPO QUE SE DESEA MODIFICAR
+  echo $idEditar;
   $cnn= new conexion();
   $con =$cnn->conectar();
 
@@ -37,7 +30,14 @@ if ($_SESSION['loggedin']) {
   header("location: login.php");
 
 }
+/*include "controladores/conexionBD.php";
+$idEditar=$_GET['id'];
 
+$cnn= new conexion();//crea instancia de la clase conexion
+$con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion conectar.
+
+$database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");//mysqli_select_db(variableconexion,nombreBD)
+*/
 
  ?>
 <!DOCTYPE html>
@@ -88,9 +88,8 @@ if ($_SESSION['loggedin']) {
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3> <?php echo $row_rol['rol']; ?> </h3>
+                <h3> <?php echo $row_rol['rol']; ?></h3>
                 <ul class="nav side-menu">
-
                   <?php if ($row_rol['rol'] == 'Administrador'): ?>
                   <li><a><i class="fa fa-user"></i> Administrar Usuario <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -145,10 +144,10 @@ if ($_SESSION['loggedin']) {
                     </ul>
                   </li>
 
-                <?php endif; ?>
+                  <?php endif; ?>
 
-                <!-- Encargado de Disciplina -->
-                <?php if ($row_rol['rol'] == 'Encargado de Disciplina'): ?>
+                  <!-- Encargado de Disciplina -->
+                  <?php if ($row_rol['rol'] == 'Encargado de Disciplina'): ?>
                   <li><a><i class="fa fa-pencil-square-o"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_grupos.php">Registrar Grupos</a></li>
@@ -161,44 +160,43 @@ if ($_SESSION['loggedin']) {
                       <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                     </ul>
                   </li>
-                <?php endif; ?>
+                  <?php endif; ?>
 
-                <!-- Jefe De Personal -->
-                <?php if ($row_rol['rol'] == 'Jefe de Personal'): ?>
+                  <!-- Jefe De Personal -->
+                  <?php if ($row_rol['rol'] == 'Jefe de Personal'): ?>
                   <li><a><i class="fa fa-user-plus"></i> Administrar Instructor <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_instructor.php">Registrar Instructor</a></li>
                     </ul>
                   </li>
-                <?php endif; ?>
+                  <?php endif; ?>
 
-                <!-- Instructor -->
-                <?php if ($row_rol['rol'] == 'Instructor'): ?>
+                  <!-- Instructor -->
+                  <?php if ($row_rol['rol'] == 'Instructor'): ?>
                   <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                     </ul>
                   </li>
-                <?php endif; ?>
+                  <?php endif; ?>
 
-                <!-- Primera Compañia -->
-                <?php if ($row_rol['rol'] == 'Primero de Compañia'): ?>
+                  <!-- Primera Compañia -->
+                  <?php if ($row_rol['rol'] == 'Primero de Compañia'): ?>
                   <li><a><i class="fa fa-users"></i> Administrar Alumnos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_alumnos.php">Registrar Alumnos</a></li>
                     </ul>
                   </li>
-                <?php endif; ?>
+                  <?php endif; ?>
 
-                <!-- Alumno -->
-                <?php if ($row_rol['rol'] == 'Alumno'): ?>
+                  <!-- Alumno -->
+                  <?php if ($row_rol['rol'] == 'Alumno'): ?>
                   <li><a><i class="fa fa-file"></i> Hoja de Vida Pesonal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_reports.php">Reporte Disciplinario</a></li>
                     </ul>
                   </li>
-                <?php endif; ?>
-
+                  <?php endif; ?>
                 </ul>
               </div>
 
@@ -262,7 +260,7 @@ if ($_SESSION['loggedin']) {
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>EDITAR FALTAS</h3>
+                <h3>EDITAR ARMAS REGISTRADAS</h3>
               </div>
 
               <div class="title_right">
@@ -283,7 +281,7 @@ if ($_SESSION['loggedin']) {
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel" style="height:600px;">
                   <div class="x_title">
-                    <h2>Editar nombre de las faltas</h2>
+                    <h2>Editar datos de Armas</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <!--li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li-->
@@ -292,43 +290,34 @@ if ($_SESSION['loggedin']) {
                     </ul>
                     <div class="clearfix"></div>
 
-                    <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/Actualizarfalta.php">
-
+                    <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/ActualizarArma.php">
                       <?php
-                      $query=mysqli_query($con,"SELECT * FROM falta WHERE id_falta= $idEditar");
+                      $query=mysqli_query($con,"SELECT * FROM arma WHERE id_arma= $idEditar");
                       while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)):?>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Id falta
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Id Arma
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="txtid_falta" name="txtid_falta" readonly required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['id_falta'] ?>">
+                          <input type="text" id="txtid_arma" name="txtid_arma" readonly required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['id_arma'] ?>">
                         </div>
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Falta<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Abreviacion Arma<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="txtnombre_falta" name="txtnombre_falta" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['nombre'] ?>">
+                          <input type="text" id="txtabreviacion_arma" name="txtabreviacion_arma" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['arma'] ?>" onkeypress="SoloLetras()">
                         </div>
                       </div>
 
-                      <!--div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Puntos <span class="required">*</span></label>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Arma<span class="required">*</span>
+                        </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control" name="CBoxselect_puntos">
-                            <option value="">Seleccione los puntos para perdidos</option>
-                            <option <?//php if($row['puntos']==0):?> selected="selected" <?php //endif;?>value="0">Sin Puntaje</option>
-                            <option <?//php if($row['puntos']==1):?> selected="selected" <?php //endif;?>value="1">1 Pto.</option>
-                            <option <?//php if($row['puntos']==2):?> selected="selected" <?php //endif;?>value="2">2 Pto.</option>
-                            <option <?//php if($row['puntos']==3):?> selected="selected" <?php //endif;?>value="3">3 Pto.</option>
-                            <option <?//php if($row['puntos']==4):?> selected="selected" <?php //endif;?>value="4">4 Pto.</option>
-                            <option <?//php if($row['puntos']==5):?> selected="selected" <?php //endif;?>value="5">5 Pto.</option>
-                          </select>
+                          <input type="text" id="txtnombre_arma" name="txtnombre_arma" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['descripcion'] ?>" onkeypress="SoloLetras()">
                         </div>
-                      </div-->
-
+                      </div>
                       <?php Endwhile; ?>
 
 
@@ -370,21 +359,27 @@ if ($_SESSION['loggedin']) {
 
     <!-- Custom Theme Scripts -->
     <script src="js/custom.js"></script>
-
     <script type="text/javascript">
+    function SoloLetras() {
+      if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))event.returnValue = false;
+    }
     function valida_envia(){
-    /*  selec= demoform2.CBoxselect_puntos.selectedIndex
+      /*selec= demoform2.CBoxselect_puntos.selectedIndex
       if (demoform2.CBoxselect_puntos.options[selec].value==""){
       alert ("Seleccione los puntos")
       return false
     }*/
-
-      valor = document.getElementById("txtnombre_falta").value;
-      if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
-      alert ("Ingrese el nuevo nombre de la falta")
+      valor1 = document.getElementById("txtnombre_arma").value;
+      if( valor1 == null || valor1.length == 0 || /^\s+$/.test(valor1) ) {
+      alert ("Ingrese un nombre para el arma")
       return false;
       }
 
+      valor = document.getElementById("txtabreviacion_arma").value;
+      if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+      alert ("Ingrese una abreviacion para el arma")
+      return false;
+      }
       demoform2.submit();
     }
     </script>
