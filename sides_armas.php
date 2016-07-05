@@ -431,6 +431,7 @@
                               </ul> -->
                               <div class="clearfix"></div>
                             </div>
+
                             <div class="x_content">
                               <table class="table table-hover">
                                 <thead>
@@ -468,7 +469,7 @@
                                         </div>
                                       </td>
                                     </tr>
-                                  <?php Endwhile; ?>
+                                  <?php Endwhile;  ?>
 
 
 
