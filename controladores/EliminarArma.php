@@ -10,7 +10,11 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
 $query="DELETE FROM arma WHERE id_arma = $idEliminar";
 
 if(mysqli_query($con,$query)) {
-header('Location: ../sides_armas.php');
+  echo '<script language="javascript">
+  alert("Arma eliminada");
+  window.location="http://localhost/sides/sides_armas.php";
+  </script>';
+//header('Location: ../sides_armas.php');
 }
 mysqli_close($con);
 ?>

@@ -10,7 +10,11 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
 $query="DELETE FROM grado WHERE id_grado = $idEliminar";
 
 if(mysqli_query($con,$query)) {
-header('Location: ../sides_grados.php');
+  echo '<script language="javascript">
+  alert("Grado eliminado correctamente");
+  window.location="http://localhost/sides/sides_grados.php";
+  </script>';
+//header('Location: ../sides_grados.php');
 }
 mysqli_close($con);
 ?>

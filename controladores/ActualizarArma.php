@@ -13,8 +13,13 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
 $insertar="UPDATE arma SET arma = '$abrev_arma',descripcion= '$nomb_arma'  WHERE id_arma = '$id_arma'";
 
 if (!mysqli_query($con,$insertar)) { die ("Error al insertar". mysqli_error);
+}else {
+  echo '<script language="javascript">
+  alert("Modificaciones  realizadas correctamente");
+  window.location="http://localhost/sides/sides_armas.php";
+  </script>';
 }
-header('Location: ../sides_armas.php');
+
 exit;
 //echo " dato Insertado ";
 mysqli_close($con);

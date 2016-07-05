@@ -13,8 +13,14 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
 $insertar="UPDATE grado SET grado = '$abrev_grado',descripcion= '$nomb_grado'  WHERE id_grado = '$id_grado'";
 
 if (!mysqli_query($con,$insertar)) { die ("Error al insertar". mysqli_error);
+}else {
+  echo '<script language="javascript">
+  alert("Modificaciones  realizadas correctamente");
+  window.location="http://localhost/sides/sides_grados.php";
+  </script>';
 }
-header('Location: ../sides_grados.php');
+
+//header('Location: ../sides_grados.php');
 exit;
 //echo " dato Insertado ";
 mysqli_close($con);
