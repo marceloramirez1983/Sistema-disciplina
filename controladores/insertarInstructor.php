@@ -19,8 +19,21 @@
   $CELULAR = $_POST['celular'];
   $DOMICILIO = $_POST['domicilio'];
 
-  $CONST_ID_ROL = 4;
+  /*echo $DOMICILIO."<br>";
+  echo $EMAIL."<br>";
+  echo $NAC."<br>";
+  echo $FECHA_NAC."<br>";
+  echo $CELULAR."<br>";
+  echo $MATERNO."<br>";
+  echo $PATERNO."<br>";
+  echo $NOMBRE."<br>";
+  echo $GENERO."<br>";
+  echo $ID_ARMA."<br>";
+  echo $ID_GRADO."<br>";
+  echo $CI."<br>";*/
 
+  $CONST_ID_ROL = 4;
+  //echo $CONST_ID_ROL;
   function random_password( $length = 6 ) {
     $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     $password = substr( str_shuffle( $chars ), 0, $length );
@@ -38,11 +51,11 @@
     VALUES ('','$CONST_ID_ROL','$CI','$CI','$CONST_PASSWORD')";
 
     if (!mysqli_query($con, $INSERT_USER)) {
-      die(" <br> Error al insertar USUARIO".mysql_error);
+      die(" <br> Error al insertar USUARIO ".mysql_error);
     }
 
     if (!mysqli_query($con, $INSERT_ASIGN_USER)) {
-      die(" <br> Error al insertar ASIGN USUARIO".mysql_error);
+      die(" <br> Error al insertar ASIGN USUARIO ".mysql_error);
     }
 
     header('Location: ../sides_instructor.php');
