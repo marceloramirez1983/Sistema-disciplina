@@ -32,6 +32,10 @@
   echo $ID_GRADO."<br>";
   echo $CI."<br>";*/
 
+  $queryusuarioci="SELECT * FROM usuario WHERE id_ci=$CI";
+  $result=mysqli_query($con, $queryusuarioci);
+//***********************************
+if (mysqli_num_rows($result)<1) {
   $CONST_ID_ROL = 4;
   //echo $CONST_ID_ROL;
   function random_password( $length = 6 ) {
@@ -57,10 +61,21 @@
     if (!mysqli_query($con, $INSERT_ASIGN_USER)) {
       die(" <br> Error al insertar ASIGN USUARIO ".mysql_error);
     }
+    echo '<script language="javascript">
+    alert("Instructor registrado correctamente");
+    window.location="http://localhost/sides/sides_instructor.php";
+    </script>';
 
-    header('Location: ../sides_instructor.php');
+    //header('Location: ../sides_instructor.php');
     exit;
 
+}else {
+  //echo "es numero mayor = 1";
+  echo '<script language="javascript">
+  alert("El numero de ci ya fue registrado");
+  window.location="http://localhost/sides/sides_instructor.php";
+  </script>';
+}
     mysqli_close($con);
 
 ?>

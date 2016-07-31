@@ -346,7 +346,7 @@
                                           <li><a href="#">Modificar</a>
                                           </li>
                                           <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
+                                          <li><a href="controladores/EliminarInstructor.php?id=<?php echo $row ['id_ci'];?>">Eliminar</a>
                                           </li>
                                         </ul>
                                       </div>
@@ -372,7 +372,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="ci_instructor" name="ci_instructor"class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="ci_instructor" name="ci_instructor"class="form-control col-md-7 col-xs-12" onKeyPress="return soloNumeros(event)">
                               </div>
                             </div>
 
@@ -416,7 +416,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="nombre" name="nombre" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="nombre" name="nombre" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()">
                               </div>
                             </div>
 
@@ -424,7 +424,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="paterno" name="paterno" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="paterno" name="paterno" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()">
                               </div>
                             </div>
 
@@ -432,7 +432,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="materno" name="materno" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="materno" name="materno" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()">
                               </div>
                             </div>
 
@@ -465,7 +465,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="lugar" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="lugar" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()">
                               </div>
                             </div>
 
@@ -479,7 +479,7 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="cel" name="celular" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="cel" name="celular" class="form-control col-md-7 col-xs-12"  onKeyPress="return soloNumeros(event)">
                               </div>
                             </div>
 
@@ -502,6 +502,17 @@
                         </div>
 
                         <script type="text/javascript">
+
+                        // Solo permite ingresar numeros.
+                        function soloNumeros(e){
+                        	var key = window.Event ? e.which : e.keyCode
+                        	return (key >= 48 && key <= 57)
+                        }
+
+                        function SoloLetras() {
+                          if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))event.returnValue = false;
+                        }
+
                         function valida_envia(){
 
                           valor = document.getElementById("ci_instructor").value;
@@ -575,7 +586,7 @@
                           alert ("Ingrese el direccion del domicilio")
                           demoform2.domicilio.focus()
                           return false;
-                          }  
+                          }
                           demoform2.submit();
                         }
                         </script>

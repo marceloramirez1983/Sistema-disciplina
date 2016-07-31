@@ -323,7 +323,7 @@ if ($_SESSION['loggedin']) {
                                             <li><a href="sides_Editarfalta.php?id=<?php echo $row ['id_falta'];?> ">Modificar</a>
                                             </li>
                                             <li class="divider"></li>
-                                            <li><a href="controladores/Eliminarfalta.php?id=<?php echo $row ['id_falta'];?> ">Eliminar</a>
+                                            <li><a href="controladores/Eliminarfalta.php?id=<?php echo $row ['id_falta'];?>">Eliminar</a>
                                             </li>
                                           </ul>
                                         </div>
