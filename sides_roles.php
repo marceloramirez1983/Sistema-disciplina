@@ -21,7 +21,7 @@
     $result_rol = mysqli_query($con, $sql_rol);
     $row_rol = mysqli_fetch_assoc($result_rol);
 
-    mysqli_close($con);
+    //mysqli_close($con);
   } else {
     # code...
     header("location: login.php");
@@ -357,35 +357,54 @@
                         <!-- Form New Users -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                          <form id="formRol" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores\insertarRol.php">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Rol<span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" name="ci-user" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="Nombre_Rol" name="Nombre_Rol" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()">
                               </div>
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripción<span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripción<span class="required" >*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" name="ci-user" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="descripcionRol" name="descripcionRol" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()">
                               </div>
                             </div>
 
                             <div class="ln_solid"></div>
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button type="submit" class="btn btn-primary">Cancelar</button>
-                                <button type="submit" class="btn btn-success">Guardar</button>
+                                <button type="button" class="btn btn-primary">Cancelar</button>
+                                <button type="button" class="btn btn-success" onclick="validar_enviar()">Guardar</button>
                               </div>
                             </div>
 
                           </form>
                         </div>
+                        <script type="text/javascript">
 
+                        function SoloLetras() {
+                          if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))event.returnValue = false;
+                        }
+                          function validar_enviar(){
+                          valor = document.getElementById("Nombre_Rol").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese el nombre del rol")
+                          return false;
+                          }
+
+                          valor= document.getElementById("descripcionRol").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese una descripcion del rol que desea registrar")
+                          return false;
+                          }
+                          formRol.submit();
+                        }
+                        </script>
 
                       </div>
                       <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
@@ -416,60 +435,43 @@
                               <table class="table table-hover">
                                 <thead>
                                   <tr>
+                                    <th>N#</th>
                                     <th>Rol</th>
                                     <th>Descripción</th>
                                     <th></th>
                                   </tr>
                                 </thead>
+
                                 <tbody>
-                                  <tr>
-                                    <th scope="row">Administrador</th>
-                                    <td>Administra el sistema</td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </td>
-
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Instructor</th>
-                                    <td>Oficial o suboficia destinado en el instituto</td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </td>
-
-                                  </tr>
+                                  <?php
+                                  $getallgroup= mysqli_query($con, "SELECT * FROM rol");
+                                  $num=0;
+                                  while($row = mysqli_fetch_array($getallgroup, MYSQLI_ASSOC)):?>
+                                    <tr>
+                                      <td><?php $num=$num+1;echo $num ?></td>
+                                      <td><?php echo $row ['rol'];?></td>
+                                      <td><?php echo $row['descripcion'];?></td>
+                                      <td>
+                                        <div class="btn-group">
+                                          <button type="button" class="btn btn-primary">Opción</button>
+                                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                          </button>
+                                          <ul class="dropdown-menu" role="menu">
+                                            <li><a href="sides_EditarRol.php?id=<?php echo $row ['id_rol'];?> ">Modificar</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li><a href="controladores/EliminarRol.php?id=<?php echo $row ['id_rol'];?> ">Eliminar</a>
+                                            </li>
+                                          </ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  <?php Endwhile; mysqli_close($con);?>
 
                                 </tbody>
+
                               </table>
 
                             </div>

@@ -7,14 +7,14 @@ $con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion 
 
 $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");
 
-$query="DELETE FROM arma WHERE id_arma = $idEliminar";
+$query="DELETE FROM grado WHERE id_grado = $idEliminar";
 
 if(mysqli_query($con,$query)) {
   echo '<script language="javascript">
-  alert("Arma eliminada");
-  window.location="http://localhost/sides/sides_armas.php";
+  alert("Grado eliminado correctamente");
+  window.location="http://localhost/sides/sides_grados.php";
   </script>';
-//header('Location: ../sides_armas.php');
+//header('Location: ../sides_grados.php');
 }
 mysqli_close($con);
 ?>

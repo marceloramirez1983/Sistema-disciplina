@@ -335,8 +335,8 @@
                                     <td><?php echo $row ['materno']; ?></td>
                                     <td>
                                       <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <button type="button" class="btn btn-primary">Opción</button>
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                           <span class="caret"></span>
                                           <span class="sr-only">Toggle Dropdown</span>
                                         </button>
@@ -346,7 +346,7 @@
                                           <li><a href="#">Modificar</a>
                                           </li>
                                           <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
+                                          <li><a href="controladores/EliminarInstructor.php?id=<?php echo $row ['id_ci'];?>">Eliminar</a>
                                           </li>
                                         </ul>
                                       </div>
@@ -366,13 +366,13 @@
                         <!-- Formulario para nuevos instructores -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarInstructor.php">
+                          <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarInstructor.php">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" name="ci_instructor" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="ci_instructor" name="ci_instructor"class="form-control col-md-7 col-xs-12" onKeyPress="return soloNumeros(event)">
                               </div>
                             </div>
 
@@ -416,7 +416,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="nombre" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="nombre" name="nombre" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()">
                               </div>
                             </div>
 
@@ -424,7 +424,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="paterno" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="paterno" name="paterno" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()">
                               </div>
                             </div>
 
@@ -432,7 +432,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="materno" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="materno" name="materno" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()">
                               </div>
                             </div>
 
@@ -465,7 +465,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="lugar" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="lugar" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()">
                               </div>
                             </div>
 
@@ -479,27 +479,117 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="celular" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="cel" name="celular" class="form-control col-md-7 col-xs-12"  onKeyPress="return soloNumeros(event)">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="domicilio" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="domicilio" name="domicilio" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
                             <div class="ln_solid"></div>
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button type="submit" class="btn btn-primary">Cancelar</button>
-                                <button type="submit" class="btn btn-success">Guardar</button>
+                                <button type="button" class="btn btn-primary" onclick="history.go(-1)">Cancelar</button>
+                                <button type="button" class="btn btn-success" onclick="valida_envia()">Guardar</button>
                               </div>
                             </div>
 
                           </form>
                         </div>
+
+                        <script type="text/javascript">
+
+                        // Solo permite ingresar numeros.
+                        function soloNumeros(e){
+                        	var key = window.Event ? e.which : e.keyCode
+                        	return (key >= 48 && key <= 57)
+                        }
+
+                        function SoloLetras() {
+                          if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))event.returnValue = false;
+                        }
+
+                        function valida_envia(){
+
+                          valor = document.getElementById("ci_instructor").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese la cedula de identidad")
+                          demoform2.ci_instructor.focus()
+                          return false;
+                          }
+
+                          selec= demoform2.id_grado.selectedIndex
+                          if (demoform2.id_grado.options[selec].value==""){
+                          alert ("Seleccione el grado del instructor")
+                          return false
+                          }
+
+                          selec= demoform2.id_arma.selectedIndex
+                          if (demoform2.id_arma.options[selec].value==""){
+                          alert ("Seleccione el arma del instructor")
+                          return false
+                          }
+
+                          valor = document.getElementById("nombre").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese el nombre del instructor")
+                          demoform2.nombre.focus()
+                          return false;
+                          }
+                          valor = document.getElementById("paterno").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese el apellido paterno del instructor")
+                          demoform2.paterno.focus()
+                          return false;
+                          }
+                          valor = document.getElementById("materno").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese el apellido materno del instructor")
+                          demoform2.materno.focus()
+                          return false;
+                          }
+
+                          valor = document.getElementById("birthday").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese la fecha de nacimiento")
+                          demoform2.birthday.focus()
+                          return false;
+                          }
+
+                          valor = document.getElementById("email").value;
+                          expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                          if ( !expr.test(valor)){
+                            alert("Error: La dirección de correo "+ valor +" es incorrecta.");
+                            demoform2.email.focus()
+                            return false;
+                          }
+                          valor = document.getElementById("lugar").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese el lugar de nacimiento")
+                          demoform2.lugar.focus()
+                          return false;
+                          }
+
+                          valor = document.getElementById("cel").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese el numero de celular")
+                          demoform2.cel.focus()
+                          return false;
+                          }
+
+                          valor = document.getElementById("domicilio").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese el direccion del domicilio")
+                          demoform2.domicilio.focus()
+                          return false;
+                          }
+                          demoform2.submit();
+                        }
+                        </script>
 
 
                       </div>

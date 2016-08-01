@@ -19,8 +19,7 @@
     }
 
   } else {
-    # code...
-    echo "helo ";
+    echo "hello ";
   }
 
   mysqli_close($con);

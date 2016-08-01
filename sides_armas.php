@@ -383,7 +383,6 @@
 
                           </form>
                           <script type="text/javascript">
-
                           function txNombres() {
                             if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))event.returnValue = false;
                           }
@@ -431,6 +430,7 @@
                               </ul> -->
                               <div class="clearfix"></div>
                             </div>
+
                             <div class="x_content">
                               <table class="table table-hover">
                                 <thead>
@@ -468,7 +468,7 @@
                                         </div>
                                       </td>
                                     </tr>
-                                  <?php Endwhile; ?>
+                                  <?php Endwhile;  ?>
 
 
 
