@@ -140,12 +140,20 @@ if ($_SESSION['loggedin']) {
                     <ul class="nav child_menu">
                       <li><a href="sides_grupos.php">Registrar Grupos</a></li>
                       <li><a href="sides_faltas.php">Registrar Faltas</a></li>
+                      <li><a href="sides_merito.php">Registrar Mérito</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
+                      <li><a href="sides_sanciones_rs.php">Boleta de sancion con Resolución</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-list-alt"></i> Administrar Méritos <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_meritos.php">Boleta de mérito</a></li>
                     </ul>
                   </li>
                 <?php endif; ?>

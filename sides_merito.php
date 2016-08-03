@@ -258,7 +258,7 @@ if ($_SESSION['loggedin']) {
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Administrar Grupos</h3>
+                <h3>Administrar Méritos</h3>
               </div>
             </div>
 
@@ -272,9 +272,9 @@ if ($_SESSION['loggedin']) {
                   <br>
                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Buscar grupo</a>
+                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Buscar mérito</a>
                       </li>
-                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Registrar grupo</a>
+                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Registrar mérito</a>
                       </li>
                       <!-- <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
                       </li> -->
@@ -295,7 +295,7 @@ if ($_SESSION['loggedin']) {
                                 <thead>
                                   <tr>
                                     <th>N#</th>
-                                    <th>Nombre grupo </th>
+                                    <th>Nombre mérito </th>
                                     <th>Puntos</th>
                                   </tr>
                                 </thead>
@@ -346,7 +346,7 @@ if ($_SESSION['loggedin']) {
                           <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertBDgrupo.php">
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Grupo<span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Mérito<span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="txtnombre_grupo" name="txtnombre_grupo" required="required" class="form-control col-md-7 col-xs-12">

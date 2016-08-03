@@ -25,7 +25,21 @@
     //mysqli_close($con);
 
 
-
+    $target_dir = "images/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+    // Check if image file is a actual image or fake image
+    if(isset($_POST["submit"])) {
+        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        if($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+    }
 
   } else {
     # code...
@@ -160,10 +174,9 @@
                                         </ul>
                                       </li>
 
-                                      <li><a><i class="fa fa-list-alt"></i> Administrar Méritos <span class="fa fa-chevron-down"></span></a>
+                                      <li><a><i class="fa fa-list-alt"></i> Administrar Meritos <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                          <li><a href="sides_meritos.php">Boleta de mérito</a></li>
-
+                                          <li><a href="sides_meritos.php">Boleta de merito</a></li>
                                         </ul>
                                       </li>
                                     <?php endif; ?>
@@ -314,7 +327,7 @@
                         <!-- Formulario de sanciones nuevas -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarSanciones.php">
+                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarSancionResolucion.php">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sancionador">C.I. Instructor sanciona <span class="required">*</span>
@@ -371,25 +384,21 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Sancion <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha">
+                                <input readonly class="form-control col-md-7 col-xs-12" required="required" type="text" name="fecha" value="<?php echo date("d/m/y"); ?>">
                               </div>
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Codigo secreto alumno <span class="required">*</span></label>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Seleccionar Resolución <span class="required">*</span>
+                              </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="password" id="last-name" name="cod_ci" class="form-control col-md-7 col-xs-12" >
+                                <input type="file" name="fileToUpload" id="fileToUpload">
                               </div>
                             </div>
-                            <?php
-                            if (isset($_GET['success'])) {
-                              # code...
-                              echo $printSucess = "Sancion Guardado Exitosamente!";
-                            } else {
-                              # code...
-                              echo $printError = "La Cedula de Identida y el Codigo Secreto son Invalidos!";
-                            }
-                            ?>
+
+
+
+
                             <!-- <div class="form-group hide">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Subir Resolucion </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">

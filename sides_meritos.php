@@ -149,7 +149,6 @@
                                         <ul class="nav child_menu">
                                           <li><a href="sides_grupos.php">Registrar Grupos</a></li>
                                           <li><a href="sides_faltas.php">Registrar Faltas</a></li>
-                                          <li><a href="sides_merito.php">Registrar Mérito</a></li>
                                         </ul>
                                       </li>
 
@@ -160,9 +159,9 @@
                                         </ul>
                                       </li>
 
-                                      <li><a><i class="fa fa-list-alt"></i> Administrar Méritos <span class="fa fa-chevron-down"></span></a>
+                                      <li><a><i class="fa fa-list-alt"></i> Administrar Meritos <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                          <li><a href="sides_meritos.php">Boleta de mérito</a></li>
+                                          <li><a href="sides_meritos.php">Boleta de merito</a></li>
 
                                         </ul>
                                       </li>
@@ -284,7 +283,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Administrar Sanciones</h3>
+                <h3>Administrar Méritos</h3>
               </div>
 
 
@@ -301,7 +300,7 @@
                   <br>
                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Sancionar</a>
+                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Otorgar mérito</a>
                       </li>
                       <li role="presentation" class="hide"><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Lista de sancionados</a>
                       </li>
@@ -314,10 +313,10 @@
                         <!-- Formulario de sanciones nuevas -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarSanciones.php">
+                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="#">
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sancionador">C.I. Instructor sanciona <span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sancionador">C.I. Instructor <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input readonly type="text" id="sancionador" name="id_user" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $ID_CI; ?>">
@@ -325,36 +324,20 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Alumno-sancionado">C.I. Alumno sancionado <span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Alumno-sancionado">C.I. Alumno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="Alumno-sancionado" name="id_ci" required="required" class="form-control col-md-7 col-xs-12">
                               </div>
                             </div>
 
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Grupo <span class="required">*</span></label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <select class="form-control grupo" name="grupo">
-                                  <option>Seleccione un grupo</option>
-                                  <?php
-                                    $query="SELECT * FROM grupo";
-                                    $result= mysqli_query($con,$query);
-                                    //$getPoint = mysqli_fetch_assoc($result);
-                                    while ($row=mysqli_fetch_array($result)):?>
-                                    <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
-                                  <?php endwhile;?>
-                                </select>
-
-                              </div>
-                            </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Faltas <span class="required">*</span></label>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Mérito <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control falta" name="falta">
-                                  <option>Seleccione la falta</option>
+                                  <option>Seleccione el mérito</option>
                                 </select>
                               </div>
                             </div>
@@ -368,28 +351,14 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Sancion <span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Mérito <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha">
+                                <input readonly class="form-control col-md-7 col-xs-12" required="required" type="text" name="fecha" value="<?php echo date("d/m/y"); ?>">
                               </div>
                             </div>
 
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Codigo secreto alumno <span class="required">*</span></label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="password" id="last-name" name="cod_ci" class="form-control col-md-7 col-xs-12" >
-                              </div>
-                            </div>
-                            <?php
-                            if (isset($_GET['success'])) {
-                              # code...
-                              echo $printSucess = "Sancion Guardado Exitosamente!";
-                            } else {
-                              # code...
-                              echo $printError = "La Cedula de Identida y el Codigo Secreto son Invalidos!";
-                            }
-                            ?>
+
                             <!-- <div class="form-group hide">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Subir Resolucion </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
