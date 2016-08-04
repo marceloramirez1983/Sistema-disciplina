@@ -52,6 +52,12 @@
     <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <!-- jVectorMap -->
     <link href="css/maps/jquery-jvectormap-2.0.3.css" rel="stylesheet"/>
+    <!-- Datatables -->
+    <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="css/custom.css" rel="stylesheet">
@@ -151,12 +157,27 @@
                     <ul class="nav child_menu">
                       <li><a href="sides_grupos.php">Registrar Grupos</a></li>
                       <li><a href="sides_faltas.php">Registrar Faltas</a></li>
+                      <li><a href="sides_merito.php">Registrar Mérito</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
+                      <li><a href="sides_sanciones_rs.php">Boleta de sancion con Resolución</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-list-alt"></i> Administrar Meritos <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_otorgar_merito.php">Boleta de merito</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-pie-chart"></i> Administrar Reportes <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.php">Reportes Estadisticos </a></li>
+                      <li><a href="#">Lista de Arrestados </a></li>
                     </ul>
                   </li>
                 <?php endif; ?>
@@ -451,7 +472,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="x_panel tile fixed_height_320 overflow_hidden">
                 <div class="x_title">
-                  <h2>Device Usage</h2>
+                  <h2>Primer Año Militar</h2>
 
                   <div class="clearfix"></div>
                 </div>
@@ -459,14 +480,14 @@
                   <table class="" style="width:100%">
                     <tr>
                       <th style="width:37%;">
-                        <p>Top 5</p>
+                        <p>Diagrama circular</p>
                       </th>
                       <th>
                         <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                          <p class="">Device</p>
+                          <p class="">Porcentaje</p>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                          <p class="">Progress</p>
+                          <p class=""></p>
                         </div>
                       </th>
                     </tr>
@@ -484,25 +505,7 @@
                           </tr>
                           <tr>
                             <td>
-                              <p><i class="fa fa-square green"></i>Android </p>
-                            </td>
-                            <td>10%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square purple"></i>Blackberry </p>
-                            </td>
-                            <td>20%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square aero"></i>Symbian </p>
-                            </td>
-                            <td>15%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square red"></i>Others </p>
+                              <p><i class="fa fa-square red"></i>Arrestados </p>
                             </td>
                             <td>30%</td>
                           </tr>
@@ -517,7 +520,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="x_panel tile fixed_height_320 overflow_hidden">
                 <div class="x_title">
-                  <h2>Device Usage</h2>
+                  <h2>Segundo Año Militar</h2>
 
                   <div class="clearfix"></div>
                 </div>
@@ -583,7 +586,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="x_panel tile fixed_height_320 overflow_hidden">
                 <div class="x_title">
-                  <h2>Device Usage</h2>
+                  <h2>Tercer Año Militar</h2>
 
                   <div class="clearfix"></div>
                 </div>

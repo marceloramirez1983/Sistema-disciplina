@@ -176,7 +176,14 @@
 
                                       <li><a><i class="fa fa-list-alt"></i> Administrar Meritos <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                          <li><a href="sides_meritos.php">Boleta de merito</a></li>
+                                          <li><a href="sides_otorgar_merito.php">Boleta de merito</a></li>
+                                        </ul>
+                                      </li>
+
+                                      <li><a><i class="fa fa-pie-chart"></i> Administrar Reportes <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                          <li><a href="index.php">Reportes Estadisticos </a></li>
+                                          <li><a href="#">Lista de Arrestados </a></li>
                                         </ul>
                                       </li>
                                     <?php endif; ?>
@@ -327,7 +334,7 @@
                         <!-- Formulario de sanciones nuevas -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarSancionResolucion.php">
+                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarSancionResolucion.php" enctype="multipart/form-data">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sancionador">C.I. Instructor sanciona <span class="required">*</span>

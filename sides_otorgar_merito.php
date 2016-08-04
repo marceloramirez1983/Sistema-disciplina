@@ -149,6 +149,7 @@
                                         <ul class="nav child_menu">
                                           <li><a href="sides_grupos.php">Registrar Grupos</a></li>
                                           <li><a href="sides_faltas.php">Registrar Faltas</a></li>
+                                          <li><a href="sides_merito.php">Registrar Mérito</a></li>
                                         </ul>
                                       </li>
 
@@ -161,8 +162,15 @@
 
                                       <li><a><i class="fa fa-list-alt"></i> Administrar Meritos <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                          <li><a href="sides_meritos.php">Boleta de merito</a></li>
+                                          <li><a href="sides_otorgar_merito.php">Boleta de merito</a></li>
 
+                                        </ul>
+                                      </li>
+
+                                      <li><a><i class="fa fa-pie-chart"></i> Administrar Reportes <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                          <li><a href="index.php">Reportes Estadisticos </a></li>
+                                          <li><a href="#">Lista de Arrestados </a></li>
                                         </ul>
                                       </li>
                                     <?php endif; ?>
