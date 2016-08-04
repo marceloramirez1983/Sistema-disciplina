@@ -17,7 +17,7 @@
     }
 
   } else {
-    # code...
+    echo "No existen registros";
   }
 
 

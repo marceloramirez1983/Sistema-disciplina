@@ -23,5 +23,4 @@ if (mysqli_num_rows($resultGetAllFoult)) {
 
 mysqli_close($con);
 echo json_encode($jsonArray);
-
 ?>

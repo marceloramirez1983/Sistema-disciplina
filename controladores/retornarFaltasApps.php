@@ -19,7 +19,7 @@
     }
 
   } else {
-    echo "hello ";
+    echo "No existen registros";
   }
 
   mysqli_close($con);
