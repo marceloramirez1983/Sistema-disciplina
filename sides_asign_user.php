@@ -86,7 +86,7 @@
                   <li><a><i class="fa fa-user"></i> Administrar Usuario <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_user.php">Registrar Usuario</a></li>
-                      <li><a href="sides_asign_user.php">Asignar Usuario</a></li>
+                      <!-- <li><a href="sides_asign_user.php">Asignar Usuario</a></li> -->
                     </ul>
                   </li>
 
@@ -320,7 +320,7 @@
                             <div class="ln_solid"></div>
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button type="submit" class="btn btn-primary">Cancelar</button>
+                                <button type="button" class="btn btn-primary">Cancelar</button>
                                 <button type="submit" class="btn btn-success">Guardar</button>
                               </div>
                             </div>

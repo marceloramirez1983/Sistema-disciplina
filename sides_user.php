@@ -90,7 +90,7 @@
                   <li><a><i class="fa fa-user"></i> Administrar Usuario <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_user.php">Registrar Usuario</a></li>
-                      <li><a href="sides_asign_user.php">Asignar Usuario</a></li>
+                      <!-- <li><a href="sides_asign_user.php">Asignar Usuario</a></li> -->
                     </ul>
                   </li>
 
@@ -322,8 +322,8 @@
                                   <td><?php echo $row ['correo']; ?></td>
                                   <td>
                                     <div class="btn-group">
-                                      <button type="button" class="btn btn-danger">Opción</button>
-                                      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                      <button type="button" class="btn btn-primary">Opción</button>
+                                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                         <span class="caret"></span>
                                         <span class="sr-only">Toggle Dropdown</span>
                                       </button>

@@ -89,7 +89,7 @@
                     <li><a><i class="fa fa-user"></i> Administrar Usuario <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="sides_user.php">Registrar Usuario</a></li>
-                        <li><a href="sides_asign_user.php">Asignar Usuario</a></li>
+                        <!-- <li><a href="sides_asign_user.php">Asignar Usuario</a></li> -->
                       </ul>
                     </li>
 

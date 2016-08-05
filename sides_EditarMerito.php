@@ -6,6 +6,7 @@ if ($_SESSION['loggedin']) {
   include_once("controladores/conexionBD.php");
 
   $idEditar=$_GET['id'];//VARIABLE DEL ID DEL GRUPO QUE SE DESEA MODIFICAR
+  //echo $idEditar;
 
   $cnn= new conexion();
   $con =$cnn->conectar();
@@ -147,19 +148,34 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                   <?php endif; ?>
 
                   <!-- Encargado de Disciplina -->
-                  <?php if ($row_rol['rol'] == 'Encargado de Disciplina'): ?>
-                  <li><a><i class="fa fa-pencil-square-o"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="sides_grupos.php">Registrar Grupos</a></li>
-                      <li><a href="sides_faltas.php">Registrar Faltas</a></li>
-                    </ul>
-                  </li>
 
-                  <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
-                    </ul>
-                  </li>
+                  <?php if ($row_rol['rol'] == 'Encargado de Disciplina'): ?>
+                    <li><a><i class="fa fa-pencil-square-o"></i> Administrar Faltas <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="sides_grupos.php">Registrar Grupos</a></li>
+                        <li><a href="sides_faltas.php">Registrar Faltas</a></li>
+                        <li><a href="sides_merito.php">Registrar Mérito</a></li>
+                      </ul>
+                    </li>
+
+                    <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
+                        <li><a href="sides_sanciones_rs.php">Boleta de sancion con Resolución</a></li>
+                      </ul>
+                    </li>
+
+                    <li><a><i class="fa fa-list-alt"></i> Administrar Méritos <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="sides_otorgar_merito.php">Boleta de mérito</a></li>
+                      </ul>
+                    </li>
+                    <li><a><i class="fa fa-pie-chart"></i> Administrar Reportes <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="index.php">Reportes Estadisticos </a></li>
+                        <li><a href="#">Lista de Arrestados </a></li>
+                      </ul>
+                    </li>
                   <?php endif; ?>
 
                   <!-- Jefe De Personal -->
@@ -260,7 +276,7 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>EDITAR GRUPOS DE FALTAS</h3>
+                <h3>EDITAR MERITOS REGISTRADOS</h3>
               </div>
 
               <div class="title_right">
@@ -281,7 +297,7 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel" style="height:600px;">
                   <div class="x_title">
-                    <h2>Editar datos de los Grupos</h2>
+                    <h2>Editar datos de Méritos</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <!--li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li-->
@@ -290,23 +306,24 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                     </ul>
                     <div class="clearfix"></div>
 
-                    <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/ActualizarGrupo.php">
+                    <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/ActualizarMerito.php">
                       <?php
-                      $query=mysqli_query($con,"SELECT * FROM grupo WHERE id_grupo= $idEditar");
+                      $query=mysqli_query($con,"SELECT * FROM merito WHERE id_merito = $idEditar");
                       while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)):?>
+
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Id Grupo
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Id Merito
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="txtid_grupo" name="txtid_grupo" readonly required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['id_grupo'] ?>">
+                          <input type="text" id="txtid_rol" name="txtid_rol" readonly required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['id_merito'] ?>">
                         </div>
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Grupo<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Merito<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="txtnombre_grupo" name="txtnombre_grupo" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['grupo'] ?>">
+                          <input type="text" id="txtnombre_rol" name="txtnombre_rol" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['nombre_merito'] ?>" onkeypress="SoloLetras()">
                         </div>
                       </div>
 
@@ -321,6 +338,11 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                             <option <?php if($row['puntos']==3):?> selected="selected" <?php endif;?>value="3">3 Pto.</option>
                             <option <?php if($row['puntos']==4):?> selected="selected" <?php endif;?>value="4">4 Pto.</option>
                             <option <?php if($row['puntos']==5):?> selected="selected" <?php endif;?>value="5">5 Pto.</option>
+                            <option <?php if($row['puntos']==6):?> selected="selected" <?php endif;?>value="6">6 Pto.</option>
+                            <option <?php if($row['puntos']==7):?> selected="selected" <?php endif;?>value="7">7 Pto.</option>
+                            <option <?php if($row['puntos']==8):?> selected="selected" <?php endif;?>value="8">8 Pto.</option>
+                            <option <?php if($row['puntos']==9):?> selected="selected" <?php endif;?>value="9">9 Pto.</option>
+                            <option <?php if($row['puntos']==10):?>selected="selected" <?php endif;?>value="10">10 Pto.</option>
                           </select>
                         </div>
                       </div>
@@ -366,19 +388,26 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
     <!-- Custom Theme Scripts -->
     <script src="js/custom.js"></script>
     <script type="text/javascript">
+    function SoloLetras() {
+      if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))event.returnValue = false;
+    }
     function valida_envia(){
       selec= demoform2.CBoxselect_puntos.selectedIndex
       if (demoform2.CBoxselect_puntos.options[selec].value==""){
       alert ("Seleccione los puntos")
       return false
-      }
-
-      valor = document.getElementById("txtnombre_grupo").value;
-      if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
-      alert ("Ingrese un nombre para el grupo")
+    }
+      valor1 = document.getElementById("txtnombre_rol").value;
+      if( valor1 == null || valor1.length == 0 || /^\s+$/.test(valor1) ) {
+      alert ("Ingrese el nombre para el merito")
       return false;
       }
 
+      /*valor = document.getElementById("txtdescripcion_rol").value;
+      if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+      alert ("Ingrese los puntos del merito")
+      return false;
+      }*/
       demoform2.submit();
     }
     </script>

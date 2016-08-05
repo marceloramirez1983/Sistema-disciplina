@@ -95,7 +95,7 @@ if ($_SESSION['loggedin']) {
                   <li><a><i class="fa fa-user"></i> Administrar Usuario <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_user.php">Registrar Usuario</a></li>
-                      <li><a href="sides_asign_user.php">Asignar Usuario</a></li>
+                      <!-- <li><a href="sides_asign_user.php">Asignar Usuario</a></li> -->
                     </ul>
                   </li>
 
@@ -308,12 +308,11 @@ if ($_SESSION['loggedin']) {
                               <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                              <table class="table table-hover">
+                              <table class="table table-striped no-margin">
                                 <thead>
                                   <tr>
-                                    <th>N#</th>
                                     <th>Falta</th>
-                                    <th>Grupo</th>
+                                    <!-- <th>grupos</th> -->
                                     <th>Puntos</th>
                                   </tr>
                                 </thead>
@@ -323,14 +322,13 @@ if ($_SESSION['loggedin']) {
                                   $num=0;
                                   while($row = mysqli_fetch_array($getallgroup, MYSQLI_ASSOC)):?>
                                     <tr>
-                                      <td><?php $num=$num+1;echo $num ?></td>
                                       <td><?php echo $row ['nombre'];?></td>
-                                      <td><?php echo $row['grupo'];?></td>
-                                      <td><?php echo $row['puntos'];?></td>
+                                      <!-- <td><?php echo $row ['grupo'];?></td> -->
+                                      <td><?php echo $row ['puntos'];?></td>
                                       <td>
                                         <div class="btn-group">
-                                          <button type="button" class="btn btn-danger">Opción</button>
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                          <button type="button" class="btn btn-primary">Opción</button>
+                                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                             <span class="caret"></span>
                                             <span class="sr-only">Toggle Dropdown</span>
                                           </button>
