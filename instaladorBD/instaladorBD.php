@@ -373,6 +373,8 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 		direccion VARCHAR(50),
 		codigo_secreto VARCHAR(8),
 		ci_tutor INT,
+		total_puntos INT,
+		calificacion_disciplinario DOUBLE,
 		PRIMARY KEY(id_ci)
 	)";
 
@@ -380,14 +382,14 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 		echo "<br> - TABLA USUARIO CREADA - ";
 
 		$INSERT_USUARIOS_TESTS = "INSERT INTO
-			usuario(id_ci, id_grado, id_arma, nombre, paterno, materno, sexo, fecha_nac, lugar_nac, correo, celular, direccion, codigo_secreto, ci_tutor)
-				VALUES ('12','1','1','Juan','Nunez','Soto','Masculino','04/25/2016','Tiraque','juan@gmail.com','90909090','Av. Norte','0','0'),
-							 ('13','1','1','Pepe','Aguilar','Marneli','Masculino','04/25/2016','Tiraque','pepe@gmail.com','90909090','Av. Norte','0','0'),
-							 ('14','1','1','Lucas','Melo','Lopez','Masculino','04/25/2016','Tiraque','lucas@gmail.com','90909090','Av. Norte','0','0'),
-							 ('15','1','1','Martin','Judas','Toro','Masculino','04/25/2016','Tiraque','martin@gmail.com','90909090','Av. Norte','0','0'),
-							 ('16','1','1','Rodrigo','Murillo','Puerta','Masculino','04/25/2016','Tiraque','rodrigo@gmail.com','90909090','Av. Norte','0','0'),
-							 ('17','15','0','Antonio','Solis','Mesa','Masculino','04/25/2016','Tiraque','antonio@gmail.com','90909090','Av. Norte','4444','123'),
-							 ('18','16','0','Miguel','Morales','Zapata','Masculino','04/25/2016','Tiraque','miguel@gmail.com','90909090','Av. Norte','4224','456')";
+			usuario(id_ci, id_grado, id_arma, nombre, paterno, materno, sexo, fecha_nac, lugar_nac, correo, celular, direccion, codigo_secreto, ci_tutor, total_puntos, calificacion_disciplinario)
+				VALUES ('12','1','1','Juan','Nunez','Soto','Masculino','04/25/2016','Tiraque','juan@gmail.com','90909090','Av. Norte','0','0','0','0'),
+							 ('13','1','1','Pepe','Aguilar','Marneli','Masculino','04/25/2016','Tiraque','pepe@gmail.com','90909090','Av. Norte','0','0','0','0'),
+							 ('14','1','1','Lucas','Melo','Lopez','Masculino','04/25/2016','Tiraque','lucas@gmail.com','90909090','Av. Norte','0','0','0','0'),
+							 ('15','1','1','Martin','Judas','Toro','Masculino','04/25/2016','Tiraque','martin@gmail.com','90909090','Av. Norte','0','0','0','0'),
+							 ('16','1','1','Rodrigo','Murillo','Puerta','Masculino','04/25/2016','Tiraque','rodrigo@gmail.com','90909090','Av. Norte','0','0','0','0'),
+							 ('17','15','0','Antonio','Solis','Mesa','Masculino','04/25/2016','Tiraque','antonio@gmail.com','90909090','Av. Norte','4444','123','0','100,00'),
+							 ('18','16','0','Miguel','Morales','Zapata','Masculino','04/25/2016','Tiraque','miguel@gmail.com','90909090','Av. Norte','4224','456','0','100,00')";
 
 		if (mysqli_query($con, $INSERT_USUARIOS_TESTS)) {
 			# code...
@@ -524,6 +526,7 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 	id_falta INT,
 	id_grupo INT,
 	puntos INT,
+	tipo VARCHAR(5),
 	fecha VARCHAR(50),
 	resolucion MEDIUMBLOB,
 	PRIMARY KEY(id_sancion)

@@ -37,18 +37,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>SIDES</title>
+    <title>Gentallela Alela! | </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Datatables -->
-    <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-    <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-    <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="css/custom.css" rel="stylesheet">
@@ -147,12 +141,28 @@
                       <ul class="nav child_menu">
                         <li><a href="sides_grupos.php">Registrar Grupos</a></li>
                         <li><a href="sides_faltas.php">Registrar Faltas</a></li>
+                        <li><a href="sides_merito.php">Registrar Mérito</a></li>
                       </ul>
                     </li>
 
                     <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
+                        <li><a href="sides_sanciones_rs.php">Boleta de sancion con Resolución</a></li>
+                      </ul>
+                    </li>
+
+                    <li><a><i class="fa fa-list-alt"></i> Administrar Méritos <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="sides_meritos.php">Boleta de mérito</a></li>
+
+                      </ul>
+                    </li>
+
+                    <li><a><i class="fa fa-pie-chart"></i> Administrar Reportes <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="index.php">Reportes Estadisticos </a></li>
+                        <li><a href="sides_reporte_arrestados.php">Lista de Arrestados </a></li>
                       </ul>
                     </li>
                   <?php endif; ?>
@@ -199,6 +209,7 @@
             </div>
             <!-- /sidebar menu -->
 
+
           </div>
         </div>
 
@@ -218,13 +229,18 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
+
+                    <li>
+                      <a href="javascript:;">
+                        <span class="badge bg-red pull-right">50%</span>
+                        <span>Settings</span>
+                      </a>
+                    </li>
+
+                    <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </li>
                   </ul>
                 </li>
-
-
-
               </ul>
             </nav>
           </div>
@@ -238,10 +254,8 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Registro disciplinario Individual</h3>
+                <h3>Reporte de Arrestados </h3>
               </div>
-
-
             </div>
             <div class="clearfix"></div>
 
@@ -249,104 +263,31 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Alumno<small> Reporte de Sanciones</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
+                    <h2>Generar Lista de Arrestados <small>Activity report</small></h2>
 
-                    </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
 
-                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
 
-                      <div class="profile_img">
+                    <div class="col-md-12 col-sm-9 col-xs-12">
 
-                        <!-- end of image cropping -->
-                        <div id="crop-avatar">
-                          <!-- Current avatar -->
-                          <img class="img-responsive avatar-view" src="images/placeholder_profile.jpg" alt="Avatar" title="Change the avatar">
-
+                      <div class="profile_title">
+                        <div class="col-md-6">
+                          <h2>User Activity Report</h2>
                         </div>
-                        <!-- end of image cropping -->
-
+                        <div class="col-md-6">
+                          <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                            <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                          </div>
+                        </div>
                       </div>
-                      <h3><?php echo $row_user['nombre']." ".$row_user['paterno']; ?></h3>
-
-                      <ul class="list-unstyled user_data">
-
-                        <li>
-                          <i class="fa fa-briefcase user-profile-icon"></i> Alumno
-                        </li>
-
-                      </ul>
-
-
-                      <br />
-
-
-
-                    </div>
-                    <div class="col-md-9 col-sm-9 col-xs-12">
-                      <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                        <!-- start user projects -->
-                        <table class="table table-striped no-margin">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>Fecha</th>
-                              <th>Falta</th>
-                              <!-- <th>Instructor</th> -->
-                              <th>Puntos</th>
-                              <th>Tipo</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-
-                            <?php
-                            $query = "SELECT * FROM sancion WHERE ci_alumno = '$ID_CI'";
-                            $getAll = mysqli_query($con, $query);
-                            $num=0;
-                            while ($row = mysqli_fetch_array($getAll, MYSQLI_ASSOC)):
-                            ?>
-                            <tr>
-                              <td><?php $num=$num+1;echo $num ?></td>
-                              <td><?php echo $row ['fecha'];?></td>
-                              <td>
-                                <?php
-                                  $id_falta = $row['id_falta'];
-                                  $queryFalta = "SELECT * FROM falta WHERE id_falta = '$id_falta'";
-                                  $falta = mysqli_query($con, $queryFalta);
-                                  $result_falta = mysqli_fetch_assoc($falta);
-                                  echo $result_falta['nombre'];
-                                ?>
-                              </td>
-                              <!-- <td><?php echo $row ['ci_instructor'];?></td> -->
-                              <td><?php echo $row ['puntos'];?></td>
-                              <td><?php echo $row ['tipo'];?></td>
-                            </tr>
-                            <?php
-                              endwhile;
-                            ?>
-                          </tbody>
-                        </table>
-                        <!-- end user projects -->
-                      </div>
-
-                      <table class="table table-hover">
-                        <tr>
-                          <th>Total puntos acumulados</th>
-                          <th style="text-align:center;"><?php echo $row_user ['total_puntos'];?></th>
-                        </tr>
-                        <tr>
-                          <th>Total calificación final</th>
-                          <th style="text-align:center;"><?php echo $row_user ['calificacion_disciplinario'];?></th>
-                        </tr>
-
-                      </table>
-
+                      <!-- start of user-activity-graph -->
+                      <div id="graph_bar" style="width:100%; height:280px;"></div>
+                      <!-- end of user-activity-graph -->
                     </div>
                   </div>
-                  <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
                 </div>
               </div>
             </div>
@@ -357,7 +298,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Escuela Militar de Sargentos del Ejercito<a href="#"></a>
+            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -381,92 +322,114 @@
     <!-- bootstrap-daterangepicker -->
     <script src="js/moment/moment.min.js"></script>
     <script src="js/datepicker/daterangepicker.js"></script>
-    <!-- Datatables -->
-    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="../vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
-    <script src="../vendors/jszip/dist/jszip.min.js"></script>
-    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
-    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="js/custom.js"></script>
 
-    <!-- Datatables -->
     <script>
-      $(document).ready(function() {
-        var handleDataTableButtons = function() {
-          if ($("#datatable-buttons").length) {
-            $("#datatable-buttons").DataTable({
-              dom: "Bfrtip",
-              buttons: [
-                {
-                  extend: "copy",
-                  className: "btn-sm"
-                },
-                {
-                  extend: "csv",
-                  className: "btn-sm"
-                },
-                {
-                  extend: "excel",
-                  className: "btn-sm"
-                },
-                {
-                  extend: "pdfHtml5",
-                  className: "btn-sm"
-                },
-                {
-                  extend: "print",
-                  className: "btn-sm"
-                },
-              ],
-              responsive: true
-            });
-          }
-        };
-
-        TableManageButtons = function() {
-          "use strict";
-          return {
-            init: function() {
-              handleDataTableButtons();
-            }
-          };
-        }();
-
-        $('#datatable').dataTable();
-        $('#datatable-keytable').DataTable({
-          keys: true
+      $(function() {
+        Morris.Bar({
+          element: 'graph_bar',
+          data: [
+            { "period": "Jan", "Hours worked": 80 },
+            { "period": "Feb", "Hours worked": 125 },
+            { "period": "Mar", "Hours worked": 176 },
+            { "period": "Apr", "Hours worked": 224 },
+            { "period": "May", "Hours worked": 265 },
+            { "period": "Jun", "Hours worked": 314 },
+            { "period": "Jul", "Hours worked": 347 },
+            { "period": "Aug", "Hours worked": 287 },
+            { "period": "Sep", "Hours worked": 240 },
+            { "period": "Oct", "Hours worked": 211 }
+          ],
+          xkey: 'period',
+          hideHover: 'auto',
+          barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+          ykeys: ['Hours worked', 'sorned'],
+          labels: ['Hours worked', 'SORN'],
+          xLabelAngle: 60,
+          resize: true
         });
 
-        $('#datatable-responsive').DataTable();
-
-        $('#datatable-scroller').DataTable({
-          ajax: "js/datatables/json/scroller-demo.json",
-          deferRender: true,
-          scrollY: 380,
-          scrollCollapse: true,
-          scroller: true
+        $MENU_TOGGLE.on('click', function() {
+          $(window).resize();
         });
-
-        var table = $('#datatable-fixed-header').DataTable({
-          fixedHeader: true
-        });
-
-        TableManageButtons.init();
       });
     </script>
-    <!-- /Datatables -->
 
+    <!-- datepicker -->
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+        var cb = function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+          //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
+        }
+
+        var optionSet1 = {
+          startDate: moment().subtract(29, 'days'),
+          endDate: moment(),
+          minDate: '01/01/2012',
+          maxDate: '12/31/2015',
+          dateLimit: {
+            days: 60
+          },
+          showDropdowns: true,
+          showWeekNumbers: true,
+          timePicker: false,
+          timePickerIncrement: 1,
+          timePicker12Hour: true,
+          ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          opens: 'left',
+          buttonClasses: ['btn btn-default'],
+          applyClass: 'btn-small btn-primary',
+          cancelClass: 'btn-small',
+          format: 'MM/DD/YYYY',
+          separator: ' to ',
+          locale: {
+            applyLabel: 'Submit',
+            cancelLabel: 'Clear',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            firstDay: 1
+          }
+        };
+        $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        $('#reportrange').daterangepicker(optionSet1, cb);
+        $('#reportrange').on('show.daterangepicker', function() {
+          console.log("show event fired");
+        });
+        $('#reportrange').on('hide.daterangepicker', function() {
+          console.log("hide event fired");
+        });
+        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+        });
+        $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
+          console.log("cancel event fired");
+        });
+        $('#options1').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+        });
+        $('#options2').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+        });
+        $('#destroy').click(function() {
+          $('#reportrange').data('daterangepicker').remove();
+        });
+      });
+    </script>
+    <!-- /datepicker -->
   </body>
 </html>

@@ -24,13 +24,39 @@
   if ($count == 1) {
     # code...
     $INSERT_SANCION = "INSERT INTO
-    sancion(id_sancion,ci_instructor,ci_alumno,id_falta,id_grupo,puntos,fecha)
-    VALUES ('','$CI_USER','$CI_ALUM','$ID_FALTA','$ID_GROUP','$PUNTOS','$FECHA')";
+    sancion(id_sancion,ci_instructor,ci_alumno,id_falta,id_grupo,puntos,tipo,fecha)
+    VALUES ('','$CI_USER','$CI_ALUM','$ID_FALTA','$ID_GROUP','$PUNTOS','M','$FECHA')";
+
+    $SELECT_POINT = "SELECT total_puntos FROM usuario WHERE id_ci = '$CI_ALUM'";
+    $RESULT_POINTS = mysqli_query($con, $SELECT_POINT);
+    $ROW_POINTS = mysqli_fetch_assoc($RESULT_POINTS);
+    $SUM = $ROW_POINTS['total_puntos'];
+
+    $SUM = $SUM + $PUNTOS;
+
+    $VU = 0.98;
+    $CALIFICACION_FINAL = 100 - ($SUM * $VU);
+
+    $UPDATE_POINT_TOTAL = "UPDATE usuario SET total_puntos = '$SUM' WHERE id_ci = '$CI_ALUM'";
+    $UPDATE_CALIFICACION_FINAL = "UPDATE usuario SET calificacion_disciplinario = '$CALIFICACION_FINAL' WHERE id_ci = '$CI_ALUM'";
+
+    if(!mysqli_query($con, $UPDATE_POINT_TOTAL)) {
+      # code...
+      echo "Error al Insertar puntos total";
+    }
+
+    if(!mysqli_query($con, $UPDATE_CALIFICACION_FINAL)) {
+      # code...
+      echo "Error al Insertar calificacion final disciplinario";
+    }
 
     if (!mysqli_query($con, $INSERT_SANCION)) {
       # code...
       echo "Error al Insertar sancion";
     }
+
+
+
     header("location: ../sides_sanciones.php?success");
   } else {
     # code...

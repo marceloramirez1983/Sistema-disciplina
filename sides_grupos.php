@@ -308,12 +308,13 @@ if ($_SESSION['loggedin']) {
                               <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                              <table id="datatable-buttons" class="table table-striped table-bordered">
+                              <table id="datatable-buttons" class="table table-hover">
                                 <thead>
                                   <tr>
                                     <th>N#</th>
                                     <th>Nombre grupo </th>
                                     <th>Puntos</th>
+                                    
                                   </tr>
                                 </thead>
                                 <tbody>
