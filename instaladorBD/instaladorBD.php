@@ -42,14 +42,13 @@ function crearTablas(){
 			}
 		}
 
-//-------------------------------TABLE FALTA----------------------------------aqui copia amor
+//-------------------------------TABLE FALTA----------------------------------
 	$TB_FALTA = "CREATE TABLE falta (
 	id_falta INT NOT NULL AUTO_INCREMENT,
 	nombre VARCHAR(150),
 	id_grupo INT,
 	PRIMARY KEY(id_falta)
 	)";
-
 	if(mysqli_query($con,$TB_FALTA)){
 		echo "<br> - TABLA FALTA CREADA -";
 
@@ -308,7 +307,29 @@ function crearTablas(){
 			echo "<br> - FALTAS TESTS INSERTADOS - <br>";
 		}
 	}
+//-------------------------------tabla merito-----------------------------------
+$TB_MERITO = "CREATE TABLE merito (
+id_merito INT NOT NULL AUTO_INCREMENT,
+nombre_merito VARCHAR(150),
+puntos INT,
+PRIMARY KEY(id_merito)
+)";
+if(mysqli_query($con, $TB_MERITO)){
+	echo "<br> - TABLA MERITO CREADA - ";
 
+	$INSERT_MERITO_TESTS = "INSERT INTO
+		merito(id_merito, nombre_merito, puntos)
+			VALUES ('','EQUIPO O INDIVIDUAL 1ER PUESTO','3'),
+						 ('','EQUIPO O INDIVIDUAL 2DO PUESTO','2'),
+						 ('','EQUIPO O INDIVIDUAL 3ER PUESTO','1'),
+						 ('','JUGADOR DESTACADO','1'),
+						 ('','GANAR CONCURSOS CULTURALES','2'),
+						 ('','FINALISTA CONCURSO CULTURAL','1')";
+}
+if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
+
+	echo "<br> - MERITO TESTS INSERTADOS - <br>";
+}
 //-------------------------------TABLE ROL------------------------------------
 	$TB_ROL = "CREATE TABLE rol (
 		id_rol INT NOT NULL AUTO_INCREMENT,
@@ -516,8 +537,6 @@ function crearTablas(){
 }
 
 
-
 crearBD();
 crearTablas();
-
 ?>
