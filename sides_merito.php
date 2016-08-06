@@ -95,7 +95,7 @@ if ($_SESSION['loggedin']) {
                   <li><a><i class="fa fa-user"></i> Administrar Usuario <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_user.php">Registrar Usuario</a></li>
-                      <li><a href="sides_asign_user.php">Asignar Usuario</a></li>
+                      <!-- <li><a href="sides_asign_user.php">Asignar Usuario</a></li> -->
                     </ul>
                   </li>
 
@@ -157,7 +157,6 @@ if ($_SESSION['loggedin']) {
                       <li><a href="sides_otorgar_merito.php">Boleta de mérito</a></li>
                     </ul>
                   </li>
-
                   <li><a><i class="fa fa-pie-chart"></i> Administrar Reportes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="index.php">Reportes Estadisticos </a></li>
@@ -309,25 +308,25 @@ if ($_SESSION['loggedin']) {
                                 <tbody>
 
                                   <?php
-                                  $getallgroup= mysqli_query($con, "SELECT * FROM grupo");
+                                  $getallgroup= mysqli_query($con, "SELECT * FROM merito");
                                   $num=0;
                                   while($row = mysqli_fetch_array($getallgroup, MYSQLI_ASSOC)):?>
                                     <tr>
                                       <td><?php $num=$num+1;echo $num ?></td>
-                                      <td><?php echo $row ['grupo'];?></td>
+                                      <td><?php echo $row ['nombre_merito'];?></td>
                                       <td><?php echo $row['puntos'];?></td>
                                       <td>
                                         <div class="btn-group">
-                                          <button type="button" class="btn btn-danger">Opción</button>
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                          <button type="button" class="btn btn-primary">Opción</button>
+                                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                             <span class="caret"></span>
                                             <span class="sr-only">Toggle Dropdown</span>
                                           </button>
                                           <ul class="dropdown-menu" role="menu">
-                                            <li><a href="sides_Editargrupo.php?id=<?php echo $row ['id_grupo'];?> ">Modificar</a>
+                                            <li><a href="sides_EditarMerito.php?id=<?php echo $row ['id_merito'];?> ">Modificar</a>
                                             </li>
                                             <li class="divider"></li>
-                                            <li><a href="controladores/Eliminargrupo.php?id=<?php echo $row ['id_grupo'];?> ">Eliminar</a>
+                                            <li><a href="controladores/EliminarMerito.php?id=<?php echo $row ['id_merito'];?> ">Eliminar</a>
                                             </li>
                                           </ul>
                                         </div>
@@ -350,13 +349,13 @@ if ($_SESSION['loggedin']) {
                         <div class="x_content">
                           <br />
 
-                          <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertBDgrupo.php">
+                          <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertBDmerito.php">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Mérito<span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="txtnombre_grupo" name="txtnombre_grupo" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="txtnombre_grupo" name="txtnombre_grupo" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()">
                               </div>
                             </div>
 
@@ -371,6 +370,11 @@ if ($_SESSION['loggedin']) {
                                   <option value="3">3 Pto.</option>
                                   <option value="4">4 Pto.</option>
                                   <option value="5">5 Pto.</option>
+                                  <option value="6">6 Pto.</option>
+                                  <option value="7">7 Pto.</option>
+                                  <option value="8">8 Pto.</option>
+                                  <option value="9">9 Pto.</option>
+                                  <option value="10">10 Pto.</option>
                                 </select>
                               </div>
                             </div>
@@ -385,16 +389,20 @@ if ($_SESSION['loggedin']) {
                           </form>
                           <!--validacion de envio del formulario-->
                           <script type="text/javascript">
+                          function SoloLetras() {
+                            if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))event.returnValue = false;
+                          }
+
                           function valida_envia(){
                             selec= demoform2.CBoxselect_puntos.selectedIndex
                             if (demoform2.CBoxselect_puntos.options[selec].value==""){
-                            alert ("Seleccione los puntos")
+                            alert ("Seleccione los puntos del merito")
                             return false
                             }
 
                             valor = document.getElementById("txtnombre_grupo").value;
                             if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
-                            alert ("Ingrese un nombre para el grupo")
+                            alert ("Ingrese un nombre del merito")
                             return false;
                             }
 
