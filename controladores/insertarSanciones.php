@@ -25,7 +25,7 @@
     # code...
     $INSERT_SANCION = "INSERT INTO
     sancion(id_sancion,ci_instructor,ci_alumno,id_falta,id_grupo,puntos,tipo,fecha)
-    VALUES ('','$CI_USER','$CI_ALUM','$ID_FALTA','$ID_GROUP','$PUNTOS','M','$FECHA')";
+    VALUES ('','$CI_USER','$CI_ALUM','$ID_FALTA','$ID_GROUP','$PUNTOS','D','$FECHA')";
 
     $SELECT_POINT = "SELECT total_puntos FROM usuario WHERE id_ci = '$CI_ALUM'";
     $RESULT_POINTS = mysqli_query($con, $SELECT_POINT);

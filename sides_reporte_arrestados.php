@@ -331,9 +331,12 @@
                                 $DATE_ONE = $_POST['date_one'];
                                 $DATE_TWO = $_POST['date_two'];
 
-                                $query = "SELECT *,  SUM(puntos) AS total_puntos_report
+                                // $query = "SELECT *, SUM(puntos) AS total_puntos_report
+                                // FROM sancion
+                                // WHERE fecha BETWEEN '$DATE_ONE' AND '$DATE_TWO' ORDER BY ci_alumno";
+                                $query = "SELECT ci_alumno
                                 FROM sancion
-                                WHERE fecha BETWEEN '$DATE_ONE' AND '$DATE_TWO'";
+                                WHERE fecha BETWEEN '$DATE_ONE' AND '$DATE_TWO' GROUP BY ci_alumno";
                                 $getAll = mysqli_query($con, $query);
                                 $num=0;
 
@@ -353,7 +356,15 @@
                                     echo $result_falta['nombre']." ".$result_falta['paterno']." ".$result_falta['materno'];
                                   ?>
                                 </td>
-                                <td><?php echo $row ['total_puntos_report'];?></td>
+                                <td>
+                                  <?php
+                                  $id_ci_report = $row['ci_alumno'];
+                                  $queryFalta = "SELECT * FROM usuario WHERE id_ci = '$id_ci_report'";
+                                  $falta = mysqli_query($con, $queryFalta);
+                                  $result_falta = mysqli_fetch_assoc($falta);
+                                  echo $result_falta['total_puntos'];
+                                  ?>
+                                </td>
                               </tr>
                               <?php
                                 endwhile;
