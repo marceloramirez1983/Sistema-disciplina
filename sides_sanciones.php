@@ -162,7 +162,7 @@
 
                                       <li><a><i class="fa fa-list-alt"></i> Administrar Méritos <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                          <li><a href="sides_meritos.php">Boleta de mérito</a></li>
+                                          <li><a href="sides_otorgar_merito.php">Boleta de mérito</a></li>
 
                                         </ul>
                                       </li>
@@ -321,7 +321,7 @@
                         <!-- Formulario de sanciones nuevas -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarSanciones.php">
+                          <form id="FormSancion" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarSanciones.php">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sancionador">C.I. Instructor sanciona <span class="required">*</span>
@@ -335,7 +335,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Alumno-sancionado">C.I. Alumno sancionado <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="Alumno-sancionado" name="id_ci" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="id_ci" name="id_ci" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
@@ -343,8 +343,8 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Grupo <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <select class="form-control grupo" name="grupo">
-                                  <option>Seleccione un grupo</option>
+                                <select class="form-control grupo" name="grupo" id="grupo">
+                                  <option value="">Seleccione un grupo</option>
                                   <?php
                                     $query="SELECT * FROM grupo";
                                     $result= mysqli_query($con,$query);
@@ -360,8 +360,8 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Faltas <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control falta" name="falta">
-                                  <option>Seleccione la falta</option>
+                                <select class="form-control falta" name="falta" id="falta">
+                                  <option value="">Seleccione la falta</option>
                                 </select>
                               </div>
                             </div>
@@ -378,14 +378,14 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Sancion <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha">
+                                <input readonly class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha" value="<?php echo date("d/m/y"); ?>">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Codigo secreto alumno <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="password" id="last-name" name="cod_ci" class="form-control col-md-7 col-xs-12" >
+                                <input type="password" id="id" name="cod_ci" class="form-control col-md-7 col-xs-12" >
                               </div>
                             </div>
                             <?php
@@ -409,11 +409,65 @@
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                 <button type="reset" class="btn btn-primary">Cancelar</button>
-                                <button type="submit" class="btn btn-success">Guardar</button>
+                                <button type="button" class="btn btn-success" onclick="valida_envia()">Guardar</button>
                               </div>
                             </div>
 
                           </form>
+<!-- validaciones del formulario -->
+<script type="text/javascript">
+//Se utiliza para que el campo de texto solo acepte numeros
+function SoloNumeros(evt){
+ if(window.event){//asignamos el valor de la tecla a keynum
+  keynum = evt.keyCode; //IE
+ }
+ else{
+  keynum = evt.which; //FF
+ }
+ //comprobamos si se encuentra en el rango numérico y que teclas no recibirá.
+ if((keynum > 47 && keynum < 58) || keynum == 8 || keynum == 13 || keynum == 6 ){
+  return true;
+ }
+ else{
+  return false;
+ }
+}
+
+function valida_envia(){
+
+  valor = document.getElementById("id_ci").value;
+  if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+  alert ("Ingrese la cedula de identidad del alumno")
+  id_ci.focus()
+  return false;
+  }
+
+  valor = document.getElementById("id").value;
+  if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+  alert ("Ingrese el codigo secreto del alumno")
+  id.focus()
+  return false;
+  }
+
+  selec= FormSancion.grupo.selectedIndex
+  if (FormSancion.grupo.options[selec].value==""){
+  alert ("Seleccione el grupo")
+  return false
+  }
+
+  selec= FormSancion.falta.selectedIndex
+  if (FormSancion.falta.options[selec].value==""){
+  alert ("Seleccione la falta")
+  return false
+  }
+  FormSancion.submit();
+}
+
+
+
+</script>
+<!-- fin de validaciones del formulario -->
+
                         </div>
 
 

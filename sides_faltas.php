@@ -160,7 +160,7 @@ if ($_SESSION['loggedin']) {
                   <li><a><i class="fa fa-pie-chart"></i> Administrar Reportes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="index.php">Reportes Estadisticos </a></li>
-                      <li><a href="#">Lista de Arrestados </a></li>
+                      <li><a href="sides_reporte_arrestados.php">Lista de Arrestados </a></li>
                     </ul>
                   </li>
                 <?php endif; ?>
@@ -364,7 +364,7 @@ if ($_SESSION['loggedin']) {
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Falta<span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="txtfalta" name="txtfalta" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="txtfalta" name="txtfalta" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -400,6 +400,12 @@ if ($_SESSION['loggedin']) {
                           </form>
 
                           <script type="text/javascript">
+
+                          function SoloLetras() {
+                            if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))event.returnValue = false;
+                          }
+
+
                           function valida_envia(){
 
                             valor = document.getElementById("txtfalta").value;

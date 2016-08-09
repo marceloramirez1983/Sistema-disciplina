@@ -170,7 +170,7 @@
                                       <li><a><i class="fa fa-pie-chart"></i> Administrar Reportes <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                           <li><a href="index.php">Reportes Estadisticos </a></li>
-                                          <li><a href="#">Lista de Arrestados </a></li>
+                                          <li><a href="sides_reporte_arrestados.php">Lista de Arrestados </a></li>
                                         </ul>
                                       </li>
                                     <?php endif; ?>
@@ -321,7 +321,7 @@
                         <!-- Formulario de sanciones nuevas -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="#">
+                          <form id="FormMerito" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores\insertarOtorgacionMerito.php">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sancionador">C.I. Instructor <span class="required">*</span>
@@ -335,7 +335,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Alumno-sancionado">C.I. Alumno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="Alumno-sancionado" name="id_ci" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="id_cimerito" name="id_cimerito" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -344,8 +344,16 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Mérito <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control falta" name="falta">
-                                  <option>Seleccione el mérito</option>
+                                <select class="form-control falta" name="falta" id="falta">
+                                  <option value="">Seleccione el mérito</option>
+                                  <?php
+                                  $query="SELECT * FROM merito";
+                                  $result= mysqli_query($con,$query);
+                                  while ($row=mysqli_fetch_array($result)):?>
+                                    <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
+                                  <?php endwhile;
+                                  mysqli_close($con);
+                                  ?>
                                 </select>
                               </div>
                             </div>
@@ -366,20 +374,11 @@
                               </div>
                             </div>
 
-
-                            <!-- <div class="form-group hide">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Subir Resolucion </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
-                              </div>
-
-                            </div> -->
-
                             <div class="ln_solid"></div>
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button type="submit" class="btn btn-primary">Cancelar</button>
-                                <button type="submit" class="btn btn-success">Guardar</button>
+                                <button type="reset" class="btn btn-primary">Cancelar</button>
+                                <button type="button" class="btn btn-success" onclick="valida_envia()">Guardar</button>
                               </div>
                             </div>
 
@@ -584,6 +583,47 @@
     <script src="js/custom.js"></script>
 
     <!-- bootstrap-daterangepicker -->
+
+
+ <!-- validaciones para el formulario -->
+    <script type="text/javascript">
+    //Se utiliza para que el campo de texto solo acepte numeros
+    function SoloNumeros(evt){
+     if(window.event){//asignamos el valor de la tecla a keynum
+      keynum = evt.keyCode; //IE
+     }
+     else{
+      keynum = evt.which; //FF
+     }
+     //comprobamos si se encuentra en el rango numérico y que teclas no recibirá.
+     if((keynum > 47 && keynum < 58) || keynum == 8 || keynum == 13 || keynum == 6 ){
+      return true;
+     }
+     else{
+      return false;
+     }
+    }
+
+    function valida_envia(){
+
+      valor = document.getElementById("id_cimerito").value;
+      if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+      alert ("Ingrese la cedula de identidad del alumno")
+      id_cimerito.focus()
+      return false;
+      }
+
+      selec= FormMerito.falta.selectedIndex
+      if (FormMerito.falta.options[selec].value==""){
+      alert ("Seleccione el merito a otorgar")
+      return false
+      }
+
+      FormMerito.submit();
+    }
+    </script>
+    <!-- final validaciones formulario -->
+
     <script>
       $(document).ready(function() {
         $('#birthday').daterangepicker({
@@ -594,6 +634,7 @@
         });
       });
     </script>
+
     <!-- /bootstrap-daterangepicker -->
 
     <!--  Choose One Group -->
@@ -634,16 +675,17 @@
       });
     </script>
 
+
     <script type="text/javascript">
       $(document).ready(function(){
 
-        $(".grupo").change(function(){
+        $(".falta").change(function(){
           var id=$(this).val();
           var dataString = 'id='+ id;
 
           $.ajax({
             type: "POST",
-            url: "controladores/seleccionarPuntos.php",
+            url: "controladores/seleccionarPuntosMerito.php",
             data: dataString,
             cache: false,
             success: function(html){

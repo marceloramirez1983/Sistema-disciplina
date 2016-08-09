@@ -306,7 +306,7 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Grupo<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="txtnombre_grupo" name="txtnombre_grupo" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['grupo'] ?>">
+                          <input type="text" id="txtnombre_grupo" name="txtnombre_grupo" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['grupo'] ?>" onKeyUp="this.value = this.value.toUpperCase();">
                         </div>
                       </div>
 

@@ -1,7 +1,7 @@
 <?php
 class conexion{
 	function conectar(){ //funcion para conectar a la base de datos
-		return mysqli_connect("localhost","root","root");
+		return mysqli_connect("localhost","root","");
 	}
 }
 /*$cnn = new conexion();//cnn es igual auna nueva  instancia de la clase conexio

@@ -183,7 +183,7 @@
                                       <li><a><i class="fa fa-pie-chart"></i> Administrar Reportes <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                           <li><a href="index.php">Reportes Estadisticos </a></li>
-                                          <li><a href="#">Lista de Arrestados </a></li>
+                                          <li><a href="sides_reporte_arrestados.php">Lista de Arrestados </a></li>
                                         </ul>
                                       </li>
                                     <?php endif; ?>
@@ -348,7 +348,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Alumno-sancionado">C.I. Alumno sancionado <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="Alumno-sancionado" name="id_ci" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="Alumno-sancionado" name="id_ci" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
@@ -694,6 +694,23 @@
 
       });
     </script>
+    <script type="text/javascript">
+    //Se utiliza para que el campo de texto solo acepte numeros
+    function SoloNumeros(evt){
+     if(window.event){//asignamos el valor de la tecla a keynum
+      keynum = evt.keyCode; //IE
+     }
+     else{
+      keynum = evt.which; //FF
+     }
+     //comprobamos si se encuentra en el rango numérico y que teclas no recibirá.
+     if((keynum > 47 && keynum < 58) || keynum == 8 || keynum == 13 || keynum == 6 ){
+      return true;
+     }
+     else{
+      return false;
+     }
+    }
     <!--  /Choose One Group -->
 
     <!-- iCheck -->
