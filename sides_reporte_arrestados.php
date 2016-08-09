@@ -160,7 +160,7 @@
 
                     <li><a><i class="fa fa-list-alt"></i> Administrar Méritos <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                        <li><a href="sides_meritos.php">Boleta de mérito</a></li>
+                        <li><a href="sides_otorgar_merito.php">Boleta de mérito</a></li>
 
                       </ul>
                     </li>

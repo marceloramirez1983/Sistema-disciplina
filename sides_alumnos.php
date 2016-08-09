@@ -325,8 +325,8 @@
                                     ?></td>
                                     <td>
                                       <div class="btn-group">
-                                        <button type="button" class="btn btn-danger">Opción</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <button type="button" class="btn btn-primary">Opción</button>
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                           <span class="caret"></span>
                                           <span class="sr-only">Toggle Dropdown</span>
                                         </button>
@@ -387,10 +387,10 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required">*</span>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required" >*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="nombre" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="nombre" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()">
                               </div>
                             </div>
 
@@ -398,7 +398,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="paterno" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="paterno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()">
                               </div>
                             </div>
 
@@ -406,7 +406,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="materno" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="materno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()">
                               </div>
                             </div>
 
@@ -439,7 +439,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="lugar" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="lugar" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()">
                               </div>
                             </div>
 
@@ -504,6 +504,14 @@
                             </div>
 
                           </form>
+                          <script type="text/javascript">
+                          function SoloLetras() {
+                            if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))event.returnValue = false;
+                          }
+=
+                          </script>
+
+
                         </div>
 
 

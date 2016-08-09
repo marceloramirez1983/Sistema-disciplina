@@ -34,3 +34,4 @@ exit;
   window.location="http://localhost/sides/sides_merito.php";
   </script>';
 }
+?>

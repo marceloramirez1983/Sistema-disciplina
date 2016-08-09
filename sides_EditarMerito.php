@@ -173,7 +173,7 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                     <li><a><i class="fa fa-pie-chart"></i> Administrar Reportes <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="index.php">Reportes Estadisticos </a></li>
-                        <li><a href="#">Lista de Arrestados </a></li>
+                        <li><a href="sides_reporte_arrestados.php">Lista de Arrestados </a></li>
                       </ul>
                     </li>
                   <?php endif; ?>
@@ -320,10 +320,10 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Merito<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Mérito<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="txtnombre_rol" name="txtnombre_rol" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['nombre_merito'] ?>" onkeypress="SoloLetras()">
+                          <input type="text" id="txtnombre_rol" name="txtnombre_rol" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['nombre_merito'] ?>" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                         </div>
                       </div>
 

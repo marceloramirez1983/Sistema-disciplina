@@ -17,8 +17,13 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
 $insertar="UPDATE grupo SET grupo = '$nomb_grupo',puntos= '$puntos_grupo'  WHERE id_grupo = '$idgrupo'";
 
 if (!mysqli_query($con,$insertar)) { die ("Error al insertar". mysqli_error);
+}else {
+  echo '<script language="javascript">
+  alert("Modificaciones  realizadas correctamente");
+  window.location="http://localhost/sides/sides_grupos.php";
+  </script>';
 }
-header('Location: ../sides_grupos.php');
+//header('Location: ../sides_grupos.php');
 exit;
 //echo " dato Insertado ";
 mysqli_close($con);

@@ -17,8 +17,13 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
 $insertar="UPDATE falta SET nombre = '$nomb_falta' WHERE id_falta = '$idfalta'";
 
 if (!mysqli_query($con,$insertar)) { die ("Error al insertar". mysqli_error);
+}else {
+  echo '<script language="javascript">
+  alert("Modificaciones  realizadas correctamente");
+  window.location="http://localhost/sides/sides_faltas.php";
+  </script>';
 }
-header('Location: ../sides_faltas.php');
+//header('Location: ../sides_faltas.php');
 exit;
 //echo " dato Insertado ";
 mysqli_close($con);
