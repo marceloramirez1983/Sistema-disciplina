@@ -365,7 +365,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" name="ci_alumno" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="first-name" name="ci_alumno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
@@ -390,7 +390,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required" >*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="nombre" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()">
+                                <input type="text" id="last-name" name="nombre" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -398,7 +398,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="paterno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()">
+                                <input type="text" id="last-name" name="paterno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -406,7 +406,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="materno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()">
+                                <input type="text" id="last-name" name="materno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -439,7 +439,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="lugar" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()">
+                                <input type="text" id="lugar" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -453,14 +453,14 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="celular" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="celular" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="domicilio" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="domicilio" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -469,28 +469,28 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Cédula Identidad del Tutor <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="ci_tutor" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="ci_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre del Tutor <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="nombre_tutor" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="nombre_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Telefono del Tutor <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="telefono_tutor" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="telefono_tutor" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Direccion del Tutor <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="direccion_tutor" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="direccion_tutor" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -498,8 +498,8 @@
 
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button type="submit" class="btn btn-primary">Cancelar</button>
-                                <button type="submit" class="btn btn-success">Guardar</button>
+                                <button type="reset" class="btn btn-primary">Cancelar</button>
+                                <button type="button" class="btn btn-success" onclick="">Guardar</button>
                               </div>
                             </div>
 
@@ -508,7 +508,24 @@
                           function SoloLetras() {
                             if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))event.returnValue = false;
                           }
-=
+
+
+                          //Se utiliza para que el campo de texto solo acepte numeros
+                          function SoloNumeros(evt){
+                           if(window.event){//asignamos el valor de la tecla a keynum
+                            keynum = evt.keyCode; //IE
+                           }
+                           else{
+                            keynum = evt.which; //FF
+                           }
+                           //comprobamos si se encuentra en el rango numérico y que teclas no recibirá.
+                           if((keynum > 47 && keynum < 58) || keynum == 8 || keynum == 13 || keynum == 6 ){
+                            return true;
+                           }
+                           else{
+                            return false;
+                           }
+                          }
                           </script>
 
 

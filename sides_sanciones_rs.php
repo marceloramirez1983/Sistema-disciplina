@@ -711,6 +711,7 @@
       return false;
      }
     }
+    </script>
     <!--  /Choose One Group -->
 
     <!-- iCheck -->
