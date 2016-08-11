@@ -322,6 +322,7 @@
                   mysqli_close($con);
                 ?>
                 <p>Falta mas recurrente.</p>
+
               </div>
             </div>
           </div>
@@ -332,7 +333,7 @@
           <div class="row">
 
             <div class="col-md-4 col-sm-4 col-xs-12">
-              <div class="x_panel tile fixed_height_320 overflow_hidden">
+              <div class="x_panel tile fixed_height_340 overflow_hidden">
                 <div class="x_title">
                   <h2>Primer Año Militar</h2>
 
@@ -342,45 +343,56 @@
                   <table class="" style="width:100%">
                     <tr>
                       <th style="width:37%;">
-                        <p>Diagrama circular</p>
-                      </th>
-                      <th>
-                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                          <p class="">Porcentaje</p>
-                        </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                          <p class=""></p>
-                        </div>
+                        <p>Estadisticas de arrestos</p>
                       </th>
                     </tr>
                     <tr>
-                      <td>
+                      <td style="text-align:center;">
                         <canvas id="canvas1" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
                       </td>
-                      <td>
-                        <table class="tile_info">
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square blue"></i>IOS </p>
-                            </td>
-                            <td>30%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square red"></i>Arrestados </p>
-                            </td>
-                            <td>30%</td>
-                          </tr>
-                        </table>
-                      </td>
                     </tr>
+                    <td>
+                      <table class="tile_info">
+                        <tr>
+                          <?php
+                          include_once("controladores/conexionBD.php");
+
+                          $cnn= new conexion();
+                          $con =$cnn->conectar();
+
+                          $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");
+
+                          $query = mysqli_query($con,"SELECT COUNT(*) AS total_alumnos FROM usuario WHERE id_grado = 15");
+                          $count_total = mysqli_fetch_assoc($query);
+
+                          $query_get_sanctions = mysqli_query($con, "SELECT COUNT(*) AS total FROM sancion,usuario WHERE sancion.ci_alumno = usuario.id_ci AND usuario.id_grado = 15 GROUP BY usuario.id_ci");
+                          $count_total_sanction = mysqli_num_rows($query_get_sanctions);
+
+                          $sancionados_total_one = ($count_total_sanction * 100) / $count_total['total_alumnos'];
+
+                          $no_sancionados_one = 100 - $sancionados_total_one;
+                          mysqli_close($con);
+                          ?>
+                          <td>
+                            <p><i class="fa fa-square blue"></i>No Sancionados </p>
+                          </td>
+                          <td><?php echo $no_sancionados_one; ?>%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square red"></i>Sancionados </p>
+                          </td>
+                          <td><?php echo $sancionados_total_one; ?>%</td>
+                        </tr>
+                      </table>
+                    </td>
                   </table>
                 </div>
               </div>
             </div>
 
             <div class="col-md-4 col-sm-4 col-xs-12">
-              <div class="x_panel tile fixed_height_320 overflow_hidden">
+              <div class="x_panel tile fixed_height_340 overflow_hidden">
                 <div class="x_title">
                   <h2>Segundo Año Militar</h2>
 
@@ -390,63 +402,58 @@
                   <table class="" style="width:100%">
                     <tr>
                       <th style="width:37%;">
-                        <p>Top 5</p>
+                        <p>Estadisticas de arrestos</p>
+
                       </th>
-                      <th>
-                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                          <p class="">Device</p>
-                        </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                          <p class="">Progress</p>
-                        </div>
-                      </th>
+
                     </tr>
                     <tr>
-                      <td>
+                      <td style="text-align:center;">
                         <canvas id="canvas2" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
                       </td>
-                      <td>
-                        <table class="tile_info">
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square blue"></i>IOS </p>
-                            </td>
-                            <td>30%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square green"></i>Android </p>
-                            </td>
-                            <td>10%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square purple"></i>Blackberry </p>
-                            </td>
-                            <td>20%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square aero"></i>Symbian </p>
-                            </td>
-                            <td>15%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square red"></i>Others </p>
-                            </td>
-                            <td>30%</td>
-                          </tr>
-                        </table>
-                      </td>
                     </tr>
+                    <td>
+                      <table class="tile_info">
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square green"></i>No Sancionados </p>
+                          </td>
+                          <?php
+                          include_once("controladores/conexionBD.php");
+
+                          $cnn= new conexion();
+                          $con =$cnn->conectar();
+
+                          $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");
+
+                          $query = mysqli_query($con,"SELECT COUNT(*) AS total_alumnos FROM usuario WHERE id_grado = 16");
+                          $count_total = mysqli_fetch_assoc($query);
+
+                          $query_get_sanctions = mysqli_query($con, "SELECT COUNT(*) AS total FROM sancion,usuario WHERE sancion.ci_alumno = usuario.id_ci AND usuario.id_grado = 16 GROUP BY usuario.id_ci");
+                          $count_total_sanction = mysqli_num_rows($query_get_sanctions);
+
+                          $sancionados_total = ($count_total_sanction * 100) / $count_total['total_alumnos'];
+
+                          $no_sancionados = 100 - $sancionados_total;
+                          mysqli_close($con);
+                          ?>
+                          <td><?php echo $no_sancionados ?>%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square red"></i>Sancionados </p>
+                          </td>
+                          <td><?php echo $sancionados_total ?>%</td>
+                        </tr>
+                      </table>
+                    </td>
                   </table>
                 </div>
               </div>
             </div>
 
                 <div class="col-md-4 col-sm-4 col-xs-12">
-                  <div class="x_panel tile fixed_height_320 overflow_hidden">
+                  <div class="x_panel tile fixed_height_340 overflow_hidden">
                     <div class="x_title">
                       <h2>Tercer Año Militar</h2>
 
@@ -456,56 +463,49 @@
                       <table class="" style="width:100%">
                         <tr>
                           <th style="width:37%;">
-                            <p>Top 5</p>
-                          </th>
-                          <th>
-                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                              <p class="">Device</p>
-                            </div>
-                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                              <p class="">Progress</p>
-                            </div>
+                            <p>Estadisticas de arrestos</p>
                           </th>
                         </tr>
                         <tr>
-                          <td>
+                          <td style="text-align:center;">
                             <canvas id="canvas3" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
                           </td>
-                          <td>
-                            <table class="tile_info">
-                              <tr>
-                                <td>
-                                  <p><i class="fa fa-square blue"></i>IOS </p>
-                                </td>
-                                <td>30%</td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <p><i class="fa fa-square green"></i>Android </p>
-                                </td>
-                                <td>10%</td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <p><i class="fa fa-square purple"></i>Blackberry </p>
-                                </td>
-                                <td>20%</td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <p><i class="fa fa-square aero"></i>Symbian </p>
-                                </td>
-                                <td>15%</td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <p><i class="fa fa-square red"></i>Others </p>
-                                </td>
-                                <td>30%</td>
-                              </tr>
-                            </table>
-                          </td>
                         </tr>
+                        <td>
+                          <table class="tile_info">
+                            <tr>
+                              <?php
+                              include_once("controladores/conexionBD.php");
+
+                              $cnn= new conexion();
+                              $con =$cnn->conectar();
+
+                              $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");
+
+                              $query = mysqli_query($con,"SELECT COUNT(*) AS total_alumnos FROM usuario WHERE id_grado = 17");
+                              $count_total = mysqli_fetch_assoc($query);
+
+                              $query_get_sanctions = mysqli_query($con, "SELECT COUNT(*) AS total FROM sancion,usuario WHERE sancion.ci_alumno = usuario.id_ci AND usuario.id_grado = 17 GROUP BY usuario.id_ci");
+                              $count_total_sanction = mysqli_num_rows($query_get_sanctions);
+
+                              $sancionados_total_two = ($count_total_sanction * 100) / $count_total['total_alumnos'];
+
+                              $no_sancionados_two = 100 - $sancionados_total_two;
+                              mysqli_close($con);
+                              ?>
+                              <td>
+                                <p><i class="fa fa-square purple"></i>No Sancionados </p>
+                              </td>
+                              <td><?php echo $no_sancionados_two; ?>%</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square red"></i>Sancionados </p>
+                              </td>
+                              <td><?php echo $sancionados_total_two; ?>%</td>
+                            </tr>
+                          </table>
+                        </td>
                       </table>
                     </div>
                   </div>
@@ -571,7 +571,9 @@
 
     <!-- Custom Theme Scripts -->
     <script src="js/custom.js"></script>
-    
+
+    <!-- la cantidad de arrestados por 100 divido por la cantidad de alumnos-->
+
     <!-- Doughnut Chart 1 -->
     <script>
       $(document).ready(function(){
@@ -580,31 +582,58 @@
           responsive: false
         };
 
+        var s = <?php
+        include_once("controladores/conexionBD.php");
+
+        $cnn= new conexion();
+        $con =$cnn->conectar();
+
+        $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");
+
+        $query = mysqli_query($con,"SELECT COUNT(*) AS total_alumnos FROM usuario WHERE id_grado = 15");
+        $count_total = mysqli_fetch_assoc($query);
+
+        $query_get_sanctions = mysqli_query($con, "SELECT COUNT(*) AS total FROM sancion,usuario WHERE sancion.ci_alumno = usuario.id_ci AND usuario.id_grado = 15 GROUP BY usuario.id_ci");
+        $count_total_sanction = mysqli_num_rows($query_get_sanctions);
+
+        $sancionados_total = ($count_total_sanction * 100) / $count_total['total_alumnos'];
+
+        echo $sancionados_total ?>;
+        var n = <?php
+        include_once("controladores/conexionBD.php");
+
+        $cnn= new conexion();
+        $con =$cnn->conectar();
+
+        $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");
+
+        $query = mysqli_query($con,"SELECT COUNT(*) AS total_alumnos FROM usuario WHERE id_grado = 15");
+        $count_total = mysqli_fetch_assoc($query);
+
+        $query_get_sanctions = mysqli_query($con, "SELECT COUNT(*) AS total FROM sancion,usuario WHERE sancion.ci_alumno = usuario.id_ci AND usuario.id_grado = 15 GROUP BY usuario.id_ci");
+        $count_total_sanction = mysqli_num_rows($query_get_sanctions);
+
+        $sancionados_total = ($count_total_sanction * 100) / $count_total['total_alumnos'];
+
+        $no_sancionados = 100 - $sancionados_total;
+        echo $no_sancionados ?>;
+
         new Chart(document.getElementById("canvas1"), {
           type: 'doughnut',
           tooltipFillColor: "rgba(51, 51, 51, 0.55)",
           data: {
             labels: [
-              "Symbian",
-              "Blackberry",
-              "Other",
-              "Android",
-              "IOS"
+              "Sancionados",
+              "No Sancionados",
             ],
             datasets: [{
-              data: [15, 20, 30, 10, 30],
+              data: [s, n],
               backgroundColor: [
-                "#BDC3C7",
-                "#9B59B6",
                 "#E74C3C",
-                "#26B99A",
                 "#3498DB"
               ],
               hoverBackgroundColor: [
-                "#CFD4D8",
-                "#B370CF",
                 "#E95E4F",
-                "#36CAAB",
                 "#49A9EA"
               ]
             }]
@@ -623,32 +652,59 @@
           responsive: false
         };
 
+        var s = <?php
+        include_once("controladores/conexionBD.php");
+
+        $cnn= new conexion();
+        $con =$cnn->conectar();
+
+        $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");
+
+        $query = mysqli_query($con,"SELECT COUNT(*) AS total_alumnos FROM usuario WHERE id_grado = 16");
+        $count_total = mysqli_fetch_assoc($query);
+
+        $query_get_sanctions = mysqli_query($con, "SELECT COUNT(*) AS total FROM sancion,usuario WHERE sancion.ci_alumno = usuario.id_ci AND usuario.id_grado = 16 GROUP BY usuario.id_ci");
+        $count_total_sanction = mysqli_num_rows($query_get_sanctions);
+
+        $sancionados_total = ($count_total_sanction * 100) / $count_total['total_alumnos'];
+
+        echo $sancionados_total ?>;
+        var n = <?php
+        include_once("controladores/conexionBD.php");
+
+        $cnn= new conexion();
+        $con =$cnn->conectar();
+
+        $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");
+
+        $query = mysqli_query($con,"SELECT COUNT(*) AS total_alumnos FROM usuario WHERE id_grado = 16");
+        $count_total = mysqli_fetch_assoc($query);
+
+        $query_get_sanctions = mysqli_query($con, "SELECT COUNT(*) AS total FROM sancion,usuario WHERE sancion.ci_alumno = usuario.id_ci AND usuario.id_grado = 16 GROUP BY usuario.id_ci");
+        $count_total_sanction = mysqli_num_rows($query_get_sanctions);
+
+        $sancionados_total = ($count_total_sanction * 100) / $count_total['total_alumnos'];
+
+        $no_sancionados = 100 - $sancionados_total;
+        echo $no_sancionados ?>;
+
         new Chart(document.getElementById("canvas2"), {
           type: 'doughnut',
           tooltipFillColor: "rgba(51, 51, 51, 0.55)",
           data: {
             labels: [
-              "Symbian",
-              "Blackberry",
-              "Other",
-              "Android",
-              "IOS"
+              "Sancionados",
+              "No Sancionados",
             ],
             datasets: [{
-              data: [15, 20, 30, 10, 30],
+              data: [s, n],
               backgroundColor: [
-                "#BDC3C7",
-                "#9B59B6",
                 "#E74C3C",
-                "#26B99A",
-                "#3498DB"
+                "#26B99A"
               ],
               hoverBackgroundColor: [
-                "#CFD4D8",
-                "#B370CF",
                 "#E95E4F",
-                "#36CAAB",
-                "#49A9EA"
+                "#36CAAB"
               ]
             }]
           },
@@ -666,32 +722,64 @@
           responsive: false
         };
 
+        var s = <?php
+        include_once("controladores/conexionBD.php");
+
+        $cnn= new conexion();
+        $con =$cnn->conectar();
+
+        $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");
+
+        $query = mysqli_query($con,"SELECT COUNT(*) AS total_alumnos FROM usuario WHERE id_grado = 16");
+        $count_total = mysqli_fetch_assoc($query);
+
+        $query_get_sanctions = mysqli_query($con, "SELECT COUNT(*) AS total FROM sancion,usuario WHERE sancion.ci_alumno = usuario.id_ci AND usuario.id_grado = 16 GROUP BY usuario.id_ci");
+        $count_total_sanction = mysqli_num_rows($query_get_sanctions);
+
+        $sancionados_total = ($count_total_sanction * 100) / $count_total['total_alumnos'];
+
+        echo $sancionados_total ?>;
+        var n = <?php
+        include_once("controladores/conexionBD.php");
+
+        $cnn= new conexion();
+        $con =$cnn->conectar();
+
+        $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");
+
+        $query = mysqli_query($con,"SELECT COUNT(*) AS total_alumnos FROM usuario WHERE id_grado = 17");
+        $count_total = mysqli_fetch_assoc($query);
+
+        $query_get_sanctions = mysqli_query($con, "SELECT COUNT(*) AS total FROM sancion,usuario WHERE sancion.ci_alumno = usuario.id_ci AND usuario.id_grado = 17 GROUP BY usuario.id_ci");
+        $count_total_sanction = mysqli_num_rows($query_get_sanctions);
+
+        $sancionados_total = ($count_total_sanction * 100) / $count_total['total_alumnos'];
+
+        $no_sancionados = 100 - $sancionados_total;
+        echo $no_sancionados ?>;
+
         new Chart(document.getElementById("canvas3"), {
           type: 'doughnut',
           tooltipFillColor: "rgba(51, 51, 51, 0.55)",
           data: {
             labels: [
-              "Symbian",
-              "Blackberry",
-              "Other",
-              "Android",
-              "IOS"
+
+              "Sancionados",
+              "No Sancionados"
+
+
             ],
             datasets: [{
-              data: [15, 20, 30, 10, 30],
+              data: [s, n],
               backgroundColor: [
-                "#BDC3C7",
-                "#9B59B6",
                 "#E74C3C",
-                "#26B99A",
-                "#3498DB"
+                "#9B59B6"
+
+
               ],
               hoverBackgroundColor: [
-                "#CFD4D8",
-                "#B370CF",
                 "#E95E4F",
-                "#36CAAB",
-                "#49A9EA"
+                "#B370CF"
               ]
             }]
           },
