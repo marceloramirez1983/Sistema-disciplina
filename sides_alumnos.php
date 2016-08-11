@@ -359,13 +359,13 @@
                         <!-- Form New Users -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarAlumno.php">
+                          <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarAlumno.php">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" name="ci_alumno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
+                                <input type="text" id="ci_alumno" name="ci_alumno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
@@ -373,7 +373,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Grado <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <select class="form-control" name="id_grado" >
+                                <select class="form-control" name="id_grado">
                                   <option value="">Seleccione su grado</option>
                                   <?php
                                   $query="SELECT * FROM grado";
@@ -390,7 +390,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required" >*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="nombre" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
+                                <input type="text" id="nombre" name="nombre" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -398,7 +398,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="paterno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
+                                <input type="text" id="paterno" name="paterno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -406,7 +406,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="materno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
+                                <input type="text" id="materno" name="materno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -439,7 +439,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="lugar" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
+                                <input type="text" id="lugar" name="lugar" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -453,14 +453,14 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="celular" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
+                                <input type="text" id="cel" name="cel" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="domicilio" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();">
+                                <input type="text" id="domicilio" name="domicilio" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -469,28 +469,28 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Cédula Identidad del Tutor <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="ci_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="return SoloNumeros(event);">
+                                <input type="text" id="ci_tutor" name="ci_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre del Tutor <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="nombre_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
+                                <input type="text" id="nombre_tutor" name="nombre_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Telefono del Tutor <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="telefono_tutor" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
+                                <input type="text" id="telefono_tutor" name="telefono_tutor" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Direccion del Tutor <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="direccion_tutor" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();">
+                                <input type="text" id="direccion_tutor" name="direccion_tutor" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -499,7 +499,7 @@
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                 <button type="reset" class="btn btn-primary">Cancelar</button>
-                                <button type="button" class="btn btn-success" onclick="">Guardar</button>
+                                <button type="button" class="btn btn-success" onclick="valida_envia()">Guardar</button>
                               </div>
                             </div>
 
@@ -526,6 +526,117 @@
                             return false;
                            }
                           }
+// validaciones vacio----------------------------------------------
+                          function valida_envia(){
+                            valor = document.getElementById("ci_alumno").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese la cedula de identidad del alumno")
+                            demoform2.ci_alumno.focus()
+                            return false;
+                            }
+
+                            selec= demoform2.id_grado.selectedIndex
+                            if (demoform2.id_grado.options[selec].value==""){
+                            alert ("Seleccione el grado del alumno")
+                            return false
+                            }
+
+                            valor = document.getElementById("nombre").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el nombre del alumno")
+                            demoform2.nombre.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("paterno").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el apellido paterno del alumno")
+                            demoform2.paterno.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("materno").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el apellido materno del alumno")
+                            demoform2.materno.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("birthday").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese la fecha de nacimiento")
+                            demoform2.birthday.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("lugar").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el lugar de nacimiento")
+                            demoform2.lugar.focus()
+                            return false;
+                            }
+
+
+                            valor = document.getElementById("email").value;
+                            expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                            if ( !expr.test(valor)){
+                              alert("Error: La dirección de correo "+ valor +" es incorrecta.");
+                              demoform2.email.focus()
+                              return false;
+                            }
+
+
+
+                            valor = document.getElementById("cel").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el numero de celular")
+                            demoform2.cel.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("domicilio").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el direccion del domicilio")
+                            demoform2.domicilio.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("ci_tutor").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese la cedula de identidad del tutor")
+                            demoform2.ci_tutor.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("nombre_tutor").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el nombre y apellidos del tutor")
+                            demoform2.nombre_tutor.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("telefono_tutor").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el telefono del tutor")
+                            demoform2.telefono_tutor.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("direccion_tutor").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese la direccion del tutor")
+                            demoform2.direccion_tutor.focus()
+                            return false;
+                            }
+
+
+
+
+                            demoform2.submit();
+                          }
+//hasta aca validaciones vacio----------------------------------------------
+
+
                           </script>
 
 
