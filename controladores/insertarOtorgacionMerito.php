@@ -12,23 +12,12 @@
   $PUNTOSMerito = $_POST['puntos'];
   $FECHA = $_POST['fecha'];
 
-  echo $CI_OtorgaMerito;
-  echo "---";
-  echo $CI_AlumRecibeMerito;
-  echo "---";
-  echo $ID_Merito;
-  echo "---";
-  echo $PUNTOSMerito;
-  echo "---";
-  echo $FECHA;
+    $sql = "SELECT * FROM usuario WHERE id_ci = '$CI_AlumRecibeMerito'";
 
-  // $sql = "SELECT * FROM usuario WHERE id_ci = '$CI_ALUM' AND codigo_secreto = '$CODIGO'";
-  //
-  // $result = mysqli_query($con, $sql);
-  //
-  // $count = mysqli_num_rows($result);
+    $result = mysqli_query($con, $sql);
 
-  $count==1
+    $count = mysqli_num_rows($result);
+
   if ($count == 1) {
     # code...
     $INSERT_SANCION = "INSERT INTO
