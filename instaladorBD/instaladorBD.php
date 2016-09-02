@@ -457,18 +457,18 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 
 		$INSERT_USUARIOS_TESTS = "INSERT INTO
 			usuario(id_ci, id_grado, id_arma, nombre, paterno, materno, sexo, fecha_nac, lugar_nac, correo, celular, direccion, codigo_secreto, ci_tutor, total_puntos, calificacion_disciplinario)
-				VALUES ('12','1','1','JUAN','Nunez','Soto','MASCULINO','04/25/2016','Tiraque','juan@gmail.com','78859698','Av. Norte','0','0','0','0'),
-							 ('13','1','1','PEPE','Aguilar','Marneli','MASCULINO','04/25/2016','Sacaba','pepe@gmail.com','74587478','Av. Norte','0','0','0','0'),
-							 ('14','1','1','LUCAS','Melo','Lopez','MASCULINO','04/25/2016','Tiraque','lucas@gmail.com','90909090','Av. Norte','0','0','0','0'),
-							 ('15','1','1','MARTIN','Judas','Toro','MASCULINO','04/25/2016','Beni','martin@gmail.com','90909090','Av. Norte','0','0','0','0'),
-							 ('16','1','1','RODRIGO','Murillo','Puerta','MASCULINO','04/25/2016','SantaCruz','rodrigo@gmail.com','90909090','Av. Norte','0','0','0','0'),
-							 ('17','15','0','Antonio','Solis','Mesa','MASCULINO','04/25/1996','Cobija','antonio@gmail.com','90909090','Av. Norte','4444','123','4','96,08'),
-							 ('18','16','0','Miguel','Morales','Zapata','MASCULINO','04/25/1996','Robore','miguel@gmail.com','90909090','Av. Norte','4444','456','1','99,02'),
-							 ('19','16','0','Luis','Morales','Zapata','MASCULINO','04/25/1998','Sucre','miguel@gmail.com','90909090','Av. Norte','4444','456','3','97,06'),
-							 ('20','17','0','Marcos','Morales','Zapata','MASCULINO','04/25/1999','Oruro','miguel@gmail.com','90909090','Av. Norte','4444','456','1','99,02'),
-							 ('21','17','0','Mauricio','Nogales','Suares','MASCULINO','04/25/1998','Anzaldo','mauri@gmail.com','90909090','Av. Norte','4444','456','1','99,02'),
-							 ('22','17','0','MILTON','PAREDES','RAMOS','MASCULINO','02/16/1998','','mauri@gmail.com','5245896','AV BLANCO GALINDO','4444','456','1','99,02'),
-							 ('22','17','0','Leoncio','Morales','Zapata','MASCULINO','04/25/1999','La Paz','miguel@gmail.com','90909090','Av. Norte','4444','456','1','99,02')";
+				VALUES ('12','1','1','JUAN','NUNEZ','SOTO','MASCULINO','04/25/2016','TIRAQUE','juan@gmail.com','78859698','AV NORTE','0','0','0','0'),
+							 ('13','1','1','PEPE','AGUILAR','MARNELI','MASCULINO','04/25/2016','SACABA','pepe@gmail.com','74587478','AV NORTE','0','0','0','0'),
+							 ('14','1','1','LUCAS','MELO','LOPEZ','MASCULINO','04/25/2016','TIRAQUE','lucas@gmail.com','74458596','AV NORTE','0','0','0','0'),
+							 ('15','1','1','MARTIN','JUDAS','TORO','MASCULINO','04/25/2016','BENI','martin@gmail.com','74589632','AV NORTE','0','0','0','0'),
+							 ('16','1','1','RODRIGO','MURILLO','PUERTA','MASCULINO','04/25/2016','SANTA CRUZ','rodrigo@gmail.com','85749632','AV CAP USTARIZ','0','0','0','0'),
+							 ('17','15','0','ANTONIO','SOLIZ','Mesa','MASCULINO','04/25/1996','COBIJA','antonio@gmail.com','74125896','AV NORTE','4444','123','4','96,08'),
+							 ('18','16','0','MIGUEL','MORALES','SORIA','MASCULINO','04/25/1996','ROBORE','miguel@gmail.com','72787975','AV EL VALLE','4444','456','1','99,02'),
+							 ('19','16','0','LUIS','MORALES','ZARNES','MASCULINO','04/25/1998','SUCRE','miguel@gmail.com','74458596','AV CIRCUNVALACION','4444','456','3','97,06'),
+							 ('20','17','0','MARCOS','MORALES','ZAPATA','MASCULINO','04/25/1999','ORURO','miguel@gmail.com','78524145','AV NORTE','4444','456','1','99,02'),
+							 ('21','17','0','MAURICIO','NOGALES','SUAREZ','MASCULINO','04/25/1998','ANZALDO','mauri@gmail.com','74859632','AV SUECIA','4444','456','1','99,02'),
+							 ('22','17','0','MILTON','PAREDES','RAMOS','MASCULINO','02/16/1998','COBIJA','mauri@gmail.com','5245896','AV BLANCO GALINDO','4444','456','1','99,02'),
+							 ('23','17','0','LEONCIO','MORALES','ZAPATA','MASCULINO','04/25/1999','LA PAZ','miguel@gmail.com','78854512','AV NORTE','4444','456','1','99,02')";
 
 		if (mysqli_query($con, $INSERT_USUARIOS_TESTS)) {
 			# code...
@@ -502,7 +502,7 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 							 ('','6','20','20','20'),
 							 ('','6','21','21','21'),
 							 ('','6','22','22','22'),
-							 ('','6','21','21','21')";
+							 ('','6','23','23','23')";
 
 		if (mysqli_query($con, $INSERT_ASIG_USUARIOS_TESTS)) {
 			# code...
@@ -580,24 +580,25 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 
 //-----------------------------TABLA TUTOR------------------------------------
 	$TB_TUTOR = "CREATE TABLE tutor (
+	id_tutor INT NOT NULL AUTO_INCREMENT,
 	ci_tutor INT,
-	nombre VARCHAR(80),
-	telefono INT,
-	direccion VARCHAR(80),
-	PRIMARY KEY(ci_tutor)
+	nombre_tutor VARCHAR(80),
+	telefono_tutor INT,
+	direccion_tutor VARCHAR(80),
+	PRIMARY KEY(id_tutor)
 	)";
 
 	if(mysqli_query($con, $TB_TUTOR)){
 		echo "<br> - TABLA TUTOR CREADA -";
 
 		$INSERT_TUTOR = "INSERT INTO
-			tutor(ci_tutor,nombre,telefono,direccion)
-				VALUES ('123','Juan Meneses','77887766','Av. Bolivar'),
-							 ('345','Yuri Vose','99443322','Av. La paz'),
-							 ('567','Maribel Lopez','33221111','Av. Sucre'),
-							 ('891','Melani Guitierres','33344455','Av. Junin'),
-							 ('891','Melani Guitierres','33344455','Av. Junin'),
-							 ('891','Melani Guitierres','33344455','Av. Junin')";
+			tutor(id_tutor,ci_tutor,nombre_tutor,telefono_tutor,direccion_tutor)
+				VALUES ('','123','JUAN MENESES','77887766','AV BOLIVAR'),
+							 ('','345','YURI BOSE','99443322','AV LA PAZ'),
+							 ('','567','MARIBEL LOPEZ','33221111','AV CIRCUNVALACION'),
+							 ('','891','GROVER SALINAS','33344455','AV JUNIN'),
+							 ('','891','TOMAS BARRIENTOS','33344455','AV GALVEZ'),
+							 ('','456','MELIN GUTIERREZ','33344455','AV EJERCITO')";
 
 		if (mysqli_query($con, $INSERT_TUTOR)) {
 			echo "<br> - TUTORES TESTS INSERTADOS - <br>";

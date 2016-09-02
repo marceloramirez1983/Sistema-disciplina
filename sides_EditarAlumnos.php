@@ -5,6 +5,8 @@
     # code...
     include_once("controladores/conexionBD.php");
 
+    $idEditar=$_GET['id'];//VARIABLE DEL ID DEL ALUMNO QUE SE DESEA MODIFICAR
+
     $cnn= new conexion();
     $con =$cnn->conectar();
 
@@ -252,7 +254,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Administrar Alumnos</h3>
+                <h3>Detalle de Alumnos</h3>
               </div>
             </div>
 
@@ -266,10 +268,10 @@
                   <br>
                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Buscar</a>
+                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Detalle de alumnos</a>
                       </li>
-                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Registrar</a>
-                      </li>
+                      <!-- <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Registrar</a>
+                      </li> -->
                       <!-- <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
                       </li> -->
                     </ul>
@@ -280,73 +282,159 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                           <div class="x_panel">
                             <div class="x_title">
-                              <h2>Lista de Alumnos <small>puedes modificar o eliminar</small></h2>
+                              <h2>EDITAR LOS ALUMNOS <small>Informacion individual</small></h2>
 
                               <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                              <table class="table table-hover">
-                                <thead>
-                                  <tr>
-                                    <th>Grado</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido Paterno</th>
-                                    <th>Celular</th>
-                                    <!-- <th>Tutor</th> -->
-                                    <th></th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <?php
-                                    $query = "SELECT usuario.id_ci, usuario.id_grado, usuario.nombre, usuario.paterno, usuario.celular, usuario.ci_tutor
-                                              FROM usuario,asignar_usuario WHERE usuario.id_ci = asignar_usuario.id_ci
-                                              AND asignar_usuario.id_rol = '6'";
-                                    $getAll = mysqli_query($con, $query);
-                                    while ($row = mysqli_fetch_array($getAll, MYSQLI_ASSOC)):
-                                  ?>
-                                  <tr>
-                                    <th scope="row"><?php
-                                        $getGrado = $row ['id_grado'];
-                                        $queryGrado = "SELECT grado FROM grado WHERE id_grado = '$getGrado'";
-                                        $grado = mysqli_query($con, $queryGrado) or die ("error get grado");
-                                        $result_grado = mysqli_fetch_assoc($grado);
-                                        echo $result_grado['grado'];
-                                      ?></th>
-                                    <td><?php echo $row ['nombre']; ?></td>
-                                    <td><?php echo $row ['paterno']; ?></td>
-                                    <td><?php echo $row ['celular']; ?></td>
-                                    <td><?php
-                                      $getTutor = $row ['ci_tutor'];
-                                      $queryTutor = "SELECT nombre_tutor FROM tutor WHERE ci_tutor = '$getTutor'";
-                                      $tutor = mysqli_query($con, $queryTutor) or die ("error get arma");
-                                      $result_tutor = mysqli_fetch_assoc($tutor);
-                                      echo $result_tutor['nombre_tutor'];
-                                      //echo $row ['id_arma'];
-                                    ?></td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">Opción</button>
-                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="sides_DetalleAlumnos.php">Ver mas detalles</a>
-                                          </li>
-                                          <li><a href="sides_EditarAlumnos.php?id=<?php echo $row ['id_ci'];?>">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="controladores\EliminarAlumno.php ?id=<?php echo $row ['id_ci'];?>">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </td>
+                              <!-- formulario mostrar detalle de alumnos -->
+                              <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarAlumno.php">
 
-                                  </tr>
+                                <?php
+                                $query=mysqli_query($con,"SELECT * FROM usuario INNER JOIN tutor ON usuario.ci_tutor=tutor.ci_tutor WHERE usuario.id_ci= $idEditar");
+                                while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)):?>
 
-                                <?php endwhile; ?>
-                                </tbody>
-                              </table>
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required" >*</span>
+                                  </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="ci_alumno" name="ci_alumno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);" value="<?php echo $row['id_ci']?>">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Grado <span class="required">*</span></label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    <select class="form-control" name="id_grado">
+                                      <option value="<?php echo $row['id_grado']?>"></option>
+
+                                    </select>
+
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required" >*</span>
+                                  </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="nombre" name="nombre" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['nombre']?>">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
+                                  </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="paterno" name="paterno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['paterno']?>">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
+                                  </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="materno" name="materno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['materno']?>">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Genero <span class="required">*</span>
+                                  </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" class="flat" checked name="sexo" value="Masculino"> Masculino
+                                      </label>
+                                    </div>
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" class="flat" name="sexo" value="Femenino"> Femenino
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento <span class="required">*</span>
+                                  </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha_nac" value="<?php echo $row['fecha_nac']?>">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento <span class="required">*</span>
+                                  </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="lugar" name="lugar" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['lugar_nac']?>">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Correo electrónico <span class="required">*</span></label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="email" name="email" class="form-control col-md-7 col-xs-12" value="<?php echo $row['correo']?>">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="cel" name="cel" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);" value="<?php echo $row['celular']?>">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="domicilio" name="domicilio" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['direccion']?>">
+                                  </div>
+                                </div>
+
+                                <div class="divider-dashed"></div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Cédula Identidad del Tutor <span class="required">*</span></label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="ci_tutor" name="ci_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="return SoloNumeros(event);" value="<?php echo $row['ci_tutor']?>">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre del Tutor <span class="required">*</span></label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="nombre_tutor" name="nombre_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();"value="<?php echo $row['nombre']?>">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Telefono del Tutor <span class="required">*</span></label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="telefono_tutor" name="telefono_tutor" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Direccion del Tutor <span class="required">*</span></label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="direccion_tutor" name="direccion_tutor" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();">
+                                  </div>
+                                </div>
+
+                                  <?php Endwhile; ?>
+
+                                <div class="ln_solid"></div>
+
+                                <div class="form-group">
+                                  <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button type="reset" class="btn btn-primary">Cancelar</button>
+                                    <button type="button" class="btn btn-success" onclick="valida_envia()">Guardar</button>
+
+                                  </div>
+                                </div>
+                              </form>
+                              <!-- final del  formulario mostrar detalle de alumnos -->
 
                             </div>
                           </div>
@@ -359,155 +447,8 @@
                         <!-- Form New Users -->
                         <div class="x_content">
                           <br />
-                          <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarAlumno.php">
 
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="ci_alumno" name="ci_alumno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
-                              </div>
-                            </div>
 
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Grado <span class="required">*</span></label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-
-                                <select class="form-control" name="id_grado">
-                                  <option value="">Seleccione su grado</option>
-                                  <?php
-                                  $query="SELECT * FROM grado";
-                                  $result= mysqli_query($con,$query);
-                                  while ($row=mysqli_fetch_array($result)):?>
-                                  <?php if ($row['1']=='AL. 2AM.'||$row['1']=='AL. 1AM.'|| $row['1']=='AL. 3AM.'): ?>
-                                  <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
-                                  <?php endif; ?>
-
-                                  <?php endwhile; mysqli_close($con); ?>
-                                </select>
-
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required" >*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="nombre" name="nombre" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="paterno" name="paterno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="materno" name="materno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Genero <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="radio">
-                                  <label>
-                                    <input type="radio" class="flat" checked name="sexo" value="Masculino"> Masculino
-                                  </label>
-                                </div>
-                                <div class="radio">
-                                  <label>
-                                    <input type="radio" class="flat" name="sexo" value="Femenina"> Femenino
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha_nac">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="lugar" name="lugar" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Correo electrónico <span class="required">*</span></label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="email" name="email" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="cel" name="cel" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="domicilio" name="domicilio" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();">
-                              </div>
-                            </div>
-
-                            <div class="divider-dashed"></div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Cédula Identidad del Tutor <span class="required">*</span></label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="ci_tutor" name="ci_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="return SoloNumeros(event);">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre del Tutor <span class="required">*</span></label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="nombre_tutor" name="nombre_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Telefono del Tutor <span class="required">*</span></label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="telefono_tutor" name="telefono_tutor" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Direccion del Tutor <span class="required">*</span></label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="direccion_tutor" name="direccion_tutor" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();">
-                              </div>
-                            </div>
-
-                            <div class="ln_solid"></div>
-
-                            <div class="form-group">
-                              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button type="reset" class="btn btn-primary">Cancelar</button>
-                                <button type="button" class="btn btn-success" onclick="valida_envia()">Guardar</button>
-
-                              </div>
-                            </div>
-
-                          </form>
                           <script type="text/javascript">
                           function SoloLetras() {
                             if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))event.returnValue = false;
@@ -635,8 +576,6 @@
                             demoform2.submit();
                           }
 //hasta aca validaciones vacio----------------------------------------------
-
-
                           </script>
 
 

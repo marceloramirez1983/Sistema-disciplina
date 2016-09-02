@@ -6,7 +6,7 @@ if ($_SESSION['loggedin']) {
   include_once("controladores/conexionBD.php");
 
   $idEditar=$_GET['id'];//VARIABLE DEL ID DEL GRUPO QUE SE DESEA MODIFICAR
-  echo $idEditar;
+  //echo $idEditar;
   $cnn= new conexion();
   $con =$cnn->conectar();
 

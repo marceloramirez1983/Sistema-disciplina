@@ -395,6 +395,7 @@
                             } else {
                               # code...
                               echo $printError = "La Cedula de Identida y el Codigo Secreto son Invalidos!";
+
                             }
                             ?>
                             <!-- <div class="form-group hide">

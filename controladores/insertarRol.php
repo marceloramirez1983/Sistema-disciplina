@@ -24,7 +24,6 @@ echo '<script language="javascript">
 alert("Rol registrado correctamente");
 window.location="http://localhost/sides/sides_roles.php";
 </script>';
-//header('Location: ../sides_grados.php');
 exit;
 
 }else {
@@ -33,6 +32,7 @@ exit;
   alert("Rol ya fue registrado");
   window.location="http://localhost/sides/sides_roles.php";
   </script>';
+  exit;
 }
 
 mysqli_close($con);
