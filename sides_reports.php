@@ -313,11 +313,20 @@
                               <td><?php echo $row ['fecha'];?></td>
                               <td>
                                 <?php
-                                  $id_falta = $row['id_falta'];
-                                  $queryFalta = "SELECT * FROM falta WHERE id_falta = '$id_falta'";
-                                  $falta = mysqli_query($con, $queryFalta);
-                                  $result_falta = mysqli_fetch_assoc($falta);
-                                  echo $result_falta['nombre'];
+                                  if ($row['tipo']=="D") {
+                                    $id_falta = $row['id_falta'];
+                                    $queryFalta = "SELECT * FROM falta WHERE id_falta = '$id_falta'";
+                                    $falta = mysqli_query($con, $queryFalta);
+                                    $result_falta = mysqli_fetch_assoc($falta);
+                                    echo $result_falta['nombre'];
+                                  }
+                                  else{
+                                    $id_falta = $row['id_falta'];
+                                    $queryFalta = "SELECT * FROM merito WHERE id_merito = '$id_falta'";
+                                    $falta = mysqli_query($con, $queryFalta);
+                                    $result_falta = mysqli_fetch_assoc($falta);
+                                    echo $result_falta['nombre_merito'];
+                                  }
                                 ?>
                               </td>
                               <!-- <td><?php echo $row ['ci_instructor'];?></td> -->
