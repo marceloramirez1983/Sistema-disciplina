@@ -25,21 +25,6 @@
     //mysqli_close($con);
 
 
-    $target_dir = "images/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-    // Check if image file is a actual image or fake image
-    if(isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-        if($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-        }
-    }
 
   } else {
     # code...
@@ -304,7 +289,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Administrar Sanciones</h3>
+                <h3>Administrar Sanciones con Resolucion</h3>
               </div>
 
 
@@ -323,7 +308,7 @@
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                       <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Sancionar</a>
                       </li>
-                      <li role="presentation" class="hide"><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Lista de sancionados</a>
+                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="true">Resoluciones</a>
                       </li>
                       <!-- <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
                       </li> -->
@@ -334,13 +319,14 @@
                         <!-- Formulario de sanciones nuevas -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarSancionResolucion.php" enctype="multipart/form-data">
+                          <!-- se agrgo esto al formulario  para subir pdf  enctype="multipart/form-data" -->
+                          <form id="demo-form2" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarSancionResolucion.php" enctype="multipart/form-data">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sancionador">C.I. Instructor sanciona <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input readonly type="text" id="sancionador" name="id_user" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $ID_CI; ?>">
+                                <input readonly type="text" id="sancionador" name="ci_sancionador" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $ID_CI; ?>">
                               </div>
                             </div>
 
@@ -348,7 +334,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Alumno-sancionado">C.I. Alumno sancionado <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="Alumno-sancionado" name="id_ci" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
+                                <input type="text" id="Alumno-sancionado" name="ci_sancionado" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
@@ -363,7 +349,9 @@
                                     $result= mysqli_query($con,$query);
                                     //$getPoint = mysqli_fetch_assoc($result);
                                     while ($row=mysqli_fetch_array($result)):?>
-                                    <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
+                                    <?php if (($row['0'] == 6) || ($row['0'] == 7)): ?>
+                                      <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
+                                    <?php endif; ?>
                                   <?php endwhile;?>
                                 </select>
 
@@ -383,7 +371,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Puntos <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12 puntos" name="puntos">
-                                <input readonly type="text" class="form-control col-md-7 col-xs-12" name="puntos">
+                                <input  type="text" class="form-control col-md-7 col-xs-12" name="puntos">
                               </div>
                             </div>
 
@@ -391,7 +379,15 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Sancion <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input readonly class="form-control col-md-7 col-xs-12" required="required" type="text" name="fecha" value="<?php echo date("d/m/y"); ?>">
+                                <input readonly class="form-control col-md-7 col-xs-12" required="required" type="text" name="fecha" value="<?php echo date("d/m/Y"); ?>">
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sancionador">Titulo  <span class="required">*</span>
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="titulo" name="titulo" required="required" class="form-control col-md-7 col-xs-12" >
                               </div>
                             </div>
 
@@ -399,7 +395,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Seleccionar Resolución <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="file" name="fileToUpload" id="fileToUpload">
+                                <input type="file" name="archivo" id="archivo">
                               </div>
                             </div>
 
@@ -433,45 +429,33 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                           <div class="x_panel">
                             <div class="x_title">
-                              <h2>Lista de Alumnos sancionados<small></small></h2>
-                              <!-- <ul class="nav navbar-right panel_toolbox">
-                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                  <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                  </ul>
-                                </li>
-                                <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                </li>
-                              </ul> -->
+                              <h2>Lista de resoluciones almacenadas<small></small></h2>
+
                               <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
+                            </div>                            <div class="x_content">
                               <table class="table table-hover">
                                 <thead>
                                   <tr>
-                                    <th>Cédula Identidad</th>
-                                    <th>Grado</th>
+                                    <td>N#</td>
                                     <th>Nombre</th>
-                                    <th>Apellido Paterno</th>
-                                    <th>Sancion</th>
-                                    <th>Puntos</th>
-                                    <th></th>
+                                    <th>Paterno</th>
+                                    <th>Materno</th>
+                                    <th>Titulo</th>
                                   </tr>
                                 </thead>
+
                                 <tbody>
+                                  <?php
+                                  $resoluciones_usuarios= mysqli_query($con, "SELECT * FROM resoluciones JOIN usuario ON resoluciones.ci_alumno = usuario.id_ci");
+                                  $num=0;
+                                  while($row = mysqli_fetch_array($resoluciones_usuarios, MYSQLI_ASSOC)):?>
+
                                   <tr>
-                                    <th scope="row">2314324</th>
-                                    <td>Markasadasasd</td>
-                                    <td>Markasadasasd</td>
-                                    <td>@Markasadasasd</td>
-                                    <td>Markasadasasd</td>
-                                    <td>Markasadasasd</td>
+                                    <td><?php echo $row ['id_resolucion'];?></td>
+                                    <td><?php echo $row ['nombre'];?></td>
+                                    <td><?php echo $row ['paterno'];?></td>
+                                    <td><?php echo $row ['materno'];?></td>
+                                    <td><?php echo $row ['titulo'];?></td>
                                     <td>
                                       <div class="btn-group">
                                         <button type="button" class="btn btn-primary">Opción</button>
@@ -480,19 +464,20 @@
                                           <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
+                                          <li><a href="controladores/descargar_archivo.php ?id=<?php echo $row ['id_resolucion'];?>">Descargar</a>
                                           </li>
-                                          <li><a href="#">Modificar</a>
-                                          </li>
+                                          <!-- <li><a href="#">Modificar</a>
+                                          </li> -->
                                           <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
+                                          <li><a href="sides_sanciones_rs.php">Cancelar</a>
                                           </li>
                                         </ul>
                                       </div>
                                     </td>
 
                                   </tr>
-                                  <tr>
+                                  <?php Endwhile; ?>
+                                  <!-- <tr>
                                     <th scope="row">2314324</th>
                                     <td>Jacob</td>
                                     <td>Thornton</td>
@@ -545,7 +530,8 @@
                                       </div>
                                       </div>
                                     </td>
-                                  </tr>
+                                  </tr> -->
+
                                 </tbody>
                               </table>
 
@@ -672,8 +658,8 @@
 
       });
     </script>
-
-    <script type="text/javascript">
+<!-- ------------------------------------------------------------------------------- -->
+    <!-- <script type="text/javascript">
       $(document).ready(function(){
 
         $(".grupo").change(function(){
@@ -693,7 +679,8 @@
         });
 
       });
-    </script>
+    </script> -->
+    <!-- ---------------------------------------------------------------------------- -->
     <script type="text/javascript">
     //Se utiliza para que el campo de texto solo acepte numeros
     function SoloNumeros(evt){

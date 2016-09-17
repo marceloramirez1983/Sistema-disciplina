@@ -615,7 +615,7 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 	puntos INT,
 	tipo VARCHAR(5),
 	fecha VARCHAR(50),
-	resolucion MEDIUMBLOB,
+	id_resolucion INT,
 	PRIMARY KEY(id_sancion)
 	)";
 
@@ -623,7 +623,7 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 		echo "<br> - TABLA SANCION CREADA - ";
 
 		$INSERT_SANCIONES_TEST = "INSERT INTO
-			sancion(id_sancion,ci_instructor,ci_alumno,id_falta,id_grupo,puntos,tipo,fecha,resolucion)
+			sancion(id_sancion,ci_instructor,ci_alumno,id_falta,id_grupo,puntos,tipo,fecha,id_resolucion)
 				VALUES ('','12','17','8','1','1','D','08/05/2016',NULL),
 							 ('','12','17','8','1','1','D','08/06/2016',NULL),
 							 ('','13','17','8','1','1','D','08/10/2016',NULL),
@@ -640,6 +640,20 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 			}
 	}
 
+	//-----------------------------tabla resoluciones-----------------------
+	$TB_RESOLUCION = "CREATE TABLE resoluciones(
+	id_resolucion INT NOT NULL AUTO_INCREMENT,
+	ci_alumno INT,
+	nombre VARCHAR(50),
+	titulo VARCHAR(50),
+	contenido mediumblob,
+	tipo VARCHAR(50),
+	PRIMARY KEY(id_resolucion)
+	)";
+
+	if(mysqli_query($con, $TB_RESOLUCION)){
+		echo "<br> - TABLA RESOLUCIONES CREADA - ";
+	}
 	mysqli_close($con);
 }
 

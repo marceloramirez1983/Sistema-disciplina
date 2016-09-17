@@ -378,7 +378,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Sancion <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input readonly class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha" value="<?php echo date("d/m/y"); ?>">
+                                <input readonly class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha" value="<?php echo date("d/m/Y"); ?>">
                               </div>
                             </div>
 
