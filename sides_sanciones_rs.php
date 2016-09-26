@@ -320,7 +320,7 @@
                         <div class="x_content">
                           <br />
                           <!-- se agrgo esto al formulario  para subir pdf  enctype="multipart/form-data" -->
-                          <form id="demo-form2" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarSancionResolucion.php" enctype="multipart/form-data">
+                          <form id="form2" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarSancionResolucion.php" enctype="multipart/form-data">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sancionador">C.I. Instructor sanciona <span class="required">*</span>
@@ -334,7 +334,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Alumno-sancionado">C.I. Alumno sancionado <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="Alumno-sancionado" name="ci_sancionado" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
+                                <input type="text" id="Alumnosancionado" name="ci_sancionado" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
@@ -343,7 +343,7 @@
                               <div class="col-md-6 col-sm-6 col-xs-12">
 
                                 <select class="form-control grupo" name="grupo">
-                                  <option>Seleccione un grupo</option>
+                                  <option value="">Seleccione un grupo</option>
                                   <?php
                                     $query="SELECT * FROM grupo";
                                     $result= mysqli_query($con,$query);
@@ -371,7 +371,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Puntos <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12 puntos" name="puntos">
-                                <input  type="text" class="form-control col-md-7 col-xs-12" name="puntos">
+                                <input  type="text" class="form-control col-md-7 col-xs-12" id="puntos" name="puntos" onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
@@ -395,7 +395,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Seleccionar Resolución <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="file" name="archivo" id="archivo">
+                                <input type="file" name="archivo" id="archivo" accept="application/pdf">
                               </div>
                             </div>
 
@@ -413,16 +413,81 @@
                             <div class="ln_solid"></div>
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button type="submit" class="btn btn-primary">Cancelar</button>
-                                <button type="submit" class="btn btn-success">Guardar</button>
+                                <button type="reset" class="btn btn-primary">Cancelar</button>
+                                <button type="button" class="btn btn-success" onclick="valida_envia()">Guardar</button>
                               </div>
                             </div>
 
                           </form>
                         </div>
-
-
                       </div>
+
+                      <!-- validaciones del formulario -->
+                      <script type="text/javascript">
+                      //Se utiliza para que el campo de texto solo acepte numeros
+                      function SoloNumeros(evt){
+                       if(window.event){//asignamos el valor de la tecla a keynum
+                        keynum = evt.keyCode; //IE
+                       }
+                       else{
+                        keynum = evt.which; //FF
+                       }
+                       //comprobamos si se encuentra en el rango numérico y que teclas no recibirá.
+                       if((keynum > 47 && keynum < 58) || keynum == 8 || keynum == 13 || keynum == 6 ){
+                        return true;
+                       }
+                       else{
+                        return false;
+                       }
+                      }
+
+                      function valida_envia(){
+
+                        valor = document.getElementById("Alumnosancionado").value;
+                        if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                        alert ("Ingrese la cedula de identidad del alumno")
+                        Alumnosancionado.focus()
+                        return false;
+                        }
+
+                        valor = document.getElementById("puntos").value;
+                        if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                        alert ("Ingrese los puntos de sancion de la resolucion")
+                        puntos.focus()
+                        return false;
+                        }
+
+                        valor = document.getElementById("titulo").value;
+                        if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                        alert ("Ingrese un titulo para el documento")
+                        titulo.focus()
+                        return false;
+                        }
+
+
+                        selec= form2.grupo.selectedIndex
+                        if (form2.grupo.options[selec].value==""){
+                        alert ("Seleccione el grupo")
+                        return false
+                        }
+
+                        selec= form2.falta.selectedIndex
+                        if (form2.falta.options[selec].value==""){
+                        alert ("Seleccione la falta")
+                        return false
+                        }
+
+                        var imagen = document.getElementById("archivo").files;
+                        if(imagen.length == 0)
+                        {
+                          alert("ERROR Debe subir el PDF.");
+                          return;
+                        }
+                        form2.submit();
+                      }
+                      </script>
+                      <!-- fin de validaciones del formulario -->
+
                       <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
                         <!-- List New Users -->
@@ -681,7 +746,7 @@
       });
     </script> -->
     <!-- ---------------------------------------------------------------------------- -->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
     //Se utiliza para que el campo de texto solo acepte numeros
     function SoloNumeros(evt){
      if(window.event){//asignamos el valor de la tecla a keynum
@@ -698,7 +763,7 @@
       return false;
      }
     }
-    </script>
+    </script> -->
     <!--  /Choose One Group -->
 
     <!-- iCheck -->

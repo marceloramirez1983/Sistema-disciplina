@@ -222,7 +222,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="sides_user_CambiarContrasena.php">Cambiar contraseña</a>
+                    <li><a href="">Cambiar contraseña</a>
                     </li>
                     <!-- <li>
                       <a href="javascript:;">
@@ -252,7 +252,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Administrar Usuario</h3>
+                <h3>Modificar Contraseña</h3>
               </div>
             </div>
 
@@ -266,10 +266,10 @@
                   <br>
                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Buscar</a>
-                      </li>
+                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Cambiar Contraseña</a>
+                      <!-- </li>
                       <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Registrar</a>
-                      </li>
+                      </li> -->
                       <!-- <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
                       </li> -->
                     </ul>
@@ -280,7 +280,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                           <div class="x_panel">
                             <div class="x_title">
-                              <h2>Lista de Usuarios <small>puedes modifica o eliminar</small></h2>
+                              <h2>Cambiar contraseña<small>puedes modificar tu contraseña</small></h2>
                               <!-- <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -298,226 +298,96 @@
                               </ul> -->
                               <div class="clearfix"></div>
                             </div>
-                            <div class="x_content">
-                              <table class="table table-hover">
-                                <thead>
-                                  <tr>
-                                    <th>Cédula Identidad</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido Paterno</th>
-                                    <th>Correo Electrónico</th>
-                                    <th></th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <?php
-                                    $queryUsuarios = "SELECT id_ci, nombre, paterno, correo FROM usuario";
-                                    $getAll = mysqli_query($con, $queryUsuarios);
-                                    while ($row = mysqli_fetch_array($getAll, MYSQLI_ASSOC)):
-                                  ?>
-                                <tr>
-                                  <th scope="row"><?php echo $row ['id_ci']; ?></th>
-                                  <td><?php echo $row ['nombre']; ?></td>
-                                  <td><?php echo $row ['paterno']; ?></td>
-                                  <td><?php echo $row ['correo']; ?></td>
-                                  <td>
-                                    <div class="btn-group">
-                                      <button type="button" class="btn btn-primary">Opción</button>
-                                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                      </button>
-                                      <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Ver mas detalles</a>
-                                        </li>
-                                        <li><a href="#">Modificar</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Eliminar</a>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <?php endwhile; ?>
-                                </tbody>
-                              </table>
 
+<!-- desde aca cambio contraseña para usuario   -->
+                            <div class="x_content">
+                              <br />
+                              <form id="form" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores\CambiarContrasena.php">
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cedula Identidad<span class="required">*</span>
+                                  </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="txt_ci_usuario" readonly name="txt_ci_usuario" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row_user['id_ci']; ?>">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Contraseña Actual<span class="required">*</span>
+                                  </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="password" id="txt_contrasena" name="txt_contrasena" required="required" class="form-control col-md-7 col-xs-12">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Repita Contraseña Actual <span class="required">*</span>
+                                  </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="password" id="txt_contrasenaRepetida" name="txt_contrasenaRepetida" required="required" class="form-control col-md-7 col-xs-12">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ingrese su nueva contraseña <span class="required">*</span>
+                                  </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="txt_Nuevacontrasena" name="txt_Nuevacontrasena" required="required" class="form-control col-md-7 col-xs-12">
+                                  </div>
+                                </div>
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                  <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button type="button" class="btn btn-primary" onClick="history.go(-1)">Cancelar</button>
+                                    <button type="button" class="btn btn-success" onclick="valida_envia()">Guardar</button>
+                                  </div>
+                                </div>
+                              </form>
+                              <script type="text/javascript">
+
+                              function valida_envia(){
+
+                                valor = document.getElementById("txt_contrasena").value;
+                                if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                                alert ("Ingrese su Contraseña Actual")
+                                return false;
+                                }
+
+                                valor = document.getElementById("txt_contrasenaRepetida").value;
+                                if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                                alert ("Repita su Contraseña Actual")
+                                return false;
+                                }
+
+                                valor = document.getElementById("txt_Nuevacontrasena").value;
+                                if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                                alert ("Ingrese su nueva contraseña")
+                                return false;
+                                }
+
+                                clave1 = form.txt_contrasena.value
+   	                            clave2 = form.txt_contrasenaRepetida.value
+
+   	                            if (clave1 == clave2)
+                                {
+                                form.submit();
+                                }
+                                else
+                                {
+      	                        alert("La contraseña actual no coincide con su contraseña repetida ")
+                                txt_contrasena.value="";
+                                txt_contrasenaRepetida.value=""
+                                txt_contrasena.focus();
+                                }
+                              }
+                              </script>
                             </div>
+<!-- HASTA ACA LOS CAMBIOS PARA cambiar contraseña  USUARIO-->
+
                           </div>
                         </div>
-
                       </div>
-                      <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-
-                        <!-- Form New Users -->
-                        <div class="x_content">
-                          <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarUsuario.php">
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" name="txt_ci_usuario" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Grado <span class="required">*</span></label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control" name="id_grado" >
-                                  <option value="">Seleccione su grado</option>
-                                  <?php
-                                  $query="SELECT * FROM grado";
-                                  $result= mysqli_query($con,$query);
-                                  while ($row=mysqli_fetch_array($result)):?>
-                                    <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
-                                  <?php endwhile; ?>
-                                </select>
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Arma <span class="required">*</span></label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control" name="id_arma">
-                                  <option value="">Seleccione su arma</option>
-                                  <?php
-                                  $query2="SELECT * FROM arma";
-                                  $result= mysqli_query($con,$query2);
-                                  while ($row=mysqli_fetch_array($result)):?>
-                                    <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
-                                  <?php endwhile;
-                                  //mysqli_close($con);
-                                  ?>
-                                </select>
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Genero <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="radio">
-                                  <label>
-                                    <input type="radio" class="flat" checked name="rbutton_genero_usuario" value="Masculino"> Masculino
-                                  </label>
-                                </div>
-                                <div class="radio">
-                                  <label>
-                                    <input type="radio" class="flat" name="rbutton_genero_usuario" value="Femenina"> Femenina
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="txt_nombre_usuario" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="txt_paterno_usuario" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="txt_materno_usuario" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="txt_celular_usuario" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <!--div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Teléfono </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="txt_telefono_usuario" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div-->
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="calendar_nacimiento_usuario">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="nacimiento" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Correo electrónico <span class="required">*</span></label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="txt_email_usuario" name="txt_email_usuario" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="txt_domicilio_usuario" name="txt_domicilio_usuario" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <!-- DESDE ACA LOS CAMBIOS PARA SUPRIMIR REGISTRAR USUARIO-->
-
-                            <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Rol <span class="required">*</span></label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control" name="id_rol" id="id_rol">
-                                  <option value="">Seleccione un Rol</option>
-                                  <?php
-                                  $queryrol="SELECT * FROM rol";
-                                  $result= mysqli_query($con,$queryrol);
-                                  while ($row=mysqli_fetch_array($result)):?>
-                                    <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
-                                  <?php endwhile;
-                                  //mysqli_close($con);
-                                  ?>
-                                </select>
-                              </div>
-                            </div>
-
-
-                            <!-- HASTA ACA LOS CAMBIOS PARA SUPRIMIR REGISTRAR USUARIO-->
-
-
-
-
-                            <div class="ln_solid"></div>
-                            <div class="form-group">
-                              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button type="button" class="btn btn-primary" onClick="history.go(-1)">Cancelar</button>
-                                <button type="submit" class="btn btn-success" onclick="">Guardar</button>
-                              </div>
-                            </div>
-
-                          </form>
-                        </div>
-
-                      </div>
-
                     </div>
                   </div>
 
