@@ -75,7 +75,7 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
             <!-- menu profile quick info -->
             <div class="profile">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="images/placeholder_profile.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Bienvenido,</span>
@@ -168,12 +168,20 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                     <li><a><i class="fa fa-list-alt"></i> Administrar Méritos <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="sides_otorgar_merito.php">Boleta de mérito</a></li>
+
                       </ul>
                     </li>
+
                     <li><a><i class="fa fa-pie-chart"></i> Administrar Reportes <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="index.php">Reportes Estadisticos </a></li>
                         <li><a href="sides_reporte_arrestados.php">Lista de Arrestados </a></li>
+                      </ul>
+                    </li>
+
+                    <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
                       </ul>
                     </li>
                   <?php endif; ?>
@@ -250,12 +258,12 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt=""><?php echo $row_user['nombre']." ".$row_user['paterno']; ?>
+                    <img src="images/placeholder_profile.jpg" alt=""><?php echo $row_user['nombre']." ".$row_user['paterno']; ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">  Profile</a>
-                    </li>
+                    <!-- <li><a href="javascript:;">  Profile</a>
+                    </li> -->
 
                     <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
                     </li>
@@ -331,7 +339,7 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Puntos <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select class="form-control" name="CBoxselect_puntos">
-                            <option value="">Seleccione los puntos para perdidos</option>
+                            <option value="">Seleccione los puntos otorgados</option>
                             <option <?php if($row['puntos']==0):?> selected="selected" <?php endif;?>value="0">Sin Puntaje</option>
                             <option <?php if($row['puntos']==1):?> selected="selected" <?php endif;?>value="1">1 Pto.</option>
                             <option <?php if($row['puntos']==2):?> selected="selected" <?php endif;?>value="2">2 Pto.</option>

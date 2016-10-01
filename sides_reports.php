@@ -191,6 +191,11 @@
                         <li><a href="sides_reports.php">Reporte Disciplinario</a></li>
                       </ul>
                     </li>
+                    <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
+                      </ul>
+                    </li>
                   <?php endif; ?>
 
                 </ul>
@@ -218,6 +223,10 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
+
+                    <li><a href="sides_reports_cambiarContrasenaAlum.php">Cambiar contraseña</a>
+                    </li>
+
                     <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
                     </li>
                   </ul>

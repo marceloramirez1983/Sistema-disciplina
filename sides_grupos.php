@@ -160,6 +160,12 @@ if ($_SESSION['loggedin']) {
                       <li><a href="sides_reporte_arrestados.php">Lista de Arrestados </a></li>
                     </ul>
                   </li>
+
+                  <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
+                    </ul>
+                  </li>
                 <?php endif; ?>
 
                 <!-- Jefe De Personal -->
@@ -239,8 +245,8 @@ if ($_SESSION['loggedin']) {
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">  Profile</a>
-                    </li>
+                    <!-- <li><a href="#"></a>
+                    </li> -->
 
                     <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
                     </li>

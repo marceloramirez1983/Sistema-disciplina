@@ -154,6 +154,7 @@ if ($_SESSION['loggedin']) {
                   <li><a><i class="fa fa-list-alt"></i> Administrar Méritos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_otorgar_merito.php">Boleta de mérito</a></li>
+
                     </ul>
                   </li>
 
@@ -161,6 +162,12 @@ if ($_SESSION['loggedin']) {
                     <ul class="nav child_menu">
                       <li><a href="index.php">Reportes Estadisticos </a></li>
                       <li><a href="sides_reporte_arrestados.php">Lista de Arrestados </a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
                     </ul>
                   </li>
                 <?php endif; ?>
@@ -242,8 +249,8 @@ if ($_SESSION['loggedin']) {
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">  Profile</a>
-                    </li>
+                    <!-- <li><a href="javascript:;">  Profile</a>
+                    </li> -->
                     <!-- <li>
                       <a href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>

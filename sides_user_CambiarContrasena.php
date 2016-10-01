@@ -134,12 +134,33 @@
                     <ul class="nav child_menu">
                       <li><a href="sides_grupos.php">Registrar Grupos</a></li>
                       <li><a href="sides_faltas.php">Registrar Faltas</a></li>
+                      <li><a href="sides_merito.php">Registrar Mérito</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
+                      <li><a href="sides_sanciones_rs.php">Boleta de sancion con Resolución</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-list-alt"></i> Administrar Meritos <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_otorgar_merito.php">Boleta de merito</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-pie-chart"></i> Administrar Reportes <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.php">Reportes Estadisticos </a></li>
+                      <li><a href="sides_reporte_arrestados.php">Lista de Arrestados </a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
                     </ul>
                   </li>
                 <?php endif; ?>
@@ -151,6 +172,19 @@
                       <li><a href="sides_instructor.php">Registrar Instructor</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
+                    </ul>
+                  </li>
+
+
                 <?php endif; ?>
 
                 <!-- Instructor -->
@@ -160,6 +194,13 @@
                       <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                     </ul>
                   </li>
+
+                  <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
+                    </ul>
+                  </li>
+
                 <?php endif; ?>
 
                 <!-- Primera Compañia -->
@@ -169,6 +210,18 @@
                       <li><a href="sides_alumnos.php">Registrar Alumnos</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
+                    </ul>
+                  </li>
+
                 <?php endif; ?>
 
                 <!-- Alumno -->
@@ -178,8 +231,12 @@
                       <li><a href="sides_reports.php">Reporte Disciplinario</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
+                    </ul>
+                  </li>
                 <?php endif; ?>
-
 
                 </ul>
               </div>
@@ -222,8 +279,8 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="">Cambiar contraseña</a>
-                    </li>
+                    <!-- <li><a href="sides_user_CambiarContrasena.php">Cambiar contraseña</a>
+                    </li> -->
                     <!-- <li>
                       <a href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
@@ -320,19 +377,20 @@
                                   </div>
                                 </div>
 
-                                <div class="form-group">
-                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Repita Contraseña Actual <span class="required">*</span>
-                                  </label>
-                                  <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="password" id="txt_contrasenaRepetida" name="txt_contrasenaRepetida" required="required" class="form-control col-md-7 col-xs-12">
-                                  </div>
-                                </div>
 
                                 <div class="form-group">
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ingrese su nueva contraseña <span class="required">*</span>
                                   </label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txt_Nuevacontrasena" name="txt_Nuevacontrasena" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="password" id="txt_Nuevacontrasena" name="txt_Nuevacontrasena" required="required" class="form-control col-md-7 col-xs-12">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Repita Contraseña nueva <span class="required">*</span>
+                                  </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="password" id="txt_contrasenaRepetida" name="txt_contrasenaRepetida" required="required" class="form-control col-md-7 col-xs-12">
                                   </div>
                                 </div>
 
@@ -366,7 +424,7 @@
                                 return false;
                                 }
 
-                                clave1 = form.txt_contrasena.value
+                                clave1 = form.txt_Nuevacontrasena.value
    	                            clave2 = form.txt_contrasenaRepetida.value
 
    	                            if (clave1 == clave2)
@@ -375,10 +433,10 @@
                                 }
                                 else
                                 {
-      	                        alert("La contraseña actual no coincide con su contraseña repetida ")
-                                txt_contrasena.value="";
+      	                        alert("La nueva contraseña no coincide con la nueva contraseña repetida ")
+                                txt_Nuevacontrasena.value="";
                                 txt_contrasenaRepetida.value=""
-                                txt_contrasena.focus();
+                                txt_Nuevacontrasena.focus();
                                 }
                               }
                               </script>

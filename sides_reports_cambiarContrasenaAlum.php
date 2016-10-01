@@ -89,7 +89,7 @@
                     <li><a><i class="fa fa-user"></i> Administrar Usuario <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="sides_user.php">Registrar Usuario</a></li>
-                        <li><a href="sides_asign_user.php">Asignar Usuario</a></li>
+                        <!-- <li><a href="sides_asign_user.php">Asignar Usuario</a></li> -->
                       </ul>
                     </li>
 
@@ -147,35 +147,12 @@
                       <ul class="nav child_menu">
                         <li><a href="sides_grupos.php">Registrar Grupos</a></li>
                         <li><a href="sides_faltas.php">Registrar Faltas</a></li>
-                        <li><a href="sides_merito.php">Registrar Mérito</a></li>
                       </ul>
                     </li>
 
                     <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
-                        <li><a href="sides_sanciones_rs.php">Boleta de sancion con Resolución</a></li>
-                      </ul>
-                    </li>
-
-                    <li><a><i class="fa fa-list-alt"></i> Administrar Méritos <span class="fa fa-chevron-down"></span></a>
-                      <ul class="nav child_menu">
-                        <li><a href="sides_otorgar_merito.php">Boleta de mérito</a></li>
-
-                      </ul>
-                    </li>
-
-                    <li><a><i class="fa fa-pie-chart"></i> Administrar Reportes <span class="fa fa-chevron-down"></span></a>
-                      <ul class="nav child_menu">
-                        <li><a href="index.php">Reportes Estadisticos </a></li>
-                        <li><a href="sides_reporte_arrestados.php">Lista de Arrestados </a></li>
-                        <!-- <li><a href="#">Antecedentes alumno</a></li> -->
-                      </ul>
-                    </li>
-
-                    <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
-                      <ul class="nav child_menu">
-                        <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
                       </ul>
                     </li>
                   <?php endif; ?>
@@ -222,7 +199,6 @@
             </div>
             <!-- /sidebar menu -->
 
-
           </div>
         </div>
 
@@ -243,17 +219,16 @@
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
 
-                    <!-- <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li> -->
+                    <li><a href="sides_reports_cambiarContrasenaAlum.php">Cambiar contraseña</a>
+                    </li>
 
                     <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
                     </li>
                   </ul>
                 </li>
+
+
+
               </ul>
             </nav>
           </div>
@@ -267,126 +242,117 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Reporte de Arrestados </h3>
+                <h3>CAMBIO DE CONTRASEÑA</h3>
               </div>
             </div>
+
             <div class="clearfix"></div>
 
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Generar Lista de Arrestados </h2>
 
+                    <h1>Alumno</h1></br>
+                    <ul class="nav navbar-right panel_toolbox">
+                    </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <div class="col-md-12 col-sm-9 col-xs-12">
-                      <form action="" method="post">
-                        <div class="profile_title">
+                    <!-- ---------FORMULARIO  CAMBIO CONTRASENA----------->
+                    <div class="x_content">
+                      <br />
+                      <form id="form" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores\CambiarContrasena.php">
 
-                          <div class="col-md-6">
-                            <fieldset>
-                              <div class="control-group">
-                                <div class="controls">
-                                  <div class="col-md-11 xdisplay_inputx form-group has-feedback">
-                                    <input id="birthday" name="date_one" class="date-picker form-control col-md-7 col-xs-12 has-feedback-left" type="text" placeholder="Fecha Inicial">
-                                    <span class="fa fa-calendar-o form-control-feedback left" ></span>
-                                  </div>
-                                </div>
-                              </div>
-                            </fieldset>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cedula Identidad<span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="txt_ci_usuario" readonly name="txt_ci_usuario" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row_user['id_ci']; ?>">
                           </div>
+                        </div>
 
-                          <div class="col-md-6">
-                            <fieldset>
-                              <div class="control-group">
-                                <div class="controls">
-                                  <div class="col-md-11 xdisplay_inputx form-group has-feedback">
-                                    <input id="birthday_two" name="date_two" class="date-picker form-control col-md-7 col-xs-12 has-feedback-left" type="text" placeholder="Fecha Final">
-                                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                                  </div>
-                                </div>
-                              </div>
-                            </fieldset>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Contraseña Actual<span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="password" id="txt_contrasena" name="txt_contrasena" required="required" class="form-control col-md-7 col-xs-12">
                           </div>
+                        </div>
 
-                          <div class="col-md-6 form-group">
-                            <button type="submit" class="btn btn-primary">Generar Lista</button>
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ingrese su nueva contraseña <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="password" id="txt_Nuevacontrasena" name="txt_Nuevacontrasena" required="required" class="form-control col-md-7 col-xs-12">
                           </div>
+                        </div>
 
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Repita Contraseña nueva <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="password" id="txt_contrasenaRepetida" name="txt_contrasenaRepetida" required="required" class="form-control col-md-7 col-xs-12">
+                          </div>
+                        </div>
+
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                          <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button type="button" class="btn btn-primary" onClick="history.go(-1)">Cancelar</button>
+                            <button type="button" class="btn btn-success" onclick="valida_envia()">Guardar</button>
+                          </div>
                         </div>
                       </form>
-                      <div class="col-md-12 col-sm-9 col-xs-12">
-                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                          <!-- start user projects -->
-                          <br>
-                          <table id="datatable-buttons" class="table table-striped no-margin">
-                            <thead>
-                              <tr>
-                                <th>#</th>
-                                <th>Alumno</th>
-                                <th>Puntos</th>
-                              </tr>
-                            </thead>
-                            <tbody>
+                      <script type="text/javascript">
 
-                              <?php
+                      function valida_envia(){
 
-                              if (isset($_POST['date_two'])) {
-                                # code...
-                                $DATE_ONE = $_POST['date_one'];
-                                $DATE_TWO = $_POST['date_two'];
+                        valor = document.getElementById("txt_contrasena").value;
+                        if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                        alert ("Ingrese su Contraseña Actual")
+                        return false;
+                        }
 
-                                // $query = "SELECT *, SUM(puntos) AS total_puntos_report
-                                // FROM sancion
-                                // WHERE fecha BETWEEN '$DATE_ONE' AND '$DATE_TWO' ORDER BY ci_alumno";
-                                $query = "SELECT ci_alumno
-                                FROM sancion
-                                WHERE fecha BETWEEN '$DATE_ONE' AND '$DATE_TWO' GROUP BY ci_alumno";
-                                $getAll = mysqli_query($con, $query);
-                                $num=0;
+                        valor = document.getElementById("txt_contrasenaRepetida").value;
+                        if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                        alert ("Repita su Contraseña Actual")
+                        return false;
+                        }
 
-                              }
+                        valor = document.getElementById("txt_Nuevacontrasena").value;
+                        if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                        alert ("Ingrese su nueva contraseña")
+                        return false;
+                        }
 
+                        clave1 = form.txt_Nuevacontrasena.value
+                        clave2 = form.txt_contrasenaRepetida.value
 
-                              while ($row = mysqli_fetch_array($getAll, MYSQLI_ASSOC)):
-                              ?>
-                              <tr>
-                                <td><?php $num=$num+1;echo $num ?></td>
-                                <td>
-                                  <?php
-                                    $id_ci_report = $row['ci_alumno'];
-                                    $queryFalta = "SELECT * FROM usuario WHERE id_ci = '$id_ci_report'";
-                                    $falta = mysqli_query($con, $queryFalta);
-                                    $result_falta = mysqli_fetch_assoc($falta);
-                                    echo $result_falta['nombre']." ".$result_falta['paterno']." ".$result_falta['materno'];
-                                  ?>
-                                </td>
-                                <td>
-                                  <?php
-                                  $id_ci_report = $row['ci_alumno'];
-                                  $queryFalta = "SELECT * FROM usuario WHERE id_ci = '$id_ci_report'";
-                                  $falta = mysqli_query($con, $queryFalta);
-                                  $result_falta = mysqli_fetch_assoc($falta);
-                                  echo $result_falta['total_puntos'];
-                                  ?>
-                                </td>
-                              </tr>
-                              <?php
-                                endwhile;
-                              ?>
-                            </tbody>
-                          </table>
-                          <!-- end user projects -->
-                        </div>
-
-                      </div>
+                        if (clave1 == clave2)
+                        {
+                        form.submit();
+                        }
+                        else
+                        {
+                        alert("La nueva contraseña no coincide con la nueva contraseña repetida ")
+                        txt_Nuevacontrasena.value="";
+                        txt_contrasenaRepetida.value=""
+                        txt_Nuevacontrasena.focus();
+                        }
+                      }
+                      </script>
                     </div>
+
+
+
+                    <!-- ---------HASTA ACA CAMBIO CONTRASENA----------->
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
         <!-- /page content -->
@@ -408,12 +374,16 @@
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- morris.js -->
+    <script src="../vendors/raphael/raphael.min.js"></script>
+    <script src="../vendors/morris.js/morris.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <!-- bootstrap-daterangepicker -->
     <script src="js/moment/moment.min.js"></script>
     <script src="js/datepicker/daterangepicker.js"></script>
-
-    <!-- Custom Theme Scripts -->
-    <script src="js/custom.js"></script>
     <!-- Datatables -->
     <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -430,9 +400,9 @@
     <script src="../vendors/jszip/dist/jszip.min.js"></script>
     <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="js/moment/moment.min.js"></script>
-    <script src="js/datepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="js/custom.js"></script>
 
     <!-- Datatables -->
     <script>
@@ -500,32 +470,6 @@
       });
     </script>
     <!-- /Datatables -->
-
-    <!-- bootstrap-daterangepicker -->
-    <script>
-      $(document).ready(function() {
-        $('#birthday').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_4"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-      });
-    </script>
-    <!-- /bootstrap-daterangepicker -->
-
-    <!-- bootstrap-daterangepicker -->
-    <script>
-      $(document).ready(function() {
-        $('#birthday_two').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_4"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-      });
-    </script>
-    <!-- /bootstrap-daterangepicker -->
 
   </body>
 </html>

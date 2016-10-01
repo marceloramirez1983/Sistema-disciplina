@@ -9,27 +9,68 @@ $passNueva=$_POST['txt_Nuevacontrasena'];
 
 $cnn= new conexion();//crea instancia de la clase conexion
 $con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion conectar.
+$database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");//mysqli_select_db(variableconexion,nombreBD)
 
+$buscar="SELECT * from asignar_usuario WHERE id_ci='$ci' and usuario_password='$PassActual'";
+$result_busqueda=mysqli_query($con,$buscar);
+$row = mysqli_fetch_assoc($result_busqueda);
 
-echo $ci;
-echo $PassActual;
-echo $PassActualRepetida;
-echo $passNueva;
+$rol=$row['id_rol'];
 
-// $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");//mysqli_select_db(variableconexion,nombreBD)
-//
-// $insertar="UPDATE merito SET nombre_merito = '$nombre_merito',puntos = '$puntos'  WHERE id_merito = '$id_merito'";
-//
-// if (!mysqli_query($con,$insertar)) { die ("Error al insertar". mysqli_error);
-// }else {
-//   echo '<script language="javascript">
-//   alert("Modificaciones  realizadas correctamente");
-//   window.location="http://localhost/sides/sides_merito.php";
-//   </script>';
-// }
-//
-// //header('Location: ../sides_grados.php');
-// exit;
-// //echo " dato Insertado ";
+if($row['usuario_password']==$PassActual){
+
+  $insertar="UPDATE asignar_usuario SET usuario_password ='$passNueva'  WHERE id_ci =$ci";
+
+  if (!mysqli_query($con,$insertar)) { die ("Error al insertar". mysqli_error);
+  }
+  else {
+  //if ($rol==1) {
+    echo '<script language="javascript">
+    alert("Contraseña modificada correctamente");
+    window.location.assign("../sides_user_CambiarContrasena.php");
+    </script>';
+  //}
+
+  // if ($rol==5) {
+  //   echo '<script language="javascript">
+  //   alert("Contraseña modificada correctamente");
+  //   window.location.assign("../sides_reports_cambiarContrasenaAlum.php");
+  //   </script>';
+  // }
+  //
+  // if ($rol==6) {
+  //   echo '<script language="javascript">
+  //   alert("Contraseña modificada correctamente");
+  //   window.location.assign("../sides_reports_cambiarContrasenaAlum.php");
+  //   </script>';
+  // }
+
+  }
+
+}else {
+  // $buscar2="SELECT * from asignar_usuario WHERE id_ci='$ci'";
+  // $result_busqueda2=mysqli_query($con,$buscar2);
+  // $row2 = mysqli_fetch_assoc($result_busqueda2);
+  //
+  // $rol2=$row2['id_rol'];
+
+//  if ($rol2==1) {
+    echo '<script language="javascript">
+    alert("Error contraseña actual incorrecta");
+    window.location.assign("../sides_user_CambiarContrasena.php");
+    </script>';
+//  }
+
+  // if ($rol2==6) {
+  //   echo '<script language="javascript">
+  //   alert("Error contraseña actual incorrecta");
+  //   window.location.assign("../sides_reports_cambiarContrasenaAlum.php");
+  //   </script>';
+  // }
+
+}
+
+//header('Location: ../sides_grados.php');
+exit;
 mysqli_close($con);
  ?>
