@@ -25,7 +25,12 @@
     //mysqli_close($con);
 
 
-
+    /* onclick="new PNotify({
+                    title: 'Regular Success',
+                    text: 'That thing that you were trying to do worked!',
+                    type: 'success',
+                    styling: 'bootstrap3'
+                });" */
 
   } else {
     # code...
@@ -50,6 +55,10 @@
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- iCheck -->
     <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- PNotify -->
+    <link href="../vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="../vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="../vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="css/custom.css" rel="stylesheet">
@@ -388,15 +397,25 @@
                                 <input type="password" id="id" name="cod_ci" class="form-control col-md-7 col-xs-12" >
                               </div>
                             </div>
-                            <?php
-                            if (isset($_GET['success'])) {
+
+                            <?php if (isset($_GET['success'])) {
+
                               # code...
-                              echo $printSucess = "Sancion Guardado Exitosamente!";
-                            } else {
+                              echo '<div class="alert alert-success alert-dismissible true fade in" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                                </button>
+                                <strong>Sancion registrado exitosamente!.
+                              </div>';
+
+                            } else if (isset($_GET['error'])){
                               # code...
-                              echo $printError = "La Cedula de Identida y el Codigo Secreto son Invalidos!";
-                            }
-                            ?>
+                              echo '<div class="alert alert-danger alert-dismissible true fade in" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                                </button>
+                                <strong>Error al registrar Sancion, Verifique su CI o Codigo Secreto.
+                              </div>';
+                            }?>
+
                             <!-- <div class="form-group hide">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Subir Resolucion </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
@@ -414,6 +433,10 @@
                             </div>
 
                           </form>
+
+
+
+
 <!-- validaciones del formulario -->
 <script type="text/javascript">
 //Se utiliza para que el campo de texto solo acepte numeros
@@ -663,6 +686,10 @@ function valida_envia(){
     <!-- bootstrap-daterangepicker -->
     <script src="js/moment/moment.min.js"></script>
     <script src="js/datepicker/daterangepicker.js"></script>
+    <!-- PNotify -->
+    <script src="../vendors/pnotify/dist/pnotify.js"></script>
+    <script src="../vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="../vendors/pnotify/dist/pnotify.nonblock.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="js/custom.js"></script>
@@ -696,6 +723,8 @@ function valida_envia(){
       }
     </script> -->
     <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> -->
+
+
 
     <script type="text/javascript">
       $(document).ready(function(){
@@ -743,6 +772,8 @@ function valida_envia(){
 
     <!-- iCheck -->
     <script src="../vendors/iCheck/icheck.min.js"></script>
+
+
 
   </body>
 </html>
