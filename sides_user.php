@@ -125,7 +125,6 @@
                       <li><a href="sides_roles.php">Registrar Roles</a></li>
                     </ul>
                   </li>
-
                 <?php endif; ?>
 
                 <!-- Encargado de Disciplina -->
@@ -222,7 +221,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">  Profile</a>
+                    <li><a href="sides_user_CambiarContrasena.php">Cambiar contraseña</a>
                     </li>
                     <!-- <li>
                       <a href="javascript:;">
@@ -280,7 +279,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                           <div class="x_panel">
                             <div class="x_title">
-                              <h2>Lista de Usuarios <small>puedes modifica o eliminar</small></h2>
+                              <h2>Lista de Usuarios <small>puedes modificar o eliminar</small></h2>
                               <!-- <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>

@@ -191,6 +191,11 @@
                         <li><a href="sides_reports.php">Reporte Disciplinario</a></li>
                       </ul>
                     </li>
+                    <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
+                      </ul>
+                    </li>
                   <?php endif; ?>
 
                 </ul>
@@ -218,6 +223,10 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
+
+                    <!-- <li><a href="sides_reports_cambiarContrasenaAlum.php">Cambiar contraseña</a>
+                    </li> -->
+
                     <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
                     </li>
                   </ul>
@@ -313,11 +322,20 @@
                               <td><?php echo $row ['fecha'];?></td>
                               <td>
                                 <?php
-                                  $id_falta = $row['id_falta'];
-                                  $queryFalta = "SELECT * FROM falta WHERE id_falta = '$id_falta'";
-                                  $falta = mysqli_query($con, $queryFalta);
-                                  $result_falta = mysqli_fetch_assoc($falta);
-                                  echo $result_falta['nombre'];
+                                  if ($row['tipo']=="D") {
+                                    $id_falta = $row['id_falta'];
+                                    $queryFalta = "SELECT * FROM falta WHERE id_falta = '$id_falta'";
+                                    $falta = mysqli_query($con, $queryFalta);
+                                    $result_falta = mysqli_fetch_assoc($falta);
+                                    echo $result_falta['nombre'];
+                                  }
+                                  else{
+                                    $id_falta = $row['id_falta'];
+                                    $queryFalta = "SELECT * FROM merito WHERE id_merito = '$id_falta'";
+                                    $falta = mysqli_query($con, $queryFalta);
+                                    $result_falta = mysqli_fetch_assoc($falta);
+                                    echo $result_falta['nombre_merito'];
+                                  }
                                 ?>
                               </td>
                               <!-- <td><?php echo $row ['ci_instructor'];?></td> -->
@@ -346,7 +364,7 @@
 
                     </div>
                   </div>
-                  <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
+                  <button class="btn btn-default" onclick="location.href='reportes/reporte.php?id=<?php echo $row_user['id_ci'];?>'"><i class="fa fa-print"></i> Imprimir</button>
                 </div>
               </div>
             </div>

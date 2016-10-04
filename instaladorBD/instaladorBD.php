@@ -34,7 +34,9 @@ function crearTablas(){
 						 ('','GRUPO II: SANCIONADAS CON 2 PUNTOS','2'),
 						 ('','GRUPO III: SANCIONADAS CON 3 PUNTOS.','3'),
 						 ('','GRUPO IV: SANCIONADAS CON 4 PUNTOS','4'),
-						 ('','GRUPO V: SANCIONADAS CON 5 PUNTOS','5')";
+						 ('','GRUPO V: SANCIONADAS CON 5 PUNTOS','5'),
+						 ('','GRUPO VI: SANCIONADAS CON 6 PUNTOS','6'),
+						 ('','GRUPO VII: SANCIONADAS CON 7 PUNTOS','7')";
 
 			if (mysqli_query($con, $INSERT_GRUPO_TEST)) {
 				# code...
@@ -324,7 +326,79 @@ if(mysqli_query($con, $TB_MERITO)){
 						 ('','EQUIPO O INDIVIDUAL 3ER PUESTO','1'),
 						 ('','JUGADOR DESTACADO','1'),
 						 ('','GANAR CONCURSOS CULTURALES','2'),
-						 ('','FINALISTA CONCURSO CULTURAL','1')";
+						 ('','FINALISTA CONCURSO CULTURAL ORGANIZADO JEF ESTUDIOS','1'),
+						 ('','PRESENTACION DE TRABAJOS INCLUIDOS EN REVISTAS BOLETINES Y PERIODICOS ','1'),
+						 ('','FORMAR PARTE DEL ELENCO DE TEATRO','1'),
+						 ('','DICTAR UNA CONFERENCIA DENTRO EL INSTITUTO','1'),
+						 ('','PRIMER PUESTO EN EL MODULO','1.5'),
+						 ('','SEGUNDO PUESTO EN EL MODULO','1'),
+						 ('','TERCER PUESTO EN EL MODULO','0.5'),
+						 ('','POR MODULO QUE TENGA E','5'),
+						 ('','POR MODULO QUE TENGA MB','3'),
+						 ('','PRIMER PUESTO CUADRO DE HONOR','5'),
+						 ('','SEGUNDO PUESTO CUADRO DE HONOR','4'),
+						 ('','TERCER PUESTO CUADRO DE HONOR','3'),
+						 ('','CUARTO PUESTO CUADRO DE HONOR','2'),
+						 ('','QUINTO PUESTO CUADRO DE HONOR','1'),
+						 ('','TRABAJO SOBRESALIENTE INDIVIDUAL','2'),
+						 ('','TRABAJO SOBRESALIENTE GRUPAL','1'),
+						 ('','ACTOS DESTACADOS FORMACION MILITAR DE 2 PTOS','2'),
+						 ('','ACTOS DESTACADOS FORMACION MILITAR DE 3 PTOS','3'),
+						 ('','ACTOS DESTACADOS FORMACION MILITAR DE 4 PTOS','4'),
+						 ('','ACTOS DESTACADOS FORMACION MILITAR DE 5 PTOS','5'),
+						 ('','FELICITACION POR ORDEN DEL DIA POR CAPACIDAD DE MANDO','3'),
+						 ('','FELICITACION POR ORDEN DEL DIA POR ESPIRITU DE CUERPO','3'),
+						 ('','FELICITACION POR ORDEN DEL DIA POR VALOR','3'),
+						 ('','FELICITACION POR ORDEN DEL DIA POR HONRADEZ','3'),
+						 ('','FELICITACION POR ORDEN DEL DIA POR DESPRENDIMIENTO','3'),
+						 ('','FELICITACION POR ORDEN DEL DIA POR LEALTAD','3'),
+						 ('','FELICITACION POR ORDEN DEL DIA POR CAMARADERIA','3'),
+						 ('','FELICITACION POR ORDEN DEL DIA POR ABNEGACION','3'),
+						 ('','FELICITACION POR ORDEN DEL DIA POR ESPIRITU MILITAR','3'),
+						 ('','FELICITACION POR ORDEN DEL DIA POR INICIATIVA','3'),
+						 ('','FELICITACION COMANDO EMSE INDIVIDUAL','3'),
+						 ('','FELICITACION COMANDO EMSE GRUPAL','1'),
+						 ('','ASCENSOS AL GRADO DE ALUMNOS MAYOR','5'),
+						 ('','ASCENSOS AL GRADO DE ALUMNO PRIMERO','3'),
+						 ('','ASCENSOS AL GRADO DE ALUMNO SEGUNDO','2'),
+						 ('','OBTENCION DE CORDON DORADO','5'),
+						 ('','OBTENCION DE CORDON ROJO','5'),
+						 ('','OBTENCION DE CORDON BLANCO','5'),
+						 ('','OBTENCION DE CORDON AZUL','5'),
+						 ('','OBTENCION DE CORDON CELESTE','5'),
+						 ('','OBTENCION DE CORDON CELESTE Y BLANCO','5'),
+						 ('','OBTENCION DE CORDON VERDE','5'),
+						 ('','ABANDERADO DEL ESTANDARTE DEL INSTITUTO','5'),
+						 ('','ABANDERADO DE LA BANDERA DE GUERRA','4'),
+						 ('','ABANDERADO DE LAS BANDERAS DE LAS ARMAS','3'),
+						 ('','DESIGNACION DE ESCOLTA AL ESTANDARTE DEL INSITUTO','3'),
+						 ('','DESIGNACION DE ESCOLTA A LA BANDERA DE GUERRA','2'),
+						 ('','CAMPEONATOS DEPARTAMENTALES INDIVIDUAL O EQUIPOS PRIMER PUESTO','5'),
+						 ('','CAMPEONATOS DEPARTAMENTALES INDIVIDUAL O EQUIPOS SEGUNDO PUESTO','4'),
+						 ('','CAMPEONATOS DEPARTAMENTALES INDIVIDUAL O EQUIPOS TERCER PUESTO','3'),
+						 ('','CAMPEONATOS DEPARTAMENTALES INDIVIDUAL O EQUIPOS JUGADORES MAS DESTACADOS','2'),
+						 ('','CAMPEONATOS NACIONALES INDIVIDUAL O EQUIPOS PRIMER PUESTO','6'),
+						 ('','CAMPEONATOS NACIONALES INDIVIDUAL O EQUIPOS SEGUNDO PUESTO','5'),
+						 ('','CAMPEONATOS NACIONALES INDIVIDUAL O EQUIPOS TERCER PUESTO','4'),
+						 ('','CAMPEONATOS NACIONALES INDIVIDUAL O EQUIPOS JUGADORES MAS DESTACADOS','3'),
+						 ('','CAMPEONATOS INTERNACIONALES INDIVIDUAL O EQUIPOS PRIMER PUESTO','10'),
+						 ('','CAMPEONATOS INTERNACIONALES INDIVIDUAL O EQUIPOS SEGUNDO PUESTO','9'),
+						 ('','CAMPEONATOS INTERNACIONALES INDIVIDUAL O EQUIPOS TERCER PUESTO','8'),
+						 ('','CAMPEONATOS INTERNACIONALES INDIVIDUAL O EQUIPOS JUGADORES MAS DESTACADOS','7'),
+						 ('','ACTIVIDADES SOCIALES CULTURALES EN CONCURSOS DEPARTAMENTALES','5'),
+						 ('','ACTIVIDADES SOCIALES CULTURALES DEPARTAMENTALES DE REVISTAS O PUBLICACIONES','4'),
+						 ('','ACTIVIDADES SOCIALES CULTURALES DEPARTAMENTALES EN DICTAR CONFERENCIAS FUERA DEL INSTITUTO','3'),
+						 ('','ACTIVIDADES SOCIALES CULTURALES EN CONCURSOS NACIONALES','5'),
+						 ('','ACTIVIDADES SOCIALES CULTURALES NACIONALES PRIMER PUESTO EN TORNEOS Y CONCURSOS','4'),
+						 ('','ACTIVIDADES SOCIALES CULTURALES NACIONALES SEGUNDO PUESTO EN TORNEOS Y CONCURSOS','3'),
+						 ('','ACTIVIDADES SOCIALES CULTURALES NACIONALES TERCER PUESTO EN TORNEOS Y CONCURSOS','3'),
+						 ('','FELICITACIONES EXTERNAS DEL COMANDANTE DEL INSTITUTO','5'),
+						 ('','FELICITACIONES EXTERNAS DE DEPARTAMENTOS DEL EM EJTO','5'),
+						 ('','FELICITACIONES EXTERNAS DEL JEFE DE ESTADO MAYOR','6'),
+						 ('','FELICITACIONES EXTERNAS DEL COMANDANTE DE EJERCITO','7'),
+						 ('','FELICITACIONES EXTERNAS DEL COMANDO EN JEFE','8'),
+						 ('','FELICITACIONES EXTERNAS DEL MINISTERIO DE DEFENSA','8'),
+						 ('','FELICITACIONES EXTERNAS DE LA PRESIDENCIA DE LA REPUBLICA','10')";
 }
 if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 
@@ -383,16 +457,18 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 
 		$INSERT_USUARIOS_TESTS = "INSERT INTO
 			usuario(id_ci, id_grado, id_arma, nombre, paterno, materno, sexo, fecha_nac, lugar_nac, correo, celular, direccion, codigo_secreto, ci_tutor, total_puntos, calificacion_disciplinario)
-				VALUES ('12','1','1','Juan','Nunez','Soto','Masculino','04/25/2016','Tiraque','juan@gmail.com','90909090','Av. Norte','0','0','0','0'),
-							 ('13','1','1','Pepe','Aguilar','Marneli','Masculino','04/25/2016','Tiraque','pepe@gmail.com','90909090','Av. Norte','0','0','0','0'),
-							 ('14','1','1','Lucas','Melo','Lopez','Masculino','04/25/2016','Tiraque','lucas@gmail.com','90909090','Av. Norte','0','0','0','0'),
-							 ('15','1','1','Martin','Judas','Toro','Masculino','04/25/2016','Tiraque','martin@gmail.com','90909090','Av. Norte','0','0','0','0'),
-							 ('16','1','1','Rodrigo','Murillo','Puerta','Masculino','04/25/2016','Tiraque','rodrigo@gmail.com','90909090','Av. Norte','0','0','0','0'),
-							 ('17','15','0','Antonio','Solis','Mesa','Masculino','04/25/2016','Tiraque','antonio@gmail.com','90909090','Av. Norte','4444','123','4','96,08'),
-							 ('18','16','0','Miguel','Morales','Zapata','Masculino','04/25/2016','Tiraque','miguel@gmail.com','90909090','Av. Norte','4444','456','1','99,02'),
-							 ('19','16','0','Luis','Morales','Zapata','Masculino','04/25/2016','Tiraque','miguel@gmail.com','90909090','Av. Norte','4444','456','3','97,06'),
-							 ('20','17','0','Marcos','Morales','Zapata','Masculino','04/25/2016','Tiraque','miguel@gmail.com','90909090','Av. Norte','4444','456','1','99,02'),
-							 ('21','17','0','Leoncio','Morales','Zapata','Masculino','04/25/2016','Tiraque','miguel@gmail.com','90909090','Av. Norte','4444','456','1','99,02')";
+				VALUES ('12','1','1','JUAN','NUNEZ','SOTO','MASCULINO','04/25/2016','TIRAQUE','juan@gmail.com','78859698','AV NORTE','0','0','0','0'),
+							 ('13','1','1','PEPE','AGUILAR','MARNELI','MASCULINO','04/25/2016','SACABA','pepe@gmail.com','74587478','AV NORTE','0','0','0','0'),
+							 ('14','1','1','LUCAS','MELO','LOPEZ','MASCULINO','04/25/2016','TIRAQUE','lucas@gmail.com','74458596','AV NORTE','0','0','0','0'),
+							 ('15','1','1','MARTIN','JUDAS','TORO','MASCULINO','04/25/2016','BENI','martin@gmail.com','74589632','AV NORTE','0','0','0','0'),
+							 ('16','1','1','RODRIGO','MURILLO','PUERTA','MASCULINO','04/25/2016','SANTA CRUZ','rodrigo@gmail.com','85749632','AV CAP USTARIZ','0','0','0','0'),
+							 ('17','15','0','ANTONIO','SOLIZ','Mesa','MASCULINO','04/25/1996','COBIJA','antonio@gmail.com','74125896','AV NORTE','4444','123','4','96,08'),
+							 ('18','16','0','MIGUEL','MORALES','SORIA','MASCULINO','04/25/1996','ROBORE','miguel@gmail.com','72787975','AV EL VALLE','4444','456','1','99,02'),
+							 ('19','16','0','LUIS','MORALES','ZARNES','MASCULINO','04/25/1998','SUCRE','miguel@gmail.com','74458596','AV CIRCUNVALACION','4444','456','3','97,06'),
+							 ('20','17','0','MARCOS','MORALES','ZAPATA','MASCULINO','04/25/1999','ORURO','miguel@gmail.com','78524145','AV NORTE','4444','456','1','99,02'),
+							 ('21','17','0','MAURICIO','NOGALES','SUAREZ','MASCULINO','04/25/1998','ANZALDO','mauri@gmail.com','74859632','AV SUECIA','4444','456','1','99,02'),
+							 ('22','17','0','MILTON','PAREDES','RAMOS','MASCULINO','02/16/1998','COBIJA','mauri@gmail.com','5245896','AV BLANCO GALINDO','4444','456','1','99,02'),
+							 ('23','17','0','LEONCIO','MORALES','ZAPATA','MASCULINO','04/25/1999','LA PAZ','miguel@gmail.com','78854512','AV NORTE','4444','456','1','99,02')";
 
 		if (mysqli_query($con, $INSERT_USUARIOS_TESTS)) {
 			# code...
@@ -424,7 +500,9 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 							 ('','6','18','18','18'),
 							 ('','6','19','19','19'),
 							 ('','6','20','20','20'),
-							 ('','6','21','21','21')";
+							 ('','6','21','21','21'),
+							 ('','6','22','22','22'),
+							 ('','6','23','23','23')";
 
 		if (mysqli_query($con, $INSERT_ASIG_USUARIOS_TESTS)) {
 			# code...
@@ -502,22 +580,25 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 
 //-----------------------------TABLA TUTOR------------------------------------
 	$TB_TUTOR = "CREATE TABLE tutor (
+	id_tutor INT NOT NULL AUTO_INCREMENT,
 	ci_tutor INT,
-	nombre VARCHAR(80),
-	telefono INT,
-	direccion VARCHAR(80),
-	PRIMARY KEY(ci_tutor)
+	nombre_tutor VARCHAR(80),
+	telefono_tutor INT,
+	direccion_tutor VARCHAR(80),
+	PRIMARY KEY(id_tutor)
 	)";
 
 	if(mysqli_query($con, $TB_TUTOR)){
 		echo "<br> - TABLA TUTOR CREADA -";
 
 		$INSERT_TUTOR = "INSERT INTO
-			tutor(ci_tutor,nombre,telefono,direccion)
-				VALUES ('123','Juan Meneses','77887766','Av. Bolivar'),
-							 ('345','Yuri Vose','99443322','Av. La paz'),
-							 ('567','Maribel Lopez','33221111','Av. Sucre'),
-							 ('891','Melani Guitierres','33344455','Av. Junin')";
+			tutor(id_tutor,ci_tutor,nombre_tutor,telefono_tutor,direccion_tutor)
+				VALUES ('','123','JUAN MENESES','77887766','AV BOLIVAR'),
+							 ('','345','YURI BOSE','99443322','AV LA PAZ'),
+							 ('','567','MARIBEL LOPEZ','33221111','AV CIRCUNVALACION'),
+							 ('','891','GROVER SALINAS','33344455','AV JUNIN'),
+							 ('','891','TOMAS BARRIENTOS','33344455','AV GALVEZ'),
+							 ('','456','MELIN GUTIERREZ','33344455','AV EJERCITO')";
 
 		if (mysqli_query($con, $INSERT_TUTOR)) {
 			echo "<br> - TUTORES TESTS INSERTADOS - <br>";
@@ -534,7 +615,7 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 	puntos INT,
 	tipo VARCHAR(5),
 	fecha VARCHAR(50),
-	resolucion MEDIUMBLOB,
+	id_resolucion INT,
 	PRIMARY KEY(id_sancion)
 	)";
 
@@ -542,7 +623,7 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 		echo "<br> - TABLA SANCION CREADA - ";
 
 		$INSERT_SANCIONES_TEST = "INSERT INTO
-			sancion(id_sancion,ci_instructor,ci_alumno,id_falta,id_grupo,puntos,tipo,fecha,resolucion)
+			sancion(id_sancion,ci_instructor,ci_alumno,id_falta,id_grupo,puntos,tipo,fecha,id_resolucion)
 				VALUES ('','12','17','8','1','1','D','08/05/2016',NULL),
 							 ('','12','17','8','1','1','D','08/06/2016',NULL),
 							 ('','13','17','8','1','1','D','08/10/2016',NULL),
@@ -559,6 +640,20 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 			}
 	}
 
+	//-----------------------------tabla resoluciones-----------------------
+	$TB_RESOLUCION = "CREATE TABLE resoluciones(
+	id_resolucion INT NOT NULL AUTO_INCREMENT,
+	ci_alumno INT,
+	nombre VARCHAR(50),
+	titulo VARCHAR(50),
+	contenido mediumblob,
+	tipo VARCHAR(50),
+	PRIMARY KEY(id_resolucion)
+	)";
+
+	if(mysqli_query($con, $TB_RESOLUCION)){
+		echo "<br> - TABLA RESOLUCIONES CREADA - ";
+	}
 	mysqli_close($con);
 }
 

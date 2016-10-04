@@ -182,6 +182,12 @@
                       <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                     </ul>
                   </li>
+
+                  <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
+                    </ul>
+                  </li>
                 <?php endif; ?>
 
                 <!-- Alumno -->
@@ -234,8 +240,8 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">  Profile</a>
-                    </li>
+                    <!-- <li><a href="javascript:;">  Profile</a>
+                    </li> -->
                     <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
                     </li>
                   </ul>
@@ -292,7 +298,7 @@
                                     <th>Nombre</th>
                                     <th>Apellido Paterno</th>
                                     <th>Celular</th>
-                                    <th>Tutor</th>
+                                    <!-- <th>Tutor</th> -->
                                     <th></th>
                                   </tr>
                                 </thead>
@@ -317,10 +323,10 @@
                                     <td><?php echo $row ['celular']; ?></td>
                                     <td><?php
                                       $getTutor = $row ['ci_tutor'];
-                                      $queryTutor = "SELECT nombre FROM tutor WHERE ci_tutor = '$getTutor'";
+                                      $queryTutor = "SELECT nombre_tutor FROM tutor WHERE ci_tutor = '$getTutor'";
                                       $tutor = mysqli_query($con, $queryTutor) or die ("error get arma");
                                       $result_tutor = mysqli_fetch_assoc($tutor);
-                                      echo $result_tutor['nombre'];
+                                      echo $result_tutor['nombre_tutor'];
                                       //echo $row ['id_arma'];
                                     ?></td>
                                     <td>
@@ -331,12 +337,12 @@
                                           <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                          <li><a href="#">Ver mas detalles</a>
+                                          <li><a href="sides_DetalleAlumnos.php">Ver mas detalles</a>
                                           </li>
-                                          <li><a href="#">Modificar</a>
+                                          <li><a href="sides_EditarAlumnos.php?id=<?php echo $row ['id_ci'];?>">Modificar</a>
                                           </li>
                                           <li class="divider"></li>
-                                          <li><a href="#">Eliminar</a>
+                                          <li><a href="controladores\EliminarAlumno.php ?id=<?php echo $row ['id_ci'];?>">Eliminar</a>
                                           </li>
                                         </ul>
                                       </div>
@@ -359,13 +365,13 @@
                         <!-- Form New Users -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarAlumno.php">
+                          <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarAlumno.php">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" name="ci_alumno" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="ci_alumno" name="ci_alumno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
@@ -373,13 +379,16 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Grado <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <select class="form-control" name="id_grado" >
+                                <select class="form-control" name="id_grado">
                                   <option value="">Seleccione su grado</option>
                                   <?php
                                   $query="SELECT * FROM grado";
                                   $result= mysqli_query($con,$query);
                                   while ($row=mysqli_fetch_array($result)):?>
-                                    <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
+                                  <?php if ($row['1']=='AL. 2AM.'||$row['1']=='AL. 1AM.'|| $row['1']=='AL. 3AM.'): ?>
+                                  <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
+                                  <?php endif; ?>
+
                                   <?php endwhile; mysqli_close($con); ?>
                                 </select>
 
@@ -390,7 +399,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required" >*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="nombre" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()">
+                                <input type="text" id="nombre" name="nombre" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -398,7 +407,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="paterno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()">
+                                <input type="text" id="paterno" name="paterno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -406,7 +415,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="materno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()">
+                                <input type="text" id="materno" name="materno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -439,7 +448,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="lugar" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()">
+                                <input type="text" id="lugar" name="lugar" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -453,14 +462,14 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="celular" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="cel" name="cel" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="domicilio" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="domicilio" name="domicilio" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -469,28 +478,28 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Cédula Identidad del Tutor <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="ci_tutor" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="ci_tutor" name="ci_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre del Tutor <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="nombre_tutor" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="nombre_tutor" name="nombre_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Telefono del Tutor <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="telefono_tutor" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="telefono_tutor" name="telefono_tutor" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Direccion del Tutor <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="direccion_tutor" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="direccion_tutor" name="direccion_tutor" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -498,8 +507,9 @@
 
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button type="submit" class="btn btn-primary">Cancelar</button>
-                                <button type="submit" class="btn btn-success">Guardar</button>
+                                <button type="reset" class="btn btn-primary">Cancelar</button>
+                                <button type="button" class="btn btn-success" onclick="valida_envia()">Guardar</button>
+
                               </div>
                             </div>
 
@@ -508,7 +518,131 @@
                           function SoloLetras() {
                             if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))event.returnValue = false;
                           }
-=
+
+
+                          //Se utiliza para que el campo de texto solo acepte numeros
+                          function SoloNumeros(evt){
+                           if(window.event){//asignamos el valor de la tecla a keynum
+                            keynum = evt.keyCode; //IE
+                           }
+                           else{
+                            keynum = evt.which; //FF
+                           }
+                           //comprobamos si se encuentra en el rango numérico y que teclas no recibirá.
+                           if((keynum > 47 && keynum < 58) || keynum == 8 || keynum == 13 || keynum == 6 ){
+                            return true;
+                           }
+                           else{
+                            return false;
+                           }
+                          }
+// validaciones vacio----------------------------------------------
+                          function valida_envia(){
+                            valor = document.getElementById("ci_alumno").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese la cedula de identidad del alumno")
+                            demoform2.ci_alumno.focus()
+                            return false;
+                            }
+
+                            selec= demoform2.id_grado.selectedIndex
+                            if (demoform2.id_grado.options[selec].value==""){
+                            alert ("Seleccione el grado del alumno")
+                            return false
+                            }
+
+                            valor = document.getElementById("nombre").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el nombre del alumno")
+                            demoform2.nombre.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("paterno").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el apellido paterno del alumno")
+                            demoform2.paterno.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("materno").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el apellido materno del alumno")
+                            demoform2.materno.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("birthday").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese la fecha de nacimiento")
+                            demoform2.birthday.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("lugar").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el lugar de nacimiento")
+                            demoform2.lugar.focus()
+                            return false;
+                            }
+
+
+                            valor = document.getElementById("email").value;
+                            expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                            if ( !expr.test(valor)){
+                              alert("Error: La dirección de correo "+ valor +" es incorrecta.");
+                              demoform2.email.focus()
+                              return false;
+                            }
+
+
+
+                            valor = document.getElementById("cel").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el numero de celular")
+                            demoform2.cel.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("domicilio").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el direccion del domicilio")
+                            demoform2.domicilio.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("ci_tutor").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese la cedula de identidad del tutor")
+                            demoform2.ci_tutor.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("nombre_tutor").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el nombre y apellidos del tutor")
+                            demoform2.nombre_tutor.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("telefono_tutor").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese el telefono del tutor")
+                            demoform2.telefono_tutor.focus()
+                            return false;
+                            }
+
+                            valor = document.getElementById("direccion_tutor").value;
+                            if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                            alert ("Ingrese la direccion del tutor")
+                            demoform2.direccion_tutor.focus()
+                            return false;
+                            }
+                            demoform2.submit();
+                          }
+//hasta aca validaciones vacio----------------------------------------------
+
+
                           </script>
 
 

@@ -182,6 +182,12 @@
                                           <li><a href="sides_reporte_arrestados.php">Lista de Arrestados </a></li>
                                         </ul>
                                       </li>
+
+                                      <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                          <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
+                                        </ul>
+                                      </li>
                                     <?php endif; ?>
 
                                     <!-- Jefe De Personal -->
@@ -197,7 +203,14 @@
                                           <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                                         </ul>
                                       </li>
+
+                                      <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                          <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
+                                        </ul>
+                                      </li>
                                     <?php endif; ?>
+
 
                                     <!-- Instructor -->
                                     <?php if ($row_rol['rol'] == 'Instructor'): ?>
@@ -206,6 +219,13 @@
                                           <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                                         </ul>
                                       </li>
+
+                                      <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                          <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
+                                        </ul>
+                                      </li>
+
                                     <?php endif; ?>
 
                                     <!-- Primera Compañia -->
@@ -220,6 +240,13 @@
                                           <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                                         </ul>
                                       </li>
+
+                                      <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                          <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
+                                        </ul>
+                                      </li>
+
                                     <?php endif; ?>
 
                                     <!-- Alumno -->
@@ -271,8 +298,8 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">  Profile</a>
-                    </li>
+                    <!-- <li><a href="javascript:;">  Profile</a>
+                    </li> -->
                     <!-- <li>
                       <a href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
@@ -387,7 +414,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Sancion <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input readonly class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha" value="<?php echo date("d/m/y"); ?>">
+                                <input readonly class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha" value="<?php echo date("d/m/Y"); ?>">
                               </div>
                             </div>
 
@@ -409,6 +436,7 @@
 
                             } else if (isset($_GET['error'])){
                               # code...
+<<<<<<< HEAD
                               echo '<div class="alert alert-danger alert-dismissible true fade in" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
                                 </button>
@@ -416,6 +444,12 @@
                               </div>';
                             }?>
 
+=======
+                              echo $printError = "La Cedula de Identida y el Codigo Secreto son Invalidos!";
+
+                            }
+                            ?>
+>>>>>>> 82225b5c7449465869fbaa979f401777fbb95d0b
                             <!-- <div class="form-group hide">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Subir Resolucion </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">

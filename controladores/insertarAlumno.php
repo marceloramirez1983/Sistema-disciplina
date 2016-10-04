@@ -13,9 +13,9 @@
   $MATERNO = $_POST['materno'];
   $GENERO = $_POST['sexo'];
   $FECHA_NAC = $_POST['fecha_nac'];
-  $NAC = $_POST['nacimiento'];
+  $NAC = $_POST['lugar'];
   $EMAIL = $_POST['email'];
-  $CELULAR = $_POST['celular'];
+  $CELULAR = $_POST['cel'];
   $DOMICILIO = $_POST['domicilio'];
 
   $CI_TUTOR = $_POST['ci_tutor'];
@@ -39,35 +39,54 @@
   $CONST_PASSWORD = random_password();
   $CONST_CODIGO = random_codigo();
 
-  $INSERT_TUTOR = "INSERT INTO
-  tutor(ci_tutor,nombre,telefono,direccion)
-  VALUES ('$CI_TUTOR','$NOMBRE_TUTOR','$TELEFONO_TUTOR','$DIRECCION_TUTOR')";
 
-  $INSERT_USER = "INSERT INTO
-    usuario(id_ci, id_grado,nombre, paterno, materno, sexo, fecha_nac, lugar_nac, correo, celular, direccion, codigo_secreto, ci_tutor)
-    VALUES ('$CI','$ID_GRADO','$NOMBRE','$PATERNO','$MATERNO','$GENERO','$FECHA_NAC','$NAC','$EMAIL','$CELULAR','$DOMICILIO','$CONST_CODIGO','$CI_TUTOR')";
+  $query="SELECT * FROM usuario WHERE id_ci='$CI' ";
+  $result=mysqli_query($con,$query);
 
-  $INSERT_ASIGN_USER = "INSERT INTO
-    asignar_usuario(id_usuario, id_rol, id_ci, usuario_nombre, usuario_password)
-    VALUES ('','$CONST_ID_ROL','$CI','$CI','$CONST_PASSWORD')";
+  if (mysqli_num_rows($result)<1) {
+    //--------------------------no existe registrado--------------------------
+    $querytutor="SELECT * FROM tutor WHERE ci_tutor='$CI_TUTOR' ";
+    $resulttutor=mysqli_query($con,$querytutor);
+        if (mysqli_num_rows($resulttutor)<1) {
+          # no existe tutor se registra todos sus datos
+          $INSERT_TUTOR = "INSERT INTO
+          tutor(id_tutor,ci_tutor,nombre_tutor,telefono_tutor,direccion_tutor)
+          VALUES ('','$CI_TUTOR','$NOMBRE_TUTOR','$TELEFONO_TUTOR','$DIRECCION_TUTOR')";
+          if (!mysqli_query($con, $INSERT_TUTOR)) {
+            die(" <br> Error al insertar TUTOR".mysql_error);
+          }
+        }
 
-    if (!mysqli_query($con, $INSERT_TUTOR)) {
-      die(" <br> Error al insertar TUTOR");
-    }
+    $INSERT_USER = "INSERT INTO
+      usuario(id_ci, id_grado,nombre, paterno, materno, sexo, fecha_nac, lugar_nac, correo, celular, direccion, codigo_secreto, ci_tutor)
+      VALUES ('$CI','$ID_GRADO','$NOMBRE','$PATERNO','$MATERNO','$GENERO','$FECHA_NAC','$NAC','$EMAIL','$CELULAR','$DOMICILIO','$CONST_CODIGO','$CI_TUTOR')";
 
+    $INSERT_ASIGN_USER = "INSERT INTO
+      asignar_usuario(id_usuario, id_rol, id_ci, usuario_nombre, usuario_password)
+      VALUES ('','$CONST_ID_ROL','$CI','$CI','$CONST_PASSWORD')";
 
+      if (!mysqli_query($con, $INSERT_USER)) {
+        die(" <br> Error al insertar USUARIO".mysql_error);
+      }
 
-    if (!mysqli_query($con, $INSERT_USER)) {
-      die(" <br> Error al insertar USUARIO");
-    }
-
-    if (!mysqli_query($con, $INSERT_ASIGN_USER)) {
-      die(" <br> Error al insertar ASIGN USUARIO".mysql_error);
-    }
-
-    header('Location: ../sides_alumnos.php');
+      if (!mysqli_query($con, $INSERT_ASIGN_USER)) {
+        die(" <br> Error al insertar ASIGNAR USUARIO".mysql_error);
+      }
+    echo '<script language="javascript">
+    alert("Alumno registrado correctamente");
+    window.location="http://localhost/sides/sides_alumnos.php";
+    </script>';
     exit;
-
+  } else {
+    # existe
+    echo '<script language="javascript">
+    alert("ERROR alumno ya se encuentra registrado");
+    window.location="http://localhost/sides/sides_alumnos.php";
+    </script>';
+    exit;
+  }
+    // header('Location: ../sides_alumnos.php');
+    // exit;
     mysqli_close($con);
 
 ?>

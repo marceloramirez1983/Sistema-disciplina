@@ -173,6 +173,11 @@
                                           <li><a href="sides_reporte_arrestados.php">Lista de Arrestados </a></li>
                                         </ul>
                                       </li>
+                                      <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                          <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
+                                        </ul>
+                                      </li>
                                     <?php endif; ?>
 
                                     <!-- Jefe De Personal -->
@@ -262,8 +267,8 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">  Profile</a>
-                    </li>
+                    <!-- <li><a href="javascript:;">  Profile</a>
+                    </li> -->
                     <!-- <li>
                       <a href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
@@ -370,7 +375,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Mérito <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input readonly class="form-control col-md-7 col-xs-12" required="required" type="text" name="fecha" value="<?php echo date("d/m/y"); ?>">
+                                <input readonly class="form-control col-md-7 col-xs-12" required="required" type="text" name="fecha" value="<?php echo date("d/m/Y"); ?>">
                               </div>
                             </div>
 
