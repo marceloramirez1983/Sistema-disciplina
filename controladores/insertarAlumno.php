@@ -72,6 +72,20 @@
       if (!mysqli_query($con, $INSERT_ASIGN_USER)) {
         die(" <br> Error al insertar ASIGNAR USUARIO".mysql_error);
       }
+      // -----------------------
+
+      //Enviar Email de Credencial
+                $MENSAJE = "Bienvenidos al Sistema Disciplinario de la EMSE \n su cuenta de usuario o Username = ".$CI."\n Password: ". $CONST_PASSWORD."\n Codigo secreto: ". $CONST_CODIGO;
+                $to = $EMAIL;
+                $subject = 'Credencial de Acceso al Sistema ...';
+                $header = 'From: sidesemse@gmail.com'.
+                    'MIME-Version: 1.0'.'\r\n'.
+                    'Content-type: text/html; charset=utf-8';
+                if (mail($to,$subject,$MENSAJE,$header)) {
+                    //echo "email enviado!";
+                } else {
+                    echo "error al enviar email!";
+                }
     echo '<script language="javascript">
     alert("Alumno registrado correctamente");
     window.location="http://localhost/sides/sides_alumnos.php";
@@ -85,8 +99,7 @@
     </script>';
     exit;
   }
-    // header('Location: ../sides_alumnos.php');
-    // exit;
+    
     mysqli_close($con);
 
 ?>

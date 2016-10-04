@@ -184,6 +184,12 @@
                       <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                     </ul>
                   </li>
+
+                  <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
+                    </ul>
+                  </li>
                 <?php endif; ?>
 
                 <!-- Alumno -->
@@ -288,7 +294,7 @@
                             </div>
                             <div class="x_content">
                               <!-- formulario mostrar detalle de alumnos -->
-                              <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarAlumno.php">
+                              <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/ActualizarAlumno.php">
 
                                 <?php
                                 $query=mysqli_query($con,"SELECT * FROM usuario INNER JOIN tutor ON usuario.ci_tutor=tutor.ci_tutor WHERE usuario.id_ci= $idEditar");
@@ -307,7 +313,13 @@
                                   <div class="col-md-6 col-sm-6 col-xs-12">
 
                                     <select class="form-control" name="id_grado">
-                                      <option value="<?php echo $row['id_grado']?>"></option>
+                                      <option value="">Seleccione los puntos para perdidos</option>
+                                      <?php
+                                      $query2="SELECT * FROM grado";
+                                      $result2= mysqli_query($con,$query2);
+                                      while ($row2=mysqli_fetch_array($result2)):?>
+                                        <option <?php if($row2['0']==$row['id_grado']):?> selected="selected"<?php endif;?>value="<?php echo $row['id_grado']?>"><?php echo $row2['1']?></option>
+                                      <?php endwhile?> ;
 
                                     </select>
 
@@ -344,12 +356,12 @@
                                   <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="radio">
                                       <label>
-                                        <input type="radio" class="flat" checked name="sexo" value="Masculino"> Masculino
+                                        <input type="radio" class="flat" name="sexo" <?php if( $row['sexo'] == "MASCULINO" ) { ?>checked="checked"<?php } ?> value="MASCULINO" > Masculino
                                       </label>
                                     </div>
                                     <div class="radio">
                                       <label>
-                                        <input type="radio" class="flat" name="sexo" value="Femenino"> Femenino
+                                        <input type="radio" class="flat" name="sexo" <?php if( $row['sexo'] == "FEMENINO" ) { ?>checked="checked"<?php } ?> value="FEMENINO" > Femenino
                                       </label>
                                     </div>
                                   </div>
@@ -404,21 +416,21 @@
                                 <div class="form-group">
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre del Tutor <span class="required">*</span></label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="nombre_tutor" name="nombre_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();"value="<?php echo $row['nombre']?>">
+                                    <input type="text" id="nombre_tutor" name="nombre_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();"value="<?php echo $row['nombre_tutor']?>">
                                   </div>
                                 </div>
 
                                 <div class="form-group">
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Telefono del Tutor <span class="required">*</span></label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="telefono_tutor" name="telefono_tutor" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
+                                    <input type="text" id="telefono_tutor" name="telefono_tutor" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);"value="<?php echo $row['telefono_tutor']?>">
                                   </div>
                                 </div>
 
                                 <div class="form-group">
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Direccion del Tutor <span class="required">*</span></label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="direccion_tutor" name="direccion_tutor" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();">
+                                    <input type="text" id="direccion_tutor" name="direccion_tutor" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['direccion_tutor']?>">
                                   </div>
                                 </div>
 
