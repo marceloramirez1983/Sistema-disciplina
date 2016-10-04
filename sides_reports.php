@@ -224,8 +224,8 @@
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
 
-                    <li><a href="sides_reports_cambiarContrasenaAlum.php">Cambiar contraseña</a>
-                    </li>
+                    <!-- <li><a href="sides_reports_cambiarContrasenaAlum.php">Cambiar contraseña</a>
+                    </li> -->
 
                     <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
                     </li>
@@ -364,7 +364,7 @@
 
                     </div>
                   </div>
-                  <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
+                  <button class="btn btn-default" onclick="location.href='reportes/reporte.php?id=<?php echo $row_user['id_ci'];?>'"><i class="fa fa-print"></i> Imprimir</button>
                 </div>
               </div>
             </div>
