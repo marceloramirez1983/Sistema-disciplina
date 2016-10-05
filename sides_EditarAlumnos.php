@@ -242,8 +242,8 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">  Profile</a>
-                    </li>
+                    <!-- <li><a href="javascript:;">  Profile</a>
+                    </li> -->
                     <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
                     </li>
                   </ul>
@@ -304,7 +304,7 @@
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required" >*</span>
                                   </label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="ci_alumno" name="ci_alumno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);" value="<?php echo $row['id_ci']?>">
+                                    <input readonly type="text" id="ci_alumno" name="ci_alumno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);" value="<?php echo $row['id_ci']?>">
                                   </div>
                                 </div>
 

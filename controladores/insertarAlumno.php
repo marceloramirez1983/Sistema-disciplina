@@ -88,18 +88,18 @@
                 }
     echo '<script language="javascript">
     alert("Alumno registrado correctamente");
-    window.location="http://localhost/sides/sides_alumnos.php";
+    window.location.assign("../sides_alumnos.php");
     </script>';
     exit;
   } else {
     # existe
     echo '<script language="javascript">
     alert("ERROR alumno ya se encuentra registrado");
-    window.location="http://localhost/sides/sides_alumnos.php";
+    window.location.assign("../sides_alumnos.php");
     </script>';
     exit;
   }
-    
+
     mysqli_close($con);
 
 ?>

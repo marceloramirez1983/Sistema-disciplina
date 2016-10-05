@@ -11,7 +11,10 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
 $query="DELETE FROM grupo WHERE id_grupo = $idEliminar ";
 
 if(mysqli_query($con,$query)) {
-header('Location: ../sides_grupos.php');
+  echo '<script language="javascript">
+  alert("Grupo eliminado correctamente");
+  window.location.assign("../sides_grupos.php");
+  </script>';
 }
 mysqli_close($con);
 ?>

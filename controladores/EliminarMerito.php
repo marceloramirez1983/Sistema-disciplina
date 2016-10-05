@@ -12,9 +12,8 @@ $query="DELETE FROM merito WHERE id_merito = $idEliminar";
 if(mysqli_query($con,$query)) {
   echo '<script language="javascript">
   alert("Merito eliminado correctamente");
-  window.location="http://localhost/sides/sides_merito.php";
+  window.location.assign("../sides_merito.php");
   </script>';
-//header('Location: ../sides_grados.php');
 }
 mysqli_close($con);
 ?>

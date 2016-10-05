@@ -16,7 +16,7 @@ if (!mysqli_query($con,$insertar)) { die ("Error al insertar". mysqli_error);
 }else {
   echo '<script language="javascript">
   alert("Modificaciones  realizadas correctamente");
-  window.location="http://localhost/sides/sides_grados.php";
+  window.location.assign("../sides_grados.php");
   </script>';
 }
 

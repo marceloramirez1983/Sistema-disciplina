@@ -436,27 +436,13 @@
 
                             } else if (isset($_GET['error'])){
                               # code...
-<<<<<<< HEAD
+
                               echo '<div class="alert alert-danger alert-dismissible true fade in" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
                                 </button>
                                 <strong>Error al registrar Sancion, Verifique su CI o Codigo Secreto.
                               </div>';
                             }?>
-
-=======
-                              echo $printError = "La Cedula de Identida y el Codigo Secreto son Invalidos!";
-
-                            }
-                            ?>
->>>>>>> 82225b5c7449465869fbaa979f401777fbb95d0b
-                            <!-- <div class="form-group hide">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Subir Resolucion </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="apm-user" class="form-control col-md-7 col-xs-12">
-                              </div>
-
-                            </div> -->
 
                             <div class="ln_solid"></div>
                             <div class="form-group">

@@ -16,12 +16,10 @@ if (!mysqli_query($con,$insertar)) { die ("Error al insertar". mysqli_error);
 }else {
   echo '<script language="javascript">
   alert("Modificaciones  realizadas correctamente");
-  window.location="http://localhost/sides/sides_roles.php";
+  window.location.assign("../sides_roles.php");
+
   </script>';
 }
 
-//header('Location: ../sides_grados.php');
-exit;
-//echo " dato Insertado ";
 mysqli_close($con);
  ?>

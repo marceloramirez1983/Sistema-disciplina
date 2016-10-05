@@ -72,7 +72,7 @@ $NOMBREUSUARIO=$USER_CI;
   //echo "es numero mayor = 1";
   echo '<script language="javascript">
   alert("El numero de ci ya fue registrado");
-  window.location="http://localhost/sides/sides_user.php";
+  window.location.assign("../sides_user.php");
   </script>';
 }
 mysqli_close($con);

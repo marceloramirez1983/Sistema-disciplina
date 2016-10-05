@@ -22,7 +22,7 @@ if (!mysqli_query($con,$insertar)) {
 mysqli_close($con);
 echo '<script language="javascript">
 alert("Merito registrado correctamente");
-window.location="http://localhost/sides/sides_merito.php";
+window.location.assign("../sides_merito.php");
 </script>';
 //header('Location: ../sides_armas.php');
 exit;
@@ -31,7 +31,7 @@ exit;
   mysqli_close($con);
   echo '<script language="javascript">
   alert("Merito ya fue registrado");
-  window.location="http://localhost/sides/sides_merito.php";
+  window.location.assign("../sides_merito.php");
   </script>';
 }
 ?>

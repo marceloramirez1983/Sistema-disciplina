@@ -15,12 +15,11 @@ $insertar="UPDATE arma SET arma = '$abrev_arma',descripcion= '$nomb_arma'  WHERE
 if (!mysqli_query($con,$insertar)) { die ("Error al insertar". mysqli_error);
 }else {
   echo '<script language="javascript">
-  alert("Modificaciones  realizadas correctamente");
-  window.location="http://localhost/sides/sides_armas.php";
+  alert("Modificaciones realizadas correctamente");
+  window.location.assign("../sides_armas.php");
   </script>';
 }
 
 exit;
-//echo " dato Insertado ";
 mysqli_close($con);
  ?>

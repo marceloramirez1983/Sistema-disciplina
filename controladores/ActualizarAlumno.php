@@ -24,30 +24,21 @@ $NOMBRE_TUTOR = $_POST['nombre_tutor'];
 $TELEFONO_TUTOR = $_POST['telefono_tutor'];
 $DIRECCION_TUTOR = $_POST['direccion_tutor'];
 
-echo $CI;
-echo $ID_GRADO;
-echo $GENERO;
-echo $DIRECCION_TUTOR;
-
-
 $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");//mysqli_select_db(variableconexion,nombreBD)
 
-$insertar="UPDATE usuario SET arma = '$abrev_arma',descripcion= '$nomb_arma'  WHERE id_ci = '$CI'";
+$insertaralum="UPDATE usuario SET id_grado = '$ID_GRADO',nombre= '$NOMBRE',paterno='$PATERNO',materno='$MATERNO',sexo='$GENERO',fecha_nac='$FECHA_NAC',lugar_nac='$NAC',correo='$EMAIL',celular='$CELULAR',direccion='$DOMICILIO' WHERE id_ci = '$CI'";
+$insertartutor="UPDATE tutor SET nombre_tutor = '$NOMBRE_TUTOR',telefono_tutor= '$TELEFONO_TUTOR',direccion_tutor='$DIRECCION_TUTOR'WHERE ci_tutor = '$CI_TUTOR'";
 
-$INSERT_USER = "INSERT INTO
-  usuario(id_ci, id_grado,nombre, paterno, materno, sexo, fecha_nac, lugar_nac, correo, celular, direccion, codigo_secreto, ci_tutor)
-  VALUES ('$CI','$ID_GRADO','$NOMBRE','$PATERNO','$MATERNO','$GENERO','$FECHA_NAC','$NAC','$EMAIL','$CELULAR','$DOMICILIO','$CONST_CODIGO','$CI_TUTOR')";
+if (!mysqli_query($con,$insertaralum)) { die ("Error al insertar". mysqli_error);
+}else {
+  if (!mysqli_query($con,$insertartutor)) { die ("Error al insertar". mysqli_error);
+  }else {
+  echo '<script language="javascript">
+  alert("Modificaciones realizadas correctamente");
+  window.location.assign("../sides_alumnos.php");
+  </script>';
+  }
 
-
-// if (!mysqli_query($con,$insertar)) { die ("Error al insertar". mysqli_error);
-// }else {
-//   echo '<script language="javascript">
-//   alert("Modificaciones  realizadas correctamente");
-//   window.location="http://localhost/sides/sides_armas.php";
-//   </script>';
-// }
-//
-// exit;
-// //echo " dato Insertado ";
+}
 mysqli_close($con);
  ?>

@@ -12,7 +12,7 @@ $query="DELETE FROM rol WHERE id_rol = $idEliminar";
 if(mysqli_query($con,$query)) {
   echo '<script language="javascript">
   alert("Rol eliminado correctamente");
-  window.location="http://localhost/sides/sides_roles.php";
+  window.location.assign("../sides_roles.php");
   </script>';
 //header('Location: ../sides_grados.php');
 }

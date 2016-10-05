@@ -24,7 +24,7 @@ if (!mysqli_query($con,$insertar)) {
 mysqli_close($con);
 echo '<script language="javascript">
 alert("Falta registrada correctamente");
-window.location="http://localhost/sides/sides_faltas.php";
+window.location.assign("../sides_faltas.php");
 </script>';
 //header('Location: ../sides_armas.php');
 exit;
@@ -33,7 +33,7 @@ exit;
   mysqli_close($con);
   echo '<script language="javascript">
   alert("La falta ya fue registrada");
-  window.location="http://localhost/sides/sides_faltas.php";
+  window.location.assign("../sides_faltas.php");
   </script>';
 }
 

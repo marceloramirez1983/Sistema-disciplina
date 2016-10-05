@@ -61,7 +61,7 @@ if ( $archivo != "none" )
       if(!mysqli_query($con,$UPDATE_POINT_TOTAL)) {
         echo '<script language="javascript">
         alert("Error al Insertar puntos total");
-        window.location="http://localhost/sides/sides_sanciones_rs.php";
+        window.location.assign("../sides_sanciones_rs.php");
         </script>';
         exit;
       }
@@ -70,7 +70,7 @@ if ( $archivo != "none" )
 
         echo '<script language="javascript">
         alert("Error al Insertar calificacion final disciplinario");
-        window.location="http://localhost/sides/sides_sanciones_rs.php";
+        window.location.assign("../sides_sanciones_rs.php");
         </script>';
         exit;
 
@@ -80,14 +80,14 @@ if ( $archivo != "none" )
         # code...
         echo '<script language="javascript">
         alert("Error al Insertar sancion");
-        window.location="http://localhost/sides/sides_sanciones_rs.php";
+        window.location.assign("../sides_sanciones_rs.php");
         </script>';
         exit;
       }
     //  -------------------FIN INSERTAR SANCION------------------------------
      echo '<script language="javascript">
      alert("Sancion y resolucion registrada correctamente");
-     window.location="http://localhost/sides/sides_sanciones_rs.php";
+     window.location.assign("../sides_sanciones_rs.php");
      </script>';
        mysqli_close($con);
      exit;
@@ -96,7 +96,7 @@ if ( $archivo != "none" )
    {
      echo '<script language="javascript">
      alert("No se ha podido registrar la Sancion y resolucion");
-     window.location="http://localhost/sides/sides_sanciones_rs.php";
+     window.location.assign("../sides_sanciones_rs.php");
      </script>';
      exit;
    }
@@ -105,7 +105,7 @@ else
  {
    echo '<script language="javascript">
    alert("No se ha podido subir el archivo al servidor");
-   window.location="http://localhost/sides/sides_sanciones_rs.php";
+   window.location.assign("../sides_sanciones_rs.php");
    </script>';
    exit;
  }

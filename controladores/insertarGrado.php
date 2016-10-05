@@ -21,7 +21,7 @@ if (!mysqli_query($con,$insertar)) {
 mysqli_close($con);
 echo '<script language="javascript">
 alert("Grado registrado correctamente");
-window.location="http://localhost/sides/sides_grados.php";
+window.location.assign("../sides_grados.php");
 </script>';
 //header('Location: ../sides_grados.php');
 exit;
@@ -30,7 +30,7 @@ exit;
   mysqli_close($con);
   echo '<script language="javascript">
   alert("Grado ya fue registrado");
-  window.location="http://localhost/sides/sides_armas.php";
+  window.location.assign("../sides_grados.php");
   </script>';
 }
 

@@ -298,6 +298,7 @@
                                     <th>Nombre</th>
                                     <th>Apellido Paterno</th>
                                     <th>Celular</th>
+                                    <th>Tutor</th>
                                     <!-- <th>Tutor</th> -->
                                     <th></th>
                                   </tr>
@@ -337,7 +338,7 @@
                                           <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                          <li><a href="sides_DetalleAlumnos.php">Ver mas detalles</a>
+                                          <li><a href="sides_DetalleAlumnos.php?id=<?php echo $row ['id_ci'];?>">Ver infomacion</a>
                                           </li>
                                           <li><a href="sides_EditarAlumnos.php?id=<?php echo $row ['id_ci'];?>">Modificar</a>
                                           </li>

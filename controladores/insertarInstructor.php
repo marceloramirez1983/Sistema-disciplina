@@ -63,7 +63,7 @@ if (mysqli_num_rows($result)<1) {
     }
     echo '<script language="javascript">
     alert("Instructor registrado correctamente");
-    window.location="http://localhost/sides/sides_instructor.php";
+    window.location.assign("../sides_instructor.php");
     </script>';
 
     //header('Location: ../sides_instructor.php');
@@ -73,7 +73,7 @@ if (mysqli_num_rows($result)<1) {
   //echo "es numero mayor = 1";
   echo '<script language="javascript">
   alert("El numero de ci ya fue registrado");
-  window.location="http://localhost/sides/sides_instructor.php";
+  window.location.assign("../sides_instructor.php");
   </script>';
 }
     mysqli_close($con);

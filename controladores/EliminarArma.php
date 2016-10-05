@@ -12,7 +12,7 @@ $query="DELETE FROM arma WHERE id_arma = $idEliminar";
 if(mysqli_query($con,$query)) {
   echo '<script language="javascript">
   alert("Arma eliminada");
-  window.location="http://localhost/sides/sides_armas.php";
+  window.location.assign("../sides_armas.php");
   </script>';
 //header('Location: ../sides_armas.php');
 }

@@ -4,7 +4,7 @@
   if ($_SESSION['loggedin']) {
     # code...
     include_once("controladores/conexionBD.php");
-
+    $idEditar=$_GET['id'];//VARIABLE DEL ID DEL ALUMNO QUE SE DESEA MODIFICAR
     $cnn= new conexion();
     $con =$cnn->conectar();
 
@@ -182,6 +182,12 @@
                       <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
                     </ul>
                   </li>
+
+                  <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
+                    </ul>
+                  </li>
                 <?php endif; ?>
 
                 <!-- Alumno -->
@@ -234,8 +240,8 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">  Profile</a>
-                    </li>
+                    <!-- <li><a href="javascript:;">  Profile</a>
+                    </li> -->
                     <li><a href="controladores/logout.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
                     </li>
                   </ul>
@@ -280,19 +286,23 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                           <div class="x_panel">
                             <div class="x_title">
-                              <h2>DETALLE DE LOS ALUMNOS <small>Informacion individual</small></h2>
+                              <h2>Informacion Alumno</h2>
 
                               <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
                               <!-- formulario mostrar detalle de alumnos -->
-                              <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarAlumno.php">
+                              <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="">
+
+                                <?php
+                                $query=mysqli_query($con,"SELECT * FROM usuario INNER JOIN tutor ON usuario.ci_tutor=tutor.ci_tutor WHERE usuario.id_ci= $idEditar");
+                                while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)):?>
 
                                 <div class="form-group">
-                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required" >*</span>
                                   </label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="ci_alumno" name="ci_alumno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
+                                    <input readonly type="text" id="ci_alumno" name="ci_alumno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);" value="<?php echo $row['id_ci']?>">
                                   </div>
                                 </div>
 
@@ -300,17 +310,15 @@
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12">Grado <span class="required">*</span></label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                    <select class="form-control" name="id_grado">
-                                      <option value="">Seleccione su grado</option>
+                                    <select  class="form-control" name="id_grado" disabled="disabled">
+                                      <option value="">Seleccione los puntos para perdidos</option>
                                       <?php
-                                      $query="SELECT * FROM grado";
-                                      $result= mysqli_query($con,$query);
-                                      while ($row=mysqli_fetch_array($result)):?>
-                                      <?php if ($row['1']=='AL. 2AM.'||$row['1']=='AL. 1AM.'|| $row['1']=='AL. 3AM.'): ?>
-                                      <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
-                                      <?php endif; ?>
+                                      $query2="SELECT * FROM grado";
+                                      $result2= mysqli_query($con,$query2);
+                                      while ($row2=mysqli_fetch_array($result2)):?>
+                                        <option <?php if($row2['0']==$row['id_grado']):?> selected="selected"<?php endif;?>value="<?php echo $row['id_grado']?>"><?php echo $row2['1']?></option>
+                                      <?php endwhile?> ;
 
-                                      <?php endwhile; mysqli_close($con); ?>
                                     </select>
 
                                   </div>
@@ -320,7 +328,7 @@
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required" >*</span>
                                   </label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="nombre" name="nombre" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
+                                    <input readonly type="text" id="nombre" name="nombre" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['nombre']?>">
                                   </div>
                                 </div>
 
@@ -328,7 +336,7 @@
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
                                   </label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="paterno" name="paterno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
+                                    <input readonly type="text" id="paterno" name="paterno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['paterno']?>">
                                   </div>
                                 </div>
 
@@ -336,7 +344,7 @@
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
                                   </label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="materno" name="materno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
+                                    <input readonly  type="text" id="materno" name="materno" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['materno']?>">
                                   </div>
                                 </div>
 
@@ -344,14 +352,14 @@
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Genero <span class="required">*</span>
                                   </label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="radio">
+                                    <div class="radio" >
                                       <label>
-                                        <input type="radio" class="flat" checked name="sexo" value="Masculino"> Masculino
+                                        <input disabled="disabled" type="radio" class="flat" name="sexo" <?php if( $row['sexo'] == "MASCULINO" ) { ?>checked="checked"<?php } ?> value="MASCULINO" > Masculino
                                       </label>
                                     </div>
                                     <div class="radio">
                                       <label>
-                                        <input type="radio" class="flat" name="sexo" value="Femenina"> Femenino
+                                        <input disabled="disabled"  type="radio" class="flat" name="sexo" <?php if( $row['sexo'] == "FEMENINO" ) { ?>checked="checked"<?php } ?> value="FEMENINO" > Femenino
                                       </label>
                                     </div>
                                   </div>
@@ -361,7 +369,7 @@
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento <span class="required">*</span>
                                   </label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha_nac">
+                                    <input disabled="disabled" id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha_nac" value="<?php echo $row['fecha_nac']?>">
                                   </div>
                                 </div>
 
@@ -369,28 +377,28 @@
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento <span class="required">*</span>
                                   </label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="lugar" name="lugar" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
+                                    <input readonly type="text" id="lugar" name="lugar" required="required" class="form-control col-md-7 col-xs-12" onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['lugar_nac']?>">
                                   </div>
                                 </div>
 
                                 <div class="form-group">
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Correo electrónico <span class="required">*</span></label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="email" name="email" class="form-control col-md-7 col-xs-12">
+                                    <input readonly type="text" id="email" name="email" class="form-control col-md-7 col-xs-12" value="<?php echo $row['correo']?>">
                                   </div>
                                 </div>
 
                                 <div class="form-group">
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="cel" name="cel" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
+                                    <input readonly type=readonly "text" id="cel" name="cel" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);" value="<?php echo $row['celular']?>">
                                   </div>
                                 </div>
 
                                 <div class="form-group">
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="domicilio" name="domicilio" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();">
+                                    <input readonly type="text" id="domicilio" name="domicilio" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['direccion']?>">
                                   </div>
                                 </div>
 
@@ -399,37 +407,39 @@
                                 <div class="form-group">
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Cédula Identidad del Tutor <span class="required">*</span></label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="ci_tutor" name="ci_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="return SoloNumeros(event);">
+                                    <input readonly type="text" id="ci_tutor" name="ci_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="return SoloNumeros(event);" value="<?php echo $row['ci_tutor']?>">
                                   </div>
                                 </div>
 
                                 <div class="form-group">
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre del Tutor <span class="required">*</span></label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="nombre_tutor" name="nombre_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
+                                    <input readonly type="text" id="nombre_tutor" name="nombre_tutor" class="form-control col-md-7 col-xs-12"  onkeypress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();"value="<?php echo $row['nombre_tutor']?>">
                                   </div>
                                 </div>
 
                                 <div class="form-group">
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Telefono del Tutor <span class="required">*</span></label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="telefono_tutor" name="telefono_tutor" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);">
+                                    <input readonly type="text" id="telefono_tutor" name="telefono_tutor" class="form-control col-md-7 col-xs-12" onkeypress="return SoloNumeros(event);"value="<?php echo $row['telefono_tutor']?>">
                                   </div>
                                 </div>
 
                                 <div class="form-group">
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Direccion del Tutor <span class="required">*</span></label>
                                   <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="direccion_tutor" name="direccion_tutor" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();">
+                                    <input readonly type="text" id="direccion_tutor" name="direccion_tutor" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['direccion_tutor']?>">
                                   </div>
                                 </div>
+                                <button type="button" class="btn btn-default" onclick="location.href='reportes/ReporteInformacionAlumno.php?id=<?php echo $row['id_ci']?>'"><i class="fa fa-print"></i>  Imprimir</button>
+                                  <?php Endwhile; ?>
 
                                 <div class="ln_solid"></div>
 
                                 <div class="form-group">
                                   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                    <button type="reset" class="btn btn-primary">Cancelar</button>
-                                    <button type="button" class="btn btn-success" onclick="valida_envia()">Guardar</button>
+                                    <button type="button" class="btn btn-primary" onclick="location.href='sides_alumnos.php'">Volver</button>
+
 
                                   </div>
                                 </div>

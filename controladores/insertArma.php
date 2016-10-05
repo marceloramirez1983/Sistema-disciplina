@@ -25,7 +25,7 @@ if (!mysqli_query($con,$insertar)) {
 mysqli_close($con);
 echo '<script language="javascript">
 alert("Arma registrada correctamente");
-window.location="http://localhost/sides/sides_armas.php";
+window.location.assign("../sides_armas.php");
 </script>';
 //header('Location: ../sides_armas.php');
 exit;

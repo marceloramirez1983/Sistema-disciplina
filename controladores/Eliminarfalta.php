@@ -10,7 +10,11 @@ $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de 
 $query="DELETE FROM falta WHERE id_falta = $idEliminar";
 
 if(mysqli_query($con,$query)) {
-header('Location: ../sides_faltas.php');
+echo '<script language="javascript">
+alert("Falta eliminada correctamente");
+window.location.assign("../sides_faltas.php");
+</script>';
+//header('Location: ../sides_faltas.php');
 }
 mysqli_close($con);
 ?>

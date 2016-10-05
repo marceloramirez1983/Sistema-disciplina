@@ -24,7 +24,8 @@ if(mysqli_query($con,$query)) {
   if(mysqli_query($con,$query2)) {
   echo '<script language="javascript">
   alert("Usuario eliminado correctamente");
-  window.location="http://localhost/sides/sides_instructor.php";
+  window.location.assign("../sides_instructor.php");
+
   </script>';
 //header('Location: ../sides_grados.php');
 }

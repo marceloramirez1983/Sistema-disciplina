@@ -3,7 +3,7 @@ require_once "conexionBD.php";
 
 $idEliminar=$_GET['id'];
 
-echo $idEliminar;
+//echo $idEliminar;
 
 $cnn= new conexion();//crea instancia de la clase conexion
 $con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion conectar.
@@ -13,7 +13,7 @@ $queryBuscatutor="SELECT * FROM usuario WHERE id_ci=$idEliminar";
 $citutor = mysqli_query($con, $queryBuscatutor) or die ("error obtener ci tutor");
 $result_tutor = mysqli_fetch_assoc($citutor);
 $ci_tutorbuscado=$result_tutor['ci_tutor'];
-echo $ci_tutorbuscado;
+//echo $ci_tutorbuscado;
 
 $queryeliminaUsuario="DELETE FROM usuario WHERE id_ci= $idEliminar";
 $queryAsignarUsuario="DELETE FROM asignar_usuario WHERE id_ci=$idEliminar";
@@ -27,7 +27,7 @@ if (mysqli_num_rows($result)==1) {
       if (mysqli_query($con,$queryEliminaTutor)) {
         echo '<script language="javascript">
         alert("Alumno eliminado");
-        window.location="http://localhost/sides/sides_alumnos.php";
+        window.location.assign("../sides_alumnos.php");
         </script>';
       }
     }
@@ -37,7 +37,7 @@ if (mysqli_num_rows($result)==1) {
     if (mysqli_query($con,$queryeliminaUsuario)) {
         echo '<script language="javascript">
         alert("Alumno eliminado correctamente");
-        window.location="http://localhost/sides/sides_alumnos.php";
+        window.location.assign("../sides_alumnos.php");
         </script>';
     }
   }

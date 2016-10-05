@@ -22,7 +22,7 @@ if (!mysqli_query($con,$insertar)) {
 mysqli_close($con);
 echo '<script language="javascript">
 alert("Rol registrado correctamente");
-window.location="http://localhost/sides/sides_roles.php";
+window.location.assign("../sides_roles.php");
 </script>';
 exit;
 
@@ -30,7 +30,7 @@ exit;
   mysqli_close($con);
   echo '<script language="javascript">
   alert("Rol ya fue registrado");
-  window.location="http://localhost/sides/sides_roles.php";
+  window.location.assign("../sides_roles.php");
   </script>';
   exit;
 }

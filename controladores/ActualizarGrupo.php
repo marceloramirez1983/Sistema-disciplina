@@ -7,7 +7,6 @@ $puntos_grupo=$_POST['CBoxselect_puntos'];
 //echo $idgrupo;
 //echo $nomb_grupo;
 //echo $puntos_grupo;
-
 //echo $nomb_grupo. $puntos_grupo;
 $cnn= new conexion();//crea instancia de la clase conexion
 $con =$cnn->conectar();//la clase conexion almacenada de cnn ejecuta la funcion conectar.
@@ -20,12 +19,10 @@ if (!mysqli_query($con,$insertar)) { die ("Error al insertar". mysqli_error);
 }else {
   echo '<script language="javascript">
   alert("Modificaciones  realizadas correctamente");
-  window.location="http://localhost/sides/sides_grupos.php";
+  window.location.assign("../sides_grupos.php");
   </script>';
 }
-//header('Location: ../sides_grupos.php');
 exit;
-//echo " dato Insertado ";
 mysqli_close($con);
 
  ?>

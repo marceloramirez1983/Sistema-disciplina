@@ -29,44 +29,14 @@ if($row['usuario_password']==$PassActual){
     alert("Contraseña modificada correctamente");
     window.location.assign("../sides_user_CambiarContrasena.php");
     </script>';
-  //}
-
-  // if ($rol==5) {
-  //   echo '<script language="javascript">
-  //   alert("Contraseña modificada correctamente");
-  //   window.location.assign("../sides_reports_cambiarContrasenaAlum.php");
-  //   </script>';
-  // }
-  //
-  // if ($rol==6) {
-  //   echo '<script language="javascript">
-  //   alert("Contraseña modificada correctamente");
-  //   window.location.assign("../sides_reports_cambiarContrasenaAlum.php");
-  //   </script>';
-  // }
-
   }
 
 }else {
-  // $buscar2="SELECT * from asignar_usuario WHERE id_ci='$ci'";
-  // $result_busqueda2=mysqli_query($con,$buscar2);
-  // $row2 = mysqli_fetch_assoc($result_busqueda2);
-  //
-  // $rol2=$row2['id_rol'];
 
-//  if ($rol2==1) {
     echo '<script language="javascript">
     alert("Error contraseña actual incorrecta");
     window.location.assign("../sides_user_CambiarContrasena.php");
     </script>';
-//  }
-
-  // if ($rol2==6) {
-  //   echo '<script language="javascript">
-  //   alert("Error contraseña actual incorrecta");
-  //   window.location.assign("../sides_reports_cambiarContrasenaAlum.php");
-  //   </script>';
-  // }
 
 }
 

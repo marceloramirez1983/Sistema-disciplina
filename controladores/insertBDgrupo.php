@@ -24,18 +24,16 @@ if (!mysqli_query($con,$insertar)) {
 mysqli_close($con);
 echo '<script language="javascript">
 alert("Grupo registrado correctamente");
-window.location="http://localhost/sides/sides_grupos.php";
+window.location.assign("../sides_grupos.php");
 </script>';
-//header('Location: ../sides_armas.php');
 exit;
 
 }else {
   mysqli_close($con);
   echo '<script language="javascript">
   alert("Grupo ya fue registrado");
-  window.location="http://localhost/sides/sides_grupos.php";
+  window.location.assign("../sides_grupos.php");
   </script>';
 }
-
 
 ?>
