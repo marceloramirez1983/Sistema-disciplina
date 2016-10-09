@@ -4,7 +4,9 @@
   if ($_SESSION['loggedin']) {
     # code...
     include_once("controladores/conexionBD.php");
+
     $idEditar=$_GET['id'];//VARIABLE DEL ID DEL ALUMNO QUE SE DESEA MODIFICAR
+
     $cnn= new conexion();
     $con =$cnn->conectar();
 
@@ -158,6 +160,17 @@
                       <li><a href="sides_instructor.php">Registrar Instructor</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-list-alt"></i> Administrar Sanciones <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_sanciones.php">Boleta de sancion</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-key"></i> Contraseña <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sides_user_CambiarContrasena.php">Modificar</a></li>
+                    </ul>
+                  </li>
                 <?php endif; ?>
 
                 <!-- Instructor -->
@@ -258,7 +271,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Detalle de Alumnos</h3>
+                <h3>Información Personal</h3>
               </div>
             </div>
 
@@ -285,36 +298,51 @@
                         <!-- List New Users -->
                         <div class="col-md-12 col-sm-12 col-xs-12">
                           <div class="x_panel">
-
-
+                            <!-- <div class="x_title">
+                              <h2>INSTRUCTOR</h2>
+                              <div class="clearfix"></div>
+                            </div> -->
                             <div class="x_content">
-
-
+                              <!-- formulario mostrar detalle de alumnos -->
                               <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+
                                 <div class="profile_img">
+
+                                  <!-- end of image cropping -->
                                   <div id="crop-avatar">
+                                    <!-- Current avatar -->
                                     <img class="img-responsive avatar-view" src="images/placeholder_profile.jpg" alt="Avatar" title="Change the avatar">
+
                                   </div>
+                                  <!-- end of image cropping -->
+
                                 </div>
-
                                 <?php
-                                $query=mysqli_query($con,"SELECT * FROM usuario INNER JOIN tutor ON usuario.ci_tutor=tutor.ci_tutor WHERE usuario.id_ci= $idEditar");
+                                $query=mysqli_query($con,"SELECT * FROM usuario WHERE id_ci= $idEditar");
                                 while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)):?>
-
                                 <h4><?php echo $row['nombre']." ".$row['paterno']; ?></h4>
                                 <ul class="list-unstyled user_data">
                                   <li>
-                                    <i class="fa fa-briefcase user-profile-icon"></i> Alumno
+                                    <i class="fa fa-briefcase user-profile-icon"></i> Instructor
                                   </li>
                                 </ul>
+                                <br />
                               </div>
 
                                 <div class="col-md-9 col-sm-9 col-xs-12">
                                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
 
                                   </div>
-                                  <table class="table">
 
+                                  <table class="table">
+                                    <!-- <thead>
+                                      <tr>
+                                        <th style="text-align:center;"></th>
+                                        <th style="text-align:center;">DETALLE</th>
+                                        <th style="text-align:center;">INFORMACION</th>
+                                        <th style="text-align:center;"></th>
+                                      </tr>
+                                    </thead> -->
                                     <tbody>
                                       <tr>
                                         <th scope="row">CEDULA DE IDENTIDAD</th>
@@ -373,40 +401,18 @@
                                         <th scope="row">DIRECCION</th>
                                         <td><?php echo $row['direccion'];?></td>
                                       </tr>
-
-                                      <tr>
-                                        <th class="active" scope="row">DATOS TUTOR</th>
-                                        <td class="active"></td>
-                                      </tr>
-
-                                      <tr>
-                                        <th scope="row">CEDULA IDENTIDAD TUTOR</th>
-                                        <td><?php echo $row['ci_tutor'];?></td>
-                                      </tr>
-
-                                      <tr>
-                                        <th scope="row">NOMBRE TUTOR</th>
-                                        <td><?php echo $row['nombre_tutor'];?></td>
-                                      </tr>
-
-                                      <tr>
-                                        <th scope="row">TELEFONO TUTOR</th>
-                                        <td><?php echo $row['telefono_tutor'];?></td>
-                                      </tr>
-
-                                      <tr>
-                                        <th scope="row">DIRECCION TUTOR</th>
-                                        <td><?php echo $row['direccion_tutor'];?></td>
-                                      </tr>
-
                                     </tbody>
                                   </table>
-                                  <?php endwhile;?>
-                                  <button class="btn btn-default" onclick="location.href='reportes/ReporteInformacionAlumno.php?id=<?php echo $idEditar;?>'"><i class="fa fa-print"></i> Imprimir</button>
-                                </div>
-                              <!-- final del  formulario mostrar detalle de alumnos -->
-                            </div>
 
+
+                                  <?php endwhile;?>
+                                  <button class="btn btn-default" onclick="location.href='reportes/ReporteInformacionInstructor.php?id=<?php echo $idEditar;?>'"><i class="fa fa-print"></i> Imprimir</button>
+                                </div>
+
+                              <!-- final del  formulario mostrar detalle de alumnos -->
+
+                            </div>
+                          </div>
                         </div>
 
 
@@ -415,7 +421,7 @@
 
                         <!-- Form New Users -->
                         <div class="x_content">
-                          <br />
+
                         </div>
 
 

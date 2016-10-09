@@ -61,8 +61,24 @@ if (mysqli_num_rows($result)<1) {
     if (!mysqli_query($con, $INSERT_ASIGN_USER)) {
       die(" <br> Error al insertar ASIGN USUARIO ".mysql_error);
     }
+    //Enviar Email de Credencial
+              $MENSAJE = "Bienvenido al Sistema Disciplinario de la EMSE \n su cuenta de usuario o Username = ".$CI."\n Password: ". $CONST_PASSWORD;
+              $to = $EMAIL;
+              $subject = 'Credencial de Acceso al Sistema ...';
+              $header = 'From: sidesemse@gmail.com'.
+                  'MIME-Version: 1.0'.'\r\n'.
+                  'Content-type: text/html; charset=utf-8';
+              if (mail($to,$subject,$MENSAJE,$header)) {
+                  //echo "email enviado!";
+              } else {
+                  echo '<script language="javascript">
+                  alert("error al enviar email!");
+                  window.location.assign("../sides_instructor.php");
+                  </script>';
+              }
+    //fin Enviar Email de Credencial
     echo '<script language="javascript">
-    alert("Instructor registrado correctamente");
+    alert("Instructor registrado correctamente y Email de registro enviado");
     window.location.assign("../sides_instructor.php");
     </script>';
 

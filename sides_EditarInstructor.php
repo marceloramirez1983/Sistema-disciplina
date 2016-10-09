@@ -5,6 +5,8 @@
     # code...
     include_once("controladores/conexionBD.php");
 
+    $idEditar=$_GET['id'];
+
     $cnn= new conexion();
     $con =$cnn->conectar();
 
@@ -262,7 +264,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Administrar Instructor</h3>
+                <h3>Información Instructor</h3>
               </div>
 
               <!-- <div class="title_right">
@@ -288,105 +290,29 @@
                   <br>
                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Buscar</a>
+                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Modificar</a>
                       </li>
-                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Registrar</a>
-                      </li>
+                      <!-- <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Registrar</a>
+                      </li> -->
                       <!-- <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
                       </li> -->
                     </ul>
                     <div id="myTabContent" class="tab-content">
                       <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
-                        <!-- List New Users -->
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                          <div class="x_panel">
-                            <div class="x_title">
-                              <h2>Lista de Instructores <small>puedes modifica o eliminar</small></h2>
-
-                              <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
-                              <table class="table table-hover">
-                                <thead>
-                                  <tr>
-                                    <th>Cédula Identidad</th>
-                                    <th>Grado</th>
-                                    <th>Arma</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido Paterno</th>
-                                    <th>Apellido Materno</th>
-                                    <th></th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <?php
-                                    $query = "SELECT usuario.id_ci, usuario.id_grado, usuario.id_arma, usuario.nombre, usuario.paterno, usuario.materno
-                                              FROM usuario,asignar_usuario WHERE usuario.id_ci = asignar_usuario.id_ci
-                                              AND asignar_usuario.id_rol = '4'";
-                                    $getAll = mysqli_query($con, $query);
-                                    while ($row = mysqli_fetch_array($getAll, MYSQLI_ASSOC)):
-                                  ?>
-                                  <tr>
-                                    <th scope="row"><?php echo $row ['id_ci']; ?></th>
-                                    <td><?php
-                                        $getGrado = $row ['id_grado'];
-                                        $queryGrado = "SELECT grado FROM grado WHERE id_grado = '$getGrado'";
-                                        $grado = mysqli_query($con, $queryGrado) or die ("error get grado");
-                                        $result_grado = mysqli_fetch_assoc($grado);
-                                        echo $result_grado['grado'];
-                                      ?></td>
-                                    <td><?php
-                                      $getArma = $row ['id_arma'];
-                                      $queryArma = "SELECT arma FROM arma WHERE id_arma = '$getArma'";
-                                      $arma = mysqli_query($con, $queryArma) or die ("error get arma");
-                                      $result_arma = mysqli_fetch_assoc($arma);
-                                      echo $result_arma['arma'];
-                                      //echo $row ['id_arma'];
-                                    ?></td>
-                                    <td><?php echo $row ['nombre']; ?></td>
-                                    <td><?php echo $row ['paterno']; ?></td>
-                                    <td><?php echo $row ['materno']; ?></td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">Opción</button>
-                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                          <span class="caret"></span>
-                                          <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                          <li><a href="sides_DetalleInstructor.php?id=<?php echo $row ['id_ci'];?>">Información instructor</a>
-                                          </li>
-                                          <li><a href="sides_EditarInstructor.php?id=<?php echo $row ['id_ci'];?>">Modificar</a>
-                                          </li>
-                                          <li class="divider"></li>
-                                          <li><a href="controladores/EliminarInstructor.php?id=<?php echo $row ['id_ci'];?>">Eliminar</a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </td>
-
-                                  </tr>
-                                <?php endwhile; ?>
-                                </tbody>
-                              </table>
-                            </div>
-                          </div>
-                        </div>
-
-                      </div>
-                      <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-
                         <!-- Formulario para nuevos instructores -->
                         <div class="x_content">
                           <br />
-                          <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarInstructor.php">
+                          <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/ActualizarInstructor.php">
+                            <?php
+                            $query=mysqli_query($con,"SELECT * FROM usuario WHERE id_ci= $idEditar");
+                            while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)):?>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="ci_instructor" name="ci_instructor"class="form-control col-md-7 col-xs-12" onKeyPress="return soloNumeros(event)">
+                                <input readonly type="text" id="ci_instructor" name="ci_instructor"class="form-control col-md-7 col-xs-12" onKeyPress="return soloNumeros(event)" value="<?php echo $row['id_ci']?>">
                               </div>
                             </div>
 
@@ -397,13 +323,11 @@
                                 <select class="form-control" name="id_grado" >
                                   <option value="">Seleccione su grado</option>
                                   <?php
-                                  $query="SELECT * FROM grado";
-                                  $result= mysqli_query($con,$query);
-                                  while ($row=mysqli_fetch_array($result)):?>
-                                    <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
-                                  <?php endwhile;
-
-                                  ?>
+                                  $query2="SELECT * FROM grado";
+                                  $result2= mysqli_query($con,$query2);
+                                  while ($row2=mysqli_fetch_array($result2)):?>
+                                    <option <?php if($row2['0']==$row['id_grado']):?> selected="selected"<?php endif;?>value="<?php echo $row['id_grado']?>"><?php echo $row2['1']?></option>
+                                  <?php endwhile?> ;
                                 </select>
 
                               </div>
@@ -416,12 +340,11 @@
                                   <option value="">Seleccione su arma</option>
                                   <?php
                                   $query2="SELECT * FROM arma";
-                                  $result= mysqli_query($con,$query2);
-                                  while ($row=mysqli_fetch_array($result)):?>
-                                    <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
-                                  <?php endwhile;
-                                  mysqli_close($con);
-                                  ?>
+                                  $result2= mysqli_query($con,$query2);
+                                  while ($row2=mysqli_fetch_array($result2)):?>
+                                    <option <?php if($row2['0']==$row['id_arma']):?> selected="selected"<?php endif;?>value="<?php echo $row['id_arma']?>"><?php echo $row2['1']?></option>
+                                  <?php endwhile?> ;
+
                                 </select>
                               </div>
                             </div>
@@ -430,7 +353,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="nombre" name="nombre" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
+                                <input type="text" id="nombre" name="nombre" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['nombre']?>">
                               </div>
                             </div>
 
@@ -438,7 +361,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="paterno" name="paterno" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
+                                <input type="text" id="paterno" name="paterno" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['paterno']?>">
                               </div>
                             </div>
 
@@ -446,7 +369,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="materno" name="materno" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
+                                <input type="text" id="materno" name="materno" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['materno']?>">
                               </div>
                             </div>
 
@@ -456,12 +379,12 @@
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="radio">
                                   <label>
-                                    <input type="radio" class="flat" checked name="sexo" value="MASCULINO"> Masculino
+                                    <input type="radio" class="flat" checked name="sexo" <?php if( $row['sexo'] == "MASCULINO" ) { ?>checked="checked"<?php } ?> value="MASCULINO" > Masculino
                                   </label>
                                 </div>
                                 <div class="radio">
                                   <label>
-                                    <input type="radio" class="flat" name="sexo" value="FEMENINO"> Femenino
+                                    <input type="radio" class="flat" name="sexo" <?php if( $row['sexo'] == "FEMENINO" ) { ?>checked="checked"<?php } ?> value="FEMENINO" > Femenino
                                   </label>
                                 </div>
                               </div>
@@ -471,7 +394,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha_nac">
+                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha_nac" value="<?php echo $row['fecha_nac']?>">
                               </div>
                             </div>
 
@@ -479,31 +402,32 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="lugar" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
+                                <input type="text" id="lugar" name="lugar" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['lugar_nac']?>">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Correo electrónico <span class="required">*</span></label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="email" name="email" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="email" name="email" class="form-control col-md-7 col-xs-12" value="<?php echo $row['correo']?>">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="cel" name="celular" class="form-control col-md-7 col-xs-12"  onKeyPress="return soloNumeros(event)">
+                                <input type="text" id="cel" name="cel" class="form-control col-md-7 col-xs-12"  onKeyPress="return soloNumeros(event)" value="<?php echo $row['celular']?>">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="domicilio" name="domicilio" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();">
+                                <input type="text" id="domicilio" name="domicilio" class="form-control col-md-7 col-xs-12" onKeyUp="this.value = this.value.toUpperCase();" value="<?php echo $row['direccion']?>">
                               </div>
                             </div>
-
+                            <?php Endwhile; ?>
+                            <?php  mysqli_close($con);?>
                             <div class="ln_solid"></div>
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -519,8 +443,8 @@
 
                         // Solo permite ingresar numeros.
                         function soloNumeros(e){
-                        	var key = window.Event ? e.which : e.keyCode
-                        	return (key >= 48 && key <= 57)
+                          var key = window.Event ? e.which : e.keyCode
+                          return (key >= 48 && key <= 57)
                         }
 
                         function SoloLetras() {
@@ -605,7 +529,8 @@
                         }
                         </script>
 
-
+                      </div>
+                      <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                       </div>
                       <!-- <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                         <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo

@@ -313,7 +313,7 @@
                                   <div class="col-md-6 col-sm-6 col-xs-12">
 
                                     <select class="form-control" name="id_grado">
-                                      <option value="">Seleccione los puntos para perdidos</option>
+                                      <option value="">Seleccione el grado</option>
                                       <?php
                                       $query2="SELECT * FROM grado";
                                       $result2= mysqli_query($con,$query2);

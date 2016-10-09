@@ -84,8 +84,12 @@
                 if (mail($to,$subject,$MENSAJE,$header)) {
                     //echo "email enviado!";
                 } else {
-                    echo "error al enviar email!";
+                    echo '<script language="javascript">
+                    alert("error al enviar email!");
+                    window.location.assign("../sides_alumnos.php");
+                    </script>';
                 }
+      //fin Enviar Email de Credencial
     echo '<script language="javascript">
     alert("Alumno registrado correctamente");
     window.location.assign("../sides_alumnos.php");
