@@ -233,7 +233,7 @@
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
+            <!-- <div class="sidebar-footer hidden-small">
               <a data-toggle="tooltip" data-placement="top" title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
@@ -246,7 +246,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Logout">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
-            </div>
+            </div> -->
             <!-- /menu footer buttons -->
           </div>
         </div>
@@ -378,6 +378,25 @@
                                 <input readonly class="form-control col-md-7 col-xs-12" required="required" type="text" name="fecha" value="<?php echo date("d/m/Y"); ?>">
                               </div>
                             </div>
+
+                            <?php if (isset($_GET['success'])) {
+
+                              # code...
+                              echo '<div class="alert alert-success alert-dismissible true fade in" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                                </button>
+                                <strong>Merito registrado exitosamente!.
+                              </div>';
+
+                            } else if (isset($_GET['error'])){
+                              # code...
+
+                              echo '<div class="alert alert-danger alert-dismissible true fade in" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                                </button>
+                                <strong>Error al registrar merito, Verifique su CI.
+                              </div>';
+                            }?>
 
                             <div class="ln_solid"></div>
                             <div class="form-group">

@@ -206,7 +206,7 @@
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
+            <!-- <div class="sidebar-footer hidden-small">
               <a data-toggle="tooltip" data-placement="top" title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
@@ -219,7 +219,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Logout">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
-            </div>
+            </div> -->
             <!-- /menu footer buttons -->
           </div>
         </div>
@@ -338,7 +338,7 @@
                                           <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                          <li><a href="sides_DetalleAlumnos.php?id=<?php echo $row ['id_ci'];?>">Ver infomacion</a>
+                                          <li><a href="sides_DetalleAlumnos.php?id=<?php echo $row ['id_ci'];?>">Ver informacion</a>
                                           </li>
                                           <li><a href="sides_EditarAlumnos.php?id=<?php echo $row ['id_ci'];?>">Modificar</a>
                                           </li>

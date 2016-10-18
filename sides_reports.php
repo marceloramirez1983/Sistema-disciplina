@@ -338,7 +338,7 @@
                                   }
                                 ?>
                               </td>
-                              <!-- <td><?php echo $row ['ci_instructor'];?></td> -->
+                              <!-- <td><?php// echo $row ['ci_instructor'];?></td> -->
                               <td><?php echo $row ['puntos'];?></td>
                               <td><?php echo $row ['tipo'];?></td>
                             </tr>

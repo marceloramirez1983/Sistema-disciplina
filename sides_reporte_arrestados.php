@@ -313,9 +313,10 @@
 
                           <div class="col-md-6 form-group">
                             <button type="submit" class="btn btn-primary">Generar Lista</button>
+                            <!-- <button type="button" class="btn btn-default" onclick="location.href='reportes/Lista_arrestados.php?d=<?php //echo $DATE_ONE;?>'"><i class="fa fa-print"></i> Imprimir</button> -->
                           </div>
-
                         </div>
+
                       </form>
                       <div class="col-md-12 col-sm-9 col-xs-12">
                         <div class="" role="tabpanel" data-example-id="togglable-tabs">
@@ -330,52 +331,60 @@
                               </tr>
                             </thead>
                             <tbody>
-
                               <?php
-
                               if (isset($_POST['date_two'])) {
                                 # code...
-                                $DATE_ONE = $_POST['date_one'];
-                                $DATE_TWO = $_POST['date_two'];
+                                $DATE_ONE1 = $_POST['date_one'];
+                                $DATE_TWO1 = $_POST['date_two'];
+                                //$date = str_replace('/', '-', $DATE_ONE1);
+                                $DATE_ONE = date("Y-m-d",strtotime($DATE_ONE1));
+                                $DATE_TWO = date("Y-m-d",strtotime($DATE_TWO1));
 
+                                echo "<H2>DESDE : ".$DATE_ONE."</H2>"; echo "<br>";
+                                echo "<H2>HASTA : ".$DATE_TWO."</H2>"; echo "<br>";
                                 // $query = "SELECT *, SUM(puntos) AS total_puntos_report
                                 // FROM sancion
                                 // WHERE fecha BETWEEN '$DATE_ONE' AND '$DATE_TWO' ORDER BY ci_alumno";
-                                $query = "SELECT ci_alumno
+                                $query ="SELECT sancion.ci_alumno,usuario.nombre,usuario.paterno,usuario.materno,
+                                SUM(puntos)
                                 FROM sancion
-                                WHERE fecha BETWEEN '$DATE_ONE' AND '$DATE_TWO' GROUP BY ci_alumno";
-                                $getAll = mysqli_query($con, $query);
+                                INNER JOIN usuario
+                                ON sancion.ci_alumno=usuario.id_ci
+                                WHERE fecha BETWEEN '$DATE_ONE' AND '$DATE_TWO' AND tipo='D'
+                                GROUP BY ci_alumno";
+
+                                $getAll = mysqli_query($con,$query);
                                 $num=0;
-
-                              }
-
-
-                              while ($row = mysqli_fetch_array($getAll, MYSQLI_ASSOC)):
+                              //}
+                              while ($row = mysqli_fetch_array($getAll,MYSQLI_ASSOC)):
                               ?>
                               <tr>
                                 <td><?php $num=$num+1;echo $num ?></td>
                                 <td>
                                   <?php
-                                    $id_ci_report = $row['ci_alumno'];
-                                    $queryFalta = "SELECT * FROM usuario WHERE id_ci = '$id_ci_report'";
-                                    $falta = mysqli_query($con, $queryFalta);
-                                    $result_falta = mysqli_fetch_assoc($falta);
-                                    echo $result_falta['nombre']." ".$result_falta['paterno']." ".$result_falta['materno'];
+                                    // $id_ci_report = $row['ci_alumno'];
+                                    // $queryFalta = "SELECT * FROM usuario WHERE id_ci = '$id_ci_report'";
+                                    // $falta = mysqli_query($con, $queryFalta);
+                                    // $result_falta = mysqli_fetch_assoc($falta);
+                                    echo $row['nombre']." ".$row['paterno']." ".$row['materno'];
                                   ?>
                                 </td>
                                 <td>
                                   <?php
-                                  $id_ci_report = $row['ci_alumno'];
-                                  $queryFalta = "SELECT * FROM usuario WHERE id_ci = '$id_ci_report'";
-                                  $falta = mysqli_query($con, $queryFalta);
-                                  $result_falta = mysqli_fetch_assoc($falta);
-                                  echo $result_falta['total_puntos'];
+                                  // $id_ci_report = $row['ci_alumno'];
+                                  // $queryFalta = "SELECT * FROM usuario WHERE id_ci = '$id_ci_report'";
+                                  // $falta = mysqli_query($con, $queryFalta);
+                                  // $result_falta = mysqli_fetch_assoc($falta);
+                                  echo $row['SUM(puntos)'];
                                   ?>
                                 </td>
                               </tr>
+
                               <?php
                                 endwhile;
+                              }
                               ?>
+
                             </tbody>
                           </table>
                           <!-- end user projects -->
@@ -458,10 +467,10 @@
                   extend: "pdfHtml5",
                   className: "btn-sm"
                 },
-                {
-                  extend: "print",
-                  className: "btn-sm"
-                },
+                // {
+                //   extend: "print",
+                //   className: "btn-sm"
+                // },
               ],
               responsive: true
             });

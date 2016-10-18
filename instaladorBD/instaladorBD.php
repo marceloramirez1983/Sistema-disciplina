@@ -462,7 +462,7 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 							 ('14','1','1','LUCAS','MELO','LOPEZ','MASCULINO','04/25/2016','TIRAQUE','lucas@gmail.com','74458596','AV NORTE','0','0','0','0'),
 							 ('15','1','1','MARTIN','JUDAS','TORO','MASCULINO','04/25/2016','BENI','martin@gmail.com','74589632','AV NORTE','0','0','0','0'),
 							 ('16','1','1','RODRIGO','MURILLO','PUERTA','MASCULINO','04/25/2016','SANTA CRUZ','rodrigo@gmail.com','85749632','AV CAP USTARIZ','0','0','0','0'),
-							 ('17','15','0','ANTONIO','SOLIZ','Mesa','MASCULINO','04/25/1996','COBIJA','antonio@gmail.com','74125896','AV NORTE','4444','123','4','96,08'),
+							 ('17','15','0','ANTONIO','SOLIZ','MESA','MASCULINO','04/25/1996','COBIJA','antonio@gmail.com','74125896','AV NORTE','4444','123','4','96,08'),
 							 ('18','16','0','MIGUEL','MORALES','SORIA','MASCULINO','04/25/1996','ROBORE','miguel@gmail.com','72787975','AV EL VALLE','4444','456','1','99,02'),
 							 ('19','16','0','LUIS','MORALES','ZARNES','MASCULINO','04/25/1998','SUCRE','miguel@gmail.com','74458596','AV CIRCUNVALACION','4444','456','3','97,06'),
 							 ('20','17','0','MARCOS','MORALES','ZAPATA','MASCULINO','04/25/1999','ORURO','miguel@gmail.com','78524145','AV NORTE','4444','456','1','99,02'),
@@ -614,7 +614,7 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 	id_grupo INT,
 	puntos INT,
 	tipo VARCHAR(5),
-	fecha VARCHAR(50),
+	fecha DATE NOT NULL,
 	id_resolucion INT,
 	PRIMARY KEY(id_sancion)
 	)";
@@ -624,16 +624,16 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 
 		$INSERT_SANCIONES_TEST = "INSERT INTO
 			sancion(id_sancion,ci_instructor,ci_alumno,id_falta,id_grupo,puntos,tipo,fecha,id_resolucion)
-				VALUES ('','12','17','8','1','1','D','08/05/16',NULL),
-							 ('','12','17','8','1','1','D','08/06/16',NULL),
-							 ('','13','17','8','1','1','D','08/10/16',NULL),
-							 ('','14','17','23','1','1','D','08/11/16',NULL),
-							 ('','14','21','8','1','1','D','08/06/16',NULL),
-							 ('','14','20','8','1','1','D','08/05/16',NULL),
-							 ('','15','18','23','1','1','D','08/07/16',NULL),
-							 ('','16','19','8','1','1','D','08/09/16',NULL),
-							 ('','14','19','23','1','1','D','08/10/16',NULL),
-							 ('','14','19','23','1','1','D','08/11/16',NULL)";
+				VALUES ('','12','17','8','1','1','D','2016/05/21',NULL),
+							 ('','12','17','8','1','1','D','2016/07/01',NULL),
+							 ('','13','17','8','1','1','D','2016/07/03',NULL),
+							 ('','14','17','23','1','1','D','2016/07/06',NULL),
+							 ('','14','21','8','1','1','D','2016/08/08',NULL),
+							 ('','14','20','8','1','1','D','2016/08/07',NULL),
+							 ('','15','18','23','1','1','D','2016/08/09',NULL),
+							 ('','16','19','8','1','1','D','2016/08/10',NULL),
+							 ('','14','19','23','1','1','D','2016/09/22',NULL),
+							 ('','14','19','23','1','1','D','2016/10/15',NULL)";
 
 			if (mysqli_query($con, $INSERT_SANCIONES_TEST)) {
 				echo "<br> - SANCIONES TESTS INSERTADOS - <br>";

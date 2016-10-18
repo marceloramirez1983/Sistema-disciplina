@@ -10,7 +10,10 @@ $ci_arrestado=$_POST['ci_sancionado'];
 $grupo=$_POST['grupo'];
 $falta=$_POST['falta'];
 $puntos=$_POST['puntos'];
-$fecha=$_POST['fecha'];
+$FECHA1=$_POST['fecha'];
+
+$FECHA1 = str_replace('/', '-', $FECHA1);//cambiando el formato de la fecha
+$fecha= date("Y-m-d",strtotime($FECHA1));//cambiando el formato de la fecha
 
 $archivo = $_FILES["archivo"]["tmp_name"];
 $tamanio = $_FILES["archivo"]["size"];

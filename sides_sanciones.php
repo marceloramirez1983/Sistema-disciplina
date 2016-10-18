@@ -264,7 +264,7 @@
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
+            <!-- <div class="sidebar-footer hidden-small">
               <a data-toggle="tooltip" data-placement="top" title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
@@ -277,7 +277,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Logout">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
-            </div>
+            </div> -->
             <!-- /menu footer buttons -->
           </div>
         </div>
@@ -386,7 +386,9 @@
                                     $result= mysqli_query($con,$query);
                                     //$getPoint = mysqli_fetch_assoc($result);
                                     while ($row=mysqli_fetch_array($result)):?>
+                                    <?php if (($row['0'] == 1) || ($row['0'] == 2)|| ($row['0'] == 3)|| ($row['0'] == 4)|| ($row['0'] == 5)): ?>
                                     <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
+                                    <?php endif; ?>
                                   <?php endwhile;?>
                                 </select>
 

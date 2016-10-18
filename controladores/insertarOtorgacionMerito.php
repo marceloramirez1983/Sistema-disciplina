@@ -10,7 +10,10 @@
   $CI_AlumRecibeMerito = $_POST['id_cimerito'];
   $ID_Merito = $_POST['falta'];
   $PUNTOSMerito = $_POST['puntos'];
-  $FECHA = $_POST['fecha'];
+  $FECHA1 = $_POST['fecha'];
+
+  $FECHA1 = str_replace('/', '-', $FECHA1);//cambiando el formato de la fecha
+  $FECHA= date("Y-m-d",strtotime($FECHA1));//cambiando el formato de la fecha
 
     $sql = "SELECT * FROM usuario WHERE id_ci = '$CI_AlumRecibeMerito'";
 
@@ -51,9 +54,6 @@
       # code...
       echo "Error al Insertar sancion";
     }
-
-
-
     header("location: ../sides_otorgar_merito.php?success");
   } else {
     # code...

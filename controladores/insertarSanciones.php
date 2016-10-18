@@ -11,8 +11,11 @@
   $ID_GROUP = $_POST['grupo'];
   $ID_FALTA = $_POST['falta'];
   $PUNTOS = $_POST['puntos'];
-  $FECHA = $_POST['fecha'];
+  $FECHA1 = $_POST['fecha'];
   $CODIGO = $_POST['cod_ci'];
+
+  $FECHA1 = str_replace('/', '-', $FECHA1);//cambiando el formato de la fecha
+  $FECHA= date("Y-m-d",strtotime($FECHA1));//cambiando el formato de la fecha
 
   $sql = "SELECT * FROM usuario WHERE id_ci = '$CI_ALUM' AND codigo_secreto = '$CODIGO'";
 
