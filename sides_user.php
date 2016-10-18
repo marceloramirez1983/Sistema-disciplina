@@ -328,7 +328,7 @@
                                       <ul class="dropdown-menu" role="menu">
                                         <li><a href="sides_DetalleUsuario.php?id=<?php echo $row ['id_ci'];?>">Ver mas detalles</a>
                                         </li>
-                                        <li><a href="#">Modificar</a>
+                                        <li><a href="sides_EditarUsuario.php?id=<?php echo $row ['id_ci'];?>">Modificar</a>
                                         </li>
                                         <li class="divider"></li>
                                         <li><a href="controladores\EliminarUsuario.php?id=<?php echo $row ['id_ci'];?>">Eliminar</a>
@@ -351,13 +351,13 @@
                         <!-- Form New Users -->
                         <div class="x_content">
                           <br />
-                          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarUsuario.php">
+                          <form id="demoform2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="controladores/insertarUsuario.php">
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula Identidad <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" name="txt_ci_usuario" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="txt_ci_usuario" name="txt_ci_usuario" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="return soloNumeros(event)">
                               </div>
                             </div>
 
@@ -404,7 +404,7 @@
                                 </div>
                                 <div class="radio">
                                   <label>
-                                    <input type="radio" class="flat" name="rbutton_genero_usuario" value="Femenina"> Femenina
+                                    <input type="radio" class="flat" name="rbutton_genero_usuario" value="Femenina"> Femenino
                                   </label>
                                 </div>
                               </div>
@@ -414,7 +414,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="txt_nombre_usuario" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="nombre" name="txt_nombre_usuario" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -422,7 +422,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Paterno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="txt_paterno_usuario" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="paterno" name="txt_paterno_usuario" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -430,14 +430,14 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Apellido Materno <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="txt_materno_usuario" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="materno" name="txt_materno_usuario" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Celular </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="txt_celular_usuario" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="cel" name="txt_celular_usuario" class="form-control col-md-7 col-xs-12" onKeyPress="return soloNumeros(event)">
                               </div>
                             </div>
 
@@ -460,7 +460,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar de nacimiento <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="nacimiento" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="nacimiento" name="nacimiento" required="required" class="form-control col-md-7 col-xs-12" onKeyPress="SoloLetras()" onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -474,7 +474,7 @@
                             <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domicilio </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="txt_domicilio_usuario" name="txt_domicilio_usuario" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="txt_domicilio_usuario" name="txt_domicilio_usuario" class="form-control col-md-7 col-xs-12"  onKeyUp="this.value = this.value.toUpperCase();">
                               </div>
                             </div>
 
@@ -489,7 +489,12 @@
                                   $queryrol="SELECT * FROM rol";
                                   $result= mysqli_query($con,$queryrol);
                                   while ($row=mysqli_fetch_array($result)):?>
+                                    <?php
+                                    $rol1=$row['0'];
+                                    if ($rol1!='4'&&$rol1!='6'): ?>
                                     <option value = "<?php echo $row['0'];?>"><?php echo $row['1'];?></option>
+                                    <?php endif; ?>
+
                                   <?php endwhile;
                                   //mysqli_close($con);
                                   ?>
@@ -507,12 +512,113 @@
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                 <button type="button" class="btn btn-primary" onClick="history.go(-1)">Cancelar</button>
-                                <button type="submit" class="btn btn-success" onclick="">Guardar</button>
+                                <button type="button" class="btn btn-success" onclick="valida_envia()">Guardar</button>
                               </div>
                             </div>
 
                           </form>
                         </div>
+
+                        <script type="text/javascript">
+
+                        // Solo permite ingresar numeros.
+                        function soloNumeros(e){
+                          var key = window.Event ? e.which : e.keyCode
+                          return (key >= 48 && key <= 57)
+                        }
+
+                        function SoloLetras() {
+                          if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))event.returnValue = false;
+                        }
+
+                        function valida_envia(){
+
+                          valor = document.getElementById("txt_ci_usuario").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese la cedula de identidad")
+                          demoform2.txt_ci_usuario.focus()
+                          return false;
+                          }
+
+                          selec= demoform2.id_grado.selectedIndex
+                          if (demoform2.id_grado.options[selec].value==""){
+                          alert ("Seleccione el grado del usuario")
+                          return false
+                          }
+
+                          selec= demoform2.id_arma.selectedIndex
+                          if (demoform2.id_arma.options[selec].value==""){
+                          alert ("Seleccione el arma del usuario")
+                          return false
+                          }
+
+                          valor = document.getElementById("nombre").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese el nombre del usuario")
+                          demoform2.nombre.focus()
+                          return false;
+                          }
+                          valor = document.getElementById("paterno").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese el apellido paterno del usuario")
+                          demoform2.paterno.focus()
+                          return false;
+                          }
+                          valor = document.getElementById("materno").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese el apellido materno del usuario")
+                          demoform2.materno.focus()
+                          return false;
+                          }
+
+                          valor = document.getElementById("cel").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese el numero de celular")
+                          demoform2.cel.focus()
+                          return false;
+                          }
+
+                          valor = document.getElementById("birthday").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese la fecha de nacimiento")
+                          demoform2.birthday.focus()
+                          return false;
+                          }
+
+                          valor = document.getElementById("nacimiento").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese el lugar de nacimiento")
+                          demoform2.lugar.focus()
+                          return false;
+                          }
+
+                          valor = document.getElementById("txt_email_usuario").value;
+                          expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                          if ( !expr.test(valor)){
+                            alert("Error: La dirección de correo "+ valor +" es incorrecta.");
+                            demoform2.txt_email_usuario.focus()
+                            return false;
+                          }
+
+
+
+                          valor = document.getElementById("txt_domicilio_usuario").value;
+                          if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+                          alert ("Ingrese el direccion del domicilio")
+                          demoform2.txt_domicilio_usuario.focus()
+                          return false;
+                          }
+
+                          selec= demoform2.id_rol.selectedIndex
+                          if (demoform2.id_rol.options[selec].value==""){
+                          alert ("Seleccione el rol del usuario")
+                          return false
+                          }
+
+                          demoform2.submit();
+                        }
+                        </script>
+
 
                       </div>
 

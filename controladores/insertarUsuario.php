@@ -21,18 +21,18 @@
   $USER_DOMICILO = $_POST['txt_domicilio_usuario'];
   $USER_ROL = $_POST['id_rol'];
 
-/*echo $USER_DOMICILO."<br>";
-echo $USER_EMAIL."<br>";
-echo $USER_LUGARNACIMIENTO."<br>";
-echo $USER_FECHANACIMIENTO."<br>";
-echo $USER_CELULAR."<br>";
-echo $USER_MATERNO."<br>";
-echo $USER_PATERNO."<br>";
-echo $USER_NAME."<br>";
-echo $USER_GENERO."<br>";
-echo $USER_ARMA."<br>";
-echo $USER_GRADO."<br>";
-echo $USER_CI."<br>";*/
+// echo $USER_DOMICILO."<br>";
+// echo $USER_EMAIL."<br>";
+// echo $USER_LUGARNACIMIENTO."<br>";
+// echo $USER_FECHANACIMIENTO."<br>";
+// echo $USER_CELULAR."<br>";
+// echo $USER_PATERNO."<br>";
+// echo $USER_MATERNO."<br>";
+// echo $USER_NAME."<br>";
+// echo $USER_GENERO."<br>";
+// echo $USER_ARMA."<br>";
+// echo $USER_GRADO."<br>";
+// echo $USER_CI."<br>";
 
 $queryusuarioci="SELECT * FROM usuario WHERE id_ci=$USER_CI";
 
@@ -51,7 +51,7 @@ $NOMBREUSUARIO=$USER_CI;
 
   $INSERT_USER = "INSERT INTO
     usuario(id_ci, id_grado, id_arma, nombre, paterno, materno, sexo, fecha_nac, lugar_nac, correo, celular, direccion)
-    VALUES ('$USER_CI','$USER_GRADO','$USER_ARMA','$USER_NAME','$USER_PATERNO','$USER_MATERNO','$USER_GENERO','$USER_FECHA_NACIMIENTO','$USER_NACIMIENTO','$USER_EMAIL','$USER_CELULAR','$USER_DOMICILIO')";
+    VALUES ('$USER_CI','$USER_GRADO','$USER_ARMA','$USER_NAME','$USER_PATERNO','$USER_MATERNO','$USER_GENERO','$USER_FECHANACIMIENTO','$USER_LUGARNACIMIENTO','$USER_EMAIL','$USER_CELULAR','$USER_DOMICILO')";
 
   $INSERT_ASIGN_USER = "INSERT INTO
     asignar_usuario(id_usuario, id_rol, id_ci, usuario_nombre, usuario_password)

@@ -268,7 +268,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Reporte de Arrestados </h3>
+                <h3>Rendimiento disciplinario por cursos</h3>
               </div>
             </div>
             <div class="clearfix"></div>
@@ -277,8 +277,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Generar Lista de Arrestados </h2>
-
+                    <h2>Notas disciplinarias</h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -291,26 +290,25 @@
                               <div class="control-group">
                                 <div class="controls">
                                   <div class="col-md-11 xdisplay_inputx form-group has-feedback">
-                                    <input id="birthday" name="date_one" class="date-picker form-control col-md-7 col-xs-12 has-feedback-left" type="text" placeholder="Fecha Inicial">
-                                    <span class="fa fa-calendar-o form-control-feedback left" ></span>
+                                    <select class="form-control" id="id_grado" name="id_grado">
+                                      <option value="">Seleccione el curso</option>
+                                      <?php
+                                      $query="SELECT * FROM grado";
+                                      $result= mysqli_query($con,$query);
+                                      while ($row=mysqli_fetch_array($result)):?>
+                                      <?php if ($row['1']=='AL. 2AM.'||$row['1']=='AL. 1AM.'|| $row['1']=='AL. 3AM.'): ?>
+                                      <option value = "<?php echo $row['0'];?>"><?php echo $row['2'];?></option>
+                                      <?php endif; ?>
+
+                                    <?php endwhile; //mysqli_close($con); ?>
+                                    </select>
                                   </div>
                                 </div>
                               </div>
                             </fieldset>
                           </div>
 
-                          <div class="col-md-6">
-                            <fieldset>
-                              <div class="control-group">
-                                <div class="controls">
-                                  <div class="col-md-11 xdisplay_inputx form-group has-feedback">
-                                    <input id="birthday_two" name="date_two" class="date-picker form-control col-md-7 col-xs-12 has-feedback-left" type="text" placeholder="Fecha Final">
-                                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                                  </div>
-                                </div>
-                              </div>
-                            </fieldset>
-                          </div>
+
 
                           <div class="col-md-6 form-group">
                             <button type="submit" class="btn btn-primary">Generar Lista</button>
@@ -326,57 +324,41 @@
                           <table id="datatable-buttons" class="table table-striped no-margin">
                             <thead>
                               <tr>
-                                <th>#</th>
+                                <th>Grado</th>
                                 <th>Alumno</th>
-                                <th>Puntos</th>
+                                <th>Nota Disciplina</th>
                               </tr>
                             </thead>
                             <tbody>
                               <?php
-                              if (isset($_POST['date_two'])) {
-                                # code...
-                                $DATE_ONE1 = $_POST['date_one'];
-                                $DATE_TWO1 = $_POST['date_two'];
-                                //$date = str_replace('/', '-', $DATE_ONE1);
-                                $DATE_ONE = date("Y-m-d",strtotime($DATE_ONE1));
-                                $DATE_TWO = date("Y-m-d",strtotime($DATE_TWO1));
+                              if (isset($_POST['id_grado'])) {
 
-                                echo "<H2>DESDE : ".$DATE_ONE."</H2>"; echo "<br>";
-                                echo "<H2>HASTA : ".$DATE_TWO."</H2>"; echo "<br>";
-                                // $query = "SELECT *, SUM(puntos) AS total_puntos_report
-                                // FROM sancion
-                                // WHERE fecha BETWEEN '$DATE_ONE' AND '$DATE_TWO' ORDER BY ci_alumno";
-                                $query ="SELECT sancion.ci_alumno,usuario.nombre,usuario.paterno,usuario.materno,
-                                SUM(puntos)
-                                FROM sancion
-                                INNER JOIN usuario
-                                ON sancion.ci_alumno=usuario.id_ci
-                                WHERE fecha BETWEEN '$DATE_ONE' AND '$DATE_TWO' AND tipo='D'
-                                GROUP BY ci_alumno";
+                                $GRADO1 = $_POST['id_grado'];
+
+                                $query ="SELECT * FROM usuario WHERE id_grado='$GRADO1'";
 
                                 $getAll = mysqli_query($con,$query);
-                                $num=0;
-                              //}
+
                               while ($row = mysqli_fetch_array($getAll,MYSQLI_ASSOC)):
                               ?>
                               <tr>
-                                <td><?php $num=$num+1;echo $num ?></td>
                                 <td>
                                   <?php
-                                    // $id_ci_report = $row['ci_alumno'];
-                                    // $queryFalta = "SELECT * FROM usuario WHERE id_ci = '$id_ci_report'";
-                                    // $falta = mysqli_query($con, $queryFalta);
-                                    // $result_falta = mysqli_fetch_assoc($falta);
+                                  $query7="SELECT * FROM grado WHERE id_grado='$GRADO1'";
+                                  $result7= mysqli_query($con,$query7);
+                                  while ($row7=mysqli_fetch_array($result7)):?>
+                                  <?php echo $row7['1'];?>
+
+                                <?php endwhile;?>
+                                </td>
+                                <td>
+                                  <?php
                                     echo $row['nombre']." ".$row['paterno']." ".$row['materno'];
                                   ?>
                                 </td>
                                 <td>
                                   <?php
-                                  // $id_ci_report = $row['ci_alumno'];
-                                  // $queryFalta = "SELECT * FROM usuario WHERE id_ci = '$id_ci_report'";
-                                  // $falta = mysqli_query($con, $queryFalta);
-                                  // $result_falta = mysqli_fetch_assoc($falta);
-                                  echo $row['SUM(puntos)'];
+                                  echo $row['calificacion_disciplinario'];
                                   ?>
                                 </td>
                               </tr>
@@ -468,10 +450,10 @@
                   extend: "pdfHtml5",
                   className: "btn-sm"
                 },
-                // {
-                //   extend: "print",
-                //   className: "btn-sm"
-                // },
+                {
+                  extend: "print",
+                  className: "btn-sm"
+                },
               ],
               responsive: true
             });
@@ -536,6 +518,6 @@
       });
     </script>
     <!-- /bootstrap-daterangepicker -->
-
+<?php mysqli_close($con); ?>
   </body>
 </html>

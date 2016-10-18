@@ -178,6 +178,7 @@
                     <ul class="nav child_menu">
                       <li><a href="index.php">Reportes Estadisticos </a></li>
                       <li><a href="sides_reporte_arrestados.php">Lista de Arrestados </a></li>
+                      <li><a href="sides_Notas_cursos.php">Reportes por cursos</a></li>
                     </ul>
                   </li>
 
