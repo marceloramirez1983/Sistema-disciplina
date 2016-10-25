@@ -399,12 +399,12 @@
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="radio">
                                   <label>
-                                    <input type="radio" class="flat" checked name="rbutton_genero_usuario" value="Masculino"> Masculino
+                                    <input type="radio" class="flat" checked name="rbutton_genero_usuario" value="MASCULINO"> Masculino
                                   </label>
                                 </div>
                                 <div class="radio">
                                   <label>
-                                    <input type="radio" class="flat" name="rbutton_genero_usuario" value="Femenina"> Femenino
+                                    <input type="radio" class="flat" name="rbutton_genero_usuario" value="FEMENINO"> Femenino
                                   </label>
                                 </div>
                               </div>

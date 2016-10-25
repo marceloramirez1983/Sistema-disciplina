@@ -291,7 +291,7 @@
                               <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                              <table class="table table-hover">
+                              <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <thead>
                                   <tr>
                                     <th>Grado</th>
@@ -300,7 +300,7 @@
                                     <th>Celular</th>
                                     <th>Tutor</th>
                                     <!-- <th>Tutor</th> -->
-                                    <th></th>
+                                    <th>Opciones</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -441,7 +441,8 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="fecha_nac">
+                                <!-- <input id="birthday" class="date form-control col-md-7 col-xs-12" required="required" type="text" name="fecha_nac"> -->
+                                <input type="date" class="date form-control col-md-7 col-xs-12" name="user_date" id="user_date"/>
                               </div>
                             </div>
 
@@ -537,8 +538,12 @@
                             return false;
                            }
                           }
+                          //verifica fechas menores a la actual
+
+
 // validaciones vacio----------------------------------------------
                           function valida_envia(){
+
                             valor = document.getElementById("ci_alumno").value;
                             if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
                             alert ("Ingrese la cedula de identidad del alumno")
@@ -573,10 +578,10 @@
                             return false;
                             }
 
-                            valor = document.getElementById("birthday").value;
+                            valor = document.getElementById("user_date").value;
                             if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
                             alert ("Ingrese la fecha de nacimiento")
-                            demoform2.birthday.focus()
+                            demoform2.user_date.focus()
                             return false;
                             }
 
@@ -638,12 +643,105 @@
                             alert ("Ingrese la direccion del tutor")
                             demoform2.direccion_tutor.focus()
                             return false;
+                          }
+
+
+                            //calcular edad alumno
+                            function isValidDate(day,month,year)
+                              {
+                                  var dteDate;
+                                  month=month-1;
+                                  dteDate=new Date(year,month,day);
+
+                                  //Devuelva true o false...
+                                  return ((day==dteDate.getDate()) && (month==dteDate.getMonth()) && (year==dteDate.getFullYear()));
+                              }
+
+                            function validate_fecha(fecha)
+                            {
+                                var patron=new RegExp("^(19|20)+([0-9]{2})([-])([0-9]{1,2})([-])([0-9]{1,2})$");
+
+                                if(fecha.search(patron)==0)
+                                {
+                                    var values=fecha.split("-");
+                                    if(isValidDate(values[2],values[1],values[0]))
+                                    {
+                                        return true;
+                                    }
+                                }
+                                return false;
                             }
-                            demoform2.submit();
+
+                            var fecha=document.getElementById("user_date").value;
+                              if(validate_fecha(fecha)==true)
+                              {
+                                  // Si la fecha es correcta, calculamos la edad
+                                  var values=fecha.split("-");
+                                  var dia = values[2];
+                                  var mes = values[1];
+                                  var ano = values[0];
+
+                                  // cogemos los valores actuales
+                                  var fecha_hoy = new Date();
+                                  var ahora_ano = fecha_hoy.getYear();
+                                  var ahora_mes = fecha_hoy.getMonth()+1;
+                                  var ahora_dia = fecha_hoy.getDate();
+
+                                  // realizamos el calculo
+                                  var edad = (ahora_ano + 1900) - ano;
+                                  if ( ahora_mes < mes )
+                                  {
+                                      edad--;
+                                  }
+                                  if ((mes == ahora_mes) && (ahora_dia < dia))
+                                  {
+                                      edad--;
+                                  }
+                                  if (edad > 1900)
+                                  {
+                                      edad -= 1900;
+                                  }
+
+                                  // calculamos los meses
+                                  var meses=0;
+                                  if(ahora_mes>mes)
+                                      meses=ahora_mes-mes;
+                                  if(ahora_mes<mes)
+                                      meses=12-(mes-ahora_mes);
+                                  if(ahora_mes==mes && dia>ahora_dia)
+                                      meses=11;
+
+                                  // calculamos los dias
+                                  var dias=0;
+                                  if(ahora_dia>dia)
+                                      dias=ahora_dia-dia;
+                                  if(ahora_dia<dia)
+                                  {
+                                      ultimoDiaMes=new Date(ahora_ano, ahora_mes, 0);
+                                      dias=ultimoDiaMes.getDate()-(dia-ahora_dia);
+                                  }
+
+                                  if (edad < 18) {
+                                  alert ("Edad menor a 18 años")
+                                    demoform2.user_date.focus();
+                                  }else {
+                                    if (edad>25) {
+                                      alert ("Edad mayor a 25 años")
+                                        demoform2.user_date.focus();
+                                    } else {
+                                      demoform2.submit();
+                                    }
+                                  }
+
+                                  //document.getElementById("result").innerHTML="Tienes "+edad+" años, "+meses+" meses y "+dias+" días";
+                              }else{
+                                  alert ("Fecha incorrecta")
+                              }
+                            //final de la funcion calcular edad alumno
+
+
                           }
 //hasta aca validaciones vacio----------------------------------------------
-
-
                           </script>
 
 
@@ -724,6 +822,24 @@
     <!-- Custom Theme Scripts -->
     <script src="js/custom.js"></script>
 
+    <!-- Datatables -->
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
+    <script src="../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+
+
     <!-- jQuery Smart Wizard -->
     <script>
       $(document).ready(function() {
@@ -739,6 +855,73 @@
       });
     </script>
     <!-- /jQuery Smart Wizard -->
+
+    <!-- Datatables -->
+    <script>
+      $(document).ready(function() {
+        var handleDataTableButtons = function() {
+          if ($("#datatable-buttons").length) {
+            $("#datatable-buttons").DataTable({
+              dom: "Bfrtip",
+              buttons: [
+                {
+                  extend: "copy",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "csv",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "excel",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "pdfHtml5",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "print",
+                  className: "btn-sm"
+                },
+              ],
+              responsive: true
+            });
+          }
+        };
+
+        TableManageButtons = function() {
+          "use strict";
+          return {
+            init: function() {
+              handleDataTableButtons();
+            }
+          };
+        }();
+
+        $('#datatable').dataTable();
+        $('#datatable-keytable').DataTable({
+          keys: true
+        });
+
+        $('#datatable-responsive').DataTable();
+
+        $('#datatable-scroller').DataTable({
+          ajax: "js/datatables/json/scroller-demo.json",
+          deferRender: true,
+          scrollY: 380,
+          scrollCollapse: true,
+          scroller: true
+        });
+
+        var table = $('#datatable-fixed-header').DataTable({
+          fixedHeader: true
+        });
+
+        TableManageButtons.init();
+      });
+    </script>
+    <!-- /Datatables -->
 
     <!-- bootstrap-daterangepicker -->
     <script>

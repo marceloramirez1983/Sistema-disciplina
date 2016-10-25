@@ -278,18 +278,18 @@ function crearTablas(){
 					 ('','NO CUMPLIR UNA ORDEN VERBAL O ESCRITA','5'),
 					 ('','FALTAR A LA VERDAD','5'),
 					 ('','BURLAR LA VIGILANCIA DE LA GUARDIA','5'),
-					 ('','INCORPORARSE DE LA SALIDA DE FRANCOS CON ALIENTO A BEBIDAS ALCOHOLICAS','5'),
+					 ('','INCORPORARSE CON ALIENTO A BEBIDAS ALCOHOLICAS','5'),
 					 ('','TRATAR DE ENGAÑAR A UN SUPERIOR','5'),
 					 ('','FALTAR A LA PALABRA EMPEÑADA','5'),
 					 ('','DESLEALTAD','5'),
 					 ('','NO CUMPLIR DISPOSICIONES CONTENIDAS EN LA ORDEN DEL DIA','5'),
 					 ('','NO HACERSE ANOTAR UNA SANCION EN EL LIBRO DE DISCIPLINA','5'),
 					 ('','FALTA DE RESPETO CON UN SUPERIOR O CATEDRATICO','5'),
-					 ('','MANTENER RELACIONES SENTIMENTALES DENTRO O FUERA DEL INSTITUTO CON SUBALTERNOS CAMARADAS O SUPERIORES','5'),
+					 ('','MANTENER RELACIONES SENTIMENTALES SUBALTERNOS CAMARADAS O SUPERIORES','5'),
 					 ('','INTENTAR ACOSAR A UN SUPERIOR CAMARADA O SUBALTERNO','5'),
 					 ('','BESARSE DENTRO DEL INSTITUTO','5'),
 					 ('','INDUCIR A UN SUPERIOR O SUBALTERNO A REALIZAR ACTOS CONTRA LA MORAL Y LAS BUENAS COSTUMBRES','5'),
-					 ('','EXHIBIRSE DE UNIFORME EN LA CALLE CON INDICIOS DE MANTENER UNA RELACION SENTIMENTAL CON UN SUPERIOR CAMARADA O SUBALTERNO','5'),
+					 ('','EXHIBIRSE SENTIMENTALMENTE DE UNIFORME CON UN SUPERIOR CAMARADA O SUBALTERNO','5'),
 					 ('','MANTENER CONVERSACIONES PRIVADAS CON ALUMNAS Y ALUMNOS EN AREAS AISLADAS Y EN PRIVADO','5'),
 					 ('','REALIZAR CHISTES PIROPOS CONVERSACIONES DE CONTENIDO SEXUAL QUE DAÑEN LA DIGNIDAD DE UNA PERSONA ','5'),
 					 ('','EL SUPERIOR O DEL MISMO CURSO APROVECHANDO SU GRADO POSICION CARGO O FUNCION REALICE MIRADAS MUECAS GESTOS LASCIVOS','5'),
@@ -302,7 +302,33 @@ function crearTablas(){
 					 ('','NO PRESENTAR TRABAJOS','5'),
 					 ('','FALTAR A CLASES SIN AUTORIZACION','5'),
 					 ('','ABANDONAR LAS CLASES SIN AUTORIZACION','5'),
-					 ('','NO RETORNAR A CLASES DESPUES DE UN DESCANSO','5')";
+					 ('','NO RETORNAR A CLASES DESPUES DE UN DESCANSO','5'),
+					 ('','ALTERAR UNIFORME EN VACACIONES','6'),
+					 ('','ABANDONAR SERVICIO INTERNO','6'),
+					 ('','SALIR A LA CALLE ESTANDO ARRESTADO','6'),
+					 ('','NO INCORPORARSE A CUMPLIR ARRESTO','6'),
+					 ('','ABANDONO ARBITRARIO DEL INSTITUTO','6'),
+					 ('','FALTA DE RESPETO CON LOS PROGENITORES','6'),
+					 ('','NO SOBREPNERSE AL MIEDO','6'),
+					 ('','FALTAR A LA GUARDIA','6'),
+					 ('','ABANDONAR LA GUARDIA','6'),
+					 ('','SUPLANTAR LA JERARQUIA DE UN SUPERIOR','6'),
+					 ('','INTIMIDAR CON SANCIONES PARA LOGRAR RELACION SENTIMENTAL','6'),
+					 ('','PERDIDA O EXTRAVIO DE ARMAMENTO','7'),
+					 ('','VIOLENTAR CASILLEROS O CORRESPONDENCIA','7'),
+					 ('','CONTRAER MATRIMONIO','7'),
+					 ('','ENCONTRARSE EN ESTADO DE GRAVIDEZ  O HABER ABORTADO','7'),
+					 ('','MANTENER RELACIONES SEXUALES ENTRE ALUMNOS','7'),
+					 ('','CAMINAR SUGESTIVAMENTE INCITANDO AL APETIT SEXUAL','7'),
+					 ('','PARTICIPAR TRAFICO O CONSUMO DE DROGAS ','7'),
+					 ('','ABANDONAR EN MASA LAS INSTALACIONES DEL INSTITUTO','7'),
+					 ('','REINCIDENTE A COMETER UNA FALTA POR MAS DE TRES VECES ','7'),
+					 ('','FRAUDE EXAMENES','7'),
+					 ('','ADQUIRIR O VENDER EXAMENES','7'),
+					 ('','PLAGIO EN TRABAJPS PRACTICOS','7'),
+					 ('','ACOSAR A UN SUPERIOR, CAMARADA O SUBALTERNO','7'),
+					 ('','COMETER ACTOS INMORALES','7'),
+					 ('','OBLIGAR AL ABANDONO DEL INSTITUTO A AUMNOS INFERIORES','7')";
 
 		if (mysqli_query($con, $INSERT_FALTA_TEST)) {
 			# code...
@@ -457,18 +483,18 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 
 		$INSERT_USUARIOS_TESTS = "INSERT INTO
 			usuario(id_ci, id_grado, id_arma, nombre, paterno, materno, sexo, fecha_nac, lugar_nac, correo, celular, direccion, codigo_secreto, ci_tutor, total_puntos, calificacion_disciplinario)
-				VALUES ('12','1','1','JUAN','NUNEZ','SOTO','MASCULINO','04/25/2016','TIRAQUE','juan@gmail.com','78859698','AV NORTE','0','0','0','0'),
-							 ('13','1','1','PEPE','AGUILAR','MARNELI','MASCULINO','04/25/2016','SACABA','pepe@gmail.com','74587478','AV NORTE','0','0','0','0'),
-							 ('14','1','1','LUCAS','MELO','LOPEZ','MASCULINO','04/25/2016','TIRAQUE','lucas@gmail.com','74458596','AV NORTE','0','0','0','0'),
-							 ('15','1','1','MARTIN','JUDAS','TORO','MASCULINO','04/25/2016','BENI','martin@gmail.com','74589632','AV NORTE','0','0','0','0'),
-							 ('16','1','1','RODRIGO','MURILLO','PUERTA','MASCULINO','04/25/2016','SANTA CRUZ','rodrigo@gmail.com','85749632','AV CAP USTARIZ','0','0','0','0'),
-							 ('17','15','0','ANTONIO','SOLIZ','MESA','MASCULINO','04/25/1996','COBIJA','antonio@gmail.com','74125896','AV NORTE','4444','123','4','96,08'),
-							 ('18','16','0','MIGUEL','MORALES','SORIA','MASCULINO','04/25/1996','ROBORE','miguel@gmail.com','72787975','AV EL VALLE','4444','456','1','99,02'),
-							 ('19','16','0','LUIS','MORALES','ZARNES','MASCULINO','04/25/1998','SUCRE','miguel@gmail.com','74458596','AV CIRCUNVALACION','4444','456','3','97,06'),
-							 ('20','17','0','MARCOS','MORALES','ZAPATA','MASCULINO','04/25/1999','ORURO','miguel@gmail.com','78524145','AV NORTE','4444','456','1','99,02'),
-							 ('21','17','0','MAURICIO','NOGALES','SUAREZ','MASCULINO','04/25/1998','ANZALDO','mauri@gmail.com','74859632','AV SUECIA','4444','456','1','99,02'),
-							 ('22','17','0','MILTON','PAREDES','RAMOS','MASCULINO','02/16/1998','COBIJA','mauri@gmail.com','5245896','AV BLANCO GALINDO','4444','456','1','99,02'),
-							 ('23','17','0','LEONCIO','MORALES','ZAPATA','MASCULINO','04/25/1999','LA PAZ','miguel@gmail.com','78854512','AV NORTE','4444','456','1','99,02')";
+				VALUES ('3841712','1','1','JUAN','NUNEZ','SOTO','MASCULINO','04/25/2016','TIRAQUE','juan@gmail.com','78859698','AV NORTE','0','0','0','0'),
+							 ('3841713','1','1','PEPE','AGUILAR','MARNELI','MASCULINO','04/25/2016','SACABA','pepe@gmail.com','74587478','AV NORTE','0','0','0','0'),
+							 ('3841714','1','1','LUCAS','MELO','LOPEZ','MASCULINO','04/25/2016','TIRAQUE','lucas@gmail.com','74458596','AV NORTE','0','0','0','0'),
+							 ('3841715','1','1','MARTIN','JUDAS','TORO','MASCULINO','04/25/2016','BENI','martin@gmail.com','74589632','AV NORTE','0','0','0','0'),
+							 ('3841716','1','1','RODRIGO','MURILLO','PUERTA','MASCULINO','04/25/2016','SANTA CRUZ','rodrigo@gmail.com','85749632','AV CAP USTARIZ','0','0','0','0'),
+							 ('3841717','15','0','ANTONIO','SOLIZ','MESA','MASCULINO','04/25/1996','COBIJA','antonio@gmail.com','74125896','AV NORTE','4444','123','4','96,08'),
+							 ('3841718','16','0','MIGUEL','MORALES','SORIA','MASCULINO','04/25/1996','ROBORE','miguel@gmail.com','72787975','AV EL VALLE','4444','456','1','99,02'),
+							 ('3841719','16','0','LUIS','MORALES','ZARNES','MASCULINO','04/25/1998','SUCRE','miguel@gmail.com','74458596','AV CIRCUNVALACION','4444','456','3','97,06'),
+							 ('3841720','17','0','MARCOS','MORALES','ZAPATA','MASCULINO','04/25/1999','ORURO','miguel@gmail.com','78524145','AV NORTE','4444','456','1','99,02'),
+							 ('3841721','17','0','MAURICIO','NOGALES','SUAREZ','MASCULINO','04/25/1998','ANZALDO','mauri@gmail.com','74859632','AV SUECIA','4444','456','1','99,02'),
+							 ('3841722','17','0','MILTON','PAREDES','RAMOS','MASCULINO','02/16/1998','COBIJA','mauri@gmail.com','5245896','AV BLANCO GALINDO','4444','456','1','99,02'),
+							 ('3841723','17','0','LEONCIO','MORALES','ZAPATA','MASCULINO','04/25/1999','LA PAZ','miguel@gmail.com','78854512','AV NORTE','4444','456','1','99,02')";
 
 		if (mysqli_query($con, $INSERT_USUARIOS_TESTS)) {
 			# code...
@@ -491,18 +517,18 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 
 		$INSERT_ASIG_USUARIOS_TESTS = "INSERT INTO
 			asignar_usuario(id_usuario, id_rol, id_ci, usuario_nombre, usuario_password)
-				VALUES ('','1','12','admin','admin'),
-						 	 ('','2','13','disc','disc'),
-						 	 ('','3','14','jefe','jefe'),
-							 ('','4','15','inst','inst'),
-							 ('','5','16','primer','primer'),
-							 ('','6','17','alum','alum'),
-							 ('','6','18','18','18'),
-							 ('','6','19','19','19'),
-							 ('','6','20','20','20'),
-							 ('','6','21','21','21'),
-							 ('','6','22','22','22'),
-							 ('','6','23','23','23')";
+				VALUES ('','1','3841712','admin','admin'),
+						 	 ('','2','3841713','disc','disc'),
+						 	 ('','3','3841714','jefe','jefe'),
+							 ('','4','3841715','inst','inst'),
+							 ('','5','3841716','primer','primer'),
+							 ('','6','3841717','alum','alum'),
+							 ('','6','3841718','3841718','1818'),
+							 ('','6','3841719','3841719','1919'),
+							 ('','6','3841720','3841720','2020'),
+							 ('','6','3841721','3841721','2121'),
+							 ('','6','3841722','3841722','2222'),
+							 ('','6','3841723','3841723','2323')";
 
 		if (mysqli_query($con, $INSERT_ASIG_USUARIOS_TESTS)) {
 			# code...

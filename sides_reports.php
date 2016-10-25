@@ -295,11 +295,13 @@
 
 
                     </div>
+
                     <div class="col-md-9 col-sm-9 col-xs-12">
                       <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <!-- start user projects -->
                         <table class="table table-striped no-margin">
                           <thead>
+                            <h2 align="center">DEMERITOS</h2>
                             <tr>
                               <th>#</th>
                               <th>Fecha</th>
@@ -310,11 +312,12 @@
                             </tr>
                           </thead>
                           <tbody>
-
                             <?php
-                            $query = "SELECT * FROM sancion WHERE ci_alumno = '$ID_CI'";
+                             $tipo='D';
+                            $query = "SELECT * FROM sancion WHERE ci_alumno = '$ID_CI' AND tipo='$tipo'";
                             $getAll = mysqli_query($con, $query);
                             $num=0;
+                            $demeritos=0;
                             while ($row = mysqli_fetch_array($getAll, MYSQLI_ASSOC)):
                             ?>
                             <tr>
@@ -329,35 +332,99 @@
                                     $result_falta = mysqli_fetch_assoc($falta);
                                     echo $result_falta['nombre'];
                                   }
-                                  else{
-                                    $id_falta = $row['id_falta'];
-                                    $queryFalta = "SELECT * FROM merito WHERE id_merito = '$id_falta'";
-                                    $falta = mysqli_query($con, $queryFalta);
-                                    $result_falta = mysqli_fetch_assoc($falta);
-                                    echo $result_falta['nombre_merito'];
-                                  }
                                 ?>
                               </td>
                               <!-- <td><?php// echo $row ['ci_instructor'];?></td> -->
-                              <td><?php echo $row ['puntos'];?></td>
+                              <td><?php $demeritos=$demeritos+$row ['puntos'];
+                              echo $row ['puntos'];?></td>
                               <td><?php echo $row ['tipo'];?></td>
                             </tr>
                             <?php
                               endwhile;
+
                             ?>
                           </tbody>
                         </table>
+                        <tr><h2>TOTAL DEMERITOS : <?php echo $demeritos; ?></h2> </tr>
+                        <br>
+                        <br>
+<!-- ----------------------------------------------------------------------------------------------------------------------- -->
+<table class="table table-striped no-margin">
+<thead>
+<h2 align="center">MERITOS</h2>
+<tr>
+  <th>#</th>
+  <th>Fecha</th>
+  <th>Merito</th>
+  <!-- <th>Instructor</th> -->
+  <th>Puntos</th>
+  <th>Tipo</th>
+</tr>
+</thead>
+<tbody>
+<?php
+ $tipo='M';
+$query = "SELECT * FROM sancion WHERE ci_alumno = '$ID_CI' AND tipo='$tipo'";
+$getAll = mysqli_query($con, $query);
+$num=0;
+$meritos=0;
+while ($row = mysqli_fetch_array($getAll, MYSQLI_ASSOC)):
+?>
+<tr>
+  <td><?php $num=$num+1;echo $num ?></td>
+  <td><?php echo $row ['fecha'];?></td>
+  <td>
+    <?php
+      if ($row['tipo']=="M") {
+          $id_falta = $row['id_falta'];
+          $queryFalta = "SELECT * FROM merito WHERE id_merito = '$id_falta'";
+          $falta = mysqli_query($con, $queryFalta);
+          $result_falta = mysqli_fetch_assoc($falta);
+          echo $result_falta['nombre_merito'];
+      }
+      // else{
+      //   $id_falta = $row['id_falta'];
+      //   $queryFalta = "SELECT * FROM merito WHERE id_merito = '$id_falta'";
+      //   $falta = mysqli_query($con, $queryFalta);
+      //   $result_falta = mysqli_fetch_assoc($falta);
+      //   echo $result_falta['nombre_merito'];
+      // }
+    ?>
+  </td>
+  <!-- <td><?php// echo $row ['ci_instructor'];?></td> -->
+  <td><?php $meritos=$meritos+ $row ['puntos'];
+  echo $row ['puntos'];?></td>
+  <td><?php echo $row ['tipo'];?></td>
+</tr>
+<?php
+  endwhile;
+?>
+</tbody>
+</table>
+<tr><h2>TOTAL MERITOS : <?php echo $meritos; ?></h2> </tr>
+<br>
+<br>
+
+<!-- --------------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
                         <!-- end user projects -->
                       </div>
 
                       <table class="table table-hover">
-                        <tr>
-                          <th>Total puntos acumulados</th>
-                          <th style="text-align:center;"><?php echo $row_user ['total_puntos'];?></th>
+                        <tr class="active">
+                          <th><h2>TOTAL PUNTOS PERDIDOS : </h2></th>
+                          <th style="text-align:center;"><h2><?php echo $row_user ['total_puntos'];?></h2></th>
                         </tr>
-                        <tr>
-                          <th>Total calificación final</th>
-                          <th style="text-align:center;"><?php echo $row_user ['calificacion_disciplinario'];?></th>
+                        <tr class="danger">
+                          <th><h2>CALIFICACION FINAL :  </h2></th>
+                          <th style="text-align:center;"><h2><?php echo $row_user ['calificacion_disciplinario'];?></h2></th>
                         </tr>
 
                       </table>

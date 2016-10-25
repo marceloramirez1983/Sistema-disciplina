@@ -12,7 +12,7 @@
   $PATERNO = $_POST['paterno'];
   $MATERNO = $_POST['materno'];
   $GENERO = $_POST['sexo'];
-  $FECHA_NAC = $_POST['fecha_nac'];
+  $FECHA_NAC = $_POST['user_date'];
   $NAC = $_POST['lugar'];
   $EMAIL = $_POST['email'];
   $CELULAR = $_POST['cel'];
