@@ -21,37 +21,37 @@ require('../PDFphp/fpdf/fpdf.php');
 			$this->Ln();
 		}
 
-		function Header()
-		{
-			// tipo de letra
-	    $this->setFont('Arial','I',12);
-	    //mover a la derecha
-	    $this->Cell(60);
-	    //Titulo
-	    $this->Cell(60,10,'S.I.D.E.S.',0,0,'C');
-	    $this->Ln(5);//SALTO DE LINEA DE 20 PUNTOS
-	    $this->Cell(60);
-	    $this->Cell(60,10,'Sistema Disciplinario de la Escuela Militar de Sargentos',0,0,'C');
-	    $this->Ln(8);//SALTO DE LINEA DE 20 PUNTOS
-			$this->setFont('Arial','B',18);
-			$this->Cell(60);
-	    $this->Cell(60,10,'REPORTE INDIVIDUAL DISCIPLINARIO',0,0,'C');
-			$this->SetLineWidth(0.6);
-	    $this->Line(10,35,200,35);
-	    //Logo
-	    $this->Image('../images/logo.png',170,5,30);
-	    //Salto de linea
-	    $this->Ln(20);//SALTO DE LINEA DE 20 PUNTOS
-		}
+		// function Header()
+		// {
+		// 	// tipo de letra
+	  //   $this->setFont('Arial','I',12);
+	  //   //mover a la derecha
+	  //   $this->Cell(60);
+	  //   //Titulo
+	  //   // $this->Cell(60,10,'S.I.D.E.S.',0,0,'C');
+	  //   // $this->Ln(5);//SALTO DE LINEA DE 20 PUNTOS
+	  //   // $this->Cell(60);
+	  //   // $this->Cell(60,10,'Sistema Disciplinario de la Escuela Militar de Sargentos',0,0,'C');
+	  //   // $this->Ln(8);//SALTO DE LINEA DE 20 PUNTOS
+		// 	// $this->setFont('Arial','B',18);
+		// 	// $this->Cell(60);
+	  //   // $this->Cell(60,10,'REPORTE INDIVIDUAL DISCIPLINARIO',0,0,'C');
+		// 	//$this->SetLineWidth(0.6);
+	  //   //$this->Line(10,35,200,35);
+	  //   //Logo
+	  //   //$this->Image('../images/logo.png',170,5,30);
+	  //   //Salto de linea
+	  //   $this->Ln(20);//SALTO DE LINEA DE 20 PUNTOS
+		// }
 
 		function Footer()
 		{
 			//posicion a 1.5 del final
 		  $this->SetY(-20);
 		  //Arial italic 8
-			$this->SetLineWidth(0.6);
-			$this->Line(10,262,200,262);
-		  $this->SetFont('Arial','I','8');
+			//$this->SetLineWidth(0.6);
+			//$this->Line(10,262,200,262);
+		  $this->SetFont('Arial','I','12');
 		  $this->Cell(0,14,''.$this->PageNo().' - {nb}',0,0,'C');
 		}
 	}
@@ -74,9 +74,40 @@ require('../PDFphp/fpdf/fpdf.php');
 	$pdf->AliasNbPages();
 	$pdf->Addpage();
 	$pdf->SetFillColor(65,105,225);
-	$pdf->SetFont('Arial','B',12);
+	$pdf->SetFont('Arial','B',9);
 
-	$pdf->Image('../images/placeholder_profile.jpg',160,40,40);
+	$pdf->SetX(50);
+	$pdf->Cell(10,6,'DEPARTAMENTO VI EDUCACION',0,0,'C',0);
+	$pdf->Ln(4);
+
+	$pdf->SetX(50);
+	$pdf->Cell(10,6,'ESCUELA MILITAR DE SARGENTOS DEL EJERCITO',0,0,'C',0);
+	$pdf->Ln(4);
+
+	$pdf->SetX(50);
+	$pdf->Cell(10,6,'"SGTO MAXIMILIANO PAREDES TEJERINA"',0,0,'C',0);
+	$pdf->Ln(4);
+
+	$pdf->SetX(50);
+	$pdf->Cell(10,6,'BOLIVIA',0,0,'C',0);
+	$pdf->Ln();
+
+	$pdf->SetLineWidth(0.6);
+	$pdf->Line(49,27,61,27);
+	$pdf->Ln(9);
+
+	$pdf->SetFont('Arial','B',16);
+	$pdf->SetX(50);
+	$pdf->Cell(120,6,'REPORTE DISCIPLINARIO INDIVIDUAL',0,0,'C',0);
+	$pdf->Ln(15);
+
+	$pdf->SetLineWidth(0.6);
+	$pdf->Line(58,43,162,43);
+	//$pdf->Ln(9);
+
+	$pdf->Image('../images/placeholder_profile.jpg',150,50,40,40);
+
+	$pdf->SetFont('Arial','B',12);
 
 	$pdf->SetX(10);
 	$pdf->Cell(30,6,'GRADO',0,0,'L',0);
@@ -94,7 +125,6 @@ require('../PDFphp/fpdf/fpdf.php');
 	$pdf->Cell(10,6,':',0,0,'L',0);
 	$pdf->SetFont('Arial','I',12);
 	$pdf->Cell(100,6,utf8_decode($fila['nombre'].' '.$fila['paterno'].' '. $fila['materno']),0,0,'L',0);
-
 
 	$pdf->Ln();
 
