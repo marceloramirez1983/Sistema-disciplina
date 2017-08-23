@@ -2,6 +2,7 @@
   include_once("conexionBD.php");
 
   $cnn= new conexion();
+  //conectando
   $con =$cnn->conectar();
 
   $database = mysqli_select_db($con,"sides") or die("Error al conectar la base de datos");
