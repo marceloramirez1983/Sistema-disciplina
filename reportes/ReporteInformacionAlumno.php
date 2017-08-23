@@ -96,7 +96,7 @@ require('../PDFphp/fpdf/fpdf.php');
 
 	$pdf->SetFont('Arial','B',16);
 	//$pdf->SetX(50);
-	$pdf->Cell('',6,'FILIACION PERSONAL',0,0,'C',0);
+	$pdf->Cell('',6,'FILIACION PERSONAL',0,0,'C',0);//titulo--------
 	$pdf->Ln(15);
 
 	$pdf->SetLineWidth(0.6);

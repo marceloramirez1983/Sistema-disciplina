@@ -57,7 +57,7 @@ require('../PDFphp/fpdf/fpdf.php');
 	}
 
 	$id_ci = $_GET['id'];
-
+	//consultas a la BD
 
 	$query="select sancion.id_falta,sancion.fecha,sancion.puntos,sancion.tipo,falta.nombre from sancion
 	inner join falta on falta.id_falta=sancion.id_falta WHERE sancion.ci_alumno='$id_ci';";
@@ -69,6 +69,8 @@ require('../PDFphp/fpdf/fpdf.php');
 	$consulta ="SELECT nombre,paterno,materno,sexo,correo,direccion,celular FROM `usuario` WHERE id_ci='$id_ci';";
 	$filas=$mysqli->query($consulta);
 	$fila = $filas->fetch_assoc();
+
+	//fin de consultas
 
 	$pdf = new PDF('P','mm','Letter');
 	$pdf->AliasNbPages();

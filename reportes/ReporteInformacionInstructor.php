@@ -108,7 +108,6 @@ require('../PDFphp/fpdf/fpdf.php');
 	//$pdf->Ln(9);
 
 
-
 	$pdf->Image('../images/placeholder_profile.jpg',160,50,40,40);
 	$pdf->SetFont('Arial','B',12);
 	$pdf->SetX(20);

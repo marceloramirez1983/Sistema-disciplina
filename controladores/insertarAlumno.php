@@ -58,8 +58,8 @@
         }
 
     $INSERT_USER = "INSERT INTO
-      usuario(id_ci, id_grado,nombre, paterno, materno, sexo, fecha_nac, lugar_nac, correo, celular, direccion, codigo_secreto, ci_tutor)
-      VALUES ('$CI','$ID_GRADO','$NOMBRE','$PATERNO','$MATERNO','$GENERO','$FECHA_NAC','$NAC','$EMAIL','$CELULAR','$DOMICILIO','$CONST_CODIGO','$CI_TUTOR')";
+      usuario(id_ci, id_grado,nombre, paterno, materno, sexo, fecha_nac, lugar_nac, correo, celular, direccion, codigo_secreto, ci_tutor, total_puntos,calificacion_disciplinario)
+      VALUES ('$CI','$ID_GRADO','$NOMBRE','$PATERNO','$MATERNO','$GENERO','$FECHA_NAC','$NAC','$EMAIL','$CELULAR','$DOMICILIO','$CONST_CODIGO','$CI_TUTOR','0','100')";
 
     $INSERT_ASIGN_USER = "INSERT INTO
       asignar_usuario(id_usuario, id_rol, id_ci, usuario_nombre, usuario_password)

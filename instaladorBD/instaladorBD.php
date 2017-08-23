@@ -319,7 +319,7 @@ function crearTablas(){
 					 ('','CONTRAER MATRIMONIO','7'),
 					 ('','ENCONTRARSE EN ESTADO DE GRAVIDEZ  O HABER ABORTADO','7'),
 					 ('','MANTENER RELACIONES SEXUALES ENTRE ALUMNOS','7'),
-					 ('','CAMINAR SUGESTIVAMENTE INCITANDO AL APETIT SEXUAL','7'),
+					 ('','CAMINAR SUGESTIVAMENTE INCITANDO AL APETITO SEXUAL','7'),
 					 ('','PARTICIPAR TRAFICO O CONSUMO DE DROGAS ','7'),
 					 ('','ABANDONAR EN MASA LAS INSTALACIONES DEL INSTITUTO','7'),
 					 ('','REINCIDENTE A COMETER UNA FALTA POR MAS DE TRES VECES ','7'),
@@ -484,17 +484,33 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 		$INSERT_USUARIOS_TESTS = "INSERT INTO
 			usuario(id_ci, id_grado, id_arma, nombre, paterno, materno, sexo, fecha_nac, lugar_nac, correo, celular, direccion, codigo_secreto, ci_tutor, total_puntos, calificacion_disciplinario)
 				VALUES ('3841712','1','1','JUAN','NUNEZ','SOTO','MASCULINO','04/25/2016','TIRAQUE','juan@gmail.com','78859698','AV NORTE','0','0','0','0'),
-							 ('3841713','1','1','PEPE','AGUILAR','MARNELI','MASCULINO','04/25/2016','SACABA','pepe@gmail.com','74587478','AV NORTE','0','0','0','0'),
-							 ('3841714','1','1','LUCAS','MELO','LOPEZ','MASCULINO','04/25/2016','TIRAQUE','lucas@gmail.com','74458596','AV NORTE','0','0','0','0'),
-							 ('3841715','1','1','MARTIN','JUDAS','TORO','MASCULINO','04/25/2016','BENI','martin@gmail.com','74589632','AV NORTE','0','0','0','0'),
-							 ('3841716','1','1','RODRIGO','MURILLO','PUERTA','MASCULINO','04/25/2016','SANTA CRUZ','rodrigo@gmail.com','85749632','AV CAP USTARIZ','0','0','0','0'),
+							 ('3841713','4','4','PEPE','AGUILAR','MARNELI','MASCULINO','04/25/2016','SACABA','pepe@gmail.com','74587478','AV NORTE','0','0','0','0'),
+							 ('3841714','5','4','LUCAS','MELO','LOPEZ','MASCULINO','04/25/2016','TIRAQUE','lucas@gmail.com','74458596','AV NORTE','0','0','0','0'),
+							 ('3841715','4','2','MARTIN','JUDAS','TORO','MASCULINO','04/25/2016','BENI','martin@gmail.com','74589632','AV NORTE','0','0','0','0'),
+							 ('3841716','5','3','RODRIGO','MURILLO','PUERTA','MASCULINO','04/25/2016','SANTA CRUZ','rodrigo@gmail.com','85749632','AV CAP USTARIZ','0','0','0','0'),
+							 ('3841735','7','3','HENRY','PORTILLO','RUEDA','MASCULINO','03/26/2016','ROBORE','portillo258@gmail.com','75125896','AV BLANO GALINDO','0','0','0','0'),
+							 ('3841736','4','3','DONATO','KIPPES','MENDEZ','MASCULINO','12/06/2016','PUERTO SUAREZ','kpppess@gmail.com','75236987','AV BLANO GALINDO','0','0','0','0'),
+							 ('3841737','5','3','GUSTAVO','PEREZ','TERNA','MASCULINO','05/10/2016','COBIJA','perez@gmail.com','74585621','AV BLANO GALINDO','0','0','0','0'),
+							 ('3841738','2','3','ISRAEL','INTURIAS','CAMBE','MASCULINO','08/11/2016','BERMEJO','inturias@gmail.com','74185654','AV BLANO GALINDO','0','0','0','0'),
+
 							 ('3841717','15','0','ANTONIO','SOLIZ','MESA','MASCULINO','04/25/1996','COBIJA','antonio@gmail.com','74125896','AV NORTE','4444','123','4','96,08'),
 							 ('3841718','16','0','MIGUEL','MORALES','SORIA','MASCULINO','04/25/1996','ROBORE','miguel@gmail.com','72787975','AV EL VALLE','4444','456','1','99,02'),
 							 ('3841719','16','0','LUIS','MORALES','ZARNES','MASCULINO','04/25/1998','SUCRE','miguel@gmail.com','74458596','AV CIRCUNVALACION','4444','456','3','97,06'),
 							 ('3841720','17','0','MARCOS','MORALES','ZAPATA','MASCULINO','04/25/1999','ORURO','miguel@gmail.com','78524145','AV NORTE','4444','456','1','99,02'),
 							 ('3841721','17','0','MAURICIO','NOGALES','SUAREZ','MASCULINO','04/25/1998','ANZALDO','mauri@gmail.com','74859632','AV SUECIA','4444','456','1','99,02'),
-							 ('3841722','17','0','MILTON','PAREDES','RAMOS','MASCULINO','02/16/1998','COBIJA','mauri@gmail.com','5245896','AV BLANCO GALINDO','4444','456','1','99,02'),
-							 ('3841723','17','0','LEONCIO','MORALES','ZAPATA','MASCULINO','04/25/1999','LA PAZ','miguel@gmail.com','78854512','AV NORTE','4444','456','1','99,02')";
+							 ('3841722','17','0','MILTON','PAREDES','RAMOS','MASCULINO','02/16/1998','COBIJA','mauri@gmail.com','5245896','AV BLANCO GALINDO','4444','456','0','100'),
+							 ('3841723','17','0','LEONCIO','MORALES','ZAPATA','MASCULINO','04/25/1999','LA PAZ','miguel@gmail.com','78854512','AV NORTE','4444','456','0','100'),
+							 ('3841724','15','0','JOSE','SANSIESTEBAN','MESA','MASCULINO','04/25/1996','COBIJA','antonio@gmail.com','74125896','AV NORTE','4444','123','1','99,02'),
+							 ('3841725','15','0','LUAN','KYLE','MESA','MASCULINO','04/25/1996','COBIJA','antonio@gmail.com','74125896','AV NORTE','4444','123','2','98,04'),
+							 ('3841726','15','0','LIMBERT','SUAREZ','DIARET','MASCULINO','04/25/1996','COBIJA','antonio@gmail.com','74125896','AV NORTE','4444','123','1','99,02'),
+							 ('3841727','15','0','TOBIAS','LIMA','CORDOVA','MASCULINO','04/25/1996','COBIJA','antonio@gmail.com','74125896','AV NORTE','4444','123','1','99,02'),
+							 ('3841728','16','0','MIGUEL','MORALES','VALDIVIA','MASCULINO','04/25/1996','ROBORE','miguel@gmail.com','72787975','AV EL VALLE','4444','456','1','99,02'),
+							 ('3841729','16','0','JUMIOR','FERTO','PERNAN','MASCULINO','04/25/1996','ROBORE','miguel@gmail.com','72787975','AV EL VALLE','4444','456','1','99,02'),
+							 ('3841730','16','0','PECRO','FIGUEROA','TERAN','MASCULINO','04/25/1996','ROBORE','miguel@gmail.com','72787975','AV EL VALLE','4444','456','1','99,02'),
+							 ('3841731','17','0','JUAN CARLOS','MORALES','LOPEZ','MASCULINO','04/25/1999','LA PAZ','miguel@gmail.com','78854512','AV NORTE','4444','456','0','100'),
+							 ('3841732','17','0','LEONARDO','DONATO','SAENZ','MASCULINO','04/25/1999','LA PAZ','miguel@gmail.com','78854512','AV NORTE','4444','456','0','100'),
+							 ('3841733','15','0','CARLOS','SOLIZ','MONTES','MASCULINO','04/25/1999','LA PAZ','miguel@gmail.com','78854512','AV NORTE','4444','456','0','100'),
+							 ('3841734','16','0','KEVIN','RENGEL','TATU','MASCULINO','04/25/1999','LA PAZ','miguel@gmail.com','78854512','AV NORTE','4444','456','0','100')";
 
 		if (mysqli_query($con, $INSERT_USUARIOS_TESTS)) {
 			# code...
@@ -528,7 +544,22 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 							 ('','6','3841720','3841720','2020'),
 							 ('','6','3841721','3841721','2121'),
 							 ('','6','3841722','3841722','2222'),
-							 ('','6','3841723','3841723','2323')";
+							 ('','6','3841723','3841723','2323'),
+							 ('','6','3841724','3841724','2424'),
+							 ('','6','3841725','3841725','2525'),
+							 ('','6','3841726','3841726','2626'),
+							 ('','6','3841727','3841727','2727'),
+							 ('','6','3841728','3841728','2828'),
+							 ('','6','3841729','3841729','2929'),
+							 ('','6','3841730','3841730','3030'),
+							 ('','6','3841731','3841731','3131'),
+							 ('','6','3841732','3841732','3232'),
+							 ('','6','3841733','3841733','3333'),
+							 ('','6','3841734','3841734','3434'),
+							 ('','4','3841735','3841735','3535'),
+							 ('','4','3841736','3841736','3636'),
+							 ('','4','3841737','3841737','3737'),
+							 ('','4','3841738','3841738','3838')";
 
 		if (mysqli_query($con, $INSERT_ASIG_USUARIOS_TESTS)) {
 			# code...
@@ -624,7 +655,7 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 							 ('','567','MARIBEL LOPEZ','33221111','AV CIRCUNVALACION'),
 							 ('','891','GROVER SALINAS','33344455','AV JUNIN'),
 							 ('','891','TOMAS BARRIENTOS','33344455','AV GALVEZ'),
-							 ('','456','MELIN GUTIERREZ','33344455','AV EJERCITO')";
+							 ('','456','MERLIN GUTIERREZ','33344455','AV EJERCITO')";
 
 		if (mysqli_query($con, $INSERT_TUTOR)) {
 			echo "<br> - TUTORES TESTS INSERTADOS - <br>";
@@ -650,16 +681,23 @@ if (mysqli_query($con, $INSERT_MERITO_TESTS)) {
 
 		$INSERT_SANCIONES_TEST = "INSERT INTO
 			sancion(id_sancion,ci_instructor,ci_alumno,id_falta,id_grupo,puntos,tipo,fecha,id_resolucion)
-				VALUES ('','12','17','8','1','1','D','2016/05/21',NULL),
-							 ('','12','17','8','1','1','D','2016/07/01',NULL),
-							 ('','13','17','8','1','1','D','2016/07/03',NULL),
-							 ('','14','17','23','1','1','D','2016/07/06',NULL),
-							 ('','14','21','8','1','1','D','2016/08/08',NULL),
-							 ('','14','20','8','1','1','D','2016/08/07',NULL),
-							 ('','15','18','23','1','1','D','2016/08/09',NULL),
-							 ('','16','19','8','1','1','D','2016/08/10',NULL),
-							 ('','14','19','23','1','1','D','2016/09/22',NULL),
-							 ('','14','19','23','1','1','D','2016/10/15',NULL)";
+				VALUES ('','3841712','3841717','8','1','1','D','2016/10/21',NULL),
+							 ('','3841712','3841717','8','1','1','D','2016/10/25',NULL),
+							 ('','3841713','3841717','8','1','1','D','2016/10/31',NULL),
+							 ('','3841714','3841717','23','1','1','D','2016/10/31',NULL),
+							 ('','3841714','3841721','8','1','1','D','2016/11/01',NULL),
+							 ('','3841714','3841720','8','1','1','D','2016/11/01',NULL),
+							 ('','3841715','3841718','23','1','1','D','2016/11/02',NULL),
+							 ('','3841716','3841719','8','1','1','D','2016/11/02',NULL),
+							 ('','3841714','3841719','23','1','1','D','2016/11/03',NULL),
+							 ('','3841714','3841719','23','1','1','D','2016/11/03',NULL),
+							 ('','3841714','3841724','22','1','1','D','2016/11/03',NULL),
+							 ('','3841714','3841725','23','1','1','D','2016/11/03',NULL),
+							 ('','3841714','3841726','1','1','1','D','2016/11/03',NULL),
+							 ('','3841714','3841727','3','1','1','D','2016/11/03',NULL),
+							 ('','3841714','3841728','2','1','1','D','2016/11/03',NULL),
+							 ('','3841714','3841729','4','1','1','D','2016/11/03',NULL),
+							 ('','3841714','3841730','1','1','1','D','2016/11/03',NULL)";
 
 			if (mysqli_query($con, $INSERT_SANCIONES_TEST)) {
 				echo "<br> - SANCIONES TESTS INSERTADOS - <br>";
